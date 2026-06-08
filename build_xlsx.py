@@ -1,17 +1,42 @@
 #!/usr/bin/env python3
-"""Build the verified fintech deals Excel sheet (filtered)."""
+"""Build the verified fintech deals workbook: two sheets (Growth Raises, Acquisitions)."""
 import csv
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-HEADERS = ["Sector", "Target Country", "Deal Type", "Date", "Target", "Acquirer",
-           "EV ($M)", "EV / Revenue", "EV / EBITDA", "Target Description",
-           "Link / Press Release"]
+RAISE_HEADERS = ["Sector", "Target Country", "Date", "Target", "Lead Investor(s)",
+                 "Amount ($M)", "Valuation ($M)", "EV / Revenue", "EV / EBITDA",
+                 "Target Description", "Link / Press Release"]
 
-# Filters applied: funding rounds < $20M excluded; India/Kenya excluded; M&A kept at any size.
-# Dates are verified announcement dates. Descriptions = one brief sentence on the company.
-ROWS = [
+MA_HEADERS = ["Sector", "Target Country", "Deal Type", "Date", "Target", "Acquirer",
+              "EV ($M)", "EV / Revenue", "EV / EBITDA", "Target Description",
+              "Link / Press Release"]
+
+# Growth (capital) raises >= $20M. Valuation filled where disclosed; EV multiples N/A for raises.
+RAISES = [
+ ["Banking & Lending Tech","United States","2026-05-27","Capchase","01 Advisors",26,"","","",
+  "A US provider of non-dilutive, revenue-based financing for B2B software firms.",
+  "https://news.crunchbase.com/venture/fintech-capchase-b2b-bnpl-200m-debt-equity/"],
+ ["Corporate Financial Function","United States","2026-06-04","Ramp","ICONIQ, GIC, Ontario Teachers'",750,44000,"","",
+  "A US corporate spend-management and financial-operations platform.",
+  "https://www.prnewswire.com/news-releases/ramp-raises-series-f-at-44-billion-valuation-302791103.html"],
+ ["Corporate Financial Function","France","2026-05-21","Pivot","Forestay Capital & Notion Capital",40,"","","",
+  "A French AI procurement and spend-management software provider.",
+  "https://www.globenewswire.com/news-release/2026/05/21/3299278/0/en/Pivot-Raises-40-Million-Series-B-to-Replace-Legacy-Procurement-Software-with-an-Enterprise-AI-Operating-System.html"],
+ ["Financial Info & Analytics","United States","2026-06-03","AlphaSense","Vitruvian Partners, Accenture Ventures, J.P. Morgan Asset Mgmt",350,7500,"","",
+  "A US AI-powered market-intelligence and research platform.",
+  "https://www.globenewswire.com/news-release/2026/06/03/3305968/0/en/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue.html"],
+ ["InsurTech","United States","2026-06-04","Honeycomb Insurance","Zeev Ventures",40,"","","",
+  "A US AI-driven commercial-property insurance underwriter.",
+  "https://fortune.com/2026/06/04/honeycomb-insurance-ai-apartments-40-million/"],
+ ["InsurTech","United States","2026-05-28","Corgi","TCV",106,2600,"","",
+  "A US full-stack commercial insurance platform.",
+  "https://techcrunch.com/2026/05/28/corgi-announces-106m-raise-at-2-6b-valuation-three-weeks-after-160m-series-b/"],
+]
+
+# Acquisitions (M&A) — any size. EV filled where disclosed; EV multiples not disclosed.
+ACQUISITIONS = [
  ["Asset & Wealth Tech","United States","Strategic M&A","2026-06-03","Affinity Advisory Network / AAN Wealth Advisors","Nu Ride Inc.",9.6,"","",
   "A US insurance-distribution and registered-investment-advisory network.",
   "https://www.investing.com/news/company-news/nu-ride-to-acquire-affinity-advisory-for-96-million-93CH-4724416"],
@@ -21,33 +46,15 @@ ROWS = [
  ["Banking & Lending Tech","United States","Strategic M&A","2026-06-03","Finastra US Mid-Market Banking business","CORA Group (Jonas Software / Constellation)","","","",
   "Finastra's US core and digital banking software unit (Phoenix, Malauzai).",
   "https://www.globenewswire.com/news-release/2026/06/03/3306031/0/en/cora-group-acquires-finastra-s-phoenix-core-system-malauzai-digital-banking-and-fusion-analytics-businesses.html"],
- ["Banking & Lending Tech","United States","Capital Raise","2026-05-27","Capchase","01 Advisors (lead)","","","",
-  "A US provider of non-dilutive, revenue-based financing for B2B software firms.",
-  "https://news.crunchbase.com/venture/fintech-capchase-b2b-bnpl-200m-debt-equity/"],
  ["Capital Markets Tech","United Kingdom","Strategic M&A","2026-05-26","Funded Trading Plus","Instant Funding","","","",
   "A UK proprietary trading firm offering funded-trader evaluation accounts.",
   "https://windsordrake.com/market-intelligence/transactions/funded-trading-plus-instant-funding-2026"],
- ["Corporate Financial Function","United States","Capital Raise","2026-06-04","Ramp","ICONIQ, GIC, Ontario Teachers' (lead)","","","",
-  "A US corporate spend-management and financial-operations platform.",
-  "https://www.prnewswire.com/news-releases/ramp-raises-series-f-at-44-billion-valuation-302791103.html"],
  ["Corporate Financial Function","United States","Strategic M&A","2026-06-04","Leapfin","Airwallex","","","",
   "A US revenue-recognition and accounting-automation software provider.",
   "https://www.airwallex.com/global/newsroom/airwallex-acquires-leapfin-expanding-financial-lifecycle-capabilities"],
- ["Corporate Financial Function","France","Capital Raise","2026-05-21","Pivot","Forestay Capital & Notion Capital (lead)","","","",
-  "A French AI procurement and spend-management software provider.",
-  "https://www.globenewswire.com/news-release/2026/05/21/3299278/0/en/Pivot-Raises-40-Million-Series-B-to-Replace-Legacy-Procurement-Software-with-an-Enterprise-AI-Operating-System.html"],
- ["Financial Info & Analytics","United States","Capital Raise","2026-06-03","AlphaSense","Vitruvian Partners, Accenture Ventures, J.P. Morgan Asset Mgmt (lead)","","","",
-  "A US AI-powered market-intelligence and research platform.",
-  "https://www.globenewswire.com/news-release/2026/06/03/3305968/0/en/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue.html"],
  ["Financial Info & Analytics","United States","Strategic M&A","2026-06-04","PEER DATA","Lukka","","","",
   "A provider of data-provenance and compliance infrastructure for digital assets.",
   "http://www.prnewswire.com/news-releases/lukka-acquires-peer-data-to-build-the-institutional-control-layer-for-digital-assets-and-data-commerce-302791630.html"],
- ["InsurTech","United States","Capital Raise","2026-06-04","Honeycomb Insurance","Zeev Ventures (lead)","","","",
-  "A US AI-driven commercial-property insurance underwriter.",
-  "https://fortune.com/2026/06/04/honeycomb-insurance-ai-apartments-40-million/"],
- ["InsurTech","United States","Capital Raise","2026-05-28","Corgi","TCV (lead)","","","",
-  "A US full-stack commercial insurance platform.",
-  "https://techcrunch.com/2026/05/28/corgi-announces-106m-raise-at-2-6b-valuation-three-weeks-after-160m-series-b/"],
  ["InsurTech","United States","Strategic M&A","2026-06-01","Aggne (Aggne Global)","Wipro",28.5,"","",
   "A US property-and-casualty insurance technology and consulting firm.",
   "https://www.business-standard.com/amp/companies/news/wipro-raises-stake-in-insurance-tech-firm-aggne-to-80-for-28-5-million-126060102064_1.html"],
@@ -71,10 +78,6 @@ ROWS = [
   "https://www.cantechletter.com/newswires/shelter-lending-corporation-announces-acquisition-of-accepted-financial-corp-accelerating-national-growth-strategy/"],
 ]
 
-wb = Workbook()
-ws = wb.active
-ws.title = "Verified Deals Jun 2026"
-
 header_fill = PatternFill("solid", fgColor="1F6FB2")
 header_font = Font(color="FFFFFF", bold=True, size=11)
 center = Alignment(horizontal="center", vertical="center", wrap_text=True)
@@ -82,28 +85,36 @@ left_wrap = Alignment(horizontal="left", vertical="top", wrap_text=True)
 thin = Side(style="thin", color="D0D0D0")
 border = Border(left=thin, right=thin, top=thin, bottom=thin)
 
-ws.append(HEADERS)
-for c in range(1, len(HEADERS) + 1):
-    cell = ws.cell(row=1, column=c)
-    cell.fill = header_fill; cell.font = header_font
-    cell.alignment = center; cell.border = border
 
-for r in ROWS:
-    ws.append(r)
-for row in ws.iter_rows(min_row=2, max_row=1 + len(ROWS), min_col=1, max_col=len(HEADERS)):
-    for cell in row:
-        cell.alignment = left_wrap; cell.border = border
+def fill_sheet(ws, headers, rows, widths):
+    ws.append(headers)
+    for c in range(1, len(headers) + 1):
+        cell = ws.cell(row=1, column=c)
+        cell.fill = header_fill; cell.font = header_font
+        cell.alignment = center; cell.border = border
+    for r in rows:
+        ws.append(r)
+    for row in ws.iter_rows(min_row=2, max_row=1 + len(rows), min_col=1, max_col=len(headers)):
+        for cell in row:
+            cell.alignment = left_wrap; cell.border = border
+    for i, w in enumerate(widths, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{1 + len(rows)}"
+    ws.row_dimensions[1].height = 30
 
-widths = [22, 16, 22, 12, 30, 32, 9, 12, 12, 55, 48]
-for i, w in enumerate(widths, start=1):
-    ws.column_dimensions[get_column_letter(i)].width = w
 
-ws.freeze_panes = "A2"
-ws.auto_filter.ref = f"A1:{get_column_letter(len(HEADERS))}{1 + len(ROWS)}"
-ws.row_dimensions[1].height = 30
+wb = Workbook()
+ws1 = wb.active
+ws1.title = "Growth Raises"
+fill_sheet(ws1, RAISE_HEADERS, RAISES, [22, 16, 12, 26, 38, 11, 14, 12, 12, 50, 46])
+ws2 = wb.create_sheet("Acquisitions")
+fill_sheet(ws2, MA_HEADERS, ACQUISITIONS, [22, 16, 20, 12, 30, 32, 9, 12, 12, 50, 46])
 wb.save("/home/user/aboutMe/fintech-deals-verified.xlsx")
 
-with open("/home/user/aboutMe/fintech-deals-verified.csv", "w", newline="") as f:
-    w = csv.writer(f); w.writerow(HEADERS); w.writerows(ROWS)
+with open("/home/user/aboutMe/fintech-growth-raises.csv", "w", newline="") as f:
+    w = csv.writer(f); w.writerow(RAISE_HEADERS); w.writerows(RAISES)
+with open("/home/user/aboutMe/fintech-acquisitions.csv", "w", newline="") as f:
+    w = csv.writer(f); w.writerow(MA_HEADERS); w.writerows(ACQUISITIONS)
 
-print("Wrote", len(ROWS), "rows to xlsx + csv")
+print(f"Wrote workbook: {len(RAISES)} growth raises + {len(ACQUISITIONS)} acquisitions")
