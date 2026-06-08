@@ -13,26 +13,17 @@ MA_HEADERS = ["Sector", "Target Country", "Deal Type", "Date", "Target", "Acquir
               "EV ($M)", "EV / Revenue", "EV / EBITDA", "Target Description",
               "Link / Press Release"]
 
-# Growth (capital) raises >= $20M. Valuation filled where disclosed; EV multiples N/A for raises.
+# Growth (capital) raises >= $20M, announced on/after 2026-05-30. Valuation filled where disclosed.
 RAISES = [
- ["Banking & Lending Tech","United States","2026-05-27","Capchase","01 Advisors",26,"","","",
-  "A US provider of non-dilutive, revenue-based financing for B2B software firms.",
-  "https://news.crunchbase.com/venture/fintech-capchase-b2b-bnpl-200m-debt-equity/"],
  ["Corporate Financial Function","United States","2026-06-04","Ramp","ICONIQ, GIC, Ontario Teachers'",750,44000,"","",
   "A US corporate spend-management and financial-operations platform.",
   "https://www.prnewswire.com/news-releases/ramp-raises-series-f-at-44-billion-valuation-302791103.html"],
- ["Corporate Financial Function","France","2026-05-21","Pivot","Forestay Capital & Notion Capital",40,"","","",
-  "A French AI procurement and spend-management software provider.",
-  "https://www.globenewswire.com/news-release/2026/05/21/3299278/0/en/Pivot-Raises-40-Million-Series-B-to-Replace-Legacy-Procurement-Software-with-an-Enterprise-AI-Operating-System.html"],
  ["Financial Info & Analytics","United States","2026-06-03","AlphaSense","Vitruvian Partners, Accenture Ventures, J.P. Morgan Asset Mgmt",350,7500,"","",
   "A US AI-powered market-intelligence and research platform.",
   "https://www.globenewswire.com/news-release/2026/06/03/3305968/0/en/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue.html"],
  ["InsurTech","United States","2026-06-04","Honeycomb Insurance","Zeev Ventures",40,"","","",
   "A US AI-driven commercial-property insurance underwriter.",
   "https://fortune.com/2026/06/04/honeycomb-insurance-ai-apartments-40-million/"],
- ["InsurTech","United States","2026-05-28","Corgi","TCV",106,2600,"","",
-  "A US full-stack commercial insurance platform.",
-  "https://techcrunch.com/2026/05/28/corgi-announces-106m-raise-at-2-6b-valuation-three-weeks-after-160m-series-b/"],
 ]
 
 # Acquisitions (M&A) — any size. EV filled where disclosed; EV multiples not disclosed.
@@ -46,9 +37,6 @@ ACQUISITIONS = [
  ["Banking & Lending Tech","United States","Strategic M&A","2026-06-03","Finastra US Mid-Market Banking business","CORA Group (Jonas Software / Constellation)","","","",
   "Finastra's US core and digital banking software unit (Phoenix, Malauzai).",
   "https://www.globenewswire.com/news-release/2026/06/03/3306031/0/en/cora-group-acquires-finastra-s-phoenix-core-system-malauzai-digital-banking-and-fusion-analytics-businesses.html"],
- ["Capital Markets Tech","United Kingdom","Strategic M&A","2026-05-26","Funded Trading Plus","Instant Funding","","","",
-  "A UK proprietary trading firm offering funded-trader evaluation accounts.",
-  "https://windsordrake.com/market-intelligence/transactions/funded-trading-plus-instant-funding-2026"],
  ["Corporate Financial Function","United States","Strategic M&A","2026-06-04","Leapfin","Airwallex","","","",
   "A US revenue-recognition and accounting-automation software provider.",
   "https://www.airwallex.com/global/newsroom/airwallex-acquires-leapfin-expanding-financial-lifecycle-capabilities"],
@@ -58,24 +46,15 @@ ACQUISITIONS = [
  ["InsurTech","United States","Strategic M&A","2026-06-01","Aggne (Aggne Global)","Wipro",28.5,"","",
   "A US property-and-casualty insurance technology and consulting firm.",
   "https://www.business-standard.com/amp/companies/news/wipro-raises-stake-in-insurance-tech-firm-aggne-to-80-for-28-5-million-126060102064_1.html"],
- ["Payments","Canada","Strategic M&A","2026-03-30","KUBRA (Kubra Data Transfer)","REPAY",372,"","",
-  "A Canadian billing and customer-payments technology provider for utilities and government.",
-  "https://investors.repay.com/news-releases/news-release-details/repay-announces-agreement-acquire-kubra"],
  ["Payments","United States","Strategic M&A","2026-06-02","Fee Navigator","NMI","","","",
   "A US AI merchant-pricing intelligence provider for payments.",
   "https://www.businesswire.com/news/home/20260602447713/en/NMI-Acquires-Fee-Navigator-Adding-AI-Powered-Pricing-Intelligence-to-Its-Embedded-Payments-Platform"],
  ["Payments","United Kingdom","SPAC merger (de-SPAC)","2026-06-01","OpenPayd","Titan Acquisition Corp (SPAC)",1100,"","",
   "A UK embedded-finance and payments-orchestration platform.",
   "https://www.globenewswire.com/news-release/2026/06/01/3304275/0/en/OpenPayd-Targets-Nasdaq-Listing-at-Unicorn-Valuation.html"],
- ["Payments","Canada","Strategic M&A","2026-06-01","WonderFi","Robinhood",182,"","",
-  "A Canadian operator of regulated crypto exchanges (Bitbuy and Coinsquare).",
-  "https://www.newsfilecorp.com/release/299681/Robinhood-Completes-Acquisition-of-WonderFi"],
  ["Payments","United Kingdom","Strategic M&A","2026-06-02","Absolute Payment Solutions","XFolio AI","","","",
   "A UK Pay.UK-accredited Bacs payments service provider.",
   "https://www.fintechfutures.com/m-a/xfolio-ai-acquires-absolute-payments-solutions"],
- ["Real Estate & Mortgage Tech","Canada","Strategic M&A","2026-05-20","Accepted Financial Corp","Shelter Lending Corporation","","","",
-  "A Western-Canada alternative mortgage lender and brokerage.",
-  "https://www.cantechletter.com/newswires/shelter-lending-corporation-announces-acquisition-of-accepted-financial-corp-accelerating-national-growth-strategy/"],
 ]
 
 header_fill = PatternFill("solid", fgColor="1F6FB2")
