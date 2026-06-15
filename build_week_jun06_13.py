@@ -32,6 +32,9 @@ RAISES = [
  ["Financial Info & Analytics","United States","2026-06-11","Hypha","TriEdge Investments",50,"","","",
   "A US AI-native investment-intelligence platform structuring data across private credit and private equity.",
   "https://www.businesswire.com/news/home/20260611628926/en/Hypha-Emerges-From-Stealth-Announces-a-$50M-Seed-Round"],
+ ["Banking & Lending Tech","Canada","2026-06-11","KOHO","Mubadala",95,970,"","",
+  "A Canadian consumer neobank offering spending, savings and credit-building products.",
+  "https://betakit.com/koho-becomes-canadas-latest-unicorn-following-130-million-series-e-round/"],
 ]
 
 # Acquisitions (any size), announced 6-13 Jun 2026, core markets.
