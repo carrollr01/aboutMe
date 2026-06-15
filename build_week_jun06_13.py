@@ -12,14 +12,14 @@ MA_HEADERS = ["Sector", "Target Country", "Deal Type", "Date", "Target", "Acquir
               "EV ($M)", "EV / Revenue", "EV / EBITDA", "Target Description",
               "Link / Press Release"]
 
-# Growth raises >= $20M, announced 6-13 Jun 2026, core markets.
+# Growth raises > $25M, announced 6-13 Jun 2026, core markets.
 RAISES = [
- ["Capital Markets Tech","United States","2026-06-10","Vinyl Equity","Jump Capital",20,"","","",
-  "A US capital-markets infrastructure provider and SEC-registered transfer agent.",
-  "https://www.prnewswire.com/news-releases/vinyl-equity-raises-20-million-led-by-jump-capital-as-its-infrastructure-powers-modern-capital-markets-and-corporate-transactions-302795321.html"],
  ["Capital Markets Tech","United States","2026-06-11","Digital Asset","a16z crypto",355,2000,"","",
   "A US developer of the Canton Network blockchain for institutional capital markets.",
   "https://www.prnewswire.com/news-releases/digital-asset-raises-355-million-to-accelerate-cantons-role-as-onchain-infrastructure-for-capital-markets-302797427.html"],
+ ["Banking & Lending Tech","United States","2026-06-12","Current","Springcoast Partners",80,1500,"","",
+  "A US consumer neobank offering banking, spending and credit-building products.",
+  "https://www.thebankslate.com/2026/06/neobank-current-raises-80-million-in-latest-funding-round/"],
  ["InsurTech","United States","2026-06-10","Poetic","Kleiner Perkins",50,500,"","",
   "A US developer of deterministic AI for automating complex insurance and enterprise processes.",
   "https://www.prnewswire.com/news-releases/poetic-raises-50m-series-a-to-automate-the-worlds-most-complex-enterprise-processes-with-reliable-ai-302796939.html"],
@@ -30,9 +30,15 @@ ACQUISITIONS = [
  ["Asset & Wealth Tech","Switzerland","Strategic M&A","2026-06-08","additiv","Temenos","","","",
   "A Swiss orchestration platform for wealth management and financial services.",
   "https://www.temenos.com/press_release/temenos-acquires-additiv-to-strengthen-its-wealth-proposition-and-accelerate-ai-driven-orchestration/"],
+ ["Capital Markets Tech","United States","Strategic M&A","2026-06-08","LevPro","Octus","","","",
+  "A US front-office software provider for CLO and private-credit portfolio management and trading.",
+  "https://octus.com/company/news/octus-signs-definitive-agreement-to-acquire-levpro/"],
  ["Real Estate & Mortgage Tech","United States","Strategic M&A","2026-06-10","Kiavi","Figure",717,"","",
   "A US AI-powered lending platform for residential real-estate investors.",
   "https://www.kiavi.com/press/figure-acquires-kiavi"],
+ ["Payments","United States","Strategic M&A","2026-06-12","Payoneer","Nuvei",2750,"","",
+  "A US-based global cross-border payments and money-movement platform for SMBs.",
+  "https://www.prnewswire.com/news-releases/nuvei-to-acquire-payoneer-for-2-75-billion-creating-a-leading-global-platform-for-local-and-cross-border-commerce-302800166.html"],
 ]
 
 header_fill = PatternFill("solid", fgColor="1F6FB2")
@@ -62,9 +68,9 @@ def fill_sheet(ws, headers, rows, widths):
 
 
 wb = Workbook()
-fill_sheet(wb.active, RAISE_HEADERS, RAISES, [22, 16, 12, 26, 26, 11, 14, 12, 12, 52, 46])
+fill_sheet(wb.active, RAISE_HEADERS, RAISES, [22, 16, 12, 24, 24, 11, 14, 12, 12, 52, 46])
 wb.active.title = "Growth Raises"
-fill_sheet(wb.create_sheet("Acquisitions"), MA_HEADERS, ACQUISITIONS, [24, 16, 20, 12, 26, 26, 9, 12, 12, 52, 46])
+fill_sheet(wb.create_sheet("Acquisitions"), MA_HEADERS, ACQUISITIONS, [24, 16, 18, 12, 22, 16, 9, 12, 12, 52, 46])
 wb.save("/home/user/aboutMe/fintech-deals-2026-06-06_06-13.xlsx")
 
 with open("/home/user/aboutMe/fintech-growth-raises-2026-06-06_06-13.csv", "w", newline="") as f:
