@@ -23,6 +23,12 @@ RAISES = [
  ["InsurTech","United States","2026-06-10","Poetic","Kleiner Perkins",50,500,"","",
   "A US developer of deterministic AI for automating complex insurance and enterprise processes.",
   "https://www.prnewswire.com/news-releases/poetic-raises-50m-series-a-to-automate-the-worlds-most-complex-enterprise-processes-with-reliable-ai-302796939.html"],
+ ["Payments","United States","2026-06-08","EDGE Markets","CoinFund",29.2,"","","",
+  "A US developer of payment-rail and settlement infrastructure for prediction markets and regulated gaming.",
+  "https://www.prnewswire.com/news-releases/edge-markets-raises-29-2-million-series-a-funding-round-302793671.html"],
+ ["Real Estate & Mortgage Tech","Canada","2026-06-10","nesto","La Caisse",220,1070,"","",
+  "A Canadian mortgage technology and financing platform with white-label cloud and AI software for lenders.",
+  "https://www.globenewswire.com/news-release/2026/06/10/3309762/0/en/nesto-raises-302-million-Series-E-at-1-47-billion-valuation-to-accelerate-growth.html"],
 ]
 
 # Acquisitions (any size), announced 6-13 Jun 2026, core markets.
