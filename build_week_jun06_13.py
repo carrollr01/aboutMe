@@ -29,6 +29,9 @@ RAISES = [
  ["Real Estate & Mortgage Tech","Canada","2026-06-10","nesto","La Caisse",220,1070,"","",
   "A Canadian mortgage technology and financing platform with white-label cloud and AI software for lenders.",
   "https://www.globenewswire.com/news-release/2026/06/10/3309762/0/en/nesto-raises-302-million-Series-E-at-1-47-billion-valuation-to-accelerate-growth.html"],
+ ["Financial Info & Analytics","United States","2026-06-11","Hypha","TriEdge Investments",50,"","","",
+  "A US AI-native investment-intelligence platform structuring data across private credit and private equity.",
+  "https://www.businesswire.com/news/home/20260611628926/en/Hypha-Emerges-From-Stealth-Announces-a-$50M-Seed-Round"],
 ]
 
 # Acquisitions (any size), announced 6-13 Jun 2026, core markets.
@@ -48,6 +51,15 @@ ACQUISITIONS = [
  ["Corporate Financial Function","United States","Strategic M&A","2026-06-11","Orb","Adyen",335,"","",
   "A US enterprise billing and revenue-management platform for usage-based pricing.",
   "https://www.adyen.com/press-and-media/jtrg4qd7j3p4rj"],
+ ["Corporate Financial Function","United Kingdom","Strategic M&A","2026-06-08","m3ter","Salesforce","","","",
+  "A UK usage-based billing and revenue-metering platform for software companies.",
+  "https://www.salesforce.com/news/stories/salesforce-signs-definitive-agreement-to-acquire-m3ter/"],
+ ["Financial Info & Analytics","United States","Strategic M&A","2026-06-11","Messari","Blockworks",10,"","",
+  "A US crypto market-data, research and intelligence platform.",
+  "https://www.businesswire.com/news/home/20260611031601/en/Blockworks-Acquires-Messari-Combining-the-Two-Largest-Crypto-Data-Platforms"],
+ ["Financial Info & Analytics","United States","Strategic M&A","2026-06-10","RiskFront AI","K2 Integrity","","","",
+  "A US developer of agentic AI for financial-crime (AML) compliance and risk operations.",
+  "https://fintech.global/2026/06/10/k2-integrity-targets-financial-crime-with-ai-deal/"],
 ]
 
 header_fill = PatternFill("solid", fgColor="1F6FB2")
