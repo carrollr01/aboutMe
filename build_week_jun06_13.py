@@ -45,6 +45,9 @@ ACQUISITIONS = [
  ["Payments","United States","Strategic M&A","2026-06-12","Payoneer","Nuvei",2750,"","",
   "A US-based global cross-border payments and money-movement platform for SMBs.",
   "https://www.prnewswire.com/news-releases/nuvei-to-acquire-payoneer-for-2-75-billion-creating-a-leading-global-platform-for-local-and-cross-border-commerce-302800166.html"],
+ ["Corporate Financial Function","United States","Strategic M&A","2026-06-11","Orb","Adyen",335,"","",
+  "A US enterprise billing and revenue-management platform for usage-based pricing.",
+  "https://www.adyen.com/press-and-media/jtrg4qd7j3p4rj"],
 ]
 
 header_fill = PatternFill("solid", fgColor="1F6FB2")
