@@ -35,6 +35,9 @@ RAISES = [
  ["Banking & Lending Tech","Canada","2026-06-11","KOHO","Mubadala",95,970,"","",
   "A Canadian consumer neobank offering spending, savings and credit-building products.",
   "https://betakit.com/koho-becomes-canadas-latest-unicorn-following-130-million-series-e-round/"],
+ ["Banking & Lending Tech","France","2026-06-08","Morpho","Paradigm, a16z crypto, Ribbit Capital",175,2000,"","",
+  "A DeFi lending protocol building an open, onchain credit network used by crypto institutions.",
+  "https://fortune.com/2026/06/09/morpho-fundraise-a16z-crypto-paradigm-ribbit-capital-175-million/"],
 ]
 
 # Acquisitions (any size), announced 6-13 Jun 2026, core markets.
