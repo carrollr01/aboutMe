@@ -1,0 +1,94 @@
+{
+  "ma": [
+    {
+      "sector": "Banking & Lending Tech", "country": "United States",
+      "deal_type": "Take-Private", "date": "16-Jun-26",
+      "target": "Open Lending", "acquirer": "ANV Group Holdings",
+      "ev": 372, "ev_rev": "", "ev_ebitda": "",
+      "description": "Provider of insurance-backed automotive lending-enablement software whose Lenders Protection platform lets banks and credit unions underwrite near- and non-prime auto loans",
+      "link": "https://www.globenewswire.com/news-release/2026/06/16/3312647/0/en/Open-Lending-Enters-into-Merger-Agreement-to-be-Acquired-by-ANV.html"
+    },
+    {
+      "sector": "Banking & Lending Tech", "country": "United Kingdom",
+      "deal_type": "PE Buyout", "date": "19-Jun-26",
+      "target": "Finastra (Universal Banking)", "acquirer": "Pollen Street Capital",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Provider of mission-critical core banking software spanning accounts, deposits, payments, and lending for 150+ banks across 100+ countries",
+      "link": "https://www.finastra.com/press-media/pollen-street-capital-acquire-universal-banking"
+    },
+    {
+      "sector": "Payments", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "18-Jun-26",
+      "target": "Celero Commerce", "acquirer": "Deluxe",
+      "ev": 625, "ev_rev": "", "ev_ebitda": "",
+      "description": "Integrated payment-processing and business-management platform serving roughly 55,000 small and mid-sized merchants across the US",
+      "link": "https://investors.deluxe.com/news-events/press-releases/detail/477/deluxe-to-acquire-celero-commerce-accelerating-transformation-toward-payments-and-data-solutions-scale"
+    },
+    {
+      "sector": "Real Estate & Mortgage Tech", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "17-Jun-26",
+      "target": "Fathom Holdings", "acquirer": "Beyond (Bed Bath & Beyond)",
+      "ev": 53, "ev_rev": "", "ev_ebitda": "",
+      "description": "Technology-driven real estate services platform spanning residential brokerage, mortgage, title, and agent SaaS tools",
+      "link": "https://ir.fathominc.com/news-events/press-releases/detail/180/"
+    }
+  ],
+  "raises": [
+    {
+      "sector": "Banking & Lending Tech", "country": "United States", "date": "17-Jun-26",
+      "target": "Karta", "lead": "Galaxy Ventures, Community Investment Management",
+      "amount": 140, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Provider of WhatsApp-run US credit cards for credit-invisible international travelers and non-residents, distributed through private banks and wealth managers",
+      "link": "https://www.globenewswire.com/news-release/2026/06/17/3313525/0/en/karta-raises-140m-led-by-galaxy-ventures-and-community-investment-management-llc-cim-to-bring-u-s-credit-cards-to-global-travelers.html"
+    },
+    {
+      "sector": "Capital Markets Tech", "country": "United States", "date": "16-Jun-26",
+      "target": "Chronograph", "lead": "Sixth Street Growth",
+      "amount": 140, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Portfolio monitoring, reporting, and diligence software for private capital investors across private equity and private credit",
+      "link": "https://www.prnewswire.com/news-releases/chronograph-announces-140m-growth-equity-investment-from-sixth-street-growth-launches-private-credit-platform-302800776.html"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "United States", "date": "17-Jun-26",
+      "target": "Behavox", "lead": "HPS Investment Partners",
+      "amount": 175, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI-native compliance and risk platform that unifies communications surveillance and controls for banks, asset managers, and other regulated institutions",
+      "link": "https://www.businesswire.com/news/home/20260617531116/en/Behavox-Raises-$175-Million-from-HPS-Investment-Partners-Part-of-BlackRock-to-Accelerate-Global-Growth"
+    },
+    {
+      "sector": "InsurTech", "country": "United States", "date": "18-Jun-26",
+      "target": "Connie Health", "lead": "HealthQuest Capital",
+      "amount": 40, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI-native Medicare navigation platform pairing licensed advisors with software to help seniors choose and manage Medicare plans",
+      "link": "https://www.prnewswire.com/news-releases/connie-health-announces-acquisition-of-clearlink-insurance-agency-and-series-b-funding-to-accelerate-growth-in-medicare-302803979.html"
+    },
+    {
+      "sector": "Payments", "country": "United States", "date": "16-Jun-26",
+      "target": "Flutterwave", "lead": "Ripple (strategic)",
+      "amount": "", "valuation": 3200, "ev_rev": "", "ev_ebitda": "",
+      "description": "Cross-border payments platform powering merchant payments, payouts, and remittances across Africa and other emerging markets",
+      "link": "https://www.prnewswire.com/news-releases/ripple-participates-in-flutterwaves-series-e-with-strategic-investment-to-accelerate-african-stablecoin-payments-302801599.html"
+    },
+    {
+      "sector": "Payments", "country": "United States", "date": "15-Jun-26",
+      "target": "Interchecks", "lead": "Bettor Capital",
+      "amount": 50, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Instant payments and money-movement infrastructure serving sportsbooks, fintechs, and financial institutions through a single API",
+      "link": "https://www.prnewswire.com/news-releases/interchecks-secures-50m-series-c-to-expand-instant-payments-infrastructure-launches-account-funding-transactions-302799620.html"
+    },
+    {
+      "sector": "Payments", "country": "Singapore", "date": "17-Jun-26",
+      "target": "BIPO", "lead": "Apis Partners",
+      "amount": 50, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Payroll-payments and embedded workforce-finance platform offering global payroll, HR management, and employer-of-record services across 170+ markets",
+      "link": "https://www.apis.pe/news/apis-partners-invests-us-50-million-in-bipo-asia-pacific-s-leading-payroll-payment-processing-and-embedded-workforce-finance-platform/"
+    },
+    {
+      "sector": "Payments", "country": "United States", "date": "17-Jun-26",
+      "target": "Trace Finance", "lead": "CoinFund",
+      "amount": 32, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Regulated cross-border banking and stablecoin-settlement infrastructure connecting the US, Brazil, and other emerging markets",
+      "link": "https://www.businesswire.com/news/home/20260617597265/en/Trace-Finance-Raises-$32M-Series-A-Led-by-CoinFund-to-Scale-Regulated-Banking-and-Stablecoin-Infrastructure-Across-Brazil-U.S.-and-Emerging-Markets"
+    }
+  ]
+}
