@@ -42,6 +42,13 @@
       "link": "https://www.globenewswire.com/news-release/2026/06/17/3313525/0/en/karta-raises-140m-led-by-galaxy-ventures-and-community-investment-management-llc-cim-to-bring-u-s-credit-cards-to-global-travelers.html"
     },
     {
+      "sector": "Banking & Lending Tech", "country": "Saudi Arabia", "date": "14-Jun-26",
+      "target": "D360 Bank", "lead": "Public Investment Fund, Derayah Financial",
+      "amount": 400, "valuation": 1600, "ev_rev": "", "ev_ebitda": "",
+      "description": "Saudi Arabia's first licensed digital bank, providing consumer and SME financing, deposits, and API-banking services to over three million customers",
+      "link": "https://www.argaam.com/en/article/articledetail/id/1912421"
+    },
+    {
       "sector": "Capital Markets Tech", "country": "United States", "date": "16-Jun-26",
       "target": "Chronograph", "lead": "Sixth Street Growth",
       "amount": 140, "valuation": "", "ev_rev": "", "ev_ebitda": "",
