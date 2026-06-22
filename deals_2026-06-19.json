@@ -35,6 +35,13 @@
   ],
   "raises": [
     {
+      "sector": "Asset & Wealth Tech", "country": "Denmark", "date": "19-Jun-26",
+      "target": "Festina Finance", "lead": "Birchway Capital",
+      "amount": 27, "valuation": 216, "ev_rev": "", "ev_ebitda": "",
+      "description": "Cloud-native, modular system-of-record platform for pensions, life insurance, and financial planning used by pension funds, insurers, banks, and wealth managers across Europe",
+      "link": "https://www.finextra.com/newsarticle/47959/danish-startup-festina-raises-25m-for-pensions-platform"
+    },
+    {
       "sector": "Banking & Lending Tech", "country": "United States", "date": "17-Jun-26",
       "target": "Karta", "lead": "Galaxy Ventures, Community Investment Management",
       "amount": 140, "valuation": "", "ev_rev": "", "ev_ebitda": "",
