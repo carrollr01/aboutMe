@@ -49,6 +49,13 @@
       "link": "https://www.prnewswire.com/news-releases/chronograph-announces-140m-growth-equity-investment-from-sixth-street-growth-launches-private-credit-platform-302800776.html"
     },
     {
+      "sector": "Corporate Financial Function", "country": "Singapore", "date": "17-Jun-26",
+      "target": "BIPO", "lead": "Apis Partners",
+      "amount": 50, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Payroll-payments and embedded workforce-finance platform offering global payroll, HR management, and employer-of-record services across 170+ markets",
+      "link": "https://www.apis.pe/news/apis-partners-invests-us-50-million-in-bipo-asia-pacific-s-leading-payroll-payment-processing-and-embedded-workforce-finance-platform/"
+    },
+    {
       "sector": "Financial Info & Analytics", "country": "United States", "date": "17-Jun-26",
       "target": "Behavox", "lead": "HPS Investment Partners",
       "amount": 175, "valuation": "", "ev_rev": "", "ev_ebitda": "",
@@ -75,13 +82,6 @@
       "amount": 50, "valuation": "", "ev_rev": "", "ev_ebitda": "",
       "description": "Instant payments and money-movement infrastructure serving sportsbooks, fintechs, and financial institutions through a single API",
       "link": "https://www.prnewswire.com/news-releases/interchecks-secures-50m-series-c-to-expand-instant-payments-infrastructure-launches-account-funding-transactions-302799620.html"
-    },
-    {
-      "sector": "Payments", "country": "Singapore", "date": "17-Jun-26",
-      "target": "BIPO", "lead": "Apis Partners",
-      "amount": 50, "valuation": "", "ev_rev": "", "ev_ebitda": "",
-      "description": "Payroll-payments and embedded workforce-finance platform offering global payroll, HR management, and employer-of-record services across 170+ markets",
-      "link": "https://www.apis.pe/news/apis-partners-invests-us-50-million-in-bipo-asia-pacific-s-leading-payroll-payment-processing-and-embedded-workforce-finance-platform/"
     },
     {
       "sector": "Payments", "country": "United States", "date": "17-Jun-26",
