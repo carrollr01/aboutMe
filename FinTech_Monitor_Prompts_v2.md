@@ -20,13 +20,20 @@ voice reference. SCOPE: only Sector = "{{SUBSECTOR}}".
 VOICE (non-negotiable):
 - Lead with the non-obvious signal or a reframe — NOT the biggest deal. If a Context/Watch or
   adjacent deal carries the real signal, open with it.
-- Short, declarative sentences. No filler closers ("automate or get left behind," "no longer a
-  luxury"). End on ONE specific, dated, falsifiable implication (a "by 2029…" bet).
+- Short, declarative sentences, but let them flow — avoid choppy fragments. No filler closers
+  ("automate or get left behind," "no longer a luxury"). End on ONE specific, dated, falsifiable
+  implication — frame it explicitly as a forecast ("Our bet: by 2029…"); NEVER state an invented
+  statistic as if it were fact.
 - Imitate the voice reference's rhythm; do not copy its facts.
 
 HEADLINE / $ CONVENTION:
 - Open: "[N] deals. $[X] primary capital / $[Y] M&A value[ / $[Z] debt]." Never sum raises, M&A,
-  and debt into one number. Mark undisclosed amounts as such.
+  and debt into one number. Primary capital = EQUITY only; report debt separately. Mark
+  undisclosed amounts as such.
+- A deal flagged as NOT this subsector (a "special situation" — e.g. an adjacent-sector company a
+  CVC backed) is EXCLUDED from the deal count and the primary-capital total; report it separately
+  as "plus [n] special situation," mirroring the benchmark's "Four deals. $44M+. Plus a special
+  situation."
 
 THESIS DISCIPLINE:
 - For each OPEN {{SUBSECTOR}} thesis: CONFIRMS / CONTRADICTS / NEUTRAL, cite the deal, adjust confidence.
@@ -53,7 +60,9 @@ Write a TAKE, not a recap. Structure:
 4) THEMES IN >=2 SUBSECTORS: list each, the subsectors + deals, and emerging/building/consensus.
 5) ROTATION: where capital moved between subsectors vs the trailing trend — cite Tape figures.
 6) CROSS-SECTOR LEDGER UPDATE: rows tagged Subsector = "Cross-Sector."
-Anchor every number to the Tape; never estimate. Cite sources.
+Anchor every number to the Tape; never estimate or invent figures (including in forward bets —
+frame those as explicit forecasts). If the Tape is absent, say so (e.g. rotation cannot be
+computed) rather than fabricating. Cite sources.
 ```
 
 ---
