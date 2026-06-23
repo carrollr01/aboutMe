@@ -30,10 +30,19 @@ each week with no rework.)
    "append/merge folder" can stack them automatically if the files share a layout.)
 2. Add a **`Subsector` map tab**: `Ticker → Subsector` (your 8). VLOOKUP it into `Comps_History`.
    *Without this, none of the public-multiple trends are possible.*
-3. Pick one **constant-horizon multiple** to trend so snapshots are comparable. Recommend
-   **forward (CY+1) EV/Revenue** and **forward EV/EBITDA**: a helper that selects the column
-   one year ahead of each snapshot's year, e.g.
-   `=IF(YEAR(AsOf)=2025, [EV/Rev CY2026], IF(YEAR(AsOf)=2026, [EV/Rev CY2027], …))`.
+3. **Compute your own constant-horizon multiple — do NOT trend the pre-built EV/Rev CY2025–27
+   columns.** Their calendar years are hardcoded, so across snapshots their horizon drifts
+   (3-yr-fwd at a 2022 as-of, 1-yr-fwd at a 2026 as-of). Instead, since your Revenue and EBITDA
+   columns span CY2022–CY2027, divide each snapshot's EV by the **next-year (CY+1)** figure
+   relative to its own D3:
+   ```
+   FwdRev        = INDEX(Rev_CY2022:Rev_CY2027,    MATCH(YEAR([@AsOf])+1, RevYearHeaders, 0))
+   FwdEBITDA     = INDEX(EBITDA_CY2022:EBITDA_CY2027, MATCH(YEAR([@AsOf])+1, EBITDAYearHeaders, 0))
+   Fwd_EV_Rev    = [@Enterprise Value] / FwdRev
+   Fwd_EV_EBITDA = [@Enterprise Value] / FwdEBITDA
+   ```
+   Because the source figures are act-or-est *as of D3*, this is automatically point-in-time
+   with no look-ahead bias, and constant-horizon for every snapshot (as-of year ≤ 2026).
 
 ### A3. CapIQ backfill protocol (do this once, early)
 In the CapIQ plugin, step the as-of date to each **quarter-end from 31-Mar-2022 → present**
@@ -60,11 +69,15 @@ Grid: rows = Sector, cols = Year. (EV/Rev is blank on most deals, so treat priva
 an *overlay*, not a dense series.)
 
 **B3 · Public multiples over time** (dense — the star series)
+Trend the **self-computed** `Fwd_EV_Rev` from A2.3 (not the hardcoded CY columns), median by
+Subsector × As-Of Date:
 ```
-=IFERROR(MEDIAN(FILTER(C_EVRevFwd,(C_Subsector=$A2)*(C_AsOf=B$1)*(C_EVRevFwd<>""))),"")
+=IFERROR(MEDIAN(FILTER(C_FwdEVRev,(C_Subsector=$A2)*(C_AsOf=B$1)*(C_FwdEVRev<>""))),"")
 ```
-Grid: rows = Subsector, cols = `As-Of Date`. Repeat for forward EV/EBITDA, and for the
-quartiles using `PERCENTILE(FILTER(...),0.25/0.75)` to plot a band, not just a median.
+Grid: rows = Subsector, cols = `As-Of Date`. Repeat for `Fwd_EV_EBITDA`; add 25th/75th-pctile
+rows via `PERCENTILE(FILTER(...),0.25/0.75)` to plot a band, not just the median.
+*(The pre-built EV/Rev CY2025–27 columns are still correct for the current cross-section —
+just not for trending.)*
 
 **B4 · Private–Public Spread** (flagship metric)
 For each Sector × period: `private median EV/Rev (B2) − public median EV/Rev (B3)`.
