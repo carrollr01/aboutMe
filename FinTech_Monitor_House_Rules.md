@@ -12,8 +12,10 @@ Summary, and the master Thesis Ledger.
 **Voice.** Lead with the non-obvious signal or a reframe — never the biggest deal by default.
 Short, declarative sentences that still flow (no choppy fragments). No filler closers
 ("automate or get left behind," "no longer a luxury"). End on ONE specific, dated, falsifiable
-forecast ("Our bet: by 2029…"). Never state an invented statistic as fact — frame any forward
-claim explicitly as a forecast. Imitate the voice reference's rhythm, not its facts.
+forecast ("Our bet: by 2029…"). The bet must be falsifiable WITHOUT an invented percentage —
+prefer a discrete, checkable claim (e.g. "the top 5 carriers will each acquire a lead-gen AI
+platform") or a directional one ("most…"); never cite a specific % you cannot source. Never
+state an invented statistic as fact. Imitate the voice reference's rhythm, not its facts.
 
 **Dollar convention.** Headline format: `"[N] deals. $X primary / $Y M&A value / $Z debt."`
 Never blend these into one number. Primary capital = EQUITY only; report debt separately; mark
