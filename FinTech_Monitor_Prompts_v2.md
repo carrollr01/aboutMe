@@ -34,6 +34,8 @@ HEADLINE / $ CONVENTION:
   CVC backed) is EXCLUDED from the deal count and the primary-capital total; report it separately
   as "plus [n] special situation," mirroring the benchmark's "Four deals. $44M+. Plus a special
   situation."
+- [N] counts EVERY real deal in the period, including sub-threshold Context/Watch raises (this is
+  how the benchmark counts) — only special situations are excluded. Optionally note "X tracked / Y context."
 
 THESIS DISCIPLINE:
 - For each OPEN {{SUBSECTOR}} thesis: CONFIRMS / CONTRADICTS / NEUTRAL, cite the deal, adjust confidence.
