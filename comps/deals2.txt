@@ -1,0 +1,375 @@
+Tutman
+Aquilance
+NovaSparks
+Groene Hart Financiele
+Distributed Technologies Research
+S&P Enterprise Data Management
+BridgeFT
+TRES Finance
+Global Loan Agency Services (GLAS)
+Clearwater Analytics
+GoCardless
+OnCorps AI
+Coremont
+Digitec
+Green Dot Bank
+W3C Corp
+Forge Global
+SteelEye
+CSG Systems
+EquityZen
+BMLL
+MBS Source
+Gtreasury
+With Intelligence
+Tenor Digital
+Datascan
+Entercard
+Dun & Bradstreet
+Dayforce
+Sapiens International Corp
+MeridianLink
+Remember
+Apiture
+Remember & Co
+Intermex (International Money Express)
+Objectway
+CoreCard
+Trading Technologies
+Sportsinsurance
+Ultimus Fund Solutions
+Alpha Group
+ParkLexington
+Olo
+Natech
+Klar
+Celeris
+Arcus (cash and utility payment assets)
+Sibell
+Yodlee
+Melio
+Sis ID
+Clearspeed
+Quinn
+Conquest Planning
+Finom
+Digital Asset
+Statement
+Smartpay
+Meridian
+Spinwheel
+Intix
+Ledgebrook
+Grifin
+NaroIQ
+Salmon
+Ramp
+Acin
+Descartes Underwriting
+Icon Solutions
+Tensec
+RANOS
+Pillar
+Hastee
+Payabli
+XFX
+Juniper Square
+WeFox Italia
+Cantaloupe
+ExactVAL
+E-xact
+Payrails
+Farsight
+Abacum
+Aiera
+Zorro
+Privy
+Wealthbox
+Noah
+Turnkey
+AIB Merchant Services
+PayGreen
+Baobab
+Crabi
+Kiwi
+Aibidia
+Simetrick
+Compyl
+Bolttech
+E78 (fund solutions division)
+Scalable Capital
+Tradeteq
+Banxware
+FISPAN
+OatFI
+N2F
+Grata
+StartADAM
+AZA Finance
+Nomupay
+Neptune Networks
+Sky Road
+Fundipedia
+Heartland Payroll Solutions (Global Payments Payroll biz)
+Uplinq
+Stitch
+Rillet
+Cerby
+Conduit
+Dojo
+Monarch
+24X
+Qashio
+Delta Data
+OpenFX
+Acheteur,ch
+Revenue Cat
+Kota
+Fraxion
+Greenlite AI
+Airwallex
+Aufinity Group
+Clair
+Seeds
+Slash
+Tokeny
+Keep
+Novisto
+TrustCloud
+Itel
+Acrisure
+Thndr
+CrediLinq
+Lendflow
+Finastra (Treasury & Capital Markets biz)
+Fisdom
+Stord
+Finanzportal24
+Meey Group
+Entrata
+EarlyBird
+Citco
+Tinubu Square
+Addepar
+WonderFi
+Citi (Global Alternatives)
+Cirtuo
+Gamma
+RentSync
+Stash
+Ialta
+Securitize
+HUB International
+Bestow
+Flexpoint
+Nawy
+Juice
+Rippling
+Domain
+Glide
+Deribit
+Ravio
+Suntera Global
+iiPay
+Circula
+Pattern Insurance Services
+Palla
+Azibo
+SIlverRock
+AvidXchange
+Duna
+Gridky
+HelloData
+MainStreet
+HubSync
+Nok Nok
+Clara
+Lunar AI
+Dinari
+Pipit Global
+Equity Methods
+Persona
+Zelros
+Navro
+Bankly
+Advantage Go
+Deserve (tech assets)
+Pliant
+Alternative Payments
+Thunes
+Sprive
+Argentex
+Maza
+Theo
+Affiniti
+Kaira Technologies
+Flow Life
+Money Money
+Hokodo
+Surfin
+GoCo
+Bloom Credit
+Steadily
+GoBiz
+Altruist
+GreenFi
+QuantHouse
+Alpaca
+Salsa
+FundThrough
+Demyst
+Candela
+Ampla
+Truework
+Froda
+Pledge Path Systems
+Crux
+Toku
+1Fort
+Worldpay
+Global Payments (issuer solutions unit)
+Ascent Fund Services
+Luma Financial Technologies
+Mesh
+Belvo
+hi.health
+Chapter
+AMAL Group
+MG Stover (fund admin business)
+Glean.ai
+Giftcloud
+VibePay
+Property Monitor
+Zoe Financial
+BKN301
+iCreditWorks
+Global Trading Analytics
+R.J. O'Brien
+C2FO
+Datava
+Esure
+Marshmallow
+Tapcheck
+TermSheet
+Meanwhile
+Eurochange
+Alinea Invest
+Dealstack
+TransFICC
+Easylink Payment
+Ryft
+Blackbird
+Flow
+Djamo
+Hidden Road
+Tracera
+Pinch Payments
+Ethic
+FNZ
+Turbine
+Hawk
+PayDunya
+SecurePay
+AppWork
+Pennylane
+Plaid
+SmartTrade
+Acorn Claims
+Axyon AI
+nRoad
+Tax Systems
+FurtherAI
+Inepro
+Mr. Cooper
+Roam
+Atomic
+Persefoni
+Weefin
+P97
+Mendel
+Quantee
+UTP
+Sympera AI
+Mercury
+HRK Lunis
+RockFi
+Bond Radar
+Rain
+ClearGrid
+Uala
+NinjaTrader
+Covie
+Mindgate Solutions
+expand.network
+NEXT Insurance
+CCV
+Alt21
+NymCard
+Multiply Mortgage
+Town.com
+PCMI
+Dalma
+Banyan
+RedotPay
+SavvyMoney
+Equilend
+Iron
+Curve
+Binance
+Admincontrol
+Actico
+ListAssist
+Beacon
+Bistro
+Trust & Will
+Worth AI
+Synctera
+Zolve
+Hubly
+Norm AI
+Firezat
+Plata
+Tomo
+August
+Modern Banking Systems
+Center
+Nirvana
+Klaim
+Redfin
+Zocks
+Heywood Business Analysts
+Flex
+LogoIntern
+SpecterOps
+Episode Six
+Planet Smart City
+Lenkie
+Flowdesk
+Quantexa
+InsuranceDekho
+CoverForce
+Grain
+Mews Systems
+Lumonic
+DealX
+Coalition
+Mizuho (Global Custody Business)
+Archway (SEI's family office tech)
+Mantl
+Mapal
+TransactPay
+Venn
+Centralis
+Ellevest (automated investing arm)
+Softrax
+Taktile
+Unique AI
+CompScience
+Capim
+Flanks
+Vayu
+Napo
+Monument Bank
+Mosaic Smart Data
+Lightkeeper
+Metronome
