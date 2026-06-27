@@ -1,0 +1,315 @@
+name,in_scope,subsector,confidence,rationale
+Open Lending,NO,Lending,High,Auto loan decisioning and credit enablement platform
+Finastra (Universal Banking),NO,Banking,High,Core banking software for universal banks
+PayCaptain,NO,Payroll,High,Payroll and payments software for employers
+Payoneer,NO,Payments,High,Cross-border payments and money movement platform
+Celero Commerce,NO,Payments,High,Integrated payments and commerce technology provider
+Fathom Holdings,NO,PropTech,High,Real estate brokerage and tech platform
+additiv,NO,WealthTech,High,Digital wealth management and embedded finance SaaS
+LevPro,NO,Trading/Capital Markets,High,CLO and private credit portfolio management platform
+Orb,NO,Other,High,Usage-based billing and metering infrastructure
+m3ter,NO,Other,High,Usage-based pricing and metering platform
+Messari,NO,Market Data,High,Crypto market data and research intelligence
+RiskFront AI,YES,Financial Crime Analytics,High,Agentic AI for financial crime compliance; AML and fraud due diligence
+Kiavi,NO,Lending,High,Real estate investor lending platform
+Veli,NO,WealthTech,High,Crypto portfolio platform for financial advisors
+Finastra (US Mid-Market Banking Business),NO,Banking,High,Mid-market core banking software business
+Blockfills,NO,Trading/Capital Markets,High,Crypto trading and liquidity provider
+Leapfin,NO,Accounting/Tax,High,Automated revenue accounting and recognition software
+PEER DATA,NO,Other,Medium,Data commerce; governance and metering platform; not financial crime
+Fee Navigator,NO,Payments,High,AI merchant statement pricing intelligence for payments
+Absolute Payment Solutions,NO,Payments,High,Bacs-accredited UK payment processing services
+First Federal Bank (TPO Division),NO,Banking,High,Bank third-party mortgage origination division
+Derivitec,NO,Trading/Capital Markets,High,Derivatives risk analytics for capital markets
+Funded Trading Plus,NO,Trading/Capital Markets,High,Prop trading funded-trader firm
+PwC Indirect Tax Edge,NO,Accounting/Tax,High,Indirect tax compliance technology
+Zonda,NO,PropTech,High,Housing market data and proptech analytics
+Peach Finance,NO,Lending,High,Loan management and servicing platform
+Fidelity Intl. Strategic Ventures Portfolio,NO,Other,Medium,VC investment portfolio not an operating product
+LayerX,NO,Other,Medium,Finance automation / enterprise AI browser security; not financial crime
+Honor Capital,NO,InsurTech,High,Insurance premium finance lender
+NMI,NO,Payments,High,Payment gateway and processing platform
+Smovin,NO,PropTech,High,Rental property management software
+PrimaryBid,NO,Trading/Capital Markets,High,Retail access to IPOs and capital raises
+InvestHub,NO,WealthTech,Medium,Investment platform
+Finadium,NO,Market Data,High,Securities finance research and consulting
+Rossum,NO,Accounting/Tax,High,AI invoice and document processing automation
+Royu,NO,Accounting/Tax,High,AI accounting and bookkeeping automation agents
+Brinta,NO,Accounting/Tax,High,AI tax automation platform for LATAM
+Avantia,NO,Other,High,AI legal/compliance tech for private capital funds
+Agenium,NO,InsurTech,High,Life insurance underwriting and new-business platform
+Floid,MAYBE,Identity Verification,Low,Open finance infra with user verification/risk; not core financial-crime
+Misterplan,NO,Other,High,Tourism management software (PMS; booking engine; channel manager)
+Equiniti,NO,Other,High,Shareholder services and registrar / pension administration
+LeafHouse Financial Advisors,NO,WealthTech,High,Investment advisory and fiduciary services
+IndiaLends,NO,Lending,High,Digital lending marketplace for consumer credit
+DFlow,NO,Trading/Capital Markets,High,DeFi trade execution / payment-for-order-flow infrastructure on Solana
+Amex GBT,NO,Other,High,Corporate business travel management
+Sedex Information Exchange,NO,Other,High,Ethical / sustainable supply-chain data platform (ESG; not financial crime)
+VeloLife,NO,InsurTech,High,Specialist cycle and life insurance provider
+Oculus Underwriters,NO,InsurTech,High,Insurance underwriting / MGA
+Reap,NO,Payments,High,Stablecoin-enabled corporate cards and cross-border payments
+Valon Mortgage,NO,Lending,High,Mortgage servicing platform
+Precept,MAYBE,RegTech/Compliance,Medium,AI compliance automation for banking/finance/healthcare; broad not financial-crime specific
+Till Financial,NO,Banking,High,Family / kids banking and spending app
+Doyen AI,NO,Accounting/Tax,High,AI-powered financial data migration for ERP onboarding
+AI Financial Corporation,NO,Trading/Capital Markets,High,Digital-asset tokenization; trading; clearing and payments (formerly ALT5 Sigma)
+Trepp,NO,Market Data,High,CRE / CMBS data and analytics provider
+SMS Stiewi,NO,Other,High,Public-sector travel-expense and ERP software
+TC Financial,NO,InsurTech,High,Insurance / Medicare / annuities marketing organization
+Complex Coverage,NO,InsurTech,High,Managing general agency for personal-lines insurance
+Shopflo,NO,Payments,High,E-commerce checkout and payments / subscription commerce
+Skio,NO,Payments,High,Subscription billing and recurring payments platform for ecommerce brands
+ANZ Worldline (JV),NO,Payments,High,Merchant payment acceptance and processing joint venture
+CoreGo,NO,Payments,High,Open-loop event and venue payment and access technology
+StreetFair,NO,Other,High,Neighborhood home-services marketplace; not financial
+BEC Financial Technologies,NO,Banking,High,Core banking IT provider for Danish banks
+Cboe (Australia and Canada Units),NO,Trading/Capital Markets,High,Securities exchange operations
+Open Ledger,NO,Accounting/Tax,High,Embedded accounting API for SaaS platforms
+KIB Latvia,NO,Other,Medium,Latvian credit bureau / credit information data; credit-risk not financial crime
+Fintool,NO,WealthTech,High,AI equity research assistant for investors and analysts
+Benavest,NO,InsurTech,High,Health and life insurance agency
+Talon.One,NO,Other,High,Promotions loyalty and coupon marketing engine
+Fiscal FX,NO,Payments,Medium,FX and cross-border payments / currency exchange provider
+Carry,NO,WealthTech,High,Retirement and tax-advantaged investing accounts platform
+Hiro,NO,WealthTech,High,AI personal finance planning app for consumers
+Sightglass,NO,WealthTech,High,AI investor relations and DDQ automation for private markets
+Cable,YES,RegTech/Compliance,High,Automated financial-crime control testing for banks and fintechs
+Bitnomial,NO,Trading/Capital Markets,High,Crypto derivatives exchange and clearinghouse
+Zengo,NO,Other,Medium,Self-custody crypto wallet with MPC security; not financial-crime tooling
+Hyper,NO,Other,High,Agentic AI expense management platform
+Konfir,MAYBE,Identity Verification,Medium,Instant employment and income verification; identity/income data fraud-adjacent
+Virtua Research,NO,Market Data,High,Investor relations financial research and consensus data platform; not financial crime
+helden.de,NO,InsurTech,High,Digital insurance broker for liability and pet insurance in Germany
+TAPn'GO,NO,Payments,High,Contactless payment technology acquired by PayTabs
+PaynoPain,NO,Payments,High,Spanish online payment gateway and processing provider
+Paymark,NO,Payments,High,New Zealand payments network and processing infrastructure
+HomeOwners Alliance,NO,PropTech,High,UK consumer homeownership advice and services platform
+CFO Silvia,NO,WealthTech,High,AI personal CFO analyzing and monitoring investor portfolios
+Sudozi,NO,Other,High,Procurement and vendor spend management platform for finance teams
+Cocoon,NO,Other,High,Employee leave management and FMLA compliance software; HR not financial crime
+Mosey,NO,Other,High,State payroll tax and entity compliance platform; not financial crime
+Maroo,NO,Payments,High,Payments invoicing and CRM platform for wedding and event businesses
+ByAllAccounts,NO,WealthTech,High,Wealth financial account aggregation data service by Morningstar
+PM Insights,NO,Market Data,High,Private markets pricing and valuation data analytics firm
+RED,MAYBE,RegTech/Compliance,Low,Non-descriptive name; no evidence found tying it to fraud or AML
+Beem,NO,Lending,High,Consumer cash advance app and AI personal finance super app
+PayEx (Payments Business),NO,Payments,High,Payments processing and invoicing business unit
+Surge,MAYBE,GRC/Risk,Low,Non-descriptive name; could not confirm fraud or compliance focus
+AOE Software,NO,Other,High,Custom digital platform and software consultancy; not financial crime
+OrboGraph,YES,Fraud,High,AI check fraud detection and prevention software for banks
+Andesa,NO,InsurTech,High,Life insurance and annuity policy and plan administration software
+Stratus,NO,InsurTech,Medium,Guidewire insurance services and IT integration firm acquired by Infosys
+WiredScore,NO,PropTech,High,Building connectivity/digital certification and scoring for real estate
+Vinovest,NO,WealthTech,High,Wine and alternative-asset investment platform
+Semsee,NO,InsurTech,High,Commercial insurance quoting/comparison platform for agents
+Orda,NO,Payments,High,Restaurant POS and ordering software with embedded payments
+LTi Technology Solutions,NO,Lending,High,Equipment finance/leasing lifecycle software platform
+Nimbello,NO,Accounting/Tax,High,Accounts payable invoice automation software
+TheGuarantors,NO,InsurTech,High,Rental lease guaranty and renter insurance products
+Brahma,NO,Other,Medium,DeFi execution infrastructure and crypto payments; acquired by Polymarket
+PropertyChecklists,NO,PropTech,High,Property transaction guidance/checklists content for real estate
+Slope,NO,Payments,High,B2B BNPL and order-to-cash payments platform
+Hexure,NO,InsurTech,High,Insurance and annuity sales/e-application software
+Asymmetric Information,MAYBE,InsurTech,Low,Ambiguous name; likely insurance/risk data rather than financial crime
+TradingHub,YES,Transaction Monitoring,High,Trade surveillance and market-abuse detection software (MAST)
+Billhop,NO,Payments,High,B2B card-based bill payment processing service
+Lyra Client Solutions,NO,Fund Admin,High,Private markets client servicing and fund operations platform
+Monite,NO,Payments,High,Embedded invoicing/AP/AR and B2B payments API for platforms
+Pinch Financial,NO,Lending,Medium,Digital mortgage qualification platform; verification is mortgage-origination not standalone IDV
+Trellis,NO,InsurTech,High,Embedded auto/home insurance comparison and API platform
+FX Transparency,NO,Market Data,Medium,FX cost analysis and transaction-cost transparency for institutions
+Droit,MAYBE,RegTech/Compliance,Medium,Pre/post-trade regulatory compliance and reporting for capital markets; not financial-crime specific
+360 View,NO,Banking,Medium,Banking CRM and relationship management software
+Tapline,NO,Lending,Medium,Revenue-based financing for SaaS/digital businesses
+Finley Technologies,NO,Lending,High,Debt capital management and credit facility compliance software
+Vantager,NO,WealthTech,Medium,Investment/portfolio analytics platform for allocators
+Delio,NO,WealthTech,Medium,Private markets and private investment infrastructure platform
+Eventus,YES,Transaction Monitoring,Medium,Trade surveillance platform spanning AML and transaction monitoring
+InvestEdge,NO,WealthTech,High,Wealth management portfolio and account management software
+AtData,YES,Fraud,High,Email identity intelligence for fraud prevention and synthetic-identity detection
+Penny Finance,NO,WealthTech,Medium,Personal finance and money coaching platform for consumers
+Newpay,NO,Lending,High,Buy-now-pay-later consumer credit provider
+Dome,NO,Trading/Capital Markets,High,Unified API for prediction markets data and trading
+Pine Advisor Solutions,NO,Fund Admin,Medium,Outsourced services and administration for investment advisers and funds
+Kubo.financiero,NO,Lending,High,P2P lending and savings platform in Mexico
+Context Analytics,NO,Market Data,High,Social media sentiment and unstructured-data analytics for capital markets
+Passthrough,YES,KYC/KYB,High,Investor onboarding with KYC/AML and sanctions/PEP screening for funds
+Stash Financial,NO,WealthTech,High,Consumer investing and banking app
+DiTRONICS Financial Services,NO,Payments,Medium,Cash access and payments services for casinos/gaming
+Captide,NO,Market Data,High,AI platform structuring corporate filings for investment research
+ISS Stoxx,NO,Market Data,Medium,"Index, ESG and governance data and proxy advisory services"
+Atto,NO,Lending,High,Open-banking credit scoring and affordability decisioning for lenders
+Chimney,NO,PropTech,High,Home equity and property-data engagement tools for banks
+Step Mobile,NO,Banking,High,Teen-focused neobank and banking app
+WorkFusion,YES,AML,High,AI agents for AML; sanctions screening; KYC and transaction monitoring
+CQG,NO,Trading/Capital Markets,High,Trading; charting and order-execution tech for capital markets
+PayByPhone,NO,Payments,High,Mobile parking payments app
+Own Up,NO,Lending,High,Mortgage marketplace and lending comparison platform
+Testimonial iQ,NO,Other,High,Reputation and testimonial marketing software for advisors
+Dimensa,NO,Banking,High,B2B core-banking and card processing tech for financial market
+Limina,NO,WealthTech,High,Investment management system; OMS/PMS for asset managers
+Journey Technology Solutions,YES,Identity Verification,High,Biometric identity verification and authentication; anti-fraud
+1741 Group,NO,Fund Admin,High,Fund services and asset management platform
+AIG Classic,NO,InsurTech,High,Insurance business unit
+Newfront,NO,InsurTech,High,Insurance brokerage and tech platform
+Envoice,NO,Accounting/Tax,High,Bill and expense management bookkeeping software
+Blue EMI,NO,Payments,High,E-money institution; stablecoin issuer and payment services
+Tutman,NO,Fund Admin,High,Authorised Corporate Director fund management services
+Cymbio,NO,Other,High,Dropship and marketplace automation for retail brands
+Acre,NO,Lending,High,Mortgage broker and intermediary software platform
+Brex,NO,Payments,High,Corporate cards and spend management fintech
+Atlas,NO,Other,Low,Expense management/spend platform acquired by Remote; not financial crime
+WealthOS,NO,WealthTech,High,Wealth management SaaS platform; not financial crime
+InsurGrid,NO,InsurTech,High,Insurance data/connectivity platform; not financial crime
+Paynuri,NO,Payments,High,South Korean payment gateway and FX provider acquired by Airwallex
+Pomelo,NO,Payments,High,LatAm card issuing and processing platform; not core fraud/KYC
+ClearGov,NO,Other,High,Government budgeting and transparency software; not financial crime
+Boundless,NO,Other,High,Immigration and HR/payroll compliance platform; not financial crime
+Tagit,NO,Banking,High,Singapore digital banking software platform; not financial crime
+NovaSparks,NO,Market Data,High,FPGA ultra-low-latency market data feed handler; not financial crime
+CalcFocus,NO,InsurTech,High,Insurance policy administration and illustration software
+Ahauz,NO,Lending,High,UK homebuyer deposit/mortgage lending fintech; not financial crime
+thinkFolio,NO,Trading/Capital Markets,High,Portfolio and investment management platform (IHS Markit)
+Symfos,NO,InsurTech,High,Reinsurance underwriting and exposure management software
+Worldpay,NO,Payments,High,Large payment processor/acquirer; not core fraud/KYC business
+Distributed Technologies Research,NO,Payments,High,Global payments/stablecoin orchestration infrastructure
+Groene Hart Financiele Diensten,NO,Other,Medium,Dutch financial services advisory firm; not financial crime tech
+Total System Services,NO,Payments,High,TSYS payment processing; not core fraud/KYC business
+Alacrity Solutions,NO,InsurTech,High,Insurance claims management services; not financial crime
+StandardFusion,MAYBE,GRC/Risk,Medium,Broad GRC and compliance management SaaS; not specific to financial crime
+3iQ,NO,WealthTech,High,Crypto digital asset manager; not financial crime tech
+Coinme,NO,Payments,High,Crypto cash kiosk and on-ramp/payments provider; not financial-crime tech
+Sirion,NO,Other,High,Contract lifecycle management (CLM) software; not in scope
+Tres Finance,NO,Accounting/Tax,High,Crypto/digital-asset accounting and data reconciliation platform
+Fjord Bank,NO,Lending,High,Lithuanian neobank/consumer lending; not financial-crime tech
+Brightfin,NO,Other,High,Telecom/IT expense and mobility management software
+CRS Temporary Housing,NO,Other,High,Temporary housing/relocation services; not fintech
+OneStream,NO,Other,High,Corporate performance management and financial consolidation software
+SolveXia,NO,Accounting/Tax,High,No-code finance automation; reconciliations and reporting; not financial crime
+Triple Play Pay,NO,Payments,High,Payment processing/gateway provider; plain payments not in scope
+Matrisk,NO,InsurTech,High,AI insurance rate-filing analytics and pricing; acquired by Akur8
+Structurely,NO,Other,High,AI conversational sales/lead engagement for real estate; not in scope
+Mono,NO,Payments,Medium,African open-banking data aggregation and bank payments; not core financial-crime
+GLAS,NO,Fund Admin,High,"Loan agency, debt administration and trustee services; not financial-crime tech"
+Obie,NO,InsurTech,High,Landlord/rental property insurance provider; not in scope
+BridgeFT,NO,WealthTech,High,Wealthtech data and API infrastructure for advisors; not financial crime
+Clearwater Analytics,NO,WealthTech,High,"Investment accounting, reporting and analytics for institutional portfolios"
+PartsTrader,NO,Other,High,Auto collision parts procurement marketplace; not fintech
+OpenGamma,NO,Trading/Capital Markets,High,Derivatives margin and treasury analytics for capital markets; not in scope
+Pairsoft,NO,Other,High,"ERP document management, AP automation and procurement software"
+Habito,NO,Lending,High,UK online mortgage broker; not financial-crime tech
+Thriday,NO,Accounting/Tax,High,Automated banking and accounting/bookkeeping for SMBs
+GoCardless,NO,Payments,High,Bank-debit and account-to-account payments processor
+kACE Financial,NO,Trading/Capital Markets,High,FX options pricing and electronic trading platform; a Fenics brand
+PropertyMe,NO,PropTech,High,Cloud property management software for real estate agents
+Playter,NO,Lending,High,B2B buy-now-pay-later spend financing
+Neighbourlytics,NO,PropTech,High,Location/social analytics for property and place managers
+FarPay,NO,Payments,High,Invoicing and accounts-receivable payment automation
+Shine,NO,Banking,High,French neobank for freelancers and small businesses
+FirstList,NO,PropTech,High,Pre-market real estate listing platform for brokerages
+Finscape,NO,WealthTech,High,Investment-distribution business intelligence for asset managers
+W3C,NO,Other,High,World Wide Web Consortium; web standards body
+PostCredit,NO,Payments,High,Production expense management; P-cards and receipt reconciliation
+Compuflex,NO,Banking,High,Cash automation and currency-tracking middleware for banks/retail
+Planky,MAYBE,KYC/KYB,Low,Open-banking AI analytics and behavioural scoring; not financial-crime specific
+Green Dot Corp.,NO,Banking,High,Prepaid cards and banking-as-a-service platform
+Vitech,NO,InsurTech,High,Insurance retirement and investment admin software
+Connect&Go,NO,Payments,High,RFID wristband ticketing and cashless payments for attractions
+Mortgage Intelligence,NO,Lending,High,Mortgage broker network and advisory
+Curve,NO,Payments,High,Card-aggregation wallet app consolidating multiple cards
+Pipedream,NO,Other,High,Workflow automation/integration developer platform
+Zuto,NO,Lending,High,UK car finance credit broker matching borrowers to lenders
+Vault Verify,NO,Other,High,Automated employment and income verification for HR/payroll; not financial-crime IDV
+UpTop,NO,Other,Medium,UX design agency / SaaS financing; not fraud or AML
+ETPay,NO,Payments,High,Chilean payment initiation and collections gateway
+DAO,NO,Other,Low,Appears to be a crypto/DAO entity; no fraud or AML focus found
+JTC,NO,Fund Admin,High,"Fund administration, corporate and private client services"
+Diamant Software,NO,Accounting/Tax,High,German accounting and controlling ERP software
+Delta South Title,NO,InsurTech,High,Title insurance and closing services
+SCM Insurance Services,NO,InsurTech,High,Insurance claims management and services
+PriceStats,NO,Market Data,High,Daily inflation analytics from online prices; market data
+Bitwage,NO,Payments,High,Crypto and international payroll/invoicing platform
+Forge Global Holdings,NO,Trading/Capital Markets,High,Private-company securities marketplace and trading
+Wirespeed,MAYBE,GRC/Risk,Medium,Cybersecurity managed detection and response; not financial-crime specific
+Hype,NO,Banking,High,Italian neobank offering payments and accounts
+NetVendor,NO,PropTech,High,Vendor credentialing and compliance for property management
+SteelEye,MAYBE,RegTech/Compliance,Medium,RegTech trade and comms surveillance plus regulatory reporting; market-conduct not AML
+ProSpend,NO,Accounting/Tax,High,Expense and AP/spend management software
+Palisade,NO,Other,Medium,Institutional digital asset custody platform (Ripple-acquired)
+Slice,NO,Banking,High,"Indian credit card / neobank, now a small finance bank"
+Portfolio Group,NO,InsurTech,High,Dealer reinsurance management and F&I products for auto dealers
+Brocc,NO,Lending,High,Swedish consumer lending and savings platform
+CSG Systems International,NO,Other,High,Billing and customer engagement BSS software
+Pocketnest,NO,WealthTech,High,Personal financial wellness and planning app
+EquityZen,NO,Trading/Capital Markets,High,Pre-IPO secondary share marketplace
+LogiPe,NO,Payments,High,Indian fleet and workforce payments platform
+Best Egg,NO,Lending,High,Consumer personal loans platform
+Onaroll,NO,Other,High,Employee goals and rewards gamification app
+Mortgage Cadence,NO,Lending,High,Mortgage loan origination technology
+ProNavigator,NO,InsurTech,High,AI knowledge management for P&C insurers
+Tenset,NO,Crypto,Medium,Crypto launchpad and token ecosystem
+BMLL Technologies,NO,Market Data,High,Historical market data and analytics provider
+Kompliant,YES,KYC/KYB,High,KYB/KYC onboarding underwriting and transaction monitoring for payments
+Trailight,MAYBE,GRC/Risk,Medium,Conduct risk and SMCR individual accountability compliance; not financial crime
+RentFinder,NO,PropTech,High,Rental property search platform
+KYC360,YES,KYC/KYB,High,KYC AML perpetual KYC and screening platform
+Finastra (Canadian Student Loan Servicing Business),NO,Lending,High,Student loan servicing business unit
+Dynamic,NO,Crypto,Medium,Web3 embedded wallet and authentication SDK; not financial-crime IDV
+Stable Finance,NO,Crypto,High,Consumer stablecoin savings and yield app
+Beam,MAYBE,AML,Low,Ambiguous; Beam Solutions is AML/KYC but other Beams are stablecoin/construction
+Contour,NO,Trading/Capital Markets,High,Digital trade finance network for letters of credit
+FairNow,MAYBE,GRC/Risk,Medium,AI governance and compliance platform; GRC not financial-crime specific
+21Shares,NO,Trading/Capital Markets,High,Crypto ETP/ETF issuer
+Bambora,NO,Payments,High,Payment processing and gateway provider
+Alchemy Technology Services,NO,InsurTech,High,Insurance software implementation and professional services
+Railbird,NO,Trading/Capital Markets,High,CFTC-regulated prediction market and event contract exchange
+Echo,NO,Trading/Capital Markets,High,Onchain crypto capital-raising/fundraising platform
+Zimpler,NO,Payments,High,A2A pay-by-bank payments network
+8fig,NO,Lending,High,Growth funding and cash-flow planning for ecommerce sellers
+Pardus Underwriting,NO,InsurTech,High,Insurance managing general agent (MGA)
+Sanad Cash,NO,Payments,High,Corporate spend management and prepaid card platform
+Fintilect,NO,Banking,High,AI-driven digital banking personalization software
+KRIYA,NO,Lending,High,"SME invoice finance, business loans and embedded BNPL"
+Ren,NO,Other,High,Philanthropy tech / donor-advised fund platform
+GTeasury,NO,Other,High,Corporate treasury and cash management software
+The Small Exchange,NO,Trading/Capital Markets,High,Futures/derivatives exchange for retail traders
+DataTools,MAYBE,Identity Verification,Medium,Address/data verification (GBG); data quality not financial-crime IDV
+Empaxis Data Management,NO,Fund Admin,High,Outsourced data/operations management for investment managers
+MBS Source,NO,Trading/Capital Markets,High,Electronic marketplace for mortgage/asset-backed securities trading
+MBA Source,NO,Trading/Capital Markets,Medium,Mortgage/asset-backed securities data and trading (sibling of MBS Source)
+Solovis,NO,WealthTech,High,Multi-asset portfolio management and analytics for institutional investors
+With Intelligence,NO,Market Data,High,Alternative-data and intelligence platform for asset/fund managers; not financial crime
+Global Lending,NO,Lending,Medium,Name indicates lending/credit origination business
+OneCause,NO,Payments,High,Nonprofit fundraising and event giving payments platform
+AuditComply,MAYBE,GRC/Risk,Medium,Enterprise GRC/quality and audit management; not specific to financial crime
+EzyCollect,NO,Payments,High,Accounts-receivable automation and payment collection software
+RetireOne,NO,InsurTech,High,Retirement income and annuity/insurance platform
+Nochex,NO,Payments,High,UK online payment gateway and processor
+SquareRisk,NO,InsurTech,High,Specialty/E&S insurance distribution marketplace
+WinFactor,NO,Lending,Medium,Invoice factoring software for the trucking/freight industry
+Skilling,NO,Trading/Capital Markets,High,Online CFD and forex trading brokerage platform
+Loctax,NO,Accounting/Tax,High,Global tax operations and compliance/governance platform
+Strategic Insurance Group,NO,InsurTech,High,Insurance agency/group; not financial crime tech
+Credas Technologies,YES,Identity Verification,High,Digital ID verification with eKYC; AML PEP and sanctions screening
+Atlas Metrics,NO,Other,High,ESG and sustainability reporting/compliance software
+Tenor Digital,NO,Lending,High,Private credit loan management and servicing software
+Congrify,NO,Payments,High,Payments observability reconciliation and intelligence for merchants
+Macro Hive,NO,Market Data,High,Macro investment research and market analysis provider
+Crizit,NO,Market Data,High,Market data cost monitoring and reference-data optimization
+Bamboo Insurance,NO,InsurTech,High,Home/property insurance carrier and MGA platform
+Nucleus Commercial Finance,NO,Lending,High,SME commercial lending and business finance provider
+MyExpatTaxes,NO,Accounting/Tax,High,Expat tax filing and preparation software
+TrustArc,MAYBE,GRC/Risk,Medium,Privacy and data-governance compliance; not financial-crime specific
+FinQuery,NO,Accounting,High,Lease accounting and spend management software (formerly LeaseQuery)
+Accelex,NO,Market Data,High,AI data extraction and analytics for alternative investments
+Digital Storefront,NO,Other,Low,Generic e-commerce storefront; no financial-crime focus
+Criterion,NO,Other,Low,Fintech account-opening standards or HCM payroll; not financial crime
+Applied Risk Capital,NO,InsurTech,High,Credit-default insurance MGA for lenders
+Sirvatus,NO,Lending,High,Loan operations automation for private credit funds
+Versatile Credit,NO,Lending,High,Credit application and lending waterfall platform for retailers
+Omnipresent,NO,Other,High,Global employment EOR and payroll platform
+Besolo,NO,Other,Medium,Admin and finance platform for solopreneurs/freelancers
+AllPaid,NO,Payments,High,Government and bill payment processing (GovPayNet)
+CyberCube,MAYBE,GRC/Risk,Medium,Cyber-risk analytics for insurance; not financial-crime AML/KYC
+Verity,NO,Market Data,High,Investment research management and equity data analytics
