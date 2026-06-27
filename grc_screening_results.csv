@@ -1,0 +1,39 @@
+company,aka,primary_domain,verdict,matched_categories,evidence,rationale
+Dynamo,Dynamo Software,CRM / deal & investor management software for alternatives,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Clearwater,Clearwater Analytics,"Investment accounting, reporting & analytics (SaaS)",ADJACENT,compliance,compliance: compliance; compliance: regulatory,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Preqin,Preqin,Alternative assets data & intelligence,ADJACENT,compliance; aml; kyc,compliance: compliance; aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Holistiplan,Holistiplan,Tax planning software for advisors,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+With Intelligence,With Intelligence (formerly Pageant Media),"Asset management data, media & events",ADJACENT,compliance,compliance: compliance,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Colmore,Colmore (a Preqin company),Private markets portfolio monitoring & fee analytics,ADJACENT,compliance,compliance: compliance,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Investment Metrics,Investment Metrics (Confluence),"Investment analytics, performance & reporting",NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Itiviti,Itiviti (Broadridge),Trading technology & connectivity (OMS/FIX),ADJACENT,compliance; aml,compliance: compliance; aml: aml,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+HeyWood,Heywood (Heywood Pension Technologies),Pensions administration software,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+VettaFi,VettaFi,"Index, ETF data & digital distribution",ADJACENT,compliance,compliance: compliance,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+OneZero,oneZero Financial Systems,FX / multi-asset trading technology,ADJACENT,aml; kyc,aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+DocuPace,Docupace,Document & workflow automation for wealth management,ADJACENT,compliance; aml,compliance: compliance; aml: aml,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Aixigo,aixigo,Wealth management platform / APIs,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Rimes,RIMES Technologies,Managed data services + RegTech surveillance,FIT,compliance,compliance: compliance; compliance: mar; compliance: market abuse; compliance: market surveillance; compliance: surveillance; compliance: regtech,"GRC is the core offering (core/RegTech/surveillance/governance signal present, no demotion)."
+Enfusion,Enfusion,Investment management SaaS (OEMS/PMS/accounting),ADJACENT,compliance; aml; kyc,compliance: compliance; aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Voyant,Voyant (AdviceTech),Financial planning software,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+SimCorp,SimCorp Dimension,Investment management platform (IBOR),ADJACENT,compliance; aml; kyc,compliance: compliance; aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+WebFG,WebFG / Web Financial Group,"Financial data, charting & front-office tools",ADJACENT,compliance,compliance: compliance,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Virtus Partners,Virtus Partners (Alter Domus),Credit / CLO loan administration,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+MG Stover,MG Stover (a Vistra company),Fund administration,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+SALI,SALI Fund Services,Insurance-dedicated fund administration,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Lightkeeper,Lightkeeper,Portfolio analytics & investment data,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Aduro Advisors,Aduro Advisors,Fund administration (VC/PE),NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Carne Group,Carne Group,"Third-party ManCo / fund governance, regulatory & oversight",FIT,compliance; risk; aml; governance,compliance: compliance; compliance: regulatory; risk: risk management; aml: aml; governance: governance; governance: oversight; governance: director services; governance: manco; governance: aifm; governance: management company,"GRC is the core offering (core/RegTech/surveillance/governance signal present, no demotion)."
+Sanne,Sanne (Apex Group),Fund & corporate administration,ADJACENT,compliance; aml; kyc,compliance: regulatory; compliance: regulatory reporting; aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Standish Management,Standish Management,Fund administration (PE/VC),NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Ultimus Fund Solutions,Ultimus Fund Solutions,Fund administration (mutual/alternative),ADJACENT,compliance; aml; kyc,compliance: compliance; aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+NES Financial,NES Financial (JTC),Specialty fund admin & escrow,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+IQEQ,IQ-EQ,Investor & fund services + regulatory/compliance services,ADJACENT,compliance; aml; kyc; governance,compliance: compliance; compliance: regulatory; compliance: regulatory reporting; aml: aml; kyc: kyc; governance: governance,GRC present but described as secondary to a non-GRC core business.
+E78 (Fund Solutions Division),E78 Partners - Fund Solutions,Finance & accounting outsourcing / fund admin,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+BlueMatrix,BlueMatrix,Investment research authoring & distribution,ADJACENT,compliance; aml,compliance: compliance; aml: aml,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Gen II,Gen II Fund Services,Private equity fund administration,ADJACENT,compliance,compliance: regulatory,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Centralis,Centralis Group,Fund & corporate administration,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Private Equity Administrations,Private Equity Administrators / PEA,Private equity fund administration,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Coopery Parry,Cooper Parry,Accountancy & business advisory firm,ADJACENT,aml; kyc,aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Intertrust,Intertrust (CSC),Corporate & fund administration / trust services,ADJACENT,compliance; aml; kyc,compliance: compliance; compliance: regulatory; aml: aml; kyc: kyc,"GRC terms appear only as a feature/back-office step, not the core business -- excluded under strict screening."
+Mainstream,Mainstream Group (Apex),Fund administration,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.
+Strata Fund Solutions,Strata Fund Solutions,Fund administration,NO,,,No risk/compliance/AML/KYC/fraud/governance terms in core business.

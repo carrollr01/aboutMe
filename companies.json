@@ -1,0 +1,230 @@
+[
+  {
+    "name": "Dynamo",
+    "aka": "Dynamo Software",
+    "primary_domain": "CRM / deal & investor management software for alternatives",
+    "description": "Cloud CRM and front-to-back office platform for private capital firms. Manages deal pipelines, investor relations, fundraising and reporting. Offers some due-diligence and investor onboarding workflow but core product is CRM/portfolio management."
+  },
+  {
+    "name": "Clearwater",
+    "aka": "Clearwater Analytics",
+    "primary_domain": "Investment accounting, reporting & analytics (SaaS)",
+    "description": "Automated investment accounting, data aggregation, reconciliation and reporting for insurers, asset managers and corporates. Produces regulatory and statutory reporting outputs but core product is investment accounting and performance reporting, not risk/compliance screening."
+  },
+  {
+    "name": "Preqin",
+    "aka": "Preqin",
+    "primary_domain": "Alternative assets data & intelligence",
+    "description": "Data provider covering private equity, venture, hedge funds, real assets and private debt. Fund performance, fundraising and investor data. No risk, AML, KYC or compliance product."
+  },
+  {
+    "name": "Holistiplan",
+    "aka": "Holistiplan",
+    "primary_domain": "Tax planning software for advisors",
+    "description": "Reads tax returns (OCR) and generates tax-planning scenarios and reports for financial advisors. Tax optimization tooling, not GRC."
+  },
+  {
+    "name": "With Intelligence",
+    "aka": "With Intelligence (formerly Pageant Media)",
+    "primary_domain": "Asset management data, media & events",
+    "description": "Fund data, manager intelligence, allocator databases, awards and events for the asset management industry. Information/media business, not compliance."
+  },
+  {
+    "name": "Colmore",
+    "aka": "Colmore (a Preqin company)",
+    "primary_domain": "Private markets portfolio monitoring & fee analytics",
+    "description": "Private markets administration: portfolio monitoring, fee validation, ESG and cash-flow tracking for LPs. Monitoring/analytics, not risk/compliance screening."
+  },
+  {
+    "name": "Investment Metrics",
+    "aka": "Investment Metrics (Confluence)",
+    "primary_domain": "Investment analytics, performance & reporting",
+    "description": "Institutional portfolio analytics, performance measurement, attribution and benchmarking for consultants and asset owners. Analytics, not GRC."
+  },
+  {
+    "name": "Itiviti",
+    "aka": "Itiviti (Broadridge)",
+    "primary_domain": "Trading technology & connectivity (OMS/FIX)",
+    "description": "Order management, execution, FIX connectivity and trading infrastructure for sell-side and buy-side. Trading tech, not compliance/AML."
+  },
+  {
+    "name": "HeyWood",
+    "aka": "Heywood (Heywood Pension Technologies)",
+    "primary_domain": "Pensions administration software",
+    "description": "Pension scheme administration platforms and data services for UK pension funds. Administration software, not GRC."
+  },
+  {
+    "name": "VettaFi",
+    "aka": "VettaFi",
+    "primary_domain": "Index, ETF data & digital distribution",
+    "description": "Indexing, ETF analytics, financial data and digital marketing/distribution for asset managers. Data/index business, not compliance."
+  },
+  {
+    "name": "OneZero",
+    "aka": "oneZero Financial Systems",
+    "primary_domain": "FX / multi-asset trading technology",
+    "description": "Trade execution, liquidity aggregation and distribution technology for FX and CFDs. Includes a risk/hub analytics module for trading exposure, but it is market/trading risk tooling within a trading platform, not enterprise GRC/AML/KYC."
+  },
+  {
+    "name": "DocuPace",
+    "aka": "Docupace",
+    "primary_domain": "Document & workflow automation for wealth management",
+    "description": "Paperless onboarding, document management and back-office workflow automation for broker-dealers and RIAs. Supports compliance-adjacent workflows (records, onboarding) but core is document/workflow automation, not a compliance/AML engine."
+  },
+  {
+    "name": "Aixigo",
+    "aka": "aixigo",
+    "primary_domain": "Wealth management platform / APIs",
+    "description": "High-performance wealth management software: portfolio management, analysis, advisory and rebalancing APIs for banks. WealthTech, not GRC."
+  },
+  {
+    "name": "Rimes",
+    "aka": "RIMES Technologies",
+    "primary_domain": "Managed data services + RegTech surveillance",
+    "description": "Managed market and reference data services and benchmark/index data. Also offers RegFocus market surveillance (market abuse/MAR monitoring) and compliance data tooling acquired with Matrix IDM. Has a genuine RegTech/market-surveillance line alongside a larger data-management core."
+  },
+  {
+    "name": "Enfusion",
+    "aka": "Enfusion",
+    "primary_domain": "Investment management SaaS (OEMS/PMS/accounting)",
+    "description": "Cloud-native order/execution management, portfolio management and accounting for hedge funds and asset managers. Includes a pre/post-trade compliance rules module embedded in the OMS, but core is the investment management platform, not standalone GRC/AML/KYC."
+  },
+  {
+    "name": "Voyant",
+    "aka": "Voyant (AdviceTech)",
+    "primary_domain": "Financial planning software",
+    "description": "Goals-based financial planning and cash-flow modeling tools for advisors and consumers. Planning software, not GRC."
+  },
+  {
+    "name": "SimCorp",
+    "aka": "SimCorp Dimension",
+    "primary_domain": "Investment management platform (IBOR)",
+    "description": "Front-to-back investment management system: portfolio/order management, IBOR, accounting, performance. Ships investment-compliance and risk modules embedded in the platform, but it is an enterprise IMS, not a dedicated compliance/AML/KYC vendor."
+  },
+  {
+    "name": "WebFG",
+    "aka": "WebFG / Web Financial Group",
+    "primary_domain": "Financial data, charting & front-office tools",
+    "description": "Market data, charting, research and digital tools for wealth managers and private banks. Data/front-office tooling, not compliance."
+  },
+  {
+    "name": "Virtus Partners",
+    "aka": "Virtus Partners (Alter Domus)",
+    "primary_domain": "Credit / CLO loan administration",
+    "description": "Loan and CLO administration, agency and portfolio management technology for the leveraged loan and credit market. Loan admin, not GRC."
+  },
+  {
+    "name": "MG Stover",
+    "aka": "MG Stover (a Vistra company)",
+    "primary_domain": "Fund administration",
+    "description": "Full-service fund administration for hedge, private equity, venture and digital-asset funds. NAV, accounting, investor services. Fund admin, not GRC."
+  },
+  {
+    "name": "SALI",
+    "aka": "SALI Fund Services",
+    "primary_domain": "Insurance-dedicated fund administration",
+    "description": "Insurance dedicated fund (IDF) platform and administration for tax-advantaged investing. Fund admin/structuring, not GRC."
+  },
+  {
+    "name": "Lightkeeper",
+    "aka": "Lightkeeper",
+    "primary_domain": "Portfolio analytics & investment data",
+    "description": "Portfolio analytics, attribution and data aggregation for hedge funds and allocators. Analytics, not GRC."
+  },
+  {
+    "name": "Aduro Advisors",
+    "aka": "Aduro Advisors",
+    "primary_domain": "Fund administration (VC/PE)",
+    "description": "Fund administration for venture capital and private equity: accounting, investor reporting, fund operations. Fund admin, not GRC."
+  },
+  {
+    "name": "Carne Group",
+    "aka": "Carne Group",
+    "primary_domain": "Third-party ManCo / fund governance, regulatory & oversight",
+    "description": "Independent management company (ManCo/AIFM) and fund governance provider. Core business is regulatory compliance, risk management, oversight, governance and director services for asset managers, plus AML/investor due-diligence oversight. Governance, risk and compliance IS the core service offering."
+  },
+  {
+    "name": "Sanne",
+    "aka": "Sanne (Apex Group)",
+    "primary_domain": "Fund & corporate administration",
+    "description": "Global fund and corporate administration, alternative asset servicing. Provides regulatory reporting and AML/KYC as part of administration services, but core is fund administration, not a dedicated GRC product."
+  },
+  {
+    "name": "Standish Management",
+    "aka": "Standish Management",
+    "primary_domain": "Fund administration (PE/VC)",
+    "description": "Private equity and venture fund administration: fund accounting, investor services, treasury. Fund admin, not GRC."
+  },
+  {
+    "name": "Ultimus Fund Solutions",
+    "aka": "Ultimus Fund Solutions",
+    "primary_domain": "Fund administration (mutual/alternative)",
+    "description": "Fund administration, accounting, transfer agency and distribution services. Performs AML/KYC and compliance as part of TA/administration services, but core is fund administration."
+  },
+  {
+    "name": "NES Financial",
+    "aka": "NES Financial (JTC)",
+    "primary_domain": "Specialty fund admin & escrow",
+    "description": "Administration for EB-5, Opportunity Zone and private equity funds, plus escrow services. Fund admin, not GRC."
+  },
+  {
+    "name": "IQEQ",
+    "aka": "IQ-EQ",
+    "primary_domain": "Investor & fund services + regulatory/compliance services",
+    "description": "Investor services group: fund and corporate administration, with a substantial regulatory and compliance services line (regulatory reporting, compliance consulting, AML/KYC, governance). Compliance is a named service line but sits within a broader fund/corporate administration business."
+  },
+  {
+    "name": "E78 (Fund Solutions Division)",
+    "aka": "E78 Partners - Fund Solutions",
+    "primary_domain": "Finance & accounting outsourcing / fund admin",
+    "description": "Outsourced finance, accounting and fund administration / advisory services. Operational finance, not GRC."
+  },
+  {
+    "name": "BlueMatrix",
+    "aka": "BlueMatrix",
+    "primary_domain": "Investment research authoring & distribution",
+    "description": "Research content creation, editing, compliance-stamping and distribution platform for sell-side and independent research. Manages research disclosures/disclaimers but core is research publishing, not GRC/AML."
+  },
+  {
+    "name": "Gen II",
+    "aka": "Gen II Fund Services",
+    "primary_domain": "Private equity fund administration",
+    "description": "Private capital fund administration: fund accounting, investor reporting, treasury, regulatory support. Fund admin, not GRC."
+  },
+  {
+    "name": "Centralis",
+    "aka": "Centralis Group",
+    "primary_domain": "Fund & corporate administration",
+    "description": "Fund administration, corporate services, domiciliation and SPV management in Luxembourg and Europe. Fund admin, not GRC."
+  },
+  {
+    "name": "Private Equity Administrations",
+    "aka": "Private Equity Administrators / PEA",
+    "primary_domain": "Private equity fund administration",
+    "description": "Outsourced fund accounting and administration for private equity managers. Fund admin, not GRC."
+  },
+  {
+    "name": "Coopery Parry",
+    "aka": "Cooper Parry",
+    "primary_domain": "Accountancy & business advisory firm",
+    "description": "UK accountancy, audit, tax and business advisory firm. Professional services; audit/assurance is adjacent to risk but core is accountancy, not a GRC/AML/KYC product."
+  },
+  {
+    "name": "Intertrust",
+    "aka": "Intertrust (CSC)",
+    "primary_domain": "Corporate & fund administration / trust services",
+    "description": "Corporate, fund and capital markets administration and trust services. Provides regulatory and compliance services and AML/KYC as part of administration, but core is corporate/fund administration."
+  },
+  {
+    "name": "Mainstream",
+    "aka": "Mainstream Group (Apex)",
+    "primary_domain": "Fund administration",
+    "description": "Fund administration and superannuation/registry services across funds. Fund admin, not GRC."
+  },
+  {
+    "name": "Strata Fund Solutions",
+    "aka": "Strata Fund Solutions",
+    "primary_domain": "Fund administration",
+    "description": "Fund administration, accounting, tax and middle-office services for alternative funds. Fund admin, not GRC."
+  }
+]
