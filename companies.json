@@ -226,5 +226,35 @@
     "aka": "Strata Fund Solutions",
     "primary_domain": "Fund administration",
     "description": "Fund administration, accounting, tax and middle-office services for alternative funds. Fund admin, not GRC."
+  },
+  {
+    "name": "Enverus",
+    "aka": "Enverus",
+    "primary_domain": "Energy data analytics & SaaS",
+    "description": "Energy-sector data, analytics and software for oil, gas, power and renewables: well data, market intelligence, trading and asset analytics. Includes commodity/trading risk analytics for energy traders, but core is energy data and intelligence, not an enterprise GRC product."
+  },
+  {
+    "name": "Artefact",
+    "aka": "Artefact",
+    "primary_domain": "Data, AI & marketing consultancy",
+    "description": "Consulting firm focused on data science, AI and digital marketing transformation for enterprises. Data/AI and marketing services; no GRC product line."
+  },
+  {
+    "name": "Facts Global Energy",
+    "aka": "FGE (Facts Global Energy)",
+    "primary_domain": "Energy markets consulting & research",
+    "description": "Oil, gas and energy markets research, forecasting and advisory. Commodity market analysis and consulting, not GRC."
+  },
+  {
+    "name": "Bridewell",
+    "aka": "Bridewell Consulting",
+    "primary_domain": "Cybersecurity, privacy & GRC consultancy",
+    "description": "Cyber security and data privacy services firm. Core offering includes a dedicated governance, risk and compliance practice: security risk management, regulatory compliance (ISO 27001, NIS, GDPR), data privacy, plus managed detection and response and penetration testing. Governance, risk and compliance is the core service offering for cyber/information security."
+  },
+  {
+    "name": "Law Business Group",
+    "aka": "Law Business Research / Law Business Group",
+    "primary_domain": "Legal intelligence, publishing & media",
+    "description": "Legal market intelligence, publishing, awards and events (e.g. regulatory and disputes titles). Publishes content covering regulation but is an information/media business, not a GRC product or service provider."
   }
 ]
