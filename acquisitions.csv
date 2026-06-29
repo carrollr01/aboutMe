@@ -1,12 +1,12 @@
-buyer_type,acquirer,target,target_country
-Strategic,LexisNexis,BehavioSec,Sweden
-Strategic,Relx,ThreatMetrix,USA
-Strategic,Ping,SecuredTouch,Israel
-Strategic,TransUnion,Iovation,USA
-Strategic,GBG,IDology,USA
-Strategic,One Identity,OneLogin,USA
-Strategic,Alkami,Janrain,USA
-Strategic,CyberArk,Idaptive,USA
-Strategic,Experian,CSID,USA
-Sponsor,STG,RSA,USA
-Sponsor,Haveli,ZeroFox,USA
+buyer_type,acquirer,target,target_country,date,subsector
+Strategic,LexisNexis,BehavioSec,Sweden,1/1/22,fraud
+Strategic,Relx,ThreatMetrix,USA,1/1/18,fraud
+Strategic,Ping,SecuredTouch,Israel,7/1/21,fraud
+Strategic,TransUnion,Iovation,USA,4/1/18,fraud
+Strategic,GBG,IDology,USA,1/1/19,KYC
+Strategic,One Identity,OneLogin,USA,10/1/21,other
+Strategic,Alkami,Janrain,USA,1/1/19,other
+Strategic,CyberArk,Idaptive,USA,5/1/20,other
+Strategic,Experian,CSID,USA,10/1/16,fraud
+Sponsor,STG,RSA,USA,2/1/20,GRC
+Sponsor,Haveli,ZeroFox,USA,2/1/25,other
