@@ -2,7 +2,7 @@ display_name,exch_tick,status
 Broadcom,NASDAQ:AVGO,listed
 Check Point,NASDAQ:CHKP,listed
 Cognyte,NASDAQ:CGNT,listed
-F-Secure,HEL:FSECURE,listed
+F-Secure,HLSE:FSECURE,listed
 F5,NASDAQ:FFIV,listed
 Fortinet,NASDAQ:FTNT,listed
 Gen Digital,NASDAQ:GEN,listed
@@ -18,5 +18,5 @@ Secureworks,NASDAQ:SCWX,delisted 2/2025 (acquired by Sophos)
 SolarWinds,NYSE:SWI,delisted 4/2025 (acquired by Turn/River)
 Telos,NASDAQ:TLS,listed
 Tenable,NASDAQ:TENB,listed
-Trend Micro,TYO:4704,listed
-WithSecure,HEL:WITH,taken private 11/2025 (unverified)
+Trend Micro,TSE:4704,listed
+WithSecure,HLSE:WITH,taken private 11/2025 (unverified)
