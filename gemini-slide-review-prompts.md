@@ -104,7 +104,8 @@ Operating notes (apply to every agent):
   an error; (c) make sure the agent isn't pointed at a **disabled connector** (Drive/SharePoint aren't
   enabled in your tenant — attach **uploads** instead, or it can stall retrying); (d) confirm the file
   isn't oversized; (e) confirm you're on **Gemini 3.1 Pro**. The most common cause of a very long run is a
-  **single monolithic agent** doing every check at once — split the roles (see §5).
+  **single monolithic agent** doing every check at once — split the roles (see §5). If you can't cancel a
+  stuck run, close the session/tab and start fresh — a hung run won't recover on its own.
 
 ### Your confirmed setup (from your tenant) and how to use it
 
@@ -611,9 +612,39 @@ were unsure about under "[verify visually]".
 ## 5. Make it efficient: split the roles into a parallel "Master Reviewer" Flow
 
 If you built one agent that does everything, it will be slow and hard to debug — that's the "one agent in
-the flow" you're seeing, and a 20-minute run is usually a monolithic agent grinding through every check
-serially (or stalled on a tool). Splitting the roles fixes all three problems. Build this in the Flow
-builder:
+the flow" you're seeing, and a long/stuck run is usually a monolithic agent grinding through every check
+serially (or stalled on a tool).
+
+> **Reality check:** Agent Designer often **can't create parallel subagents / an agent web** — no-code
+> parallel branching isn't supported in many tenants. If that's you, don't fight the builder; use the
+> workaround below. The "ideal parallel Flow" further down is for if/when you get true parallel branches,
+> or via a pro-code (ADK) build.
+
+### Workaround — parallelize with the human, not the builder (recommended for your setup)
+
+1. Build **5 lean, single-purpose agents** (Master, Numbers, Red-Team, Narrative, Design) — each ONE
+   prompt, **no multi-node flow**.
+2. To review a deck, open them in **separate browser tabs and run them at the same time.** That's your
+   parallelism — wall-clock = the slowest single agent, not the sum of all five.
+3. **Combine:** skim the five outputs, or paste them into the Master agent with "Merge these reviews,
+   dedupe, and sort by severity" for one report.
+
+Why this beats a Flow on a weak builder: each agent is simple (won't hang), you can see exactly which one
+is slow, and you get real parallelism with zero orchestration support.
+
+### Keep each agent LEAN (this is why your test is still running)
+
+A long/stuck run is almost always a heavy multi-node flow doing too much at once. Make agents
+single-purpose and push the heavy lifting into **Skills (code)**, which your tenant runs well:
+
+- **Numbers:** if the 5-node flow is clunky, **collapse it to ONE agent** that (a) extracts figures into
+  the `deck_numbers_verifier` Skill, (b) runs the Skill, (c) reports and re-checks survivors in its own
+  instructions. One prompt + one code call = far less to stall on.
+- Feed a **PDF of fewer slides** (or a single section) per run; drop anything oversized.
+- Make sure no step points at a **disabled connector** (Drive/SharePoint) — that stalls and retries.
+- Confirm **Gemini 3.1 Pro**, not Flash.
+
+### Ideal parallel Flow (only if your builder supports parallel branches, or via pro-code ADK)
 
 **Shape:** Orchestrator → [5 lens subagents run in PARALLEL] → Synthesis/dedupe → one report.
 
