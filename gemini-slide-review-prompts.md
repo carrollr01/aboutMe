@@ -77,6 +77,26 @@ Operating notes (apply to every agent):
 - **Frame it neutrally for a sharper critique.** Don't tell the agent who wrote the deck or that you like
   it — models go easy ("sycophancy") when they sense an author's stake. Just say "Review this."
 
+### Your setup: make grounding do the heavy lifting, and ask IT to unlock two things
+
+You can attach **data sources** but aren't sure about code execution or subagents yet. That's fine — here's
+how to get the most out of what you have:
+
+- **Use grounding aggressively.** Attach the deck's **underlying model/workbook and the data room** to the
+  Master and Numbers agents, and attach **approved comp-set rules, a "common deck errors" list, and a
+  house style guide** (when you have one) to the Master/Design agents. Grounded against source, the agents
+  reliably catch **figure-vs-source mismatches** and **unsupported claims** — most of the value, no tools
+  required. (Grounding is a documented Agent Designer capability:
+  docs.cloud.google.com/gemini-enterprise-agent-platform/models/grounding/overview.)
+- **What grounding alone catches vs. doesn't:** it's reliable for "this slide says X but the source says
+  Y" and "this claim has no support." It is **not** a calculator — for values the deck *computes* (totals,
+  CAGRs, %s), keep a human on them until code execution is on.
+- **Two things to ask IT to enable, in priority order:**
+  1. **Code execution / data-analysis tool** — the biggest upgrade; it's the only way the Numbers agent
+     can truly recompute arithmetic rather than flag-and-hope.
+  2. **Multi-step agents / subagents** — lets you ship the single "Master Reviewer" in §5 instead of
+     running five agents by hand.
+
 ---
 
 ## 3. The agents (paste each as system instructions)
@@ -178,13 +198,14 @@ the NUMBERS in the attached deck are internally consistent and arithmetically so
 design, and style — numbers only.
 
 USE YOUR TOOLS — this is the core of the job:
-- If a code-execution / data-analysis tool is available, you MUST use it to recompute every total,
-  percentage, growth rate, and CAGR. Do NOT do arithmetic in your head — show the code/calculation and
-  its result.
-- If grounding data is attached (the underlying model/workbook or data room), verify each figure against
-  the SOURCE, not just against what the slide says, and flag any slide figure that disagrees with source.
-- If no calculation tool is available, still SHOW your arithmetic step by step so a human can verify, and
-  never assert a discrepancy you haven't shown.
+- PRIMARY METHOD — compare against source: if grounding data is attached (the underlying model/workbook
+  or data room), look up each slide figure in the SOURCE and flag any that disagrees with it. This is
+  your most reliable check — do it for every figure you can trace to a source.
+- If a code-execution / data-analysis tool is available, ALSO use it to recompute every total, percentage,
+  growth rate, and CAGR. Never do multi-step arithmetic in your head — show the calculation and result.
+- If you have NO calculation tool, treat your own arithmetic as unreliable: still show your work step by
+  step, but mark any value you computed yourself (totals, CAGRs, percentages built from other numbers) as
+  "[computed — human verify]". Never assert a discrepancy you haven't shown.
 
 HOW TO WORK (follow exactly):
 - Scan every slide for figures: financials, KPIs, growth rates, CAGRs, multiples, percentages, market
