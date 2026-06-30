@@ -268,12 +268,10 @@ STEP 2 — TIE TO SOURCE (uses grounding — most reliable check):
 "For each extracted figure, look it up in the attached source model/data room. Output:
 figure | slide | source value | status (MATCH / MISMATCH / NOT IN SOURCE). Quote the source location."
 
-STEP 3 — INTERNAL CONSISTENCY & ARITHMETIC:
-"(a) Find every case where the same fact appears with a different number across slides — list each with
-slide numbers and the differing values. (b) For each stated total, percentage, and CAGR, recompute it
-ONE calculation at a time, showing inputs -> formula -> result -> the deck's stated value. If a
-code-execution tool is available, use it here instead of reasoning. Output candidate discrepancies with
-the math."
+STEP 3 — INTERNAL CONSISTENCY & ARITHMETIC (run the deck_numbers_verifier Skill):
+"Extract the figures into the deck_numbers_verifier Skill's INPUT (sums/subtotals, CAGRs, percentages and
+margins, shares that should total 100%, repeated figures across slides, and slide-vs-source pairs) and RUN
+the Skill via code execution. Do NOT compute by hand. Report exactly what the Skill output proves."
 
 STEP 4 — VERIFY (the false-positive killer):
 "For each candidate discrepancy from Steps 2-3, independently re-derive it from the quoted figures
@@ -287,8 +285,148 @@ STEP 5 — REPORT:
 Add 'Figures I could not verify and why' and a one-line 'Net read' on whether the deck's numbers tie."
 ```
 
-When code execution is enabled, it slots into Step 3 and Step 4 — and the whole flow becomes airtight on
-arithmetic, not just on tie-outs.
+#### Agent 2 Skill — `deck_numbers_verifier` (code execution)
+
+Your tenant exposes code execution as **Skills**. Build this one and attach it to Agent 2; the agent's job
+is to **extract** figures from the deck (and the uploaded source model) into the Skill's `INPUT`, **run**
+the Skill, then report only what the Skill proves. The Python does every calculation deterministically, so
+the agent never does arithmetic in its head.
+
+**Skill definition**
+- **Name:** `deck_numbers_verifier`
+- **Description:** Deterministically verifies a slide deck's numbers — sums/subtotals, CAGRs, percentages
+  and margins, shares totalling 100%, the same figure repeated across slides, and slide-vs-source tie-outs.
+- **When to use:** Whenever reviewing a deck's figures (Step 3 of the Numbers flow).
+- **Inputs:** the `INPUT` object below, populated by the agent from the deck and uploaded source model.
+- **Output:** a findings list (ERROR / CHECK BASIS / OK), each with the math shown and slide refs.
+
+**The code** (paste as the Skill's code-execution body; if your Skill framework passes inputs as a JSON
+argument instead of an inline literal, map the same fields):
+
+```python
+import json, math
+
+# The agent fills INPUT from the deck (and the uploaded source model where available).
+INPUT = {
+    "tolerance_pct": 0.1,        # relative tolerance for rounding (% of the larger value)
+    "absolute_tolerance": 0.05,  # absolute tolerance (covers 1-decimal rounding)
+    "figures": [                 # any figure you can tie to the source model
+        # {"slide": 12, "label": "FY24 EBITDA", "value": 42.1, "source_value": 44.6, "chart_read": False},
+    ],
+    "sum_checks": [              # totals/subtotals that should equal the sum of parts
+        # {"slide": 15, "label": "Total revenue FY24", "total": 120.0, "parts": [40.0, 50.0, 30.5]},
+    ],
+    "cagr_checks": [            # stated growth rates to recompute
+        # {"slide": 20, "label": "Revenue CAGR FY21-24", "begin": 80.0, "end": 120.0, "years": 3, "stated_cagr_pct": 14.5},
+    ],
+    "percentage_checks": [     # margins/ratios stated as a %
+        # {"slide": 18, "label": "Gross margin FY24", "numerator": 72.0, "denominator": 120.0, "stated_pct": 62.0},
+    ],
+    "share_sum_checks": [      # breakdowns that should sum to ~100%
+        # {"slide": 22, "label": "Revenue by region", "shares_pct": [45.0, 30.0, 20.0]},
+    ],
+    "consistency_checks": [    # the same fact appearing on multiple slides
+        # {"label": "FY24 EBITDA", "occurrences": [{"slide": 12, "value": 42.1}, {"slide": 28, "value": 44.6}]},
+    ],
+}
+
+REL_TOL = INPUT.get("tolerance_pct", 0.1) / 100.0
+ABS_TOL = INPUT.get("absolute_tolerance", 0.05)
+
+def close(a, b):
+    if a is None or b is None:
+        return None
+    return abs(a - b) <= max(ABS_TOL, REL_TOL * max(abs(a), abs(b)))
+
+findings = []
+def add(verdict, kind, slide, label, detail):
+    findings.append({"verdict": verdict, "check": kind, "slide": slide, "label": label, "detail": detail})
+
+# 1. Sums / subtotals
+for c in INPUT.get("sum_checks", []):
+    parts = [p for p in c.get("parts", []) if p is not None]
+    computed = round(sum(parts), 6)
+    stated = c.get("total")
+    add("OK" if close(computed, stated) else "ERROR", "sum", c.get("slide"), c.get("label"),
+        f"parts {c.get('parts')} sum to {computed}; deck states {stated}")
+
+# 2. CAGRs
+for c in INPUT.get("cagr_checks", []):
+    begin, end, years, stated = c.get("begin"), c.get("end"), c.get("years"), c.get("stated_cagr_pct")
+    if not begin or begin <= 0 or not years or years <= 0 or end is None:
+        add("CHECK BASIS", "cagr", c.get("slide"), c.get("label"),
+            f"cannot compute from begin={begin}, end={end}, years={years}")
+        continue
+    computed = ((end / begin) ** (1.0 / years) - 1.0) * 100.0
+    add("OK" if close(computed, stated) else "ERROR", "cagr", c.get("slide"), c.get("label"),
+        f"({end}/{begin})^(1/{years})-1 = {computed:.2f}%; deck states {stated}%")
+
+# 3. Percentages / margins / ratios
+for c in INPUT.get("percentage_checks", []):
+    num, den, stated = c.get("numerator"), c.get("denominator"), c.get("stated_pct")
+    if den in (None, 0):
+        add("CHECK BASIS", "percentage", c.get("slide"), c.get("label"),
+            f"denominator missing/zero (num={num}, den={den})")
+        continue
+    computed = num / den * 100.0
+    add("OK" if close(computed, stated) else "ERROR", "percentage", c.get("slide"), c.get("label"),
+        f"{num}/{den}*100 = {computed:.2f}%; deck states {stated}%")
+
+# 4. Shares should total ~100%
+for c in INPUT.get("share_sum_checks", []):
+    shares = [s for s in c.get("shares_pct", []) if s is not None]
+    total = round(sum(shares), 6)
+    add("OK" if close(total, 100.0) else "ERROR", "share_sum", c.get("slide"), c.get("label"),
+        f"shares {c.get('shares_pct')} sum to {total}% (expected ~100%)")
+
+# 5. Same fact, different number across slides
+for c in INPUT.get("consistency_checks", []):
+    occ = c.get("occurrences", [])
+    vals = [o.get("value") for o in occ if o.get("value") is not None]
+    ok = all(close(vals[0], v) for v in vals) if vals else True
+    locs = "; ".join(f"slide {o.get('slide')}={o.get('value')}" for o in occ)
+    add("OK" if ok else "ERROR", "consistency", None, c.get("label"),
+        locs + ("" if ok else "   <-- figures differ"))
+
+# 6. Slide vs source model tie-out
+for f in INPUT.get("figures", []):
+    sv = f.get("source_value")
+    if sv is None:
+        continue
+    tag = " [chart-read]" if f.get("chart_read") else ""
+    add("OK" if close(f.get("value"), sv) else "ERROR", "source_tie", f.get("slide"), f.get("label"),
+        f"slide={f.get('value')} vs source={sv}{tag}")
+
+# Report
+order = {"ERROR": 0, "CHECK BASIS": 1, "OK": 2}
+findings.sort(key=lambda x: order.get(x["verdict"], 3))
+n_err = sum(1 for f in findings if f["verdict"] == "ERROR")
+n_chk = sum(1 for f in findings if f["verdict"] == "CHECK BASIS")
+print(f"NUMBERS VERIFICATION - {n_err} error(s), {n_chk} to check, {len(findings)-n_err-n_chk} OK\n")
+for f in findings:
+    where = f"slide {f['slide']}" if f["slide"] is not None else "multi-slide"
+    print(f"[{f['verdict']}] {f['check']} | {where} | {f['label']}\n    {f['detail']}")
+print("\nMACHINE-READABLE:\n" + json.dumps(findings, indent=2))
+```
+
+**Test it once** with this sample `INPUT` (it should report 3 errors and 1 OK): a margin of 72/120 = 60%
+stated as 62% (ERROR), regional shares 45+30+20 = 95% (ERROR), FY24 EBITDA shown 42.1 vs 44.6 across
+slides (ERROR), and a revenue CAGR 80->120 over 3 yrs = 14.47% stated 14.5% (OK).
+
+```python
+INPUT = {
+    "cagr_checks": [{"slide": 20, "label": "Rev CAGR", "begin": 80.0, "end": 120.0, "years": 3, "stated_cagr_pct": 14.5}],
+    "percentage_checks": [{"slide": 18, "label": "Gross margin", "numerator": 72.0, "denominator": 120.0, "stated_pct": 62.0}],
+    "share_sum_checks": [{"slide": 22, "label": "Revenue by region", "shares_pct": [45.0, 30.0, 20.0]}],
+    "consistency_checks": [{"label": "FY24 EBITDA", "occurrences": [{"slide": 12, "value": 42.1}, {"slide": 28, "value": 44.6}]}],
+}
+```
+
+**Tuning:** `tolerance_pct` (default 0.1%) plus `absolute_tolerance` (0.05) absorb normal rounding while
+still catching real errors. Loosen them if a deck legitimately rounds hard (e.g., whole-$M figures);
+tighten for precision work. Step 4 then re-confirms each ERROR before it reaches the report.
+
+With this Skill, Step 3 of the Numbers flow is **airtight on arithmetic**, not just on source tie-outs.
 
 ---
 
