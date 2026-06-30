@@ -84,6 +84,12 @@ Operating notes (apply to every agent):
 - **Trust but verify:** every number it flags (especially off a chart) still needs a human re-check.
 - **Frame it neutrally for a sharper critique.** Don't tell the agent who wrote the deck or that you like
   it — models go easy ("sycophancy") when they sense an author's stake. Just say "Review this."
+- **If a run hangs (more than ~2–3 minutes), it's stuck, not thinking.** A deck review is seconds to a
+  couple of minutes. Cancel and: (a) test on a 5–10 slide deck first; (b) check the execution/run log for
+  an error; (c) make sure the agent isn't pointed at a **disabled connector** (Drive/SharePoint aren't
+  enabled in your tenant — attach **uploads** instead, or it can stall retrying); (d) confirm the file
+  isn't oversized; (e) confirm you're on **Gemini 3.1 Pro**. The most common cause of a very long run is a
+  **single monolithic agent** doing every check at once — split the roles (see §5).
 
 ### Your confirmed setup (from your tenant) and how to use it
 
@@ -587,22 +593,44 @@ were unsure about under "[verify visually]".
 
 ---
 
-## 5. Advanced: one multi-step "Master Reviewer" agent
+## 5. Make it efficient: split the roles into a parallel "Master Reviewer" Flow
 
-Agent Designer supports multi-step agents (agents with subagents). Instead of running five agents by
-hand, you can build ONE agent that orchestrates them — this matches the architecture the research found
-most reliable (a whole-document pass + focused lens passes + a precision/dedupe pass):
+If you built one agent that does everything, it will be slow and hard to debug — that's the "one agent in
+the flow" you're seeing, and a 20-minute run is usually a monolithic agent grinding through every check
+serially (or stalled on a tool). Splitting the roles fixes all three problems. Build this in the Flow
+builder:
 
-1. **Subagent: cross-cutting pass** — reads the whole deck for contradictions across slides and narrative
-   arc (needs whole-document context).
-2. **Subagents in parallel:** Numbers (with code execution), Red-Team, Narrative, Design — each the
-   prompt above.
-3. **Final step: precision/dedupe** — merge findings, drop duplicates and unsupported items, sort by
-   severity, output one report with the Master's format.
+**Shape:** Orchestrator → [5 lens subagents run in PARALLEL] → Synthesis/dedupe → one report.
 
-Attach code execution + your data stores (model/workbook, comps rules, style guide) once at the agent
-level, publish to the Agent Gallery, and the desk has a single "Review my deck" button. This is the
-highest-leverage build once the individual agents are proven.
+**Run in PARALLEL (independent lenses — fan out):**
+- **Numbers** subagent — runs the `deck_numbers_verifier` Skill (its own internal pipeline is sequential).
+- **Red-Team** subagent.
+- **Narrative** subagent.
+- **Design** subagent.
+- **Cross-cutting** subagent — contradictions across slides / narrative arc (needs the whole deck).
+
+**Keep SEQUENTIAL only where a step needs the previous one:**
+- Inside the Numbers subagent: extract → tie-to-source → run Skill → verify → report (each depends on the
+  prior — can't be parallelized).
+- The final **Synthesis** step: waits for all lens subagents, then dedupes and merges into one
+  severity-sorted report in the Master's output format.
+
+**Why this is better than one big agent:**
+1. **Faster** — the lenses run concurrently instead of as one long chain.
+2. **Debuggable** — if it hangs, you can see WHICH subagent stalled (you couldn't with a monolith).
+3. **Higher quality** — single-responsibility subagents beat a mega-prompt. (The research's "curse of
+   instructions": packing N checks into one prompt makes it silently drop some — reliability decays
+   roughly as success-rate^N.)
+
+**Build notes / caveats:**
+- Attach **code execution** to the Numbers subagent; attach **non-confidential reference files** (style
+  guide, comps rules, common-errors list) at the Master level — **never** confidential decks (see §0
+  sharing rule). Upload the deck + source model **per run**.
+- Pick **Gemini 3.1 Pro** for each subagent (Flash misses subtle errors).
+- If your Flow builder turns out to run branches sequentially rather than truly concurrently, you still
+  get the quality + debuggability win; as a fallback you can run the lens agents as separate agents in
+  parallel browser sessions. (Confirm true parallel-branch support with the Automation team.)
+- Publish the finished Master to the Agent Gallery so the desk has one "Review my deck" button.
 
 ---
 
