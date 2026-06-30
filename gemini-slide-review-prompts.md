@@ -475,4 +475,48 @@ highest-leverage build once the individual agents are proven.
   (prompt-chaining beats one mega-prompt, arxiv.org/abs/2406.00507).
 - IB-materials checklist: pitch vs CIM red flags, "numbers that don't tie" as the worst-to-ship error,
   hockey-stick projections, aggressive add-backs, TAM inflation, comp drift, equity-story contradictions.
+
+---
+
+## 7. Appendix — Ask your company Gemini what you already have
+
+Paste this into your internal/company Gemini (the one grounded on your org's IT and policy docs) to
+confirm your setup before building. It maps 1:1 to what this toolkit needs.
+
+```
+You are my company's internal knowledge assistant, grounded on our IT, security, and policy
+documentation. I'm building custom review agents in our Gemini Enterprise and need to confirm what our
+organization has enabled. For EACH question, answer HAVE / DON'T HAVE / UNCLEAR, give the specific
+detail, cite the internal source, and where you're unsure name the team or person I should ask.
+
+1. EDITION & ACCESS — Which Gemini Enterprise edition/license do we have, and does it include custom
+   agent building (Agent Designer)? Can someone in my role create and publish agents, or is that
+   restricted to admins/specific groups? What's the approval process?
+2. CODE EXECUTION — For a custom agent, can I enable a code-execution / data-analysis (Python) tool? If
+   yes, how is it turned on, and are there restrictions?
+3. DATA GROUNDING — Can I attach data sources / data stores (Google Drive, uploaded files, SharePoint, a
+   data room) to a custom agent so it answers from those sources? Which connectors are enabled for us?
+4. MULTI-STEP AGENTS — Are multi-step agents (an agent that orchestrates subagents) available to me?
+5. MODELS — Which Gemini model(s) power our agents (e.g., Gemini 3 Pro / 3.1 Pro vs Flash)? Can I select
+   the Pro / "thinking" model for an agent?
+6. FILE HANDLING — Can an agent accept an uploaded PDF deck for analysis? Any file-size or page limits in
+   our configuration?
+7. DATA PROTECTION — For our Gemini Enterprise: is our content excluded from Google model training, and is
+   there any human review? Do we have zero-data-retention and/or data-residency configured? Under policy,
+   am I permitted to upload confidential client materials (e.g., CIMs, pitch decks) into these agents?
+8. SHARING — Can I publish an agent to our Agent Gallery and share it with my team/department? Who
+   controls that?
+9. POLICY — What internal compliance or information-security rules must I follow when building an AI agent
+   that processes confidential client documents?
+
+Finish with a summary table: capability | HAVE/DON'T HAVE/UNCLEAR | detail | source | who to confirm with.
+```
+
+**Which answers are make-or-break for this toolkit:**
+- **Must-have to start:** #3 grounding, #4 multi-step, #5 a Pro model, #6 PDF upload, #7 no-train + policy
+  clearance for client docs. (You've already confirmed #3 and #4.)
+- **The one upgrade to chase:** #2 code execution — turns the Numbers agent from "flag and verify" into
+  "recompute and prove."
+- If your company Gemini can't answer the infra items (#2, #5, #7), the **Google Workspace / Gemini
+  admin** or your IT security team will have them.
 ```
