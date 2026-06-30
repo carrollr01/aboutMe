@@ -15,10 +15,18 @@ on the enterprise tier: Google **does not train on your prompts or uploaded file
 data stays inside your org's trust boundary, with DPA / data-residency / zero-data-retention options.
 That's the tier you want for CIMs and client decks.
 
-Two things to confirm with IT once, so it's airtight:
-1. The agents and any **data stores** you attach respect existing file access controls (so an agent can't
-   surface something a user shouldn't see).
-2. Whether your edition has **zero-data-retention** enabled if you want the strictest posture.
+**Confirmed for your tenant:** the platform does **not** train on your data, human review requires logged
+admin access (Access Transparency), and data residency is supported.
+
+**Two hard rules before any confidential deck goes in:**
+1. **Get policy clearance first.** Whether you're *permitted* to upload confidential client materials
+   (CIMs, pitch decks) is an HL policy question, not a tech one — confirm with InfoSec
+   (HL-WorkdaySecurity@HL.com) in writing before uploading anything client-confidential. Pilot on
+   sanitized or already-public decks until then.
+2. **Never attach a confidential file to a SHARED agent.** Sharing an agent also shares query access to
+   any files connected to it. So a shared/team agent should carry only non-confidential reference files
+   (style guide, comp-set rules, common-errors list); the specific deck and its source model get
+   **uploaded per-run in your own session**, never baked into the shared agent's knowledge.
 
 Sources: Agent Platform data governance / ZDR
 (docs.cloud.google.com/gemini-enterprise-agent-platform/resources/zero-data-retention);
@@ -77,25 +85,26 @@ Operating notes (apply to every agent):
 - **Frame it neutrally for a sharper critique.** Don't tell the agent who wrote the deck or that you like
   it — models go easy ("sycophancy") when they sense an author's stake. Just say "Review this."
 
-### Your setup: grounding + multi-step (use both); one thing left to ask IT
+### Your confirmed setup (from your tenant) and how to use it
 
-You have **data grounding** and **multi-step agents/subagents**. That's enough for a strong v1 — use them:
+Your company Gemini confirmed: **code execution (HAVE)**, **multi-step / Flow builder (HAVE)**, **PDF
+upload to 100 MB (HAVE)**, **Pro model (Gemini 3.1 Pro) selectable if the admin's "Model Selector" is
+on**, and **file-upload grounding (HAVE)** — but the **Drive/SharePoint connectors are NOT enabled** (only
+Azure AD, Outlook, Teams active). So:
 
-- **Use grounding aggressively.** Attach the deck's **underlying model/workbook and the data room** to the
-  Master and Numbers agents, and attach **approved comp-set rules, a "common deck errors" list, and a
-  house style guide** (when you have one) to the Master/Design agents. Grounded against source, the agents
-  reliably catch **figure-vs-source mismatches** and **unsupported claims**. (Grounding:
-  docs.cloud.google.com/gemini-enterprise-agent-platform/models/grounding/overview.)
-- **Use multi-step for the Numbers agent** (see "Agent 2 as a multi-step flow" below) and for the single
-  Master Reviewer in §5 — decomposing into subagents with an independent verification step is what makes
-  the review accurate and low-false-positive.
-- **What this catches vs. doesn't:** grounding + multi-step is reliable for "this slide says X but the
-  source says Y," "this figure differs across slides," and "this claim has no support." It is still **not
-  a calculator** — for values the deck *computes* (totals, CAGRs, %s), a verification subagent catches a
-  lot, but keep a human on the survivors until code execution is on.
-- **The one thing left to ask IT for:** the **code-execution / data-analysis tool** — the only way the
-  Numbers agent can *truly* recompute arithmetic rather than carefully-but-fallibly reason through it.
-  Drop it into Step 3 of the multi-step flow when you get it.
+- **Ground by uploading source files, not via connectors.** Per review, upload the **deck as a PDF** plus
+  its **underlying model/workbook** so the Numbers agent can tie figures to source. There's no live
+  data-room connection yet, so this is a manual per-run upload (fine for deck review).
+- **Use code execution in the Numbers agent.** It's available via "Skills" (reusable instruction modules)
+  or the Agent Engine sandbox — so Step 3 below truly *recomputes* totals/%/CAGRs instead of reasoning
+  through them. This closes the one gap: the Numbers flow can be airtight on arithmetic, not just tie-outs.
+- **Use the Flow builder** for the multi-step Numbers agent below and the §5 Master Reviewer.
+- **Confirm Pro is on.** Gemini 3.5 Flash is the default and won't catch subtle errors — make sure
+  **Gemini 3.1 Pro** is enabled for your user group (Model Selector) and pick it for these agents.
+- **Three quick confirmations** (none block a pilot): publishing rights + license tier (Automation team,
+  svc-1LO-Automation@HL.com); the Pro / Model Selector toggle (Gemini admin); and — the real gate —
+  **policy clearance to upload confidential client materials** (InfoSec, HL-WorkdaySecurity@HL.com) before
+  any live CIM/deck.
 
 ---
 
