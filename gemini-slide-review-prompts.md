@@ -77,25 +77,25 @@ Operating notes (apply to every agent):
 - **Frame it neutrally for a sharper critique.** Don't tell the agent who wrote the deck or that you like
   it — models go easy ("sycophancy") when they sense an author's stake. Just say "Review this."
 
-### Your setup: make grounding do the heavy lifting, and ask IT to unlock two things
+### Your setup: grounding + multi-step (use both); one thing left to ask IT
 
-You can attach **data sources** but aren't sure about code execution or subagents yet. That's fine — here's
-how to get the most out of what you have:
+You have **data grounding** and **multi-step agents/subagents**. That's enough for a strong v1 — use them:
 
 - **Use grounding aggressively.** Attach the deck's **underlying model/workbook and the data room** to the
   Master and Numbers agents, and attach **approved comp-set rules, a "common deck errors" list, and a
   house style guide** (when you have one) to the Master/Design agents. Grounded against source, the agents
-  reliably catch **figure-vs-source mismatches** and **unsupported claims** — most of the value, no tools
-  required. (Grounding is a documented Agent Designer capability:
+  reliably catch **figure-vs-source mismatches** and **unsupported claims**. (Grounding:
   docs.cloud.google.com/gemini-enterprise-agent-platform/models/grounding/overview.)
-- **What grounding alone catches vs. doesn't:** it's reliable for "this slide says X but the source says
-  Y" and "this claim has no support." It is **not** a calculator — for values the deck *computes* (totals,
-  CAGRs, %s), keep a human on them until code execution is on.
-- **Two things to ask IT to enable, in priority order:**
-  1. **Code execution / data-analysis tool** — the biggest upgrade; it's the only way the Numbers agent
-     can truly recompute arithmetic rather than flag-and-hope.
-  2. **Multi-step agents / subagents** — lets you ship the single "Master Reviewer" in §5 instead of
-     running five agents by hand.
+- **Use multi-step for the Numbers agent** (see "Agent 2 as a multi-step flow" below) and for the single
+  Master Reviewer in §5 — decomposing into subagents with an independent verification step is what makes
+  the review accurate and low-false-positive.
+- **What this catches vs. doesn't:** grounding + multi-step is reliable for "this slide says X but the
+  source says Y," "this figure differs across slides," and "this claim has no support." It is still **not
+  a calculator** — for values the deck *computes* (totals, CAGRs, %s), a verification subagent catches a
+  lot, but keep a human on the survivors until code execution is on.
+- **The one thing left to ask IT for:** the **code-execution / data-analysis tool** — the only way the
+  Numbers agent can *truly* recompute arithmetic rather than carefully-but-fallibly reason through it.
+  Drop it into Step 3 of the multi-step flow when you get it.
 
 ---
 
@@ -242,6 +242,44 @@ Then: "Net read" — one line on whether the numbers in this deck currently tie 
 FINAL STEP: re-check each ERROR; if your shown calculation doesn't actually prove it, downgrade it to
 CHECK BASIS. Be the proofer who is right, not the one who cries wolf.
 ```
+
+#### Agent 2 as a multi-step flow (recommended — you have subagents)
+
+Single-prompt arithmetic is the least reliable thing an LLM does. Decomposing into subagents — with an
+**independent verification step** — is what makes this trustworthy without (yet) having code execution.
+Build Agent 2 as a multi-step agent with these steps; the system instructions above stay the agent's
+overall behavior, and each step gets the focused instruction below.
+
+```
+STEP 1 — EXTRACT (no judgment yet):
+"Extract every numeric figure in the deck into a table: [slide, label, value, unit, period]. Include
+figures shown inside charts and mark those '[chart-read]'. Output only the table."
+
+STEP 2 — TIE TO SOURCE (uses grounding — most reliable check):
+"For each extracted figure, look it up in the attached source model/data room. Output:
+figure | slide | source value | status (MATCH / MISMATCH / NOT IN SOURCE). Quote the source location."
+
+STEP 3 — INTERNAL CONSISTENCY & ARITHMETIC:
+"(a) Find every case where the same fact appears with a different number across slides — list each with
+slide numbers and the differing values. (b) For each stated total, percentage, and CAGR, recompute it
+ONE calculation at a time, showing inputs -> formula -> result -> the deck's stated value. If a
+code-execution tool is available, use it here instead of reasoning. Output candidate discrepancies with
+the math."
+
+STEP 4 — VERIFY (the false-positive killer):
+"For each candidate discrepancy from Steps 2-3, independently re-derive it from the quoted figures
+WITHOUT looking at the earlier conclusion. Keep only discrepancies that reproduce. Drop any you cannot
+reproduce or prove. Mark any value that is computed-only (no source to tie to) as
+'[computed - human verify]'. If two figures may not be comparable (period/unit/definition/FX/FY vs CY),
+reclassify as CHECK BASIS."
+
+STEP 5 — REPORT:
+"Compile the surviving findings into the output table from the system instructions, sorted by severity.
+Add 'Figures I could not verify and why' and a one-line 'Net read' on whether the deck's numbers tie."
+```
+
+When code execution is enabled, it slots into Step 3 and Step 4 — and the whole flow becomes airtight on
+arithmetic, not just on tie-outs.
 
 ---
 
