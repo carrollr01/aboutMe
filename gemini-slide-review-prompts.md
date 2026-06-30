@@ -3,8 +3,23 @@
 A reusable set of review agents for catching inconsistencies, logical flaws, and weak points in
 client materials **before the client, counterparty, or a rival bank does.**
 
-Built for **Gemini Enterprise custom agents (Agent Designer)**. Version: v2 (draft for review).
+Built for **Gemini Enterprise custom agents (Agent Designer)**. Version: v2.1 (draft for review).
 Research current to mid-2026.
+
+---
+
+## Quick start (build order)
+
+1. **Clear the gate** — get InfoSec sign-off to upload client materials before any real deck goes in (§0).
+2. **Set defaults** — select **Gemini 3.1 Pro** (not Flash); export decks to **PDF** (one slide/page).
+3. **Build Agent 1 (Master, §3)** and pilot it on a **non-confidential** deck + its source model.
+4. **Build Agent 2 (Numbers, §3):** paste the instructions, build the 5-step flow ("Agent 2 as a
+   multi-step flow"), add the **`deck_numbers_verifier` Skill** ("Agent 2 Skill"), and run the Skill's
+   self-test sample once to confirm it works (expect 3 errors + 1 OK).
+5. **Add Agents 3–5** — Red-Team, Narrative, Design.
+6. **Combine** into the parallel Master Reviewer Flow (§5) and **publish** to the Agent Gallery —
+   attaching only **non-confidential** reference files (style guide, comps rules); upload the deck +
+   model per run.
 
 ---
 
