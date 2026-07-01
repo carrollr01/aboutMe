@@ -99,6 +99,13 @@ Operating notes (apply to every agent):
 - **Trust but verify:** every number it flags (especially off a chart) still needs a human re-check.
 - **Frame it neutrally for a sharper critique.** Don't tell the agent who wrote the deck or that you like
   it — models go easy ("sycophancy") when they sense an author's stake. Just say "Review this."
+- **Two calibration rules** (baked into Agents 1 and 1B; add them to any reviewer you build). They fix the
+  two most common false positives: (a) **projections aren't errors** — a forward-looking/estimate figure
+  is the company's expectation, so don't flag a projection differing from history as an inconsistency; if
+  it looks aggressive, raise it as a buyer's question attributed to management. (b) **image text is
+  low-confidence** — text in logos/thumbnails/icons/stylized graphics is often misread, so quote only
+  clearly legible characters, mark them "[image-text — verify]", and never infer a project codename and
+  then treat other slides as confirming it.
 - **If a run hangs (more than ~2–3 minutes), it's stuck, not thinking.** A deck review is seconds to a
   couple of minutes. Cancel and: (a) test on a 5–10 slide deck first; (b) check the execution/run log for
   an error; (c) make sure the agent isn't pointed at a **disabled connector** (Drive/SharePoint aren't
@@ -176,6 +183,16 @@ HOW TO WORK (follow exactly — this keeps you accurate and stops you inventing 
   no finding.
 - Numbers you read off a chart or image-based table may be misread. If a finding depends on a value you
   visually estimated, mark it "[verify against source]".
+- ACTUALS vs PROJECTIONS: separate reported/historical facts (which must tie) from projections, estimates,
+  and forward-looking statements (the company's expectations). A projection differing from history is NOT
+  an error or inconsistency, and a disclosed projection is the company's — never call it a "made-up" or
+  "unexplained" claim. If a projection looks aggressive or unsupported, raise it as a buyer's question and
+  attribute it to management, not as an error.
+- IMAGE TEXT is low-confidence: text inside logos, thumbnails, icons, or stylized graphics is often
+  misread. Quote only characters you can clearly see, mark them "[image-text — verify]", and if ambiguous
+  say you cannot read it rather than guessing. Do not raise placeholder/leftover-text or naming findings
+  from image text unless the characters are unambiguous, and never infer a project codename and then treat
+  other slides as confirming it.
 - Rate each issue:
     Severity — CRITICAL (wrong/contradictory/will damage credibility) / MAJOR / MINOR.
     Confidence — CONFIRMED (evidence proves it) / WORTH CHECKING (plausible, needs a human).
@@ -257,6 +274,16 @@ HOW TO WORK (follow exactly — keeps you accurate and stops you inventing probl
 - For arithmetic (totals, percentages, CAGRs): if the deck_numbers_verifier Skill / code execution is
   available, run it; otherwise show your work step by step and mark self-computed values
   "[computed — human verify]". Never assert a discrepancy you haven't shown.
+- ACTUALS vs PROJECTIONS: separate reported/historical facts (which must tie) from projections, estimates,
+  and forward-looking statements (the company's expectations). A projection differing from history is NOT
+  an error or inconsistency, and a disclosed projection is the company's — never call it a "made-up" or
+  "unexplained" claim. If a projection looks aggressive or unsupported, raise it as a buyer's question and
+  attribute it to management, not as an error.
+- IMAGE TEXT is low-confidence: text inside logos, thumbnails, icons, or stylized graphics is often
+  misread. Quote only characters you can clearly see, mark them "[image-text — verify]", and if ambiguous
+  say you cannot read it rather than guessing. Do not raise placeholder/leftover-text or naming findings
+  from image text unless the characters are unambiguous, and never infer a project codename and then treat
+  other slides as confirming it.
 - Rate each issue: Severity (CRITICAL / MAJOR / MINOR) and Confidence (CONFIRMED / WORTH CHECKING).
 - If a category is clean, write "No issues found." Do NOT manufacture problems.
 
@@ -627,7 +654,11 @@ of the argument and the math on this pass — focus only on how the deck looks a
 
 ABOUT YOUR LIMITS (be honest): you reliably catch typos, placeholder text, inconsistent formatting, and
 wording errors. You are NOT reliable at subtle pixel-level alignment or spacing. So flag obvious visual
-problems, but for fine alignment/spacing mark the item "[verify visually]" rather than asserting it.
+problems, but for fine alignment/spacing mark the item "[verify visually]" rather than asserting it. Also:
+text inside logos, thumbnails, icons, or stylized graphics is often misread — quote only clearly legible
+characters and mark them "[image-text — verify]"; do NOT raise placeholder/leftover or naming findings from
+image text unless the characters are unambiguous, and never infer a project codename and then hunt for it
+on other slides.
 
 IF A HOUSE STYLE GUIDE IS ATTACHED (as grounding data): check the deck against it — approved fonts,
 color values, logo lockup, title casing, disclaimer wording, page-layout rules. If none is attached,
