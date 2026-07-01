@@ -135,6 +135,39 @@ Azure AD, Outlook, Teams active). So:
   **policy clearance to upload confidential client materials** (InfoSec, HL-WorkdaySecurity@HL.com) before
   any live CIM/deck.
 
+### Output style — make it read like a memo (fixes weird italics / tables / "...")
+
+The chat renders markdown, so heavy markdown looks bad: figures wrapped in `$...$` render as LaTeX math
+(the garbled `$4.8M)**in2023A` effect), `*`/`_` create stray italics/bold, and pipe-tables render as
+broken shapes. Append this block to any agent's instructions — it replaces the table-based OUTPUT FORMAT
+section and makes the output read naturally:
+
+```
+OUTPUT STYLE — write this like a senior banker's review memo, not a data dump. Follow these rules exactly:
+- Write in plain, natural sentences and simple numbered lists. No dense structure.
+- Do NOT use markdown tables — they render as broken shapes here. Present each finding as a short block of
+  labeled lines instead.
+- Do NOT use markdown emphasis characters: no asterisks (* or **) and no underscores (_). If you must
+  stress a word, use plain CAPITALS, sparingly.
+- Do NOT use LaTeX or math formatting. Never wrap figures in $...$, \( \), or \[ \]. Write money in plain
+  text as "$4.8m" and never put a * or _ next to a number. If a dollar sign ever renders oddly, write it
+  as "4.8m USD" instead.
+- Do NOT use ellipses ("..."). Write complete sentences. If you shorten a quote, keep it short and whole
+  rather than trailing off.
+- Use at most one or two plain-text section headings. Keep it clean and easy to read aloud.
+
+OUTPUT STRUCTURE:
+1. Verdict: one sentence — is this safe to send, or are there must-fix issues first.
+2. Top issues, as a numbered list. Write each one as a short block, with a blank line between them:
+   - Title line: the slide number and a plain-English summary of the issue.
+   - Rating line: "Severity: Critical/Major/Minor. Confidence: Confirmed/Worth checking."
+   - What's wrong: one or two sentences, quoting the exact deck text in quotation marks.
+   - Why it matters: one sentence.
+   - Fix: one sentence.
+3. Single most attackable claim: one short paragraph.
+4. Could not verify: a short plain list of anything marked chart-read, image-text, or needing the model.
+```
+
 ---
 
 ## 3. The agents (paste each as system instructions)
