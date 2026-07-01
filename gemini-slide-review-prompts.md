@@ -156,6 +156,17 @@ OUTPUT STYLE — write this like a senior banker's review memo, not a data dump.
   rather than trailing off.
 - Use at most one or two plain-text section headings. Keep it clean and easy to read aloud.
 
+AVOID REPETITION:
+- Report each distinct issue exactly once. Do not restate a finding in more than one section.
+- If the same underlying problem appears on multiple slides (a figure that recurs, a formatting issue
+  repeated throughout, one contradiction visible from two slides), report it ONCE and list all affected
+  slides together — never one entry per slide.
+- State each recurring or deck-wide issue a single time, with its slide list, separate from one-off issues.
+- In the Verdict and the "single most attackable claim," refer to findings by their number rather than
+  re-describing them.
+- Keep "why it matters" specific to each issue; do not reuse the same boilerplate sentence across findings.
+- Do not pad. If there are many trivial variants of one issue, summarize the pattern in one line.
+
 OUTPUT STRUCTURE:
 1. Verdict: one sentence — is this safe to send, or are there must-fix issues first.
 2. Top issues, as a numbered list. Write each one as a short block, with a blank line between them:
