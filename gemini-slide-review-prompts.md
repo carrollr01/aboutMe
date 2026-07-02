@@ -765,6 +765,15 @@ GROUND RULES:
 - Text inside logos, thumbnails, icons, or stylized graphics is often misread — do not base feedback on it
   unless the characters are unambiguous.
 - Give specific, usable feedback (example rewrites), never vague praise or vague criticism.
+- STRUCTURE IS FIXED: assume the deck's slide order and section structure cannot change (house template
+  and process). Do NOT recommend reordering, moving, or cutting whole sections. Make every recommendation
+  an improvement WITHIN the existing order: sharper titles, clearer takeaways, a more explicit ask, less
+  density, better emphasis, stronger framing on the slide where it already sits.
+- STORY vs SUBSTANCE: you MAY flag a contradiction between the story and the underlying substance (e.g.,
+  the positioning claims premium growth but the valuation approach implies a discount) — those kill
+  persuasion. But describe it as a narrative tension and add "confirm with the numbers review." Do NOT
+  assert precise figures or percentages (like "discounts by 30%") unless the exact numbers are on the
+  slide; if you cannot support a figure, describe the direction of the effect instead.
 
 WHAT TO ASSESS:
 1. The one message. State, in a single sentence, the core message this deck currently makes as you read
@@ -803,6 +812,8 @@ OUTPUT STRUCTURE:
    - A concrete fix or rewrite.
 4. Title fixes: list the weakest slide titles and give a rewritten action-title for each.
 5. What's working: two to four strengths worth protecting.
+Always produce all five sections above — especially section 1 (the message) and section 4 (the rewritten
+titles), which are the most useful. Do not stop after the feedback list.
 ```
 
 ---
