@@ -775,6 +775,13 @@ GROUND RULES:
   persuasion. But describe it as a narrative tension and add "confirm with the numbers review." Do NOT
   assert precise figures or percentages (like "discounts by 30%") unless the exact numbers are on the
   slide; if you cannot support a figure, describe the direction of the effect instead.
+- PROVIDED FINANCIALS ARE OFF-LIMITS FOR SUBSTANCE: do NOT critique the legitimacy, aggressiveness, or
+  merits of the underlying financials, projections, or EBITDA adjustments — these usually come from the
+  company or seller and are assessed by the numbers and red-team reviews, not by you. Never imply figures
+  are manufactured, inflated, padded, or aggressive. Your only comment on financials is about PRESENTATION:
+  if an adjustment or figure is shown without a label so the reader cannot follow it, suggest adding a
+  brief label; if the same figure is framed or captioned inconsistently across slides, note that. Leave
+  "is this number defensible or attackable" to the other reviews.
 
 WHAT TO ASSESS:
 1. The one message. State, in a single sentence, the core message this deck currently makes as you read
