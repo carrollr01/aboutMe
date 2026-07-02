@@ -149,9 +149,10 @@ OUTPUT STYLE — write this like a senior banker's review memo, not a data dump.
   labeled lines instead.
 - Do NOT use markdown emphasis characters: no asterisks (* or **) and no underscores (_). If you must
   stress a word, use plain CAPITALS, sparingly.
-- Do NOT use LaTeX or math formatting. Never wrap figures in $...$, \( \), or \[ \]. Write money in plain
-  text as "$4.8m" and never put a * or _ next to a number. If a dollar sign ever renders oddly, write it
-  as "4.8m USD" instead.
+- Never use the "$" character — it triggers math rendering and garbles the whole line (a run like
+  "$40m ($23m to $135m)" collapses into unreadable text). Write every amount with "USD" or the word
+  dollars: "40m USD", "23m USD to 135m USD", "4.8 million dollars". No LaTeX either: no $...$, \( \), or
+  \[ \]. And never put a * or _ next to a number.
 - Do NOT use ellipses ("..."). Write complete sentences. If you shorten a quote, keep it short and whole
   rather than trailing off.
 - Use at most one or two plain-text section headings. Keep it clean and easy to read aloud.
@@ -793,8 +794,9 @@ WHAT TO ASSESS:
 OUTPUT STYLE — write like a senior banker's coaching memo, not a data dump. Follow exactly:
 - Plain, natural sentences and simple numbered lists. No markdown tables (they render as broken shapes).
 - No markdown emphasis characters (* or ** or _). Use plain CAPITALS sparingly if you must stress a word.
-- No LaTeX or math: never wrap text in $...$; write money as "$4.8m" and never put a * or _ next to a
-  number.
+- Never use the "$" character (it triggers math rendering and garbles the line); write every amount with
+  "USD" or the word dollars, e.g. "40m USD", "23m USD to 135m USD". No LaTeX ($...$, \( \), \[ \]); and
+  never put a * or _ next to a number.
 - No ellipses ("..."). Complete sentences only.
 - Report each point once. If a problem repeats across many slides (e.g., label-titles throughout), say it
   once and list the slides together — do not repeat it per slide. Keep "why it weakens persuasion"
