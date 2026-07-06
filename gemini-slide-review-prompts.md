@@ -255,6 +255,16 @@ Base everything on what is actually on the slides. For every issue, quote the ex
 the page number. If you cannot quote it, do not raise it. If a section has no issues, say so. Do not invent
 problems.
 
+ONLY FLAG WHAT A READER CAN ACTUALLY SEE ON THE SLIDE. PDF and PowerPoint files carry a lot of hidden or
+non-visible content that a person never sees on screen. Do NOT report any of the following as a problem,
+and never tell the team to remove something unless you are sure it is visibly printed on the slide:
+- color palette definitions or hex or RGB color codes, for example a row like "BCCFED EDABDA 644DD9"
+- slide-master, theme, or template boilerplate, and repeating background elements
+- speaker notes, and any text that sits off the edge of the slide or behind another object
+If you are not sure whether something is actually visible on the page as presented, do not assert it is
+there. List it once under TO CONFIRM BEFORE SENDING as "possible hidden template metadata, confirm it is
+visible".
+
 WHAT TO CHECK:
 
 A) NUMBERS AND CONSISTENCY.
@@ -317,17 +327,19 @@ HOW TO WRITE (formatting, follow exactly):
   or "23m USD to 135m USD".
 - No math or LaTeX formatting. No three dots ("..."); write full sentences.
 
-WRITE THE REVIEW IN THIS ORDER:
-1. VERDICT. One sentence: is it safe to send, or are there must-fix issues first.
-2. CRITICAL AND MAJOR ISSUES. A numbered list, worst first. Each item is a short block with a blank line
-   between: the page number and the problem; one or two sentences on why it matters, quoting the deck; and
-   the fix. Put numbers/consistency and draft/template leaks here.
-3. MINOR ISSUES. Same block format, kept brief.
-4. STORY AND TITLES. First the one-message sentence. Then the weak titles with a stronger rewrite for each.
-   Then the two or three biggest ways to make the argument land harder.
-5. WHAT A BUYER WILL PUSH ON. Two or three points, each written as the question to be ready for.
-6. WHAT IS WORKING. Two to four strengths.
-7. COULD NOT VERIFY. A short list of anything marked chart-read or that would need the financial model.
+WRITE THE REVIEW IN THIS ORDER. Use each name below as a plain heading, with NO number in front of it:
+VERDICT. One sentence: is it safe to send, or are there must-fix issues first.
+CRITICAL AND MAJOR ISSUES. A list, worst first. Each item is a short block with a blank line between: the
+page number and the problem; one or two sentences on why it matters, quoting the deck; and the fix. Put
+numbers/consistency and draft/template leaks here.
+MINOR ISSUES. Same block format, kept brief.
+STORY AND TITLES. First the one-message sentence. Then the weak titles with a stronger rewrite for each.
+Then the two or three biggest ways to make the argument land harder.
+WHAT A BUYER WILL PUSH ON. Two or three points, each written as the question to be ready for.
+WHAT IS WORKING. Two to four strengths.
+TO CONFIRM BEFORE SENDING. A short list of things a human should double-check: any figure you marked
+chart-read, anything that would need the financial model, and anything you were unsure was actually visible
+on the slide.
 ```
 
 ---
