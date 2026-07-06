@@ -214,6 +214,25 @@ FINAL SYNTHESIS RULES:
 - Nothing about the combining process appears in the output.
 ```
 
+### Why the duplication happened, and the real fix (how Agent Designer surfaces output)
+
+The mechanism: when you build a root agent WITH subagents, each subagent runs in isolation and returns a
+SUMMARIZED result that is shown in the conversation; your root agent then writes its own synthesis. So the
+same findings appear as subagent 1's summary, then subagent 2's summary, then again in the root's
+synthesis — two to three times — plus the root narrates the delegation. The hidden part is only the
+subagents' internal tool steps; their returned summaries plus the root's re-synthesis are what duplicate.
+(Subagents return "a summarized result to the main session": docs.cloud.google.com/gemini/enterprise/docs/agent-designer.)
+
+The clean fix — do NOT use subagents for this. Build ONE agent whose instructions cover the lenses you
+want, and attach the heavy number-checking as a SKILL. A Skill augments the single agent and returns
+quietly; it does not create a second agent turn, so you get exactly one clean output. This is why your
+single 1B agent looked clean and the root-plus-subagents version did not. Subagents are for delegating a
+large isolated job, not for producing one tidy review.
+
+If you must keep subagents: tell the ROOT agent NOT to write its own synthesis (at most a one-line
+verdict), so each subagent summary stands once instead of being repeated a third time — and apply the
+Global output discipline block above to every agent to kill the handoff narration and headers.
+
 ---
 
 ## 3. The agents (paste each as system instructions)
