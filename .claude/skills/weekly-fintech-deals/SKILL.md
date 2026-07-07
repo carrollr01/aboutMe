@@ -1,85 +1,76 @@
 ---
 name: weekly-fintech-deals
-description: Build the weekly FinTech deals workbook. Use when the user asks to compile, research, or format the interesting FinTech M&A and fundraising deals for a given week (e.g. "run the weekly deals for the week ending Friday X", "skillify/redo the deals workbook"). Produces a two-tab Excel (M&A + Growth Capital Raises) with house-style target descriptions and links rendered as "Link".
+description: Build the weekly FinTech deals workbook. Use when the user asks to compile, research, or format the FinTech M&A and fundraising deals for a given week (e.g. "run the weekly deals for the week ending Friday X"). Produces a two-tab Excel matching the firm's finalized-DB schema exactly ("All M&A (PE & Strategic)" + "Growth Capital Raises").
 ---
 
 # Weekly FinTech Deals Workbook
 
-Compile the notable FinTech **M&A** and **growth fundraising** deals for a single week
-and output a formatted two-tab Excel that matches the user's house style.
+Compile the week's FinTech **control M&A** and **growth equity raises** into a two-tab Excel
+matching the finalized deal database (`Finalized_Deals_History.xlsx` in the repo — the
+canonical precedent for every rule below).
 
-## Inputs
-- **Target week** — always defined as **Saturday → Friday**, named by its ending Friday
-  (e.g. "week ending Friday June 19, 2026" = deals announced 2026-06-13 through 2026-06-19).
-- **Optional curated list** — the user may attach an Excel/list of deals they already
-  picked (columns like Sector / Type / Link / Target). If provided, **use their list and
-  their sector/type classifications as the source of truth** — only research the missing
-  fields. If not provided, source the deals yourself (Step 1).
+## The week
+Saturday→Friday, named by ending Friday. A deal qualifies ONLY if its **announcement date**
+(never the close/completion date) falls inside the window. Verify every date against a
+primary source; exclude prior-week deals even when this week's roundups carry them.
 
-## Selection criteria
-Include a deal only if ALL hold:
-1. **FinTech.** Sector is one of the taxonomy below.
-2. **In-window.** The deal was *announced* within the Sat→Fri window. Verify the date;
-   exclude anything announced before or after, even by a day.
-3. **Size ≥ $25M.** Equity round size, or M&A enterprise/deal value. If value is
-   undisclosed but the deal is clearly notable, include it and leave value blank.
-   Note any sub-$25M or borderline calls to the user rather than silently including them.
-4. **Type:** M&A = acquisition / take-private / PE control buyout. Raise = equity
-   growth/venture round (Seed–Series F, growth equity, strategic minority).
+## Inclusion rules (locked — learned from the finalized DB)
+1. **FinTech only.** Must have a genuine tech / digital / money-movement / data core. The bar
+   is low but real: exclude traditional FS with no tech angle (traditional MGAs/underwriters/
+   carriers, pure RIA/advisory roll-ups, IT-services). Borderline targets (pawn+FX retail,
+   HR-payroll, insurance holdco with tech layer): include, but the description must carry both
+   the fintech angle AND the traditional business honestly.
+2. **Credible source required.** Every deal needs at least one reasonably reputable outlet or
+   primary release (wire, company newsroom, major trade press). No single-blog/unverifiable
+   deals — drop them (this is why C2FO India was cut).
+3. **Raises tab:** equity rounds **≥ $25M** (USD). Simultaneous combined tranches (e.g.
+   seed+Series A announced together) count as one round at the combined total. **Minority /
+   growth-equity investments belong HERE, not in M&A** (e.g. Carbon Underwriting/FTV).
+4. **M&A tab:** control transactions only, **no size floor** (small tuck-ins in).
+   `Deal Type` is STRICTLY **"Strategic M&A"** or **"PE Buyout"** — zero temperature, no other
+   strings (builder enforces). Adjacent deals (take-private by a strategic, JV-stake-to-100%,
+   distressed purchase, carve-out) get snapped to the nearest of the two, with the nuance
+   explained in the DESCRIPTION, not the type column.
+   EXCLUDE from M&A: minority stakes (→ Raises), team/book/portfolio (asset) acquisitions,
+   GP-led continuation vehicles / fund secondaries, and non-binding proposals/rumors.
+5. **USD only.** Convert non-USD amounts at the announcement-date FX rate; note original
+   currency in the description or Mults Basis if material.
 
-### Sector taxonomy
-`Asset & Wealth Tech` · `Banking & Lending Tech` · `Capital Markets Tech` ·
-`Corporate Financial Function` (CFO stack: spend, billing, treasury, accounting,
-procurement, tax) · `Financial Info & Analytics` · `InsurTech` · `Payments` ·
-`Real Estate & Mortgage Tech`. (Crypto/digital-asset infra maps into Capital Markets
-Tech, Payments, or Financial Info & Analytics as fits.)
+## Sectors (exact labels)
+Asset & Wealth Tech · Banking & Lending Tech · Capital Markets Tech · Corporate Financial
+Function · Financial Info & Analytics · InsurTech · Payments · Real Estate & Mortgage Tech.
+(Crypto/digital-asset infra maps into Capital Markets Tech, Payments, or Financial Info &
+Analytics.)
 
-## Process
+## Financials
+- Public targets: pull revenue/EBITDA from filings/press; compute EV/Revenue and EV/EBITDA on
+  **true enterprise value** (equity value net of cash/debt). Don't default to "undisclosed."
+- Private deals: compute multiples when deal value AND revenue/EBITDA are disclosed; mark
+  bounds when revenue is a floor (">$200M").
+- **Always record the basis**: `Mults Source` (outlet/filing used) and `Mults Basis` (e.g.
+  "LTM FY25 rev, adj. EBITDA; EV net of $99M cash"). Numbers are honest-best-effort; the
+  source/basis columns exist precisely so a better source can replace them later.
+- Flow metrics (TPV, volume, AUM, GWP, deposits, payroll processed) are NEVER revenue.
+- Undisclosed / not-applicable = **"-"** (never blank). Negative EBITDA → "n.m.".
 
-### 1. Source the deals (skip if user supplied a curated list)
-Fan out web research (launch parallel background agents — one for M&A, one for raises).
-Search press wires (BusinessWire, PRNewswire), company newsrooms, and fintech outlets
-(Fintech Global, PYMNTS, TechCrunch, Axios, FF News, Finextra, Tearsheet). Require a
-source URL per deal and verify the announcement date is in-window. Do not fabricate;
-drop anything you can't confirm.
+## Output format (exact — builder enforces)
+Tab 1 **"All M&A (PE & Strategic)"**:
+`x | Week | Sector | Target Country | Deal Type | Date | Target | Acquirer | EV ($M) | EV / Revenue | EV / EBITDA | Target Description | Link / Press Release | Mults Source | Mults Basis | Public Deal | HL Deal | Seller`
+Tab 2 **"Growth Capital Raises"**:
+`x | Week | Sector | Target Country | Date | Target | Lead Investor(s) | Amount ($M) | Valuation ($M) | EV / Revenue | EV / EBITDA | Target Description | Link / Press Release`
+- `Week` auto-derives from Date (ending Friday, DD-Mmm-YY). `x` left empty (user's flag col).
+- Meta columns (Mults Source/Basis, Public Deal Y/N, HL Deal, Seller): populate what is
+  publicly knowable (Seller from the release, Public Deal = listed target, HL Deal only if
+  HL is named); "-" otherwise.
+- Dates DD-Mmm-YY. Link cell shows "Link" hyperlinked. Rows ordered sector-alpha, then date.
+- Build: `python3 .claude/skills/weekly-fintech-deals/build_workbook.py deals.json "Weekly_Fintech_Deals_<endingFriday>.xlsx"`
 
-### 2. Research each deal's fields
-For every deal gather: target (proper legal/brand casing), acquirer **or** lead
-investor(s), HQ country, announcement date, EV/deal value (M&A) or amount + valuation
-(raise), and a primary source URL. Capture EV/Revenue and EV/EBITDA **only if explicitly
-disclosed** — otherwise leave blank (never invent multiples; most private deals don't
-disclose them).
+## Descriptions
+Follow `description-style.md` (rewritten from the user's actual edits). Core: short,
+product-first noun phrase; no "partnered with X across Y countries" padding; carry the
+traditional angle for borderline names.
 
-### 3. Write the target description
-One concise noun-phrase line, matching this house style (see `description-style.md` for
-the full example bank):
-- Lead with a noun phrase: "Provider of…", "Platform that…", "Developer of…",
-  "AI-powered …", "Digital banking provider …", "Agentic risk solution …".
-- Specific and concrete (name the product, customer, or mechanism). No trailing period.
-- ~15–30 words. Describe what they do, not the deal.
-
-### 4. Build the workbook
-Write the deals to a JSON file (schema in `build_workbook.py` header) and run:
-```
-python3 .claude/skills/weekly-fintech-deals/build_workbook.py deals.json "Weekly_Fintech_Deals_<weekEndingFriday>.xlsx"
-```
-This produces the two tabs with the exact headers, blue header row, filters, frozen
-header, and the **Link column rendered as the word "Link" hyperlinked** to each source.
-
-**Column headers (do not change):**
-- M&A: `Sector | Target Country | Deal Type | Date | Target | Acquirer | EV ($M) | EV / Revenue | EV / EBITDA | Target Description | Link / Press Release`
-- Raises: `Sector | Target Country | Date | Target | Lead Investor(s) | Amount ($M) | Valuation ($M) | EV / Revenue | EV / EBITDA | Target Description | Link / Press Release`
-
-**Formatting conventions:**
-- Date format `DD-Mmm-YY` (e.g. `19-Jun-26`).
-- Dollar fields are plain numbers in $M (e.g. `2750`, `29.2`). Blank = undisclosed.
-- Use proper company casing (e.g. `additiv`, `m3ter`, `nesto`, `EDGE Markets`).
-
-### 5. Deliver
-Send the file with SendUserFile, give a tight summary (counts per tab + headline deals),
-and surface any judgment calls (borderline size, sector placement, undisclosed terms).
-Then commit and push the workbook + JSON to the working branch.
-
-## Reference
-- `build_workbook.py` — the generator (JSON → formatted .xlsx).
-- `description-style.md` — bank of approved target-description examples to imitate.
+## Deliver
+Send the file; summarize counts, headliners, computed multiples, borderline calls; ALWAYS
+list notable exclusions with reasons (out-of-window / non-fintech / not-control / no credible
+source) so the user can sanity-check. Commit and push.
