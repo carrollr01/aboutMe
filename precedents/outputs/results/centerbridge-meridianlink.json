@@ -1,0 +1,29 @@
+{
+  "deal_id": "centerbridge-meridianlink",
+  "acquirer": "Centerbridge Partners",
+  "target": "MeridianLink, Inc. (NYSE: MLNK)",
+  "announced": "2025-08",
+  "deal_type": "take-private",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 2000, "notes": "All-cash $20.00 per share; ~US$2.0B enterprise value; ~26% premium to the Aug 8, 2025 close. Includes minority co-investment from Silversmith Capital Partners. Completed Oct 24, 2025. $1.4B private-credit financing package."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~6.3x EV/Revenue (FY2024); ~15.3x EV/Adj. EBITDA (FY2024)",
+    "calculation": "$2,000M EV / $316.3M FY2024 GAAP revenue = 6.32x; $2,000M EV / $130.7M FY2024 adjusted EBITDA = 15.3x",
+    "inputs": [
+      "EV ~$2.0B and $20.00/share - MeridianLink press release: https://www.meridianlink.com/press-release/meridianlink-to-be-acquired-by-centerbridge-partners-for-2-0-billion/",
+      "FY2024 revenue $316.3M and FY2024 adjusted EBITDA $130.7M (41% margin) - MeridianLink Q4/FY2024 earnings release: https://www.businesswire.com/news/home/20250306116917/en/MeridianLink-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Results"
+    ],
+    "caveats": "Multiples computed on FY2024 actuals (last full year pre-announcement). A forward multiple on 2025 guidance would differ; definitive proxy/merger docs would allow a fully diluted EV cross-check."
+  },
+  "verdict": "calculable",
+  "sources": [
+    {"title": "MeridianLink to Be Acquired by Centerbridge Partners for $2.0 Billion", "url": "https://www.meridianlink.com/press-release/meridianlink-to-be-acquired-by-centerbridge-partners-for-2-0-billion/"},
+    {"title": "Centerbridge Partners Completes Acquisition of MeridianLink (Oct 24, 2025)", "url": "https://www.centerbridge.com/news/centerbridge-partners-completes-acquisition-of-meridianlink"},
+    {"title": "MeridianLink Reports Fourth Quarter and Fiscal Year 2024 Results", "url": "https://www.businesswire.com/news/home/20250306116917/en/MeridianLink-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Results"},
+    {"title": "FinTech Futures - MeridianLink to be acquired by Centerbridge in $2bn deal", "url": "https://www.fintechfutures.com/m-a/meridianlink-to-be-acquired-by-centerbridge"}
+  ],
+  "notes": "Hint re co-party 'Bridgeport': no entity named Bridgeport appears in any deal coverage; the disclosed minority co-investor is Silversmith Capital Partners - 'Bridgeport' in the source list appears to be an error. A Medium blog post claims a '10x 2025 EBITDA' entry multiple, but that is arithmetically inconsistent ($2.0B EV / $132-138M 2025 EBITDA guidance = ~14.5-15.2x) and Medium is not a credible source, so ev_multiple is treated as not published."
+}

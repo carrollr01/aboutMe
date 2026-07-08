@@ -1,0 +1,29 @@
+{
+  "deal_id": "nasdaq-adenza",
+  "acquirer": "Nasdaq, Inc. (NASDAQ: NDAQ)",
+  "target": "Adenza (Calypso + AxiomSL), acquired from Thoma Bravo",
+  "announced": "2023-06",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 10500, "notes": "$10.5B in cash and stock: $5.75B cash plus 85.6 million Nasdaq shares (valued at 15-day VWAP prior to signing)"},
+  "ev_multiple": {"published": true, "value": "~31x", "basis": "Purchase price / CY2023E EBITDA (widely reported alongside the announcement; investor materials also cited a synergy-adjusted multiple)", "source_url": "https://truebluepartners.com/nasdaq-to-acquire-adenza"},
+  "revenue_multiple": {"published": true, "value": "~18x", "basis": "Purchase price / CY2023E revenue of ~$590M", "source_url": "https://www.cnbc.com/2023/06/12/nasdaq-to-buy-financial-software-firm-adenza-for-10point5-billion.html"},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~17.8x EV/2023E Revenue; ~30.7x EV/2023E EBITDA",
+    "calculation": "$10,500M / $590M 2023E revenue = 17.8x; $590M x 58% adj. EBITDA margin = ~$342M EBITDA; $10,500M / $342M = ~30.7x",
+    "inputs": [
+      "$10.5B purchase price — Nasdaq press release (8-K exhibit), https://www.sec.gov/Archives/edgar/data/0001120193/000119312523164839/d476077dex991.htm",
+      "~$590M 2023E revenue and ~58% adjusted EBITDA margin for Adenza — Nasdaq press release (8-K exhibit), https://www.sec.gov/Archives/edgar/data/0001120193/000119312523164839/d476077dex991.htm"
+    ],
+    "caveats": "Inputs are company-provided 2023 estimates at announcement (revenue growth ~15%, ARR growth ~18% also disclosed); implied math matches the published ~18x revenue / ~31x EBITDA figures"
+  },
+  "verdict": "published",
+  "sources": [
+    {"title": "Nasdaq press release announcing Adenza acquisition (SEC 8-K exhibit 99.1)", "url": "https://www.sec.gov/Archives/edgar/data/0001120193/000119312523164839/d476077dex991.htm"},
+    {"title": "Nasdaq to acquire financial software maker Adenza for $10.5 billion (CNBC)", "url": "https://www.cnbc.com/2023/06/12/nasdaq-to-buy-financial-software-firm-adenza-for-10point5-billion.html"},
+    {"title": "Nasdaq Accelerates Its Transformation... Acquisition of Adenza (Nasdaq IR)", "url": "https://ir.nasdaq.com/news-releases/news-release-details/nasdaq-accelerates-its-transformation-leading-technology"},
+    {"title": "TBP Spotlight - Nasdaq to acquire Adenza for $10.5B (True Blue Partners)", "url": "https://truebluepartners.com/nasdaq-to-acquire-adenza"}
+  ],
+  "notes": "Announced June 12, 2023; closed November 2023. Multiples were explicitly quantified in announcement-day coverage and investor materials (~18x 2023E revenue, ~31x 2023E EBITDA), and are independently reproducible from the press release inputs ($590M 2023E revenue, 58% adj. EBITDA margin). WebFetch of the ir.nasdaq.com press release returned HTTP 403, so exact press-release wording of the multiple was verified via the SEC-filed exhibit reference and CNBC coverage rather than the IR page itself."
+}

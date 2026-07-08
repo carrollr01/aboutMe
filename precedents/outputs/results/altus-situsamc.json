@@ -1,0 +1,20 @@
+{
+  "deal_id": "altus-situsamc",
+  "acquirer": "Altus Group Limited (TSX: AIF)",
+  "target": "SitusAMC's commercial real estate valuation and advisory services business (\"REVS\", carved out of Situs Group LLC)",
+  "announced": "2023-11",
+  "deal_type": "carve-out",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 225, "notes": "US$225.0M cash (~C$310.1M); net ~US$190.0M (~C$261.9M) after an estimated acquisition-related tax step-up benefit. Announced Nov 9, 2023; closed H1 2024."},
+  "ev_multiple": {"published": true, "value": "13.4x", "basis": "Net purchase price (~US$190M after tax step-up) / FY2023E normalized EBITDA (~US$14.2M), as stated in Altus Group's press release", "source_url": "https://www.globenewswire.com/news-release/2023/11/09/2777873/0/en/Altus-Group-Enters-into-Agreement-to-Purchase-SitusAMC-s-Commercial-Real-Estate-Valuation-Services-Business.html"},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~4.9x EV/2023E revenue (gross); ~4.1x on net purchase price", "calculation": "US$225.0M / US$46.2M FY2023E revenue = 4.87x; US$190.0M net / US$46.2M = 4.11x. Check on published EBITDA multiple: US$190.0M / US$14.2M = 13.4x (matches)", "inputs": ["US$225.0M gross / US$190.0M net purchase price — https://www.globenewswire.com/news-release/2023/11/09/2777873/0/en/Altus-Group-Enters-into-Agreement-to-Purchase-SitusAMC-s-Commercial-Real-Estate-Valuation-Services-Business.html", "REVS FY2023E revenue ~US$46.2M and normalized EBITDA ~US$14.2M — same Altus Group press release"], "caveats": "Revenue and EBITDA are company-provided fiscal 2023 estimates for the carved-out business, not audited standalone financials."},
+  "verdict": "published",
+  "sources": [
+    {"title": "GlobeNewswire — Altus Group agreement to purchase SitusAMC's CRE Valuation Services Business (press release with 13.4x multiple)", "url": "https://www.globenewswire.com/news-release/2023/11/09/2777873/0/en/Altus-Group-Enters-into-Agreement-to-Purchase-SitusAMC-s-Commercial-Real-Estate-Valuation-Services-Business.html"},
+    {"title": "Altus Group press release page", "url": "https://www.altusgroup.com/press-releases/altus-group-announces-signed-agreement-to-acquire-situsamc-valuation-services-business/"},
+    {"title": "RENX — Altus to acquire Situs Group's valuations services for $310M (CAD)", "url": "https://renx.ca/altus-to-acquire-situs-groups-valuations-services-for-310m"},
+    {"title": "IPE Real Assets — Altus expands valuation capabilities with $225m acquisition of REVS", "url": "https://realassets.ipe.com/news/altus-expands-valuation-capabilities-with-225m-acquisition-of-revs/10069975.article"}
+  ],
+  "notes": "Typo resolution: 'Atlus' = Altus Group. Direction verified: Altus Group acquired a business unit OF SitusAMC (the commercial real estate valuation services business, REVS) — not the whole company, and not the reverse. The 13.4x 2023 normalized EBITDA multiple was published by Altus itself; the multiple is computed on the net ~US$190M price (gross US$225M would imply ~15.8x EBITDA)."
+}

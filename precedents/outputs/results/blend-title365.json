@@ -1,0 +1,21 @@
+{
+  "deal_id": "blend-title365",
+  "acquirer": "Blend Labs, Inc.",
+  "target": "Title365 (acquired from Mr. Cooper Group)",
+  "announced": "2021-03",
+  "deal_type": "carve-out",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 422.1, "notes": "All-cash ~$422.1M for a 90.1% stake; Mr. Cooper retained 9.9%; press reports framed it as ~$500M enterprise value less ~$31M of adjustments; closed June 30, 2021"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~2.2x implied equity value / 2020 revenue (~2.0x on the 90.1% price alone; ~2.4x if the reported $500M EV is used)", "calculation": "$422.1M / 0.901 = ~$468.5M implied 100% equity value; $468.5M / $212.1M FY2020 revenue = 2.21x (headline $422.1M / $212.1M = 1.99x; reported $500M EV / $212.1M = 2.36x)", "inputs": ["Purchase price ~$422.1M in cash for 90.1% of Title365 - Blend Labs S-1 (SEC), https://www.sec.gov/Archives/edgar/data/1855747/000119312521194971/d162671ds1.htm and Meritech S-1 breakdown, https://www.meritechcapital.com/blog/blend-ipo-s-1-breakdown", "Title365 FY2020 revenue $212.1M - Blend Labs S-1 as summarized by Meritech, https://www.meritechcapital.com/blog/blend-ipo-s-1-breakdown", "Announcement and structure (90.1% stake, Mr. Cooper retains 9.9%) - PR Newswire, https://www.prnewswire.com/news-releases/blend-to-acquire-title365-from-mr-cooper-group-301247317.html"], "caveats": "FY2020 was a peak mortgage-refinance year, so the revenue base is cyclical (2019 revenue was far lower); calculation uses equity value as EV proxy on a cash-free/debt-free basis; the ~$500M EV figure appears in press coverage but was not independently re-verified against the 8-K"},
+  "verdict": "calculable",
+  "sources": [
+    {"title": "Blend Labs S-1 (SEC EDGAR)", "url": "https://www.sec.gov/Archives/edgar/data/1855747/000119312521194971/d162671ds1.htm"},
+    {"title": "Blend IPO S-1 Breakdown (Meritech Capital)", "url": "https://www.meritechcapital.com/blog/blend-ipo-s-1-breakdown"},
+    {"title": "Blend to Acquire Title365 from Mr. Cooper Group (PR Newswire)", "url": "https://www.prnewswire.com/news-releases/blend-to-acquire-title365-from-mr-cooper-group-301247317.html"},
+    {"title": "Blend Labs completed acquisition of 90.1% stake in Title365 from Xome (MarketScreener)", "url": "https://www.marketscreener.com/quote/stock/BLEND-LABS-INC-124796047/news/Blend-Labs-Inc-completed-the-acquisition-of-90-1-stake-in-Title365-Inc-from-Xome-36159207/"},
+    {"title": "Blend Labs 8-K Q2 2021 press release exhibit (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/0001855747/000185574721000004/exhibit991_q22021xpressrel.htm"}
+  ],
+  "notes": "Both inputs are firm and from SEC filings: purchase price ($422.1M for 90.1%) and Title365 2020 revenue ($212.1M) are disclosed in Blend's S-1. No source found that explicitly stated the multiple, so verdict is calculable rather than published. Blend later sold Title365 to Covius (announced June 2025), unrelated to this transaction."
+}

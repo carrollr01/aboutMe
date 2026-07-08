@@ -1,0 +1,20 @@
+{
+  "deal_id": "costar-onthemarket",
+  "acquirer": "CoStar Group, Inc.",
+  "target": "OnTheMarket plc (AIM: OTMP)",
+  "announced": "2023-10",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 120, "notes": "Recommended cash offer of 110p per share; equity value ~GBP 99M (~USD 120M at ~1.21 USD/GBP, Oct 2023 approx.); enterprise value ~GBP 87M (~USD 105M) net of cash. Scheme of arrangement; completed and delisted Dec 12, 2023 with 97% shareholder support."},
+  "ev_multiple": {"published": true, "value": "11x", "basis": "EV (~GBP 87M) / trailing-twelve-month adjusted EBITDA (~GBP 8M, TTM to July 31, 2023), stated in CoStar's offer press release", "source_url": "https://www.costargroup.com/press-room/2023/costar-group-offers-acquire-leading-uk-residential-property-portal-onthemarket"},
+  "revenue_multiple": {"published": true, "value": "2.5x", "basis": "EV (~GBP 87M) / trailing-twelve-month revenue (~GBP 35M, TTM to July 31, 2023), stated in CoStar's offer press release", "source_url": "https://www.costargroup.com/press-room/2023/costar-group-offers-acquire-leading-uk-residential-property-portal-onthemarket"},
+  "calculable": {"possible": true, "implied_multiple": "~2.5x EV/TTM revenue (confirms published figure)", "calculation": "GBP 87M EV / GBP 35M TTM revenue = 2.5x; GBP 87M / GBP 8M TTM adjusted EBITDA = 10.9x", "inputs": ["110p/share offer, ~GBP 99M equity value, ~GBP 87M EV — https://www.costargroup.com/press-room/2023/costar-group-offers-acquire-leading-uk-residential-property-portal-onthemarket", "OnTheMarket TTM (to July 31, 2023) revenue ~GBP 35M, adjusted EBITDA ~GBP 8M — same CoStar announcement; OnTheMarket was AIM-listed with audited public accounts"], "caveats": null},
+  "verdict": "published",
+  "sources": [
+    {"title": "CoStar Group — Offer to acquire OnTheMarket (press release with 2.5x revenue / 11x adj. EBITDA multiples)", "url": "https://www.costargroup.com/press-room/2023/costar-group-offers-acquire-leading-uk-residential-property-portal-onthemarket"},
+    {"title": "Business Wire — CoStar Group Offers to Acquire OnTheMarket", "url": "https://www.businesswire.com/news/home/20231018026565/en/CoStar-Group-Offers-to-Acquire-Leading-UK-Residential-Property-Portal-OnTheMarket"},
+    {"title": "Investegate — Rule 2.7 Offer for OnTheMarket plc (RNS)", "url": "https://www.investegate.co.uk/announcement/rns/onthemarket--otmp/offer-for-onthemarket-plc/7825842"},
+    {"title": "CoStar Group — completion of acquisition with 97% shareholder support (Dec 12, 2023)", "url": "https://www.costargroup.com/press-room/2023/costar-group-completes-acquisition-onthemarketcom-overwhelming-97-shareholder"}
+  ],
+  "notes": "CoStar's own announcement published the transaction multiples (2.5x TTM revenue, 11x TTM adjusted EBITDA on ~GBP 87M EV), so verdict is 'published'. GBP-USD conversion is approximate (~1.21 at announcement). CoStar press-room page returned 403 to direct fetch; multiples were quoted in search-indexed copies of the same release (Business Wire/press room). Formal Rule 2.7 announcement available via Investegate/LSE RNS."
+}

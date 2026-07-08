@@ -1,0 +1,20 @@
+{
+  "deal_id": "stewart-informative-research",
+  "acquirer": "Stewart Information Services Corporation (NYSE: STC)",
+  "target": "Informative Research",
+  "announced": "2021-08",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 192, "notes": "All-cash $192M purchase price funded with available company resources; announced August 26, 2021"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": ["Purchase price $192M - HousingWire, https://www.housingwire.com/articles/stewart-title-acquires-informative-research-for-192m/", "Purchase price $192M - ALTA, https://www.alta.org/news-and-publications/news/20210826-Stewart-to-Acquire-Informative-Research-for-192M"], "caveats": "Informative Research was private and neither the Stewart press release nor deal coverage disclosed its revenue, ARR, or EBITDA; Stewart's SEC filings do not break out IR standalone financials at announcement"},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Stewart Title acquires Informative Research for $192M (HousingWire)", "url": "https://www.housingwire.com/articles/stewart-title-acquires-informative-research-for-192m/"},
+    {"title": "Stewart to Acquire Informative Research for $192M (ALTA)", "url": "https://www.alta.org/news-and-publications/news/20210826-Stewart-to-Acquire-Informative-Research-for-192M"},
+    {"title": "Stewart Strengthens Data and Analytics Capabilities by Announcing its Intent to Acquire Informative Research (Business Wire press release)", "url": "https://www.businesswire.com/news/home/20210826005195/en/Stewart-Strengthens-Data-and-Analytics-Capabilities-by-Announcing-its-Intent-to-Acquire-Informative-Research"},
+    {"title": "Stewart acquires Informative Research for $192 million (Coverager)", "url": "https://coverager.com/stewart-acquires-informative-research-for-192-million/"}
+  ],
+  "notes": "Deal value firmly disclosed at $192M, but three searches found no published revenue/EBITDA figure for Informative Research (only customer count of 3,000+), so no multiple was published and none is calculable from public information."
+}

@@ -1,0 +1,29 @@
+{
+  "deal_id": "sofi-technisys",
+  "acquirer": "SoFi Technologies, Inc. (NASDAQ: SOFI)",
+  "target": "Technisys S.A. (Cyberbank cloud-native core banking platform)",
+  "announced": "2022-02",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 1100, "notes": "All-stock: ~84 million SoFi shares with aggregate value of ~$1.1B based on 20-trading-day VWAP ended February 15, 2022; actual value floated with SOFI share price through closing"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~15.7x EV/Revenue",
+    "calculation": "$1,100M all-stock consideration / ~$70M expected CY2021 Technisys revenue = ~15.7x",
+    "inputs": [
+      "~$1.1B all-stock deal value (~84M shares at 20-day VWAP) — SoFi press release / 8-K exhibit, https://www.sec.gov/Archives/edgar/data/0001818874/000181887422000014/exhibit991_8-k2222022.htm",
+      "Technisys expected to deliver approximately $70M of revenue in calendar-year 2021 — announcement-period press coverage, https://www.fool.com/investing/2022/02/25/will-sofis-11b-acquisition-of-technisys-pay-off/"
+    ],
+    "caveats": "The ~$70M CY2021 revenue is a press-reported expectation for a private company, not an audited or company-filed figure; deal value was stock-based and moved with SOFI's share price between announcement and close"
+  },
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "SoFi Technologies Announces Agreement to Acquire Technisys (8-K exhibit 99.1, SEC)", "url": "https://www.sec.gov/Archives/edgar/data/0001818874/000181887422000014/exhibit991_8-k2222022.htm"},
+    {"title": "SoFi investor presentation on Technisys acquisition (8-K exhibit, SEC)", "url": "https://www.sec.gov/Archives/edgar/data/0001818874/000181887422000014/projectatom_investorpres.htm"},
+    {"title": "Will SoFi's $1.1B Acquisition of Technisys Pay Off? (The Motley Fool)", "url": "https://www.fool.com/investing/2022/02/25/will-sofis-11b-acquisition-of-technisys-pay-off/"},
+    {"title": "SoFi to buy banking software firm Technisys for $1.1B (Banking Dive)", "url": "https://www.bankingdive.com/news/sofi-to-buy-banking-software-firm-technisys-for-11b/619220/"}
+  ],
+  "notes": "Source row had parties swapped ('Technisys / Sofi'); verified SoFi Technologies is the acquirer and Technisys the target, announced February 22, 2022, closed Q2 2022. No multiple published in the press release or investor deck coverage found; SoFi instead disclosed forward synergy guidance ($500-800M cumulative incremental revenue through 2025). Implied ~15.7x rests on a press-reported ~$70M CY2021 revenue estimate, hence partially_calculable rather than calculable."
+}

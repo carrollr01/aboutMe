@@ -1,0 +1,20 @@
+{
+  "deal_id": "gemspring-goldensource",
+  "acquirer": "Gemspring Capital (via affiliate)",
+  "target": "GoldenSource Corp.",
+  "announced": "2022-05",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Financial terms not disclosed in the press release or any deal coverage"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "GoldenSource is private; neither deal value nor its revenue/ARR/EBITDA was publicly reported (coverage only cites ~380 employees across US, Europe, and Asia)"},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Gemspring Capital Acquires GoldenSource (PR Newswire, May 17, 2022)", "url": "https://www.prnewswire.com/news-releases/gemspring-capital-acquires-goldensource-301548498.html"},
+    {"title": "Gemspring Capital Acquires GoldenSource (Gemspring announcement)", "url": "https://www.gemspring.com/gemspring-capital-acquires-goldensource/"},
+    {"title": "Gemspring Capital Acquires GoldenSource (GoldenSource announcement)", "url": "https://www.thegoldensource.com/gemspring-capital-acquires-goldensource/"},
+    {"title": "Gemspring Capital acquires GoldenSource (Private Equity Wire)", "url": "https://www.privateequitywire.co.uk/2022/05/17/314583/gemspring-capital-acquires-goldensource"}
+  ],
+  "notes": "Deal confirmed as announced May 17, 2022: Gemspring Capital affiliate acquired GoldenSource, an enterprise data management (EDM) / master data management provider for financial services. All sources consistently report terms as undisclosed; no valuation multiple published and no inputs available to compute one."
+}

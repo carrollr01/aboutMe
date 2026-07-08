@@ -1,0 +1,20 @@
+{
+  "deal_id": "ta-solifi",
+  "acquirer": "TA Associates",
+  "target": "Solifi (formerly IDS - International Decision Systems)",
+  "announced": "2024-10",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Majority investment by TA; existing owner Thoma Bravo retains a 'meaningful' minority stake. Financial terms not disclosed (announced Oct 9, 2024; Jefferies advised Solifi, Goodwin advised TA)."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "No deal value reported by any credible outlet (PE Hub, Private Equity Wire, Leasing Life, ABF Journal all note terms undisclosed), and Solifi (private, Thoma Bravo/TA-owned) publishes no revenue/ARR/EBITDA figures."},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Solifi Welcomes Majority Investment from TA (Solifi press release, Oct 9, 2024)", "url": "https://www.solifi.com/news/solifi-welcomes-majority-investment-from-ta/"},
+    {"title": "TA Associates - Solifi Welcomes Majority Investment from TA", "url": "https://www.ta.com/news/solifi-welcomes-majority-investment-from-ta/"},
+    {"title": "Thoma Bravo press release", "url": "https://www.thomabravo.com/press-releases/solifi-welcomes-majority-investment-from-ta"},
+    {"title": "PE Hub - TA Associates picks up majority stake in Solifi", "url": "https://www.pehub.com/ta-associates-picks-up-majority-stake-in-solifi/"}
+  ],
+  "notes": "Entities verified as hinted: Solifi is the secured-finance / asset-finance software provider (equipment, automotive, wholesale, working capital), dual HQ Minneapolis/Milton Keynes, formerly IDS, Thoma Bravo-backed since 2019. Announced Oct 9, 2024 (not 2025). Searched for any reported valuation (incl. Reuters-style scoops) - none found within budget; no target financials public."
+}

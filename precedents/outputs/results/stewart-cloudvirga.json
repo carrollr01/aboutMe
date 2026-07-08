@@ -1,0 +1,20 @@
+{
+  "deal_id": "stewart-cloudvirga",
+  "acquirer": "Stewart Information Services Corporation (NYSE: STC)",
+  "target": "Cloudvirga, Inc.",
+  "announced": "2021-05",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Purchase price undisclosed; Houlihan Lokey acted as exclusive financial advisor to Cloudvirga"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "Neither deal value nor Cloudvirga revenue/ARR figures are public; Cloudvirga is a private digital-mortgage POS company (used by 10 of the top 40 US lenders per the announcement)"},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Business Wire - Stewart Acquires Cloudvirga to Strengthen Digital Footprint (May 25, 2021)", "url": "https://www.businesswire.com/news/home/20210525005068/en/Stewart-Acquires-Cloudvirga-to-Strengthen-Digital-Footprint"},
+    {"title": "Stewart press release - Stewart Acquires Cloudvirga", "url": "https://www.stewart.com/en/news/press-releases/2021/stewart-acquires-cloudvirga-to-strengthen-digital-footprint"},
+    {"title": "HousingWire - Stewart Title acquires digital mortgage tech firm Cloudvirga", "url": "https://www.housingwire.com/articles/stewart-title-acquires-digital-mortgage-tech-firm-cloudvirga/"},
+    {"title": "National Mortgage News - Stewart acquires digital mortgage technology company Cloudvirga", "url": "https://www.nationalmortgagenews.com/news/stewart-acquires-digital-mortgage-technology-company-cloudvirga"}
+  ],
+  "notes": "Typo resolved: 'CloudVerga' is Cloudvirga (digital mortgage point-of-sale platform). Announced May 25, 2021. Trade press (HousingWire, National Mortgage News) confirms price was not disclosed; no public target financials found, so no multiple is published or calculable."
+}

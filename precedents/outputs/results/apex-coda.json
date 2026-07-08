@@ -1,0 +1,19 @@
+{
+  "deal_id": "apex-coda",
+  "acquirer": "Apex Fintech Solutions",
+  "target": "PDQ Enterprises (parent company of CODA Markets, Inc.)",
+  "announced": "2022-01",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Financial terms not disclosed in the press release or any trade coverage found"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "No deal value disclosed and no public revenue/EBITDA figures for PDQ Enterprises/CODA Markets (private ATS operator)"},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Business Wire - Apex Fintech Solutions Acquires PDQ Enterprises, Parent Company of Auction-Based ATS Operator CODA Markets (Jan 6, 2022)", "url": "https://www.businesswire.com/news/home/20220106005275/en/Apex-Fintech-Solutions-Acquires-PDQ-Enterprises-Parent-Company-of-Auction-Based-ATS-Operator-CODA-Markets"},
+    {"title": "Finextra - Apex Fintech Solutions acquires PDQ Enterprises, parent company of Coda Markets", "url": "https://www.finextra.com/pressarticle/90900/apex-fintech-solutions-acquires-pdq-enterprises-parent-company-of-coda-markets"},
+    {"title": "Traders Magazine - Apex Fintech Solutions Acquires PDQ Enterprises", "url": "https://www.tradersmagazine.com/featured_articles/apex-fintech-solutions-acquires-pdq-enterprises/"}
+  ],
+  "notes": "Hint confirmed: 'Coda' resolved to CODA Markets (auction-based ATS / smart order router); the transaction was structured as an acquisition of its parent, PDQ Enterprises. Announced January 6, 2022. No source found stating deal value or target financials."
+}

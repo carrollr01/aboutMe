@@ -1,0 +1,20 @@
+{
+  "deal_id": "blackstone-inhabit",
+  "acquirer": "Blackstone (Blackstone Tactical Opportunities), with Greater Sum Ventures",
+  "target": "Inhabit (Inhabit IQ)",
+  "announced": "2024-12",
+  "deal_type": "minority/growth",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Preferred equity investment led by Blackstone Tactical Opportunities with additional investment from Greater Sum Ventures; amount, stake and valuation not disclosed."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "Neither investment amount nor Inhabit revenue/ARR/EBITDA is public; Inhabit is private (backed by GSV, Goldman Sachs, Insight Partners, PSG)."},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "PR Newswire — Inhabit Secures Investment from Blackstone and Greater Sum Ventures (Dec 2024)", "url": "https://www.prnewswire.com/news-releases/inhabit-secures-investment-from-blackstone-and-greater-sum-ventures-to-accelerate-innovation-and-growth-in-property-management-technology-302319857.html"},
+    {"title": "Inhabit — company announcement of Blackstone/GSV investment", "url": "https://inhabit.com/news/inhabit-secures-investment-from-blackstone-and-greater-sum-ventures-to-accelerate-innovation-and-growth-in-property-management-technology/"},
+    {"title": "Weil — advised Blackstone in preferred equity investment in Inhabit", "url": "https://www.weil.com/articles/weil-advises-blackstone-in-preferred-equity-investment-in-inhabit"},
+    {"title": "PE Hub — Inhabit secures investment from Blackstone and Greater Sum Ventures", "url": "https://www.pehub.com/inhabit-secures-investment-from-blackstone-and-greater-sum-ventures/"}
+  ],
+  "notes": "Hint date resolved: the Blackstone transaction was announced December 2024, not ~2021. The ~2021-era event was a different investor — Goldman Sachs merchant banking invested in Inhabit in December 2020. Blackstone's 2024 deal is a minority preferred-equity investment, not a buyout; no financial terms, no target financials, and no multiple published anywhere credible."
+}

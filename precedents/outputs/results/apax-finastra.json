@@ -1,0 +1,29 @@
+{
+  "deal_id": "apax-finastra",
+  "acquirer": "Funds advised by Apax Partners LLP",
+  "target": "Finastra Treasury and Capital Markets (TCM) division (subsequently spun out as 'Teciem')",
+  "announced": "2025-05",
+  "deal_type": "carve-out",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": 2000, "notes": "Financial terms not officially disclosed; ~$2B including debt was reported by press citing Reuters/sources familiar with the negotiations — treat as an unofficial estimate"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~10x EV/EBITDA (highly indicative)",
+    "calculation": "~$2,000M reported deal value (incl. debt) / ~$200M reported TCM EBITDA = ~10x",
+    "inputs": [
+      "~$2B deal value including debt (unofficial, press-reported) — Fintech Futures citing Reuters, https://www.fintechfutures.com/m-a/apax-affiliate-to-acquire-finastras-treasury-and-capital-markets-business",
+      "TCM business generates about $200M EBITDA — Octus (formerly Reorg) reporting on the sale process and bank financing, https://octus.com/resources/articles/apax-close-to-acquiring-finastra-treasury-cap-markets-units/"
+    ],
+    "caveats": "Both inputs are unofficial: deal value is a sourced press estimate (terms never disclosed by the parties) and the ~$200M EBITDA is from debt-market reporting, with period/definition unclear. No standalone TCM revenue figure found, so no revenue multiple computable."
+  },
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "Finastra to Sell Treasury and Capital Markets Division to Apax Funds (PR Newswire, May 2025)", "url": "https://www.prnewswire.com/news-releases/finastra-to-sell-treasury-and-capital-markets-division-to-apax-funds-302458784.html"},
+    {"title": "Apax affiliate to acquire Finastra's Treasury and Capital Markets business (Fintech Futures)", "url": "https://www.fintechfutures.com/m-a/apax-affiliate-to-acquire-finastras-treasury-and-capital-markets-business"},
+    {"title": "Apax Close to Acquiring Finastra Treasury and Cap Markets Unit, Lines Up Bank Financing (Octus)", "url": "https://octus.com/resources/articles/apax-close-to-acquiring-finastra-treasury-cap-markets-units/"},
+    {"title": "Apax spins out Finastra treasury and capital markets business as Teciem (Finextra)", "url": "https://www.finextra.com/newsarticle/47232/apax-spins-out-finastra-treasury-and-capital-markets-business-as-teciem"}
+  ],
+  "notes": "Confirmed this is the TCM carve-out announced May 2025 (agreement signed; sale by Vista Equity Partners-owned Finastra to an Apax affiliate; Evercore sell-side advisor; expected close H1 2026; unit rebranded Teciem) — not any other Apax/Finastra transaction. No multiple published anywhere credible; the ~10x EV/EBITDA is indicative only, built entirely on unofficial reported figures."
+}

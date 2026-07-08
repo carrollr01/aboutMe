@@ -1,0 +1,20 @@
+{
+  "deal_id": "stg-alveo",
+  "acquirer": "Symphony Technology Group (STG)",
+  "target": "Alveo (formerly Asset Control), acquired from Sovereign Capital Partners",
+  "announced": "2023-01",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Structured as a majority investment by STG; terms not disclosed by STG, Alveo, or seller Sovereign Capital"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "Neither deal value nor Alveo revenue/EBITDA was publicly reported; Alveo is a private UK-headquartered company and no credible source published its financials around the deal"},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Alveo Receives Majority Investment from Symphony Technology Group (STG announcement)", "url": "https://stg.com/news/alveo-receives-majority-investment-from-symphony-technology-group/"},
+    {"title": "Sovereign announces the sale of Alveo to funds managed by Symphony Technology Group (Sovereign Capital)", "url": "https://www.sovereigncapital.co.uk/news/sovereign-announces-sale-of-alveo"},
+    {"title": "Alveo Receives Majority Investment from Symphony Technology Group (Derivsource, Jan 19, 2023)", "url": "https://derivsource.com/2023/01/19/alveo-receives-majority-investment-from-symphony-technology-group/"},
+    {"title": "STG Partners Acquires Alveo (Mergr deal summary)", "url": "https://mergr.com/stg-partners-acquires-asset-control-systems"}
+  ],
+  "notes": "Transaction verified per hint: STG (Symphony Technology Group) took a majority stake in Alveo, announced January 18-19, 2023 (not earlier), buying out Sovereign Capital Partners, which had backed the Asset Control MBO in 2018 (rebranded Alveo in 2020). Terms undisclosed and no target financials public, so no multiple is published or calculable. Alveo subsequently merged with Gresham Technologies in 2024 under STG."
+}

@@ -1,0 +1,20 @@
+{
+  "deal_id": "ideanomics-timios",
+  "acquirer": "Ideanomics, Inc. (NASDAQ: IDEX)",
+  "target": "Timios Holdings Corp.",
+  "announced": "2020-11",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 40, "notes": "All-cash ~$40M for 100%, subject to purchase price adjustments; consideration increased by cash left in the business (minimum $5M), making effective consideration ~$45M per MarketScreener; $4M indemnity escrow and $0.6M adjustment escrow; completed January 11, 2021"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~0.9x Price / FY2019 revenue (roughly 0.6-0.7x on 2020 revenue of over $60M YTD)", "calculation": "$40M headline consideration / $45.1M FY2019 revenue = 0.89x; on 2020 YTD revenue of >$60M (through ~Oct 2020): $40M / $60M = <0.67x; also ~15.4x FY2019 net income ($40M / $2.6M)", "inputs": ["Purchase price ~$40M all-cash plus cash-left-in-business adjustment (>=$5M) - Ideanomics definitive agreement press release, https://www.prnewswire.com/news-releases/ideanomics-announces-definitive-agreement-to-acquire-timios-holdings-corp-301171853.html and Seeking Alpha, https://seekingalpha.com/news/3635454-ideanomics-to-acquire-timios-holdings-for-40m", "Timios FY2019 revenue $45.1M, operating income $4.5M, net income $2.6M - deal disclosures reported via MarketScreener, https://www.marketscreener.com/quote/stock/IDEANOMICS-INC-47133993/news/Ideanomics-Inc-completed-the-acquisition-of-Timios-Inc-from-a-group-of-shareholders-33564470/", "Timios 2020 YTD revenue over $60M including over $8M in October 2020 - Ideanomics press releases, https://www.prnewswire.com/news-releases/ideanomics-completes-the-acquisition-of-timios-holdings-corp-301205156.html"], "caveats": "Headline price adjusted upward by cash retained in the business (effective ~$45M, but offset by acquired cash so ~$40M is a reasonable EV proxy); FY2019 revenue predates the deal by a year while the fuller 2020 figure is only a soft 'over $60M YTD'; no full-year 2020 Timios revenue was firmly published at announcement"},
+  "verdict": "calculable",
+  "sources": [
+    {"title": "Ideanomics Announces Definitive Agreement to Acquire Timios Holdings Corp. (PR Newswire, Nov 2020)", "url": "https://www.prnewswire.com/news-releases/ideanomics-announces-definitive-agreement-to-acquire-timios-holdings-corp-301171853.html"},
+    {"title": "Ideanomics Completes the Acquisition of Timios Holdings Corp. (PR Newswire, Jan 11, 2021)", "url": "https://www.prnewswire.com/news-releases/ideanomics-completes-the-acquisition-of-timios-holdings-corp-301205156.html"},
+    {"title": "Ideanomics to acquire Timios Holdings for $40M (Seeking Alpha)", "url": "https://seekingalpha.com/news/3635454-ideanomics-to-acquire-timios-holdings-for-40m"},
+    {"title": "Ideanomics completed the acquisition of Timios, Inc. (MarketScreener deal summary)", "url": "https://www.marketscreener.com/quote/stock/IDEANOMICS-INC-47133993/news/Ideanomics-Inc-completed-the-acquisition-of-Timios-Inc-from-a-group-of-shareholders-33564470/"}
+  ],
+  "notes": "Hint date adjusted: the definitive agreement was announced November 2020; January 11, 2021 was the completion date. No multiple was published. Multiple computed on the $40M headline against firm FY2019 revenue of $45.1M; the 2020-based multiple is softer since only 'over $60M YTD' was disclosed. Direct fetch of the PR Newswire release was blocked (403); figures corroborated across PR excerpts, Seeking Alpha, and MarketScreener."
+}

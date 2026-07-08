@@ -1,0 +1,22 @@
+{
+  "deal_id": "csi-apiture",
+  "acquirer": "Computer Services, Inc. (CSI)",
+  "target": "Apiture, Inc.",
+  "announced": "2025-08",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Financial terms not disclosed (all major coverage reports 'undisclosed sum'). Live Oak Bancshares, an Apiture minority investor, disclosed an estimated $20-25M pre-tax gain (~$24M realized) on the sale of its stake, but its ownership percentage is not public, so total deal value cannot be inferred."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": ["Deal value: undisclosed - https://www.fintechfutures.com/m-a/csi-acquires-apiture", "Live Oak Bancshares pre-tax gain ~$24M on Apiture stake (stake % undisclosed) - https://www.wilmingtonbiz.com/banking_and_finance/2025/10/23/live_oak_sees_24m_gain_from_sale_of_apiture_reports_q3_earnings/26944"], "caveats": "Neither deal value nor Apiture revenue/ARR is public; both companies are private."},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "CSI to Acquire Apiture (CSI press release, Aug 19 2025)", "url": "https://www.csiweb.com/who-we-are/csi-newsroom/csi-to-acquire-apiture-integrating-premier-business-and-consumer-digital-banking-capabilities-into-unified-platform/"},
+    {"title": "CSI acquires digital banking provider Apiture - American Banker", "url": "https://www.americanbanker.com/news/csi-acquires-digital-banking-provider-apiture"},
+    {"title": "CSI buys digital banking tech provider Apiture for undisclosed sum - FinTech Futures", "url": "https://www.fintechfutures.com/m-a/csi-acquires-apiture"},
+    {"title": "CSI Completes Acquisition of Digital Banking Provider Apiture (Oct 22 2025)", "url": "https://www.csiweb.com/who-we-are/csi-newsroom/csi-completes-acquisition-of-digital-banking-provider-apiture/"},
+    {"title": "Live Oak sees $24M gain from sale of Apiture - WilmingtonBiz", "url": "https://www.wilmingtonbiz.com/banking_and_finance/2025/10/23/live_oak_sees_24m_gain_from_sale_of_apiture_reports_q3_earnings/26944"},
+    {"title": "Live Oak Bancshares expects pre-tax gain from Apiture acquisition by CSI - Investing.com", "url": "https://www.investing.com/news/sec-filings/live-oak-bancshares-expects-pretax-gain-from-apiture-acquisition-by-csi-93CH-4200206"}
+  ],
+  "notes": "Transaction verified: CSI (Computer Services, Inc., core banking provider taken private by Centerbridge Partners and Bridgeport Partners in 2022) announced a definitive agreement to acquire Apiture on Aug 19, 2025 and completed the acquisition Oct 22, 2025. Both parties private and neither disclosed price or target financials; no credible source published a multiple. The only public financial breadcrumb is Live Oak Bancshares' ~$24M pre-tax gain on its (undisclosed-size) Apiture stake, insufficient for any valuation math."
+}

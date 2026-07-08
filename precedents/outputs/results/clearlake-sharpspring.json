@@ -1,0 +1,29 @@
+{
+  "deal_id": "clearlake-sharpspring",
+  "acquirer": "Constant Contact, Inc. (backed by Clearlake Capital Group and Siris Capital Group)",
+  "target": "SharpSpring, Inc. (NASDAQ: SHSP)",
+  "announced": "2021-06",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 240, "notes": "All-cash transaction valued at approximately $240M including outstanding indebtedness; $17.10 per share, a 21% premium to the June 21, 2021 close of $14.11. Announced June 22, 2021; closed September 1, 2021."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~8.2x EV / FY2020 revenue",
+    "calculation": "$240M transaction value (incl. debt, per acquirer press release) / $29.3M SharpSpring FY2020 total revenue = 8.19x",
+    "inputs": [
+      "Transaction value ~$240M including outstanding indebtedness - Constant Contact press release, Jun 22, 2021: https://news.constantcontact.com/2021-06-22-Clearlake-Capital-and-Siris-Backed-Constant-Contact-Agrees-to-Acquire-SharpSpring",
+      "SharpSpring FY2020 total revenue $29.3M (up 29% from $22.7M in 2019) - SharpSpring Q4/FY2020 results: https://investors.sharpspring.com/2021/sharpspring-reports-fourth-quarter-and-full-year-2020-results/"
+    ],
+    "caveats": "Trailing FY2020 revenue basis; the company-stated ~$240M transaction value (including debt) is used as the EV proxy. On a forward basis the multiple would be lower (analyst commentary around announcement cited roughly 7x FY2022E revenue, but that is soft/secondary)."
+  },
+  "verdict": "calculable",
+  "sources": [
+    {"title": "Constant Contact press release - Clearlake Capital and Siris-Backed Constant Contact Agrees to Acquire SharpSpring (Jun 22, 2021)", "url": "https://news.constantcontact.com/2021-06-22-Clearlake-Capital-and-Siris-Backed-Constant-Contact-Agrees-to-Acquire-SharpSpring"},
+    {"title": "SharpSpring 8-K / merger announcement exhibit (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/0001506439/000165495421007139/shsp_ex991.htm"},
+    {"title": "SharpSpring Reports Fourth Quarter and Full Year 2020 Results", "url": "https://investors.sharpspring.com/2021/sharpspring-reports-fourth-quarter-and-full-year-2020-results/"},
+    {"title": "Yahoo Finance - SharpSpring to Be Acquired by Constant Contact for $240M", "url": "https://finance.yahoo.com/news/sharpspring-acquired-constant-contact-240m-143639592.html"}
+  ],
+  "notes": "Party naming verified: acquirer is Constant Contact (Clearlake- and Siris-backed), not Clearlake directly. Public target, so financials are on file: FY2020 revenue $29.3M is firm. No EV or revenue multiple was stated in the press release, SEC filings, or tier-1 coverage found; only analyst commentary (~7x FY2022E revenue) referenced a multiple, which is not counted as published."
+}

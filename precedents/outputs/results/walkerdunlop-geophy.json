@@ -1,0 +1,28 @@
+{
+  "deal_id": "walkerdunlop-geophy",
+  "acquirer": "Walker & Dunlop, Inc. (NYSE: WD)",
+  "target": "GeoPhy",
+  "announced": "2022-02",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 85, "notes": "$85M cash at closing plus up to $205M of additional cash earn-out potential tied to Walker & Dunlop's 'Drive to 25' appraisal-revenue, SBL-volume, and mortgage-banking goals (up to $290M total potential)"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": false,
+    "implied_multiple": null,
+    "calculation": null,
+    "inputs": [
+      "$85M cash + up to $205M earn-out — Walker & Dunlop press release, https://www.prnewswire.com/news-releases/walker--dunlop-acquires-geophy-to-accelerate-technology-driven-businesses-301476206.html"
+    ],
+    "caveats": "GeoPhy standalone revenue/ARR/EBITDA was never publicly disclosed; searches of the press release, 8-K exhibit, and trade coverage found no target financials"
+  },
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Walker & Dunlop Acquires GeoPhy to Accelerate Technology-Driven Businesses (PR Newswire)", "url": "https://www.prnewswire.com/news-releases/walker--dunlop-acquires-geophy-to-accelerate-technology-driven-businesses-301476206.html"},
+    {"title": "Walker & Dunlop, Inc. Form 8-K exhibit (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/0001497770/000155837022000734/wd-20220203xex99d1.htm"},
+    {"title": "Walker & Dunlop Acquires GeoPhy for $85M Plus $205M Earn-Out Potential (Connect CRE)", "url": "https://www.connectcre.com/stories/walker-dunlop-acquires-geophy-for-85m-plus-205m-earn-out-potential/"},
+    {"title": "Wilson Sonsini Advises GeoPhy on $85 Million Acquisition by Walker & Dunlop", "url": "https://www.wsgr.com/en/insights/wilson-sonsini-advises-geophy-on-dollar85-million-acquisition-by-walker-and-dunlop.html"}
+  ],
+  "notes": "'Walker Dunlap' in the source list confirmed as a typo for Walker & Dunlop (NYSE: WD). Announced February 7, 2022; closed February 28, 2022. Deal value is public but no GeoPhy financial metric (revenue/ARR/EBITDA) was found in any public source, so no multiple can be computed. Earn-out is contingent on acquirer business goals, not target financials, further muddying any effective total consideration."
+}

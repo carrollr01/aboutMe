@@ -1,0 +1,29 @@
+{
+  "deal_id": "porch-floify",
+  "acquirer": "Porch Group, Inc. (NASDAQ: PRCH)",
+  "target": "Floify LLC",
+  "announced": "2021-10",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 86.5, "notes": "$76.5M cash plus $10M of Porch common stock at closing; Porch guaranteed the $10M of stock would double in value by end of 2024 for shares retained by sellers. HousingWire headline reported the deal as ~$90M."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~5.8x price / 2022E revenue",
+    "calculation": "$86.5M closing consideration ($76.5M cash + $10M stock) / $15M company-expected 2022 revenue = 5.77x",
+    "inputs": [
+      "Closing consideration $76.5M cash + $10M stock - Porch Group press release, Oct 27, 2021: https://www.globenewswire.com/news-release/2021/10/27/2322103/29193/en/Porch-Group-Acquires-Floify-a-Leading-SaaS-Provider-for-Loan-Officers.html (also filed as SEC 8-K Ex-99.1: https://www.sec.gov/Archives/edgar/data/1784535/000110465921130469/tm2130777d1_ex99-1.htm)",
+      "Floify expected 2022 revenue of $15M (130% net revenue retention as of Q2 2021) - same press release"
+    ],
+    "caveats": "Revenue basis is the company's forward 2022 estimate stated at announcement (Oct 2021), not audited actuals. The stock-guarantee feature and HousingWire's ~$90M headline suggest effective total consideration could be modestly higher than $86.5M. Consideration is purchase price, not a debt-adjusted EV (private target)."
+  },
+  "verdict": "calculable",
+  "sources": [
+    {"title": "GlobeNewswire - Porch Group Acquires Floify, a Leading SaaS Provider for Loan Officers (Oct 27, 2021)", "url": "https://www.globenewswire.com/news-release/2021/10/27/2322103/29193/en/Porch-Group-Acquires-Floify-a-Leading-SaaS-Provider-for-Loan-Officers.html"},
+    {"title": "SEC 8-K Exhibit 99.1 - Porch Group Acquires Floify", "url": "https://www.sec.gov/Archives/edgar/data/1784535/000110465921130469/tm2130777d1_ex99-1.htm"},
+    {"title": "HousingWire - Porch acquires mortgage software firm Floify for $90M", "url": "https://www.housingwire.com/articles/porch-acquires-mortgage-software-firm-floify-for-90m/"},
+    {"title": "GeekWire - Porch Group makes unusual promise in latest acquisition", "url": "https://www.geekwire.com/2021/porch-group-makes-unusual-promise-latest-acquisition-guaranteeing-stock-will-double/"}
+  ],
+  "notes": "Acquirer confirmed as Porch Group (PRCH). Conflicting totals: press release states $86.5M closing consideration while HousingWire reported ~$90M; the gap (possibly working-capital/holdback or the stock-guarantee valuation) was not resolved within search budget. No multiple was published; the ~5.8x is implied from the company's own announcement figures. GlobeNewswire/SEC pages could not be fetched full-text (proxy 403), figures taken from search-result excerpts of the press release."
+}

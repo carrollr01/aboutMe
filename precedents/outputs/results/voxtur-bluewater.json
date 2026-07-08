@@ -1,0 +1,21 @@
+{
+  "deal_id": "voxtur-bluewater",
+  "acquirer": "Voxtur Analytics Corp. (TSXV: VXTR)",
+  "target": "Blue Water Financial Technologies Holding Company, LLC",
+  "announced": "2022-08",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 101, "notes": "Total consideration approximately US$101M: US$30M cash plus 170 million Voxtur common shares issued to Blue Water shareholders; deal denominated in USD in Voxtur press release; closed September 22, 2022"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~8.9x Price/FY2021 revenue (~5.6x TTM revenue; ~15.1x FY2021 net income)", "calculation": "US$101M consideration / US$11.4M FY2021 revenue = 8.86x; US$101M / US$18M TTM (to Jul 31, 2022) revenue = 5.6x; US$101M / US$6.7M FY2021 net income = 15.1x", "inputs": ["Total consideration ~US$101M (US$30M cash + 170M shares) - Voxtur closing press release, https://www.globenewswire.com/news-release/2022/09/22/2520882/0/en/Voxtur-Closes-Acquisition-of-Blue-Water-Financial-Technologies-and-Announces-Expansion-of-Credit-Facilities-and-Private-Placement.html", "Blue Water FY2021 revenue ~US$11.4M and net income US$6.7M - Voxtur closing press release (same URL) and National Mortgage News, https://www.nationalmortgagenews.com/news/voxtur-to-buy-blue-water-financial-technologies-for-101-million", "Blue Water TTM (to Jul 31, 2022) revenue ~US$18M, net income ~US$11M - Voxtur closing press release, https://www.globenewswire.com/news-release/2022/09/22/2520882/0/en/Voxtur-Closes-Acquisition-of-Blue-Water-Financial-Technologies-and-Announces-Expansion-of-Credit-Facilities-and-Private-Placement.html"], "caveats": "Consideration is mostly Voxtur stock, so realized value moved with VXTR share price; financials are acquirer-press-release figures (unaudited); consideration is equity value used as EV proxy - Blue Water net debt not disclosed"},
+  "verdict": "calculable",
+  "sources": [
+    {"title": "Voxtur Closes Acquisition of Blue Water Financial Technologies (GlobeNewswire, Sep 22, 2022)", "url": "https://www.globenewswire.com/news-release/2022/09/22/2520882/0/en/Voxtur-Closes-Acquisition-of-Blue-Water-Financial-Technologies-and-Announces-Expansion-of-Credit-Facilities-and-Private-Placement.html"},
+    {"title": "Voxtur to buy Blue Water Financial Technologies for $101 million (National Mortgage News)", "url": "https://www.nationalmortgagenews.com/news/voxtur-to-buy-blue-water-financial-technologies-for-101-million"},
+    {"title": "St. Louis Park fintech company Blue Water acquired in $101M deal (Star Tribune)", "url": "https://www.startribune.com/st-louis-park-fintech-company-blue-water-acquired-in-101m-deal/600210564"},
+    {"title": "Voxtur Analytics buys PE-backed Blue Water Financial Technologies (PE Hub)", "url": "https://www.pehub.com/voxtur-analytics-buys-pe-backed-blue-water-financial-technologies/"},
+    {"title": "Voxtur to Acquire Industry-Leading Digital Mortgage Asset Platform (Voxtur announcement)", "url": "https://www.voxtur.com/voxtur-to-acquire-industry%E2%80%90leading-digital-mortgage-asset-platform/"}
+  ],
+  "notes": "Hint date corrected: deal was announced August 2022 and closed September 2022, not 2021 (the 2021 reference matches the FY2021 financials disclosed in the deal PR). No multiple was published; implied multiples computed from press-release figures. Direct fetch of the GlobeNewswire release was blocked (403), so revenue/net income figures rely on search-result excerpts of that release corroborated across multiple outlets."
+}

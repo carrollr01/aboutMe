@@ -1,0 +1,21 @@
+{
+  "deal_id": "ncino-simplenexus",
+  "acquirer": "nCino, Inc.",
+  "target": "SimpleNexus, LLC",
+  "announced": "2021-11",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 1200, "notes": "Approximately $240M cash plus ~13.2M shares of nCino common stock; ~$1.2B announced value. Stock component meant actual value at close (Jan 2022) fluctuated with NCNO share price."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": true, "value": "28.8x", "basis": "Deal value ($1.2B) / SimpleNexus trailing 12-month revenue ($41.6M)", "source_url": "https://www.techbuzznews.com/ncino-acquires-simplenexus-for-1-2-billion/"},
+  "calculable": {"possible": true, "implied_multiple": "~28.8x deal value / TTM revenue (or ~22x on annualized revenue incl. LBA Ware)", "calculation": "$1,200M / $41.6M TTM revenue = 28.8x; alternatively $1,200M / ~$54M annualized revenue including October 2021 LBA Ware acquisition = ~22.2x; vs. actual FY2023 SimpleNexus subscription revenue contribution of ~$59.8M ($344.8M total minus $285.0M organic per nCino FY23 results) = ~20.1x", "inputs": ["Deal value ~$1.2B ($240M cash + ~13.2M NCNO shares) - https://investor.ncino.com/news-releases/news-release-details/ncino-signs-definitive-agreement-acquire-simplenexus/ and https://www.sec.gov/Archives/edgar/data/0001566895/000156689521000036/pressreleaseofncinoinc1116.htm", "SimpleNexus TTM revenue $41.6M; revenue for year ended Sept 30 2021 of $40.6M; ~$54M annualized incl. LBA Ware - https://www.techbuzznews.com/ncino-acquires-simplenexus-for-1-2-billion/", "SimpleNexus FY2023 subscription revenue contribution ~$59.8M implied ($344.8M total subscription vs $285.0M organic) - https://investor.ncino.com/news-releases/news-release-details/ncino-reports-fourth-quarter-and-fiscal-year-2023-financial/"], "caveats": "SimpleNexus was private; its revenue figures come from trade press (TechBuzz News) rather than the nCino press release itself. Stock consideration makes precise deal value time-dependent."},
+  "verdict": "published",
+  "sources": [
+    {"title": "nCino Signs Definitive Agreement to Acquire SimpleNexus (investor press release)", "url": "https://investor.ncino.com/news-releases/news-release-details/ncino-signs-definitive-agreement-acquire-simplenexus/"},
+    {"title": "nCino Form 8-K press release, Nov 16 2021 (SEC)", "url": "https://www.sec.gov/Archives/edgar/data/0001566895/000156689521000036/pressreleaseofncinoinc1116.htm"},
+    {"title": "SimpleNexus to be Acquired for $1.2 Billion - TechBuzz News", "url": "https://www.techbuzznews.com/ncino-acquires-simplenexus-for-1-2-billion/"},
+    {"title": "nCino Reports Fourth Quarter and Fiscal Year 2023 Financial Results", "url": "https://investor.ncino.com/news-releases/news-release-details/ncino-reports-fourth-quarter-and-fiscal-year-2023-financial/"},
+    {"title": "MBA Newslink: nCino to Acquire SimpleNexus for $1.2 Billion", "url": "https://newslink.mba.org/mba-newslinks/2021/november/mba-newslink-wednesday-nov-17-2021/industry-briefs-nov-17-2021-ncino-to-acquire-simplenexus-for-1-2-billion/"}
+  ],
+  "notes": "Announced Nov 16, 2021; closed Jan 2022 (end of nCino fiscal Q4 FY22). The 28.8x revenue multiple and the $41.6M TTM / ~$54M annualized revenue figures were surfaced in search results attributed to trade press coverage (TechBuzz News, a Utah tech outlet); the multiple is arithmetically consistent ($1,200M/$41.6M=28.8x) but was not verified directly on-page (SEC and investor pages returned 403 to fetch). No EV-basis multiple published; deal-value/revenue used as proxy."
+}

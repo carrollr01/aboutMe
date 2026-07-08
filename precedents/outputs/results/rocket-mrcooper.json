@@ -1,0 +1,21 @@
+{
+  "deal_id": "rocket-mrcooper",
+  "acquirer": "Rocket Companies, Inc.",
+  "target": "Mr. Cooper Group Inc.",
+  "announced": "2025-03",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 9400, "notes": "All-stock; 11.0 Rocket shares per Mr. Cooper share, $9.4B equity value at announcement (35% premium to 30-day VWAP). Value rose with Rocket's share price to ~$14.2B at the October 1, 2025 close."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~4.2x Price/FY2024 revenue (equity value basis); ~14.1x P/FY2024 net income", "calculation": "$9,400M announced equity value / $2,230M Mr. Cooper FY2024 total revenue = 4.2x; $9,400M / $669M FY2024 net income = 14.1x", "inputs": ["$9.4B all-stock equity value at announcement — https://www.cnbc.com/2025/03/31/mortgage-company-rocket-buying-mr-cooper-in-all-stock-deal-valued-at-9point4-billion.html and https://ir.rocketcompanies.com/news-and-events/press-releases/press-release-details/2025/Mr--Cooper-Americas-Largest-Servicer-Joins-Rocket-the-Nations-Largest-Lender/default.aspx", "Mr. Cooper FY2024 revenue $2.23B, net income $669.0M — https://finance.yahoo.com/news/mr-cooper-group-full-2024-143804455.html and https://stockanalysis.com/stocks/coop/revenue/ (from 10-K filings)"], "caveats": "All-stock consideration, so realized value floated (final ~$14.2B at close). EV/Revenue is not the standard lens for an MSR-heavy mortgage servicer; equity-value multiples (P/Revenue, P/E, P/TBV) are more meaningful. Announcement materials published the 35% VWAP premium and exchange ratio but no valuation multiple."},
+  "verdict": "calculable",
+  "sources": [
+    {"title": "CNBC — Rocket buying Mr. Cooper in all-stock deal valued at $9.4 billion", "url": "https://www.cnbc.com/2025/03/31/mortgage-company-rocket-buying-mr-cooper-in-all-stock-deal-valued-at-9point4-billion.html"},
+    {"title": "Rocket Companies IR press release — Mr. Cooper Joins Rocket", "url": "https://ir.rocketcompanies.com/news-and-events/press-releases/press-release-details/2025/Mr--Cooper-Americas-Largest-Servicer-Joins-Rocket-the-Nations-Largest-Lender/default.aspx"},
+    {"title": "Mr. Cooper Group 8-K exhibit (deal terms, exchange ratio)", "url": "https://www.sec.gov/Archives/edgar/data/0000933136/000119312525067734/d941832dex992.htm"},
+    {"title": "Yahoo Finance — Mr. Cooper Group Full Year 2024 Earnings", "url": "https://finance.yahoo.com/news/mr-cooper-group-full-2024-143804455.html"},
+    {"title": "Bloomberg — Rocket takeover of Mr. Cooper completed at $14.2 billion", "url": "https://www.bloomberg.com/news/articles/2025-10-01/rocket-cos-takeover-of-mr-cooper-completed-at-14-2-billion"}
+  ],
+  "notes": "Both parties public (NYSE: RKT / NASDAQ: COOP), so all inputs are firm from filings. No EV or revenue multiple was stated in the announcement; press coverage emphasized the 35% premium and $500M synergy target instead. Announced March 31, 2025; completed October 1, 2025 at ~$14.2B due to Rocket share appreciation."
+}

@@ -1,0 +1,22 @@
+{
+  "deal_id": "fnf-titlepoint",
+  "acquirer": "Fidelity National Financial, Inc. (FNF)",
+  "target": "TitlePoint (line of business of Black Knight, Inc.)",
+  "announced": "2022-11",
+  "deal_type": "carve-out",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 225, "notes": "US$225M all cash. Announced November 18, 2022 (8-K filed); expected close December 2022 / closed early 2023. FNF exercised a contractual repurchase right on TitlePoint triggered by ICE's change-of-control acquisition of Black Knight."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~5.6x EV/Revenue (annualized Q3 2022 run-rate)", "calculation": "US$225M / (~US$10M Q3 2022 revenue x 4 = ~US$40M annualized) = ~5.6x", "inputs": ["US$225M cash purchase price — https://www.prnewswire.com/news-releases/fidelity-national-financial-to-acquire-titlepoint-from-black-knight-301683128.html and FNF 8-K https://www.sec.gov/Archives/edgar/data/0001331875/000133187522000093/ex991pressreleasedatednove.htm", "TitlePoint ~US$10M revenue in Q3 2022 (incl. $7.2M sensitive to home-buying/origination volumes), per Black Knight, reported by trade press — https://www.inman.com/2022/11/23/fidelity-paying-black-knight-225m-to-bring-titlepoint-back-into-the-fold/ and https://www.housingwire.com/articles/black-knight-to-sell-titlepoint-back-to-fidelity-for-225m/"], "caveats": "Revenue input is a single quarter (Q3 2022) annualized, not an audited full-year standalone figure; TitlePoint sat inside Black Knight's Data & Analytics segment with no separate annual disclosure. Q3 2022 was also a depressed origination environment, so the run-rate may understate normalized revenue."},
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "PR Newswire — Fidelity National Financial to Acquire TitlePoint from Black Knight", "url": "https://www.prnewswire.com/news-releases/fidelity-national-financial-to-acquire-titlepoint-from-black-knight-301683128.html"},
+    {"title": "FNF Form 8-K press release exhibit (Nov 2022)", "url": "https://www.sec.gov/Archives/edgar/data/0001331875/000133187522000093/ex991pressreleasedatednove.htm"},
+    {"title": "Black Knight Form 8-K press release exhibit (Nov 18, 2022)", "url": "https://www.sec.gov/Archives/edgar/data/0001627014/000162701422000032/bki-20221118xex99d1.htm"},
+    {"title": "HousingWire — Black Knight to sell TitlePoint back to Fidelity for $225M", "url": "https://www.housingwire.com/articles/black-knight-to-sell-titlepoint-back-to-fidelity-for-225m/"},
+    {"title": "Inman — Fidelity Paying Black Knight $225M to Bring TitlePoint Back Into the Fold (Q3 2022 revenue figure)", "url": "https://www.inman.com/2022/11/23/fidelity-paying-black-knight-225m-to-bring-titlepoint-back-into-the-fold/"},
+    {"title": "ALTA — Fidelity to Acquire TitlePoint from Black Knight for $225M", "url": "https://www.alta.org/news-and-publications/news/20221122-Fidelity-to-Acquire-TitlePoint-from-Black-Knight-for-225M"}
+  ],
+  "notes": "Typo resolution: 'National Financial' = Fidelity National Financial (FNF). No multiple was published. The ~$10M Q3 2022 TitlePoint revenue figure (attributed to Black Knight) appeared consistently across Inman/HousingWire search results, but the articles themselves returned 403 to direct fetch, so the exact wording is unverified — treated as a soft input, hence 'partially_calculable' rather than 'calculable'. FNF originally sold Property Insight/TitlePoint to Black Knight in 2014 with a change-of-control repurchase right, exercised after ICE agreed to buy Black Knight in May 2022."
+}

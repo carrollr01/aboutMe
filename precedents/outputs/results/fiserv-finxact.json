@@ -1,0 +1,28 @@
+{
+  "deal_id": "fiserv-finxact",
+  "acquirer": "Fiserv, Inc. (NASDAQ: FISV)",
+  "target": "Finxact, Inc. (cloud-native core banking)",
+  "announced": "2022-02",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 650, "notes": "Approximately $650M for the REMAINING ownership interest not already held (Fiserv was an early investor); prior stake percentage not disclosed, so implied 100% enterprise value is somewhat higher than $650M"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~26x-33x price/revenue (highly indicative)",
+    "calculation": "$650M consideration for remaining stake / $20-25M estimated annual revenue = ~26x-33x; understates the true 100% EV multiple since $650M excludes Fiserv's pre-existing stake",
+    "inputs": [
+      "~$650M for remaining ownership interest — Finxact/Fiserv press release, https://www.finxact.com/content/finxact/us/en/newsroom/press-releases/fiserv-to-accelerate-digital-banking-transformation-for-clients-with-acquisition-of-finxact.html",
+      "$20-25M estimated annual revenue contribution — Baird Equity Research estimate cited by Payments Dive, https://www.paymentsdive.com/news/fiserv-buys-finxact-for-650m/618412/"
+    ],
+    "caveats": "Revenue is a third-party analyst estimate, not a company disclosure; the $650M is for the remaining stake only (prior ownership % undisclosed), so a clean EV/Revenue multiple cannot be firmly established"
+  },
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "Fiserv to Accelerate Digital Banking Transformation for Clients with Acquisition of Finxact (press release)", "url": "https://www.finxact.com/content/finxact/us/en/newsroom/press-releases/fiserv-to-accelerate-digital-banking-transformation-for-clients-with-acquisition-of-finxact.html"},
+    {"title": "Fiserv touts $650M acquisition of Finxact (Payments Dive)", "url": "https://www.paymentsdive.com/news/fiserv-buys-finxact-for-650m/618412/"},
+    {"title": "Fiserv to pay $650M to buy the rest of Finxact (Banking Dive)", "url": "https://www.bankingdive.com/news/fiserv-buys-finxact-for-650m/618465/"}
+  ],
+  "notes": "Announced February 7, 2022; completed later in 2022. No multiple published in the press release or credible trade coverage. Finxact never disclosed standalone revenue/ARR; the only public financial metric is Baird's $20-25M annual revenue estimate, and the $650M covers only the ownership Fiserv did not already hold — both make any implied multiple soft."
+}

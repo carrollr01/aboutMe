@@ -1,0 +1,28 @@
+{
+  "deal_id": "meridianlink-openclose",
+  "acquirer": "MeridianLink, Inc. (NYSE: MLNK)",
+  "target": "OpenClose",
+  "announced": "2022-11",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 65, "notes": "All-cash consideration of $65 million; announced November 7, 2022"},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~5.4x EV/Revenue (run-rate)",
+    "calculation": "$65M purchase price / (~$1M per month revenue x 12 = ~$12M annualized run-rate revenue) = ~5.4x",
+    "inputs": [
+      "$65M all-cash deal value — MeridianLink press release, https://www.businesswire.com/news/home/20221107005914/en/MeridianLink-Announces-Acquisition-of-OpenClose",
+      "OpenClose revenue of approximately $1M per month, growing at a high-teens rate, per MeridianLink CFO Sean Blitchok on the Q3 2022 earnings call — reported by National Mortgage News, https://www.nationalmortgagenews.com/news/meridianlink-buys-openclose-for-65-million-in-bid-to-reach-more-banks"
+    ],
+    "caveats": "Revenue input is an approximate run-rate stated by acquirer management ('approximately $1 million per month'), not an audited annual figure; annualizing a monthly figure assumes a stable run-rate"
+  },
+  "verdict": "calculable",
+  "sources": [
+    {"title": "MeridianLink Announces Acquisition of OpenClose (Business Wire press release)", "url": "https://www.businesswire.com/news/home/20221107005914/en/MeridianLink-Announces-Acquisition-of-OpenClose"},
+    {"title": "MeridianLink buys OpenClose for $65 million in bid to reach more banks (National Mortgage News)", "url": "https://www.nationalmortgagenews.com/news/meridianlink-buys-openclose-for-65-million-in-bid-to-reach-more-banks"},
+    {"title": "MeridianLink acquires mortgage fintech OpenClose for $65M (HousingWire)", "url": "https://www.housingwire.com/articles/meridianlink-acquires-mortgage-fintech-openclose-for-65m/"}
+  ],
+  "notes": "No multiple was published by the company or trade press; the ~5.4x is implied from the disclosed $65M price and the CFO's ~$1M/month revenue disclosure on the Q3 2022 earnings call as reported by National Mortgage News. Deal closed November 8, 2022."
+}

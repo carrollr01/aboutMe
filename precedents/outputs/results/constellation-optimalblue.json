@@ -1,0 +1,21 @@
+{
+  "deal_id": "constellation-optimalblue",
+  "acquirer": "Constellation Software Inc. (Perseus operating group)",
+  "target": "Optimal Blue (business of Black Knight, Inc.)",
+  "announced": "2023-07",
+  "deal_type": "carve-out",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 700, "notes": "US$700M: US$200M cash plus a US$500M promissory note issued by Constellation to Black Knight (as ICE subsidiary) at closing. Divestiture required to clear ICE's acquisition of Black Knight. Announced July 17, 2023; closed September 15, 2023."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~6.4x EV/Revenue (on a stale, 2020-era revenue figure)", "calculation": "US$700M / ~US$110M annual revenue (figure publicly reported at Black Knight's 2020 acquisition of Optimal Blue) = ~6.4x", "inputs": ["US$700M deal value ($200M cash + $500M promissory note) — https://ir.theice.com/press/news-details/2023/Intercontinental-Exchange-and-Black-Knight-Announce-Agreement-to-Sell-Black-Knights-Optimal-Blue-Business-to-Constellation-Software-Inc/default.aspx and https://www.csisoftware.com/category/press-releases/2023/07/17/constellation-software-s-perseus-group-enters-into-agreement-to-acquire-black-knight-s-optimal-blue-business", "Optimal Blue ~US$110M annual revenue, reported when Black Knight agreed to buy it for $1.8B in 2020 — https://www.housingwire.com/articles/black-knight-to-acquire-optimal-blue-in-1-8b-deal-to-boost-origination-offerings/"], "caveats": "The only public standalone revenue figure (~$110M) dates to the 2020 Black Knight acquisition; no 2022/2023 standalone Optimal Blue revenue was disclosed by Black Knight, ICE, or Constellation, so any implied multiple uses a stale denominator. Note-heavy consideration ($500M vendor note) also blurs effective value."},
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "ICE press release — Agreement to sell Black Knight's Optimal Blue business to Constellation Software", "url": "https://ir.theice.com/press/news-details/2023/Intercontinental-Exchange-and-Black-Knight-Announce-Agreement-to-Sell-Black-Knights-Optimal-Blue-Business-to-Constellation-Software-Inc/default.aspx"},
+    {"title": "Constellation Software (CSI) press release — Perseus Group agreement to acquire Optimal Blue", "url": "https://www.csisoftware.com/category/press-releases/2023/07/17/constellation-software-s-perseus-group-enters-into-agreement-to-acquire-black-knight-s-optimal-blue-business"},
+    {"title": "HousingWire — ICE, Black Knight agree to sell Optimal Blue to Constellation Software", "url": "https://www.housingwire.com/articles/ice-black-knight-agree-to-sell-optimal-blue-to-constellation-software-to-save-the-merger-deal/"},
+    {"title": "CSI press release — Perseus completes acquisition of Empower and Optimal Blue (Sept 15, 2023)", "url": "https://www.csisoftware.com/category/press-releases/2023/09/15/constellation-software-s-perseus-group-completes-acquisition-of-black-knight-s-empower-and-optimal-blue-businesses"},
+    {"title": "HousingWire — Black Knight to acquire Optimal Blue in $1.8B deal (2020; source of ~$110M revenue figure)", "url": "https://www.housingwire.com/articles/black-knight-to-acquire-optimal-blue-in-1-8b-deal-to-boost-origination-offerings/"}
+  ],
+  "notes": "Hint date resolved: announced July 17, 2023 and closed September 15, 2023 — not 2024. Deal value and structure ($700M = $200M cash + $500M promissory note) are firmly published; no valuation multiple was published, and the only public revenue benchmark is the ~$110M figure from the 2020 sale to Black Knight (which was widely noted as making the $700M exit roughly 40% of Black Knight's $1.8B purchase price). ICE IR page returned 403 to direct fetch; terms confirmed across CSI press release, HousingWire, Globe and Mail, and Business Wire copies."
+}

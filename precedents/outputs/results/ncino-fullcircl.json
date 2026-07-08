@@ -1,0 +1,21 @@
+{
+  "deal_id": "ncino-fullcircl",
+  "acquirer": "nCino, Inc.",
+  "target": "FullCircl Ltd",
+  "announced": "2024-10",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 135, "notes": "$135M all-cash consideration; announced Oct 30, 2024, closed Nov 5, 2024."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": ["Deal value $135M cash - https://www.fintechfutures.com/2024/10/ncino-acquires-fullcircl-in-135m-deal/ and https://finovate.com/ncino-agrees-to-acquire-fullcircl/"], "caveats": "Deal value is firm, but no published FullCircl revenue or ARR figure was found, so no multiple can be computed."},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "nCino acquires FullCircl in $135m deal - FinTech Futures", "url": "https://www.fintechfutures.com/2024/10/ncino-acquires-fullcircl-in-135m-deal/"},
+    {"title": "nCino Agrees to Acquire FullCircl - Finovate", "url": "https://finovate.com/ncino-agrees-to-acquire-fullcircl/"},
+    {"title": "nCino to acquire London-based firm in $135M deal - WilmingtonBiz", "url": "https://www.wilmingtonbiz.com/banking_and_finance/2024/11/01/ncino_to_acquire_london-based_firm_in_135m_deal/26095"},
+    {"title": "nCino acquires FullCircl to enhance banking solutions - Investing.com", "url": "https://www.investing.com/news/company-news/ncino-acquires-fullcircl-to-enhance-banking-solutions-93CH-3690368"},
+    {"title": "nCino acquires FullCircl - Crunchbase acquisition profile", "url": "https://www.crunchbase.com/acquisition/ncino-acquires-duedil--acc4c507"}
+  ],
+  "notes": "FullCircl (UK; formed from the DueDil/Artesian combination) is private; no revenue or ARR figure surfaced within the search budget - qualitative disclosures only (500+ clients incl. NatWest, Allica Bank, Amex, Metro Bank, Solaris). nCino's Q3 FY25 earnings release (Dec 2024) and 8-K may state an expected FullCircl revenue contribution, but investor.ncino.com and sec.gov both returned 403 to fetch attempts, so this remains unverified. If nCino guidance quantified FullCircl's contribution, the verdict could improve to partially_calculable."
+}

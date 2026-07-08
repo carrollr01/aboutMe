@@ -1,0 +1,19 @@
+{
+  "deal_id": "oceansound-afs",
+  "acquirer": "OceanSound Partners",
+  "target": "Automated Financial Systems, Inc. (AFS)",
+  "announced": "2026-02",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Financial terms not disclosed in the February 19, 2026 announcement (Houlihan Lokey advised AFS; Skadden advised OceanSound)."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "Deal value undisclosed. Only third-party data-vendor revenue estimates exist for AFS (e.g. ~$59.9M per RocketReach/LeadIQ-type profiles) - not credible/firm inputs, so no multiple can be computed even directionally."},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "BusinessWire - Automated Financial Systems Acquired by OceanSound Partners (Feb 19, 2026)", "url": "https://www.businesswire.com/news/home/20260219855356/en/Automated-Financial-Systems-a-Leading-Provider-of-Commercial-Loan-Servicing-Technology-to-the-Financial-Services-Industry-Acquired-by-OceanSound-Partners"},
+    {"title": "OceanSound Partners press release", "url": "https://oceansoundpartners.com/press-releases/automated-financial-systems-a-leading-provider-of-commercial-loan-servicing-technology-to-the-financial-services-industry-acquired-by-oceansound-partners/"},
+    {"title": "Pulse2 - Automated Financial Systems Acquired By OceanSound Partners", "url": "https://pulse2.com/automated-financial-systems-acquired-by-oceansound-partners/"}
+  ],
+  "notes": "Hint verified: target is Automated Financial Systems, Inc. (AFS), Exton, PA - commercial loan servicing / lending lifecycle software (AFSVision), founded 1970. Announced February 19, 2026; Edward Jenkins installed as CEO. No deal value, no target financials, no multiple published or calculable."
+}

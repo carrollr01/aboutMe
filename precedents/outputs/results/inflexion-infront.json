@@ -1,0 +1,32 @@
+{
+  "deal_id": "inflexion-infront",
+  "acquirer": "Inflexion Private Equity Partners LLP (via Inflexion Buyout Fund V)",
+  "target": "Infront ASA (Oslo Bors: INFRO)",
+  "announced": "2020-12",
+  "deal_type": "take-private",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 199, "notes": "Voluntary cash offer initially NOK 34.40/share = NOK 1.49bn (~US$170.7M per Reuters), recommended by the board in Dec 2020; raised to NOK 40/share (~NOK 1.73bn) on Mar 1, 2021, implying ~US$199M at ~8.7 NOK/USD (approximate conversion). Completed and delisted June 2021. Values are equity value, not EV."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~1.4x equity value / annualized revenue (run-rate; not EV)",
+    "calculation": "Equity value NOK ~1.73bn ~= US$199M ~= EUR ~166M (approx. 10.4 NOK/EUR). Annualized revenue = 4 x Q1 2021 group revenue of EUR 30.2M = EUR 120.8M; 166 / 120.8 = ~1.4x. On EBITDA: 4 x Q1 2021 EBITDA EUR 5.7M = EUR 22.8M -> ~7.3x equity value/run-rate EBITDA (excludes net debt).",
+    "inputs": [
+      "Final offer NOK 40/share, total ~NOK 1.7bn - MarketScreener deal record: https://www.marketscreener.com/quote/stock/INFRONT-ASA-37941051/news/Inflexion-Buyout-V-Investments-LP-completed-the-acquisition-of-Infront-ASA-OB-INFRO-from-Kristian-33465633/",
+      "Initial offer NOK 34.40/share = NOK 1.49bn = US$170.7M, 30.9%/56.0% premium to 1M/3M VWAP to Dec 14, 2020 - Reuters via PE Insights: https://pe-insights.com/inflexion-to-buy-norways-infront-in-171-mln-deal/",
+      "Q1 2021 group revenue EUR 30.2M and EBITDA EUR 5.7M - Infront ASA Q1 2021 release via MFN: https://mfn.se/ob/a/infront/infront-asa-q1-2021-group-revenue-of-eur-30-2-million-and-ebitda-of-eur-5-7-million-55b15934.iframe",
+      "Q4 2020 operating revenue EUR 29.7M, reported EBITDA EUR 5.7M (adjusted EUR 6.2M) - Infront Q4 2020 interim report: https://www.infront.co/content/dam/infront-co/language-masters/en/downloads/quarterly-reports/infront-q4-2020-interim-report.pdf.coredownload.pdf"
+    ],
+    "caveats": "FY2020 full-year revenue/EBITDA totals were not directly verified within the search budget (only Q4 2020 and Q1 2021 quarterly figures sourced; annualization is approximate). Net debt at offer date not sourced, so a true EV/Revenue or EV/EBITDA multiple cannot be computed (Infront carried debt from the 2019 vwd Group acquisition). NOK/USD and NOK/EUR conversions approximate."
+  },
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "PE Insights (Reuters) - Inflexion to buy Norway's Infront in $171 mln deal", "url": "https://pe-insights.com/inflexion-to-buy-norways-infront-in-171-mln-deal/"},
+    {"title": "MarketScreener - Inflexion Buyout V Investments LP completed the acquisition of Infront ASA", "url": "https://www.marketscreener.com/quote/stock/INFRONT-ASA-37941051/news/Inflexion-Buyout-V-Investments-LP-completed-the-acquisition-of-Infront-ASA-OB-INFRO-from-Kristian-33465633/"},
+    {"title": "MarketScreener - Board of Directors of Infront recommends voluntary cash offer by Inflexion", "url": "https://www.marketscreener.com/quote/stock/INFRONT-ASA-37941051/news/Infront-Board-of-Directors-of-Infront-recommends-voluntary-cash-offer-by-Inflexion-to-acquire-all-32012313/"},
+    {"title": "Inflexion - Inflexion completes acquisition of Infront and appoints Chair (Jun 2021)", "url": "https://www.inflexion.com/news-and-insights/news/2021/inflexion-completes-acquisition-of-infront-and-appoints-chair/"},
+    {"title": "MFN - Infront ASA Q1 2021 group revenue EUR 30.2M and EBITDA EUR 5.7M", "url": "https://mfn.se/ob/a/infront/infront-asa-q1-2021-group-revenue-of-eur-30-2-million-and-ebitda-of-eur-5-7-million-55b15934.iframe"}
+  ],
+  "notes": "Entity verified: Infront ASA, the Oslo-listed Nordic/European financial market data and terminal provider (not Infront Sports & Media). Offer recommended December 2020, price raised to NOK 40/share March 2021, completed June 2021 with founders Kristian Nesbak and Morten Lindeman reinvesting. No EV or revenue multiple found published in offer coverage. Attempted fetch of the Q4 2020 interim report PDF for FY2020 totals was blocked (proxy 403), leaving the full-year metric unverified - hence partially_calculable and the run-rate basis."
+}

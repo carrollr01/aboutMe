@@ -1,0 +1,21 @@
+{
+  "deal_id": "motive-backbase",
+  "acquirer": "Motive Partners",
+  "target": "Backbase",
+  "announced": "2022-06",
+  "deal_type": "minority/growth",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 128, "notes": "EUR 120M growth equity investment (minority stake) at a EUR 2.5B post-money valuation; ~USD 128M / ~USD 2.6B at June 2022 EUR/USD ~1.07 (per TechCrunch). Backbase's first-ever external funding."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": true, "implied_multiple": "~12.5x valuation / revenue (upper bound)", "calculation": "EUR 2,500M valuation / EUR 200M+ revenue = ~12.5x (upper bound, since revenue stated only as 'over EUR 200 million')", "inputs": ["EUR 120M raise at EUR 2.5B valuation - https://www.privateequitywire.co.uk/backbase-raises-eu120m-motive-partners-eu25bn-valuation/ and https://tech.eu/2022/06/09/bootstrapped-backbase-brings-in-eur120-million-at-eur25-billion-valuation/ (TechCrunch reported $128M at $2.6B: https://techcrunch.com/2022/06/09/backbase-raises-its-first-funding-128m-at-a-2-6b-valuation-for-tools-that-help-banks-with-engagement/)", "Revenue 'grown organically to over EUR 200 million' - https://www.backbase.com/press/backbase-raises-120m-from-motive-partners"], "caveats": "Revenue disclosed only as 'over EUR 200 million' with no period specified (presumably FY2021/TTM at announcement); valuation is a post-money equity valuation from a minority growth round, not a computed enterprise value. Both inputs soften the implied multiple."},
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "Backbase raises EUR 120M from Motive Partners (Backbase press release)", "url": "https://www.backbase.com/press/backbase-raises-120m-from-motive-partners"},
+    {"title": "Backbase raises EUR 120m from Motive Partners at EUR 2.5bn valuation - Private Equity Wire", "url": "https://www.privateequitywire.co.uk/backbase-raises-eu120m-motive-partners-eu25bn-valuation/"},
+    {"title": "Backbase raises its first funding, $128M at a $2.6B valuation - TechCrunch", "url": "https://techcrunch.com/2022/06/09/backbase-raises-its-first-funding-128m-at-a-2-6b-valuation-for-tools-that-help-banks-with-engagement/"},
+    {"title": "Bootstrapped Backbase brings in EUR 120 million at EUR 2.5 billion valuation - Tech.eu", "url": "https://tech.eu/2022/06/09/bootstrapped-backbase-brings-in-eur120-million-at-eur25-billion-valuation/"},
+    {"title": "Engagement Banking Leader Backbase Raises EUR 120M from Motive Partners - Motive Partners", "url": "https://www.motivepartners.com/insights/engagement-banking-leader-backbase-raises-120m-from-motive-partners"}
+  ],
+  "notes": "Date in the brief was wrong: the Motive Partners EUR 120M investment in Backbase was announced June 9, 2022, not 2024. No 2024 Motive-Backbase transaction was found in searches. Figures otherwise match the hint (EUR 120M at EUR 2.5B). No explicit multiple published; implied ~12.5x is an upper bound derived from the 'over EUR 200M' revenue disclosure in Backbase's own press release (direct page fetch returned 403; figures corroborated across multiple search results)."
+}

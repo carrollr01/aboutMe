@@ -1,0 +1,29 @@
+{
+  "deal_id": "axway-sopra-banking",
+  "acquirer": "Axway Software SA",
+  "target": "Sopra Banking Software (SBS) - most activities, carved out of Sopra Steria",
+  "announced": "2024-02",
+  "deal_type": "carve-out",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 357, "notes": "Enterprise value EUR 330M, converted at ~1.08 EUR/USD (Feb 2024) = ~US$357M (approximate). Financed via ~EUR 131M capital increase + ~EUR 200M new credit facilities. Exclusive discussions announced Feb 21, 2024; binding agreements signed May 31/Jun 2, 2024; completed Sep 2, 2024. Perimeter = ~80% of SBS activities."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~0.97x EV/Revenue (FY2023)",
+    "calculation": "EUR 330M EV / ~EUR 340M FY2023 revenue of the acquired activities = ~0.97x (in USD: ~$357M / ~$368M = ~0.97x)",
+    "inputs": [
+      "EV EUR 330M - FinTech Futures: https://www.fintechfutures.com/m-a/axway-completes-330m-acquisition-of-sopra-banking-software (citing Axway announcements)",
+      "Acquired activities revenue ~EUR 340M in FY2023 (~80% of SBS) - The Paypers: https://thepaypers.com/online-mobile-banking/axway-to-acquire-most-sopra-banking-software-activities--1266926 and PAC/SITSI: https://sitsi.pacanalyst.com/sopra-steria-clarifies-its-strategic-direction-by-selling-a-majority-stake-in-sopra-banking-software-sbs/"
+    ],
+    "caveats": "FinTech Futures separately cites EUR 359M standalone revenue for the acquired activities (apparently a 2024 figure at completion), vs ~EUR 340M FY2023 at announcement - implied multiple is ~0.9-1.0x depending on period. No EBITDA disclosed for the perimeter, so no EV/EBITDA. Axway.com and BusinessWire primary releases returned 403 via the network proxy, so exact press-release wording was not independently re-verified; figures are consistent across multiple trade outlets citing those releases."
+  },
+  "verdict": "calculable",
+  "sources": [
+    {"title": "FinTech Futures - Axway completes EUR 330m acquisition of Sopra Banking Software", "url": "https://www.fintechfutures.com/m-a/axway-completes-330m-acquisition-of-sopra-banking-software"},
+    {"title": "The Paypers - Axway to acquire most Sopra Banking Software activities", "url": "https://thepaypers.com/online-mobile-banking/axway-to-acquire-most-sopra-banking-software-activities--1266926"},
+    {"title": "PAC SITSI - Sopra Steria sells majority stake in Sopra Banking Software (SBS)", "url": "https://sitsi.pacanalyst.com/sopra-steria-clarifies-its-strategic-direction-by-selling-a-majority-stake-in-sopra-banking-software-sbs/"},
+    {"title": "Axway press release - exclusive discussions (Feb 21, 2024)", "url": "https://www.axway.com/en/company/media/2024/press-release-axway-announces-entering-exclusive-discussions-acquire-most-sopra"}
+  ],
+  "notes": "Parties as hinted: Axway (Euronext-listed, itself Sopra-affiliated) acquiring most of Sopra Banking Software from Sopra Steria - both French listed, terms published in EUR. No explicit multiple stated in coverage found, but EV and perimeter revenue were both published, so ~1x revenue is directly computable. Announced date used is the Feb 2024 exclusive-discussions announcement (terms already public then)."
+}
