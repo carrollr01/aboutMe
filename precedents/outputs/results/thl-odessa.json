@@ -1,0 +1,19 @@
+{
+  "deal_id": "thl-odessa",
+  "acquirer": "Thomas H. Lee Partners, L.P. (THL)",
+  "target": "Odessa Technologies, Inc. (Odessa)",
+  "announced": "2021-09",
+  "deal_type": "minority/growth",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": null, "notes": "Announced Sep 15, 2021 as a strategic growth investment; neither investment amount, stake percentage, nor valuation disclosed (Houlihan Lokey advised Odessa; Raymond James advised THL)."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {"possible": false, "implied_multiple": null, "calculation": null, "inputs": [], "caveats": "No deal value public. Only unverified data-vendor estimates exist for Odessa financials (e.g. Getlatka's '$262.6M ARR / $787.8M valuation' for 2024) - not credible sources and post-date the deal, so nothing can be computed."},
+  "verdict": "not_available",
+  "sources": [
+    {"title": "Odessa announces investment from Thomas H. Lee Partners (PR Newswire, Sep 15, 2021)", "url": "https://www.prnewswire.com/news-releases/odessa-announces-investment-from-thomas-h-lee-partners-to-accelerate-growth-301376988.html"},
+    {"title": "THL - Odessa announces investment from Thomas H. Lee Partners", "url": "https://thl.com/articles/odessa-announces-investment-from-thomas-h-lee-partners-to-accelerate-growth/"},
+    {"title": "Odessa newsroom announcement", "url": "https://www.odessainc.com/newsroom/odessa-announces-investment-from-thomas-h-lee-partners-to-accelerate-growth/"}
+  ],
+  "notes": "Entities verified per hint: Odessa Technologies, asset finance / equipment leasing software (Odessa Platform), investment announced Sep 15, 2021. Press language is 'investment ... to accelerate growth'; stake size undisclosed, so classified minority/growth (some databases log it as a PE growth round). Deal value and target financials are simply not public."
+}

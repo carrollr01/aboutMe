@@ -1,0 +1,31 @@
+{
+  "deal_id": "oakley-glas",
+  "acquirer": "Oakley Capital (Fund VI), with La Caisse (formerly CDPQ) as minority co-investor",
+  "target": "GLAS (Global Loan Agency Services)",
+  "announced": "2026-01",
+  "deal_type": "acquisition",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": false, "value_usd_m": 1340, "notes": "Not disclosed by the parties. Sky News (via MarketScreener) reported a ~$1.35bn deal ('over GBP 1bn'); Mergersight analysis cites implied EV of ~$1.34bn. Majority stake to Oakley, minority to La Caisse, Levine Leichtman Capital Partners retains a small stake. Oakley Capital Investments' (OCI) indirect contribution is up to ~GBP 55M (not the deal value)."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": true, "value": "~12.4x", "basis": "EV / LTM revenue, per Mergersight analysis (student-run M&A review, not a tier-1/trade source; see notes)", "source_url": "https://www.mergersight.com/post/oakley-capital-s-1-34bn-acquisition-of-glas"},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~9-12x EV / LTM revenue (own arithmetic ~9.2x; Mergersight states ~12.4x)",
+    "calculation": "Press-reported EV ~US$1.34bn / LTM revenue ~GBP 115M (~US$146M at ~1.27 USD/GBP) = ~9.2x. Mergersight itself states ~12.4x LTM EV/Revenue, which would imply ~US$108M LTM revenue - the two published figures do not reconcile.",
+    "inputs": [
+      "Implied EV ~$1.34bn and LTM revenue ~GBP 115M, LTM EV/Revenue ~12.4x - Mergersight: https://www.mergersight.com/post/oakley-capital-s-1-34bn-acquisition-of-glas",
+      "~$1.35bn deal per Sky News - MarketScreener: https://www.marketscreener.com/news/oakley-capital-to-acquire-glas-in-1-35-billion-deal-sky-news-reports-ce7e59d9d089ff21",
+      "40% organic revenue growth, 50% EBITDA growth over 3 years, >$750bn assets under administration, OCI contribution up to ~GBP 55M - Oakley Capital press release: https://www.oakleycapital.com/news-and-insights/oakley-capital-and-la-caisse-invest-in-institutional-debt-administration-provider-glas"
+    ],
+    "caveats": "Deal value is press-reported (Sky News), not confirmed by the parties; GLAS LTM revenue appears only in a secondary analysis (Mergersight) and conflicts internally with that analysis's own 12.4x multiple; official releases give only growth rates and AUA, no absolute financials."
+  },
+  "verdict": "partially_calculable",
+  "sources": [
+    {"title": "Oakley Capital press release - Oakley Capital and La Caisse invest in institutional debt administration provider GLAS (Jan 5, 2026)", "url": "https://www.oakleycapital.com/news-and-insights/oakley-capital-and-la-caisse-invest-in-institutional-debt-administration-provider-glas"},
+    {"title": "La Caisse press release - Oakley Capital and La Caisse invest in GLAS", "url": "https://www.lacaisse.com/en/news/pressreleases/oakley-capital-caisse-invest-institutional-debt-administration-provider-glas"},
+    {"title": "MarketScreener - UK's Oakley Capital to take majority stake in GLAS in $1.35 billion deal, Sky News reports", "url": "https://www.marketscreener.com/news/oakley-capital-to-acquire-glas-in-1-35-billion-deal-sky-news-reports-ce7e59d9d089ff21"},
+    {"title": "Mergersight - Oakley Capital's $1.34bn Acquisition of GLAS", "url": "https://www.mergersight.com/post/oakley-capital-s-1-34bn-acquisition-of-glas"},
+    {"title": "Investegate - Oakley Capital invests in GLAS (OCI announcement)", "url": "https://www.investegate.co.uk/announcement/rns/oakley-capital-investments-ltd-di---oci/oakley-capital-invests-in-glas/9332308"}
+  ],
+  "notes": "GLAS confirmed as Global Loan Agency Services (loan administration and bond trustee services), founded 2011 by Mia Drennan and Brian Carne; announced Jan 5, 2026. A revenue multiple (~12.4x LTM EV/Revenue) was published only by Mergersight, a student-run analysis site - not a credible tier per verdict rules, so the verdict is partially_calculable rather than published. Mergersight's stated multiple and its stated GBP 115M LTM revenue are mutually inconsistent against the $1.34bn EV; the page could not be fetched full-text (proxy 403) to resolve which figure is misquoted. Beware the Investing.com headline 'up to GBP 55 million' - that is OCI's fund-level contribution, not the transaction value."
+}

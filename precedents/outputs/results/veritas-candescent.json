@@ -1,0 +1,31 @@
+{
+  "deal_id": "veritas-candescent",
+  "acquirer": "Veritas Capital",
+  "target": "NCR Voyix digital banking business (rebranded Candescent)",
+  "announced": "2024-08",
+  "deal_type": "carve-out",
+  "identification_confidence": "high",
+  "deal_value": {"disclosed": true, "value_usd_m": 2450, "notes": "US$2.45B cash purchase price plus future contingent consideration of up to US$100M (up to ~$2.55B total). Announced Aug 6, 2024 alongside NCR Voyix Q2 2024 results; completed Sep 30, 2024; business rebranded Candescent."},
+  "ev_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "revenue_multiple": {"published": false, "value": null, "basis": null, "source_url": null},
+  "calculable": {
+    "possible": true,
+    "implied_multiple": "~4.2x EV/Revenue (FY2023 segment revenue); ~11x EV/Adj. EBITDA (soft)",
+    "calculation": "$2,450M / ~$579M FY2023 Digital Banking segment revenue = ~4.2x (~4.4x if the full $100M contingent consideration pays out). EBITDA cross-check: ~38% segment adj. EBITDA margin per management commentary implies ~$220M, giving $2,450M / ~$220M = ~11x.",
+    "inputs": [
+      "Purchase price $2.45B + up to $100M contingent - Veritas Capital: https://www.veritascapital.com/ncr-voyix-enters-definitive-agreement-to-sell-digital-banking-to-veritas-capital-for-245-billion-purchase-price/ and BusinessWire completion release: https://www.businesswire.com/news/home/20240930825006/en/Veritas-Capital-Completes-Acquisition-of-NCR-Voyixs-Digital-Banking-Business-Rebranding-Business-as-Candescent",
+      "FY2023 Digital Banking revenue ~$579M and ~1,300 FI clients - press coverage of NCR Voyix's segment disclosures, e.g. https://paymentsindustryintelligence.com/ncr-voyix-sells-to-veritas-for-2-45-billion/ (seller is SEC-reporting; segment detail in NCR Voyix 10-K: https://www.sec.gov/Archives/edgar/data/0000070866/000007086624000014/ncr-20231231.htm)",
+      "~38% Digital Banking adj. EBITDA margin - NCR Voyix earnings-call commentary via https://www.investing.com/news/stock-market-news/earnings-call-ncr-voyix-reports-growth-in-software-and-services-for-2023-93CH-3322132"
+    ],
+    "caveats": "SEC.gov and BusinessWire pages were blocked by the network proxy, so the exact 10-K segment figures could not be re-verified on-page; the ~$579M FY2023 revenue is from press coverage of the seller's disclosures (some reports cite $577-579M). EBITDA input is derived from a margin comment, not a stated dollar figure - the ~11x EBITDA multiple is soft. Contingent consideration up to $100M excluded from headline multiple."
+  },
+  "verdict": "calculable",
+  "sources": [
+    {"title": "Veritas Capital - NCR Voyix enters definitive agreement to sell Digital Banking for $2.45B", "url": "https://www.veritascapital.com/ncr-voyix-enters-definitive-agreement-to-sell-digital-banking-to-veritas-capital-for-245-billion-purchase-price/"},
+    {"title": "BusinessWire - Veritas Capital completes acquisition, rebrands business as Candescent (Sep 30, 2024)", "url": "https://www.businesswire.com/news/home/20240930825006/en/Veritas-Capital-Completes-Acquisition-of-NCR-Voyixs-Digital-Banking-Business-Rebranding-Business-as-Candescent"},
+    {"title": "Bloomberg - Veritas Capital Strikes $2.45 Billion Deal for NCR Voyix Unit", "url": "https://www.bloomberg.com/news/articles/2024-08-06/veritas-is-said-to-near-2-45-billion-deal-for-ncr-voyix-unit"},
+    {"title": "Payments Industry Intelligence - NCR Voyix sells to Veritas for $2.45 billion", "url": "https://paymentsindustryintelligence.com/ncr-voyix-sells-to-veritas-for-2-45-billion/"},
+    {"title": "NCR Voyix 10-K FY2023 (segment financials)", "url": "https://www.sec.gov/Archives/edgar/data/0000070866/000007086624000014/ncr-20231231.htm"}
+  ],
+  "notes": "Entities as hinted: Veritas Capital acquired NCR Voyix's (NYSE: VYX) Digital Banking segment, renamed Candescent, announced Aug 6, 2024 for $2.45B + up to $100M contingent. No explicit multiple found stated in credible coverage within search budget, but seller is public with segment financials disclosed, so an EV/Revenue multiple of ~4.2x is computable; EBITDA-based ~11x is indicative only. Exact segment revenue ($577M vs $579M across reports) unverified against the 10-K due to proxy block - rounding does not change the ~4.2x result."
+}
