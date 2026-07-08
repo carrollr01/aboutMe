@@ -15,9 +15,10 @@ Usage:
     python3 research_multiples.py --summarize-only # rebuild CSV/MD from saved results
 
 Requires: pip install anthropic, and ANTHROPIC_API_KEY in the environment
-(or an `ant auth login` profile). Each deal costs roughly $0.50-1.50 in API
-usage (web searches + Opus tokens); results are saved per-deal under
-outputs/results/ so an interrupted run resumes where it left off.
+(or an `ant auth login` profile). Each deal is capped at 3 web searches and
+runs at medium effort, so expect roughly $0.10-0.30 per deal; results are
+saved per-deal under outputs/results/ so an interrupted run resumes where it
+left off.
 """
 
 import argparse
@@ -35,7 +36,7 @@ SUMMARY_MD = HERE / "outputs" / "deal_multiples_summary.md"
 
 MODEL = "claude-opus-4-8"
 MAX_TOKENS = 16000
-MAX_SEARCHES_PER_DEAL = 10
+MAX_SEARCHES_PER_DEAL = 3  # hard cap; the dominant cost is search-result tokens
 MAX_PAUSE_CONTINUATIONS = 5
 
 SYSTEM_PROMPT = """\
@@ -62,6 +63,17 @@ calculated from published information. Work through these steps:
    press, not company-confirmed", "deal value includes earnout").
 4. Prefer primary sources. Cite a URL for every figure you rely on. If reports
    conflict, say so and cite both.
+
+SEARCH BUDGET: you have at most <<MAX_SEARCHES>> web searches - plan them, do
+not browse. Typically: (1) one query naming both parties to confirm the deal
+and its value ("<acquirer> acquires <target> deal value"), (2) one query aimed
+at the multiple or the target's financials ("<target> acquisition revenue
+multiple" or "<target> ARR revenue"). Spend any remaining search only on one
+specific missing figure. Read the result snippets carefully before searching
+again - most of what you need is usually in the first set of results. If the
+budget runs out before every figure is verified, report what you found, lower
+identification_confidence accordingly, and say in "notes" what remains
+unverified - never fill gaps by guessing.
 
 Finish your reply with EXACTLY ONE fenced JSON block (```json ... ```) matching
 this schema - no other fenced blocks after it:
@@ -109,11 +121,12 @@ undisclosed earnout, unclear period); "not_available" if deal value or target
 financials are simply not public.\
 """
 
-WEB_SEARCH_TOOL = {
-    "type": "web_search_20260209",
-    "name": "web_search",
-    "max_uses": MAX_SEARCHES_PER_DEAL,
-}
+def web_search_tool(max_searches: int) -> dict:
+    return {
+        "type": "web_search_20260209",
+        "name": "web_search",
+        "max_uses": max_searches,
+    }
 
 
 def load_deals() -> list[dict]:
@@ -147,17 +160,19 @@ def extract_json_block(text: str) -> dict:
     return json.loads(blocks[-1])
 
 
-def research_deal(client, deal: dict) -> dict:
+def research_deal(client, deal: dict, max_searches: int) -> dict:
     """One research pass for one deal, handling pause_turn continuations."""
     messages = [{"role": "user", "content": build_user_prompt(deal)}]
+    system = SYSTEM_PROMPT.replace("<<MAX_SEARCHES>>", str(max_searches))
 
     for _ in range(MAX_PAUSE_CONTINUATIONS + 1):
         response = client.messages.create(
             model=MODEL,
             max_tokens=MAX_TOKENS,
             thinking={"type": "adaptive"},
-            system=SYSTEM_PROMPT,
-            tools=[WEB_SEARCH_TOOL],
+            output_config={"effort": "medium"},  # cheaper; raise if quality slips
+            system=system,
+            tools=[web_search_tool(max_searches)],
             messages=messages,
         )
         if response.stop_reason == "pause_turn":
@@ -184,7 +199,7 @@ def research_deal(client, deal: dict) -> dict:
     return result
 
 
-def run_research(deals: list[dict], force: bool, limit: int | None) -> None:
+def run_research(deals: list[dict], force: bool, limit: int | None, max_searches: int) -> None:
     import anthropic  # deferred so --dry-run / --summarize-only work without the SDK
 
     client = anthropic.Anthropic(max_retries=4)
@@ -206,7 +221,7 @@ def run_research(deals: list[dict], force: bool, limit: int | None) -> None:
         label = f"{deal['acquirer']} / {deal['target']}"
         print(f"[{i}/{len(pending)}] {label} ...", flush=True)
         try:
-            result = research_deal(client, deal)
+            result = research_deal(client, deal, max_searches)
         except anthropic.RateLimitError:
             print("  rate limited past SDK retries - stopping; re-run to resume.")
             failures.append(deal["id"])
@@ -304,6 +319,8 @@ def main() -> int:
     parser.add_argument("--deal", help="research a single deal by id")
     parser.add_argument("--limit", type=int, help="cap the number of deals this run")
     parser.add_argument("--force", action="store_true", help="re-run deals that already have results")
+    parser.add_argument("--max-searches", type=int, default=MAX_SEARCHES_PER_DEAL,
+                        help=f"web-search cap per deal (default {MAX_SEARCHES_PER_DEAL}; raise for a stubborn deal)")
     parser.add_argument("--dry-run", action="store_true", help="show the plan without calling the API")
     parser.add_argument("--summarize-only", action="store_true", help="rebuild the summary from saved results")
     args = parser.parse_args()
@@ -330,7 +347,7 @@ def main() -> int:
         return 0
 
     if not args.summarize_only:
-        run_research(deals, force=args.force, limit=args.limit)
+        run_research(deals, force=args.force, limit=args.limit, max_searches=args.max_searches)
 
     build_summary(load_deals())
     return 0

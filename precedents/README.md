@@ -41,9 +41,13 @@ A failed deal is reported and simply retried on the next invocation.
 
 ## Cost & model notes
 
-- Model: `claude-opus-4-8` with adaptive thinking and the `web_search_20260209`
-  server tool (max 10 searches per deal).
-- Expect roughly **$0.50–1.50 per deal** (~$20–50 for the full 34), dominated by
+- Model: `claude-opus-4-8` with adaptive thinking at **medium effort** and the
+  `web_search_20260209` server tool, hard-capped at **3 searches per deal**
+  (`--max-searches N` to raise it for a stubborn deal).
+- The prompt makes the model plan its queries (one to confirm the deal, one for
+  the multiple/financials, one held in reserve) instead of browsing, and to
+  report unverified gaps in `notes` rather than burning searches or guessing.
+- Expect roughly **$0.10–0.30 per deal** (~$4–10 for the full 34), dominated by
   Opus input tokens from search results. Use `--limit` to batch.
 - The model is instructed to *verify* the search hints, not assume them — the
   per-deal JSON records how each typo/swap was resolved and its
