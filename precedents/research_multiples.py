@@ -33,6 +33,7 @@ DEALS_FILE = HERE / "deals.json"
 RESULTS_DIR = HERE / "outputs" / "results"
 SUMMARY_CSV = HERE / "outputs" / "deal_multiples_summary.csv"
 SUMMARY_MD = HERE / "outputs" / "deal_multiples_summary.md"
+SUMMARY_XLSX = HERE / "outputs" / "deal_multiples_summary.xlsx"
 
 MODEL = "claude-opus-4-8"
 MAX_TOKENS = 16000
@@ -312,6 +313,110 @@ def build_summary(deals: list[dict]) -> None:
     lines += ["", "Full detail (sources, calculations, caveats) per deal in `outputs/results/*.json`.", ""]
     SUMMARY_MD.write_text("\n".join(lines), encoding="utf-8")
     print(f"Wrote {SUMMARY_CSV.relative_to(HERE)} and {SUMMARY_MD.relative_to(HERE)}")
+    build_xlsx(deals)
+
+
+def build_xlsx(deals: list[dict]) -> None:
+    """Excel roll-up with hyperlinked sources: one summary sheet + an all-sources sheet."""
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+        from openpyxl.utils import get_column_letter
+    except ImportError:
+        print("openpyxl not installed - skipped xlsx export (pip install openpyxl)")
+        return
+
+    header_font = Font(bold=True, color="FFFFFF")
+    header_fill = PatternFill("solid", fgColor="1F4E79")
+    link_font = Font(color="0563C1", underline="single")
+    wrap = Alignment(wrap_text=True, vertical="top")
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Deal Multiples"
+    headers = [
+        "Acquirer", "Target", "Announced", "Deal Type", "Verdict",
+        "Deal Value ($M)", "EV Multiple (published)", "Revenue Multiple (published)",
+        "Implied Multiple (calculated)", "Calculation", "Caveats", "Source", "Notes",
+    ]
+    widths = [24, 24, 11, 15, 20, 14, 24, 24, 24, 50, 40, 34, 50]
+    ws.append(headers)
+    for cell in ws[1]:
+        cell.font, cell.fill = header_font, header_fill
+    for i, w in enumerate(widths, 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+    ws.freeze_panes = "A2"
+
+    src_ws = wb.create_sheet("All Sources")
+    src_ws.append(["Deal", "Source", "URL"])
+    for cell in src_ws[1]:
+        cell.font, cell.fill = header_font, header_fill
+    for col, w in zip("ABC", [44, 60, 80]):
+        src_ws.column_dimensions[col].width = w
+    src_ws.freeze_panes = "A2"
+
+    def published_str(m: dict) -> str:
+        return f"{m.get('value')} ({m.get('basis')})" if m.get("published") else ""
+
+    for deal in deals:
+        path = result_path(deal["id"])
+        if not deal.get("research", True) or not path.exists():
+            status = "excluded" if not deal.get("research", True) else "pending"
+            ws.append([deal["acquirer"], deal["target"], "", "", status,
+                       "", "", "", "", "", "", "", deal.get("search_hints", "")])
+            continue
+
+        r = json.loads(path.read_text(encoding="utf-8"))
+        ev = r.get("ev_multiple") or {}
+        rev = r.get("revenue_multiple") or {}
+        calc = r.get("calculable") or {}
+        sources = r.get("sources") or []
+        label = f"{r.get('acquirer', deal['acquirer'])} / {r.get('target', deal['target'])}"
+
+        # primary source: the published multiple's citation, else the first source
+        primary_url = (
+            (ev.get("source_url") if ev.get("published") else None)
+            or (rev.get("source_url") if rev.get("published") else None)
+            or (sources[0].get("url") if sources else None)
+        )
+        primary_title = next(
+            (s.get("title") for s in sources if s.get("url") == primary_url and s.get("title")),
+            primary_url,
+        )
+
+        ws.append([
+            r.get("acquirer", deal["acquirer"]),
+            r.get("target", deal["target"]),
+            r.get("announced") or "",
+            r.get("deal_type") or "",
+            r.get("verdict") or "",
+            (r.get("deal_value") or {}).get("value_usd_m"),
+            published_str(ev),
+            published_str(rev),
+            calc.get("implied_multiple") or "",
+            calc.get("calculation") or "",
+            calc.get("caveats") or "",
+            primary_title or "",
+            r.get("notes") or "",
+        ])
+        row = ws.max_row
+        for cell in ws[row]:
+            cell.alignment = wrap
+        if primary_url:
+            src_cell = ws.cell(row=row, column=headers.index("Source") + 1)
+            src_cell.hyperlink = primary_url
+            src_cell.font = link_font
+
+        for s in sources:
+            src_ws.append([label, s.get("title") or "", s.get("url") or ""])
+            url_cell = src_ws.cell(row=src_ws.max_row, column=3)
+            if s.get("url"):
+                url_cell.hyperlink = s["url"]
+                url_cell.font = link_font
+
+    ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{ws.max_row}"
+    wb.save(SUMMARY_XLSX)
+    print(f"Wrote {SUMMARY_XLSX.relative_to(HERE)}")
 
 
 def main() -> int:

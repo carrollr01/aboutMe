@@ -12,7 +12,7 @@ layer.
 | `deals.json` | The deduped deal list: 43 source rows → **35 unique deals** (34 researchable + 1 confidential "Project Lion"). Preserves original spellings in `as_given` and flags suspected typos / swapped parties in `search_hints` (e.g. CloudVerga→CloudVirga, Atlus→Altus, Walker Dunlap→Walker & Dunlop, Technisys/SoFi order swap). |
 | `research_multiples.py` | The research script. For each deal it runs one Claude (`claude-opus-4-8`) pass with the server-side web-search tool: verify the parties → look for a published multiple (press release, investor deck, filing, reputable press) → if none, check whether deal value + target revenue/ARR/EBITDA are both public and compute the implied multiple → cite every figure. |
 | `outputs/results/*.json` | One structured result per deal (verdict, multiples, calculation, sources, caveats). |
-| `outputs/deal_multiples_summary.csv` / `.md` | Roll-up across all deals, rebuilt after every run. |
+| `outputs/deal_multiples_summary.csv` / `.md` / `.xlsx` | Roll-up across all deals, rebuilt after every run. The `.xlsx` (needs `openpyxl`) has a hyperlinked primary source per deal plus an "All Sources" tab with every citation. |
 
 ## Running it
 
