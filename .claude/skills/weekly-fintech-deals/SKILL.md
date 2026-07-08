@@ -6,8 +6,8 @@ description: Build the weekly FinTech deals workbook. Use when the user asks to 
 # Weekly FinTech Deals Workbook
 
 Compile the week's FinTech **control M&A** and **growth equity raises** into a two-tab Excel
-matching the finalized deal database (`Finalized_Deals_History.xlsx` in the repo — the
-canonical precedent for every rule below).
+matching the finalized deal database (`weekly-deals/Finalized_Deals_History.xlsx` in the
+repo — the canonical precedent for every rule below).
 
 ## The week
 Saturday→Friday, named by ending Friday. A deal qualifies ONLY if its **announcement date**
@@ -63,7 +63,8 @@ Tab 2 **"Growth Capital Raises"**:
   publicly knowable (Seller from the release, Public Deal = listed target, HL Deal only if
   HL is named); "-" otherwise.
 - Dates DD-Mmm-YY. Link cell shows "Link" hyperlinked. Rows ordered sector-alpha, then date.
-- Build: `python3 .claude/skills/weekly-fintech-deals/build_workbook.py deals.json "Weekly_Fintech_Deals_<endingFriday>.xlsx"`
+- Build: `python3 .claude/skills/weekly-fintech-deals/build_workbook.py weekly-deals/inputs/deals_<endingFriday>.json "weekly-deals/outputs/Weekly_Fintech_Deals_<endingFriday>.xlsx"`
+  (deals JSON lives in `weekly-deals/inputs/`, finished workbooks in `weekly-deals/outputs/`)
 
 ## Descriptions
 Follow `description-style.md` (rewritten from the user's actual edits). Core: short,

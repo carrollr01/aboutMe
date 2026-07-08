@@ -4,7 +4,8 @@
 Run the weekly FinTech deals scan for the MOST RECENTLY COMPLETED week using the
 weekly-fintech-deals skill in this repo (.claude/skills/weekly-fintech-deals/ — read
 SKILL.md and description-style.md first; the finalized precedent DB is
-Finalized_Deals_History.xlsx). Work autonomously; state assumptions instead of asking.
+weekly-deals/Finalized_Deals_History.xlsx). Work autonomously; state assumptions instead
+of asking.
 
 0) WEEK: Sat→Fri, named by its ending Friday (most recent Friday passed). State the window.
    ANNOUNCEMENT date governs — verify every date; exclude prior-week deals even if this
@@ -38,7 +39,8 @@ Finalized_Deals_History.xlsx). Work autonomously; state assumptions instead of a
    HL Deal/Seller — fill what's publicly knowable, "-" otherwise; leave x empty).
    Descriptions per description-style.md: short, product-first, no client-count padding;
    borderline names carry the fintech angle AND the traditional business.
-   Name: Weekly_Fintech_Deals_YYYY-MM-DD.xlsx (ending-Friday date).
+   Name: Weekly_Fintech_Deals_YYYY-MM-DD.xlsx (ending-Friday date), saved to
+   weekly-deals/outputs/ (deals JSON to weekly-deals/inputs/).
 
 5) DELIVER: send the file; commit+push. Summary must include counts, headliners, computed
    multiples, borderline calls, AND a list of notable deals you EXCLUDED with the reason

@@ -1,6 +1,6 @@
 # Target description — style guide (rebuilt from the finalized DB)
 
-The canonical reference is `Finalized_Deals_History.xlsx` (650+ curated descriptions).
+The canonical reference is `weekly-deals/Finalized_Deals_History.xlsx` (650+ curated descriptions).
 Rules below are derived from the user's actual edits to generated drafts.
 
 ## Core rules
