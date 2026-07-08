@@ -1,0 +1,285 @@
+{
+  "description": "Deduped precedent-deal list for valuation-multiple research. 43 source rows deduped to 35 unique deals. 'as_given' preserves the original spellings from the source list; 'search_hints' carries canonical names / suspected typo fixes for the researcher to verify via web search, not to assume.",
+  "deals": [
+    {
+      "id": "apex-coda",
+      "acquirer": "Apex Fintech Solutions",
+      "target": "Coda",
+      "as_given": ["Apex FinTech Solutions / Coda", "Apex FinTech Solutions / Coda", "Apex Fintech Solutions / Coda"],
+      "search_hints": "Likely Coda Markets (broker-dealer / order routing). Appeared 3x in source list.",
+      "research": true
+    },
+    {
+      "id": "porch-floify",
+      "acquirer": "Porch",
+      "target": "Floify",
+      "as_given": ["Porch / Floify"],
+      "search_hints": "Porch Group (NASDAQ: PRCH) acquisition of Floify (mortgage point-of-sale software), announced 2021.",
+      "research": true
+    },
+    {
+      "id": "clearlake-sharpspring",
+      "acquirer": "Constant Contact / Clearlake",
+      "target": "SharpSpring",
+      "as_given": ["Constant Contact / Clearlake / SharpSpring"],
+      "search_hints": "Constant Contact (backed by Clearlake Capital and Siris) acquisition of SharpSpring (NASDAQ: SHSP), announced 2021. Public-target deal, so financials should be on file.",
+      "research": true
+    },
+    {
+      "id": "stewart-cloudvirga",
+      "acquirer": "Stewart",
+      "target": "CloudVirga",
+      "as_given": ["Stewart / CloudVerga", "Stewart / CloudVirga"],
+      "search_hints": "Stewart Information Services (NYSE: STC) acquisition of CloudVirga (digital mortgage POS). 'CloudVerga' in the source list is a typo. Appeared 2x in source list.",
+      "research": true
+    },
+    {
+      "id": "inflexion-infront",
+      "acquirer": "Inflexion",
+      "target": "Infront",
+      "as_given": ["Inflexion / Infront"],
+      "search_hints": "Inflexion Private Equity and Infront (likely Infront ASA, Nordic financial market data / terminal provider). Verify the entity and transaction via search.",
+      "research": true
+    },
+    {
+      "id": "oakley-glas",
+      "acquirer": "Oakley Capital",
+      "target": "GLAS",
+      "as_given": ["Oakley Capital / glas"],
+      "search_hints": "GLAS = Global Loan Agency Services (loan agency / bond trustee services).",
+      "research": true
+    },
+    {
+      "id": "oceansound-afs",
+      "acquirer": "OceanSound Partners",
+      "target": "AFS",
+      "as_given": ["Oceansound / AFS"],
+      "search_hints": "Likely Automated Financial Systems, Inc. (AFS, commercial lending software). Verify entity.",
+      "research": true
+    },
+    {
+      "id": "centerbridge-meridianlink",
+      "acquirer": "Centerbridge",
+      "target": "MeridianLink",
+      "as_given": ["Centerbridge / Meridian Link", "Centerbridge, Bridgeport / Meridian Link"],
+      "search_hints": "Centerbridge Partners take-private of MeridianLink (NYSE: MLNK), announced 2025. Public-target deal - proxy/merger docs should allow multiple calculation. Appeared 2x in source list.",
+      "research": true
+    },
+    {
+      "id": "ta-solifi",
+      "acquirer": "TA Associates",
+      "target": "Solifi",
+      "as_given": ["TA Associates / Solifi", "TA Associates / Solifi"],
+      "search_hints": "Solifi (secured-finance / equipment-finance software, formerly IDS). Appeared 2x in source list.",
+      "research": true
+    },
+    {
+      "id": "axway-sopra-banking",
+      "acquirer": "Axway",
+      "target": "Sopra Banking",
+      "as_given": ["Axway / Sopra Banking"],
+      "search_hints": "Axway acquisition of Sopra Banking Software (SBS) from Sopra Steria, announced 2024. French listed parties - transaction terms were published.",
+      "research": true
+    },
+    {
+      "id": "thl-odessa",
+      "acquirer": "THL",
+      "target": "Odessa",
+      "as_given": ["THL / Odessa", "THL / Odessa"],
+      "search_hints": "Thomas H. Lee Partners investment in Odessa Technologies (asset finance / leasing software), 2021. Appeared 2x in source list.",
+      "research": true
+    },
+    {
+      "id": "veritas-candescent",
+      "acquirer": "Veritas Capital",
+      "target": "Candescent",
+      "as_given": ["Veritas Capital / Candescent", "Veritas Capital / Candescent", "Veritas Capital / Candescent"],
+      "search_hints": "Veritas Capital acquisition of NCR Voyix's digital banking business (renamed Candescent), announced 2024 (~$2.45B + contingent). Seller was public - segment financials disclosed. Appeared 3x in source list.",
+      "research": true
+    },
+    {
+      "id": "rocket-mrcooper",
+      "acquirer": "Rocket Companies",
+      "target": "Mr. Cooper",
+      "as_given": ["Rocket Companies / Mr. Cooper"],
+      "search_hints": "Rocket Companies all-stock acquisition of Mr. Cooper Group (NASDAQ: COOP), announced 2025 (~$9.4B). Both public - multiples calculable from filings.",
+      "research": true
+    },
+    {
+      "id": "blackstone-inhabit",
+      "acquirer": "Blackstone",
+      "target": "Inhabit",
+      "as_given": ["Blackstone / Inhabit"],
+      "search_hints": "Inhabit (aka Inhabit IQ, property-management software). Verify Blackstone/Goldman investment, ~2021.",
+      "research": true
+    },
+    {
+      "id": "altus-situsamc",
+      "acquirer": "Altus Group",
+      "target": "SitusAMC",
+      "as_given": ["Atlus Group / SitusAMC"],
+      "search_hints": "'Atlus' in the source list is likely Altus Group (TSX: AIF). Verify the transaction between Altus Group and SitusAMC (real estate valuation/mortgage services) including direction - one party may have acquired a business unit of the other.",
+      "research": true
+    },
+    {
+      "id": "costar-onthemarket",
+      "acquirer": "CoStar Group",
+      "target": "OnTheMarket",
+      "as_given": ["CoStar Group / OnTheMarket"],
+      "search_hints": "CoStar acquisition of OnTheMarket plc (UK property portal, AIM-listed), announced 2023 (~GBP 99M). Public target - Rule 2.7 announcement has terms.",
+      "research": true
+    },
+    {
+      "id": "constellation-optimalblue",
+      "acquirer": "Constellation Software",
+      "target": "Optimal Blue",
+      "as_given": ["Constellation Software / OptimalBlue"],
+      "search_hints": "Constellation Software (Perseus) acquisition of Optimal Blue from Black Knight, 2024 (~$700M) - a divestiture required by the ICE / Black Knight merger. Terms published.",
+      "research": true
+    },
+    {
+      "id": "fnf-titlepoint",
+      "acquirer": "Fidelity National Financial",
+      "target": "Black Knight TitlePoint",
+      "as_given": ["National Financial / Black Knight Title Point"],
+      "search_hints": "'National Financial' in the source list is likely Fidelity National Financial (FNF). FNF acquired TitlePoint (title search software) from Black Knight, announced late 2022 / closed 2023 (~$225M).",
+      "research": true
+    },
+    {
+      "id": "voxtur-bluewater",
+      "acquirer": "Voxtur",
+      "target": "Blue Water Financial Technologies",
+      "as_given": ["Voxtur / Blue Water Financial Technologies"],
+      "search_hints": "Voxtur Analytics (TSXV: VXTR) acquisition of Blue Water Financial Technologies, 2021. Canadian listed acquirer - deal terms in press release / filings.",
+      "research": true
+    },
+    {
+      "id": "stewart-informative-research",
+      "acquirer": "Stewart",
+      "target": "Informative Research",
+      "as_given": ["Stewart / Informative Research"],
+      "search_hints": "Stewart Information Services acquisition of Informative Research (credit and verification services), 2021.",
+      "research": true
+    },
+    {
+      "id": "blend-title365",
+      "acquirer": "Blend",
+      "target": "Title365",
+      "as_given": ["Blend / Title 365"],
+      "search_hints": "Blend Labs acquisition of Title365 from Mr. Cooper, 2021 (~$422M for 90.1%). Both parties public / soon-to-be-public - financials disclosed in Blend's S-1 and filings.",
+      "research": true
+    },
+    {
+      "id": "ideanomics-timios",
+      "acquirer": "Ideanomics",
+      "target": "Timios",
+      "as_given": ["Ideanomics / Timios"],
+      "search_hints": "Ideanomics (NASDAQ: IDEX) acquisition of Timios Holdings (title and escrow), announced January 2021. Acquirer public - 8-K should have terms.",
+      "research": true
+    },
+    {
+      "id": "stg-alveo",
+      "acquirer": "STG",
+      "target": "Alveo",
+      "as_given": ["STG / Alveo"],
+      "search_hints": "STG = Symphony Technology Group. Alveo (financial data management, formerly Asset Control). Verify transaction and date.",
+      "research": true
+    },
+    {
+      "id": "gemspring-goldensource",
+      "acquirer": "Gemspring Capital",
+      "target": "GoldenSource",
+      "as_given": ["Gemspring Cap / GoldenSource"],
+      "search_hints": "Gemspring Capital acquisition of GoldenSource (EDM / reference data management), 2022.",
+      "research": true
+    },
+    {
+      "id": "meridianlink-openclose",
+      "acquirer": "MeridianLink",
+      "target": "OpenClose",
+      "as_given": ["Meridianlink / Open Close"],
+      "search_hints": "MeridianLink (NYSE: MLNK) acquisition of OpenClose (mortgage LOS/POS), 2022 (~$65M). Acquirer public - 8-K / press release has terms.",
+      "research": true
+    },
+    {
+      "id": "walkerdunlop-geophy",
+      "acquirer": "Walker & Dunlop",
+      "target": "GeoPhy",
+      "as_given": ["Walker Dunlap / Geophy"],
+      "search_hints": "'Walker Dunlap' is a typo for Walker & Dunlop (NYSE: WD). Acquired GeoPhy (CRE data / AVM), announced 2022 ($85M + earnout).",
+      "research": true
+    },
+    {
+      "id": "nasdaq-adenza",
+      "acquirer": "Nasdaq",
+      "target": "Adenza",
+      "as_given": ["Nasdaq / Adenza"],
+      "search_hints": "Nasdaq acquisition of Adenza (Calypso + AxiomSL) from Thoma Bravo, announced June 2023 ($10.5B). Investor presentation published revenue/ARR multiples explicitly.",
+      "research": true
+    },
+    {
+      "id": "project-lion-confidential",
+      "acquirer": "Project Lion",
+      "target": "Confidential",
+      "as_given": ["Project Lion / Confidential"],
+      "search_hints": "Confidential / code-named deal - no public identity to research.",
+      "research": false
+    },
+    {
+      "id": "apax-finastra",
+      "acquirer": "Apax",
+      "target": "Finastra",
+      "as_given": ["Apax / Finastra"],
+      "search_hints": "Likely Apax Partners' acquisition of Finastra's Treasury & Capital Markets (TCM) division, announced 2025 - verify whether the row means the TCM carve-out or another Apax/Finastra transaction.",
+      "research": true
+    },
+    {
+      "id": "sofi-technisys",
+      "acquirer": "SoFi",
+      "target": "Technisys",
+      "as_given": ["Technisys / Sofi"],
+      "search_hints": "Source row has the order swapped: SoFi Technologies (NASDAQ: SOFI) acquired Technisys (core banking) in an all-stock deal announced February 2022 (~$1.1B). Acquirer public - terms disclosed.",
+      "research": true
+    },
+    {
+      "id": "fiserv-finxact",
+      "acquirer": "Fiserv",
+      "target": "Finxact",
+      "as_given": ["Fiserv / Finxact"],
+      "search_hints": "Fiserv acquisition of the remainder of Finxact (cloud core banking), announced 2022 (~$650M for remaining ownership). Acquirer public.",
+      "research": true
+    },
+    {
+      "id": "ncino-simplenexus",
+      "acquirer": "nCino",
+      "target": "SimpleNexus",
+      "as_given": ["nCino / Simplenexus"],
+      "search_hints": "nCino (NASDAQ: NCNO) acquisition of SimpleNexus (mortgage POS), announced November 2021 (~$1.2B stock+cash). Acquirer public - investor deck disclosed target revenue.",
+      "research": true
+    },
+    {
+      "id": "motive-backbase",
+      "acquirer": "Motive Partners",
+      "target": "Backbase",
+      "as_given": ["Motive Partners / Backbase"],
+      "search_hints": "Motive Partners growth investment in Backbase (digital banking platform), 2024 (EUR 120M at ~EUR 2.5B valuation - verify). Minority/growth deal rather than full M&A.",
+      "research": true
+    },
+    {
+      "id": "ncino-fullcircl",
+      "acquirer": "nCino",
+      "target": "FullCircl",
+      "as_given": ["nCino / FullCircl"],
+      "search_hints": "nCino acquisition of FullCircl (UK client lifecycle intelligence / onboarding), announced 2024 (~$135M). Acquirer public - 8-K / press release has terms.",
+      "research": true
+    },
+    {
+      "id": "csi-apiture",
+      "acquirer": "CSI",
+      "target": "Apiture",
+      "as_given": ["CSI / Apiture"],
+      "search_hints": "CSI = Computer Services, Inc. (core banking, Centerbridge/Bridgeport-owned). Apiture = digital banking platform. Verify the transaction and date via search.",
+      "research": true
+    }
+  ]
+}
