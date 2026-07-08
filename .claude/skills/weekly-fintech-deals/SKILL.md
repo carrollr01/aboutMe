@@ -26,6 +26,9 @@ primary source; exclude prior-week deals even when this week's roundups carry th
 3. **Raises tab:** equity rounds **≥ $25M** (USD). Simultaneous combined tranches (e.g.
    seed+Series A announced together) count as one round at the combined total. **Minority /
    growth-equity investments belong HERE, not in M&A** (e.g. Carbon Underwriting/FTV).
+   The floor is machine-enforced: `amount` must be a JSON **number ≥ 25** — a round whose
+   total cannot be confirmed ≥ $25M cannot be entered at all; record it as an exclusion
+   with its reason instead.
 4. **M&A tab:** control transactions only, **no size floor** (small tuck-ins in).
    `Deal Type` is STRICTLY **"Strategic M&A"** or **"PE Buyout"** — zero temperature, no other
    strings (builder enforces). Adjacent deals (take-private by a strategic, JV-stake-to-100%,
@@ -65,6 +68,29 @@ Tab 2 **"Growth Capital Raises"**:
 - Dates DD-Mmm-YY. Link cell shows "Link" hyperlinked. Rows ordered sector-alpha, then date.
 - Build: `python3 .claude/skills/weekly-fintech-deals/build_workbook.py weekly-deals/inputs/deals_<endingFriday>.json "weekly-deals/outputs/Weekly_Fintech_Deals_<endingFriday>.xlsx"`
   (deals JSON lives in `weekly-deals/inputs/`, finished workbooks in `weekly-deals/outputs/`)
+- Every build first runs `validate_deals.py` (locked rules: sectors, week window, deal-type
+  enum, numeric ≥$25M raise floor, citation links) and refuses to write on any violation.
+  Check a file early with `python3 .claude/skills/weekly-fintech-deals/validate_deals.py <json>`.
+
+## Citation trace
+Every deal carries `link` (required, http/https) plus optional `source` (outlet name;
+derived from the link domain when absent) and `extra_links` (corroborating URLs). Each
+successful build writes `weekly-deals/citations/citations_<YYYY-MM-DD>.json` — one entry
+per deal (tab, target, date, source, link, mults source) plus the sha256 of the input
+JSON. Commit the manifest with the outputs; it is the audit trail for every number in the
+workbook. Manifests are builder-written only — never hand-edit them.
+
+## Enforcement & guardrails (do not bypass)
+- `validate_deals.py` is the single source of truth for the machine-checkable rules. It
+  runs three ways: standalone CLI, inside every `build_workbook.py` run, and via the
+  PostToolUse hook the moment a `weekly-deals/inputs/deals_*.json` is written.
+- A PreToolUse hook (`.claude/hooks/deals_guard.py`, wired in `.claude/settings.json`)
+  blocks in-session edits to the validator, builder, hooks, settings, and citation
+  manifests. If a locked rule genuinely needs to change, the human owner disables the
+  guard first (`/hooks`, or edit `.claude/settings.json` outside a session), makes the
+  change, and re-enables it.
+- Never respond to a validation failure by weakening or working around a check — fix the
+  data, or record the deal as an exclusion with its reason in the delivery summary.
 
 ## Descriptions
 Follow `description-style.md` (rewritten from the user's actual edits). Core: short,

@@ -14,8 +14,10 @@ of asking.
 1) SCOPE (locked rules — full detail in SKILL.md):
    - FinTech only (low bar but real: no traditional MGAs/carriers, RIA roll-ups, IT services).
    - Every deal needs a credible source or it's out.
-   - Raises tab: equity >= $25M USD; combined simultaneous tranches = one round;
-     minority/growth-equity investments go HERE, never in M&A.
+   - Raises tab: equity >= $25M USD; "amount" must be a JSON NUMBER >= 25 (the validator
+     rejects "-"/strings — a round whose total cannot be confirmed >= $25M is OUT; list it
+     as an exclusion); combined simultaneous tranches = one round; minority/growth-equity
+     investments go HERE, never in M&A.
    - M&A tab: control deals only, no size floor. Deal Type is STRICTLY "Strategic M&A" or
      "PE Buyout" (zero temperature); snap adjacent structures to the nearest and explain the
      nuance in the description. Exclude: minority stakes, team/book/asset deals, continuation
@@ -26,14 +28,20 @@ of asking.
    InsurTech.ME, DealStreetAsia, Entrackr, Crunchbase, Axios Pro) then sweep all 8 sectors and
    all regions (US, Europe, India, MENA, Africa, SEA, East Asia, LatAm, Canada/ANZ). Crypto
    M&A via The Block/CoinDesk. Public take-privates via SEC/press. Prefer direct web searches;
-   keep subagent fan-out modest (spend caps).
+   keep subagent fan-out modest (spend caps). Keep the citation for EVERY deal: "link"
+   (required) plus optional "source" (outlet) and "extra_links" — they feed the auto-written
+   citation manifest.
 
 3) FINANCIALS: public targets — compute EV/Rev and EV/EBITDA on true EV (net of cash);
    private — compute when disclosed. Record Mults Source + Mults Basis for every computed
    number. Flow metrics (TPV/volume/AUM/GWP/deposits) are never revenue. Undisclosed = "-".
    Negative EBITDA = "n.m.".
 
-4) OUTPUT: build with the skill's build_workbook.py (it enforces the schema):
+4) OUTPUT: build with the skill's build_workbook.py. It first runs validate_deals.py
+   (sectors, week window, deal-type enum, numeric >= $25M raise floor, citation links) and
+   REFUSES to build on any violation — fix the data, never the validator (enforcement files
+   are hook-locked). Each build also writes weekly-deals/citations/citations_<date>.json
+   (per-deal source + link, sha256 of the input) — commit it with the outputs.
    Tab "All M&A (PE & Strategic)" and tab "Growth Capital Raises", exact columns per SKILL.md
    (incl. Week auto-derived, and the meta columns Mults Source/Mults Basis/Public Deal/
    HL Deal/Seller — fill what's publicly knowable, "-" otherwise; leave x empty).

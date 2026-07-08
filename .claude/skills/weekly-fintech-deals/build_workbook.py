@@ -28,13 +28,24 @@ JSON schema:
 {
   "ma": [{ "sector","country","deal_type","date"("DD-Mmm-YY"),"target","acquirer",
            "ev","ev_rev","ev_ebitda","description","link",
-           "mults_source","mults_basis","public_deal","hl_deal","seller" }],
+           "mults_source","mults_basis","public_deal","hl_deal","seller",
+           optional: "source" (outlet name), "extra_links" ([urls]) }],
   "raises": [{ "sector","country","date","target","lead","amount","valuation",
-               "ev_rev","ev_ebitda","description","link" }]
+               "ev_rev","ev_ebitda","description","link",
+               optional: "source","extra_links" }]
 }
-Any numeric field may be a number or "-". Missing keys default to "-".
+Any numeric field may be a number or "-" — EXCEPT raises "amount", which must be
+a number >= 25 (locked floor; validate_deals.py refuses anything else).
+Missing keys default to "-".
+
+Every build first runs validate_deals.validate() (locked rules: sectors, week
+window, deal-type enum, raise floor, citation links) and refuses to write on any
+violation, then emits a citation manifest to weekly-deals/citations/
+citations_<YYYY-MM-DD>.json recording every deal's source + link and the
+sha256 of the input JSON.
 """
-import json, sys, datetime
+import json, os, sys, datetime
+import validate_deals
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -120,6 +131,13 @@ def main():
     out_path = sys.argv[2] if len(sys.argv) > 2 else "Weekly_Fintech_Deals.xlsx"
     with open(data_path) as f:
         data = json.load(f)
+    errors = validate_deals.validate(data, data_path)
+    if errors:
+        print(f"LOCKED-RULE VALIDATION FAILED — workbook NOT built ({len(errors)} violation(s)):",
+              file=sys.stderr)
+        for e in errors:
+            print(f"  - {e}", file=sys.stderr)
+        sys.exit(1)
     ma = sorted(data.get("ma", []), key=lambda r: (r.get("sector",""), r.get("date","")))
     ra = sorted(data.get("raises", []), key=lambda r: (r.get("sector",""), r.get("date","")))
     wb = Workbook()
@@ -130,7 +148,15 @@ def main():
     fill_sheet(ws2, RA_HEADERS, RA_KEYS, ra,
                [4, 10, 22, 14, 10, 18, 26, 11, 13, 11, 11, 46, 9])
     wb.save(out_path)
-    print(f"Wrote {out_path}: {len(ma)} M&A + {len(ra)} raises")
+    manifest = validate_deals.build_citation_manifest(data, data_path, out_path)
+    cit_dir = validate_deals.manifest_dir_for(out_path)
+    os.makedirs(cit_dir, exist_ok=True)
+    cit_path = os.path.join(cit_dir, f"citations_{manifest['week_ending']}.json")
+    with open(cit_path, "w") as f:
+        json.dump(manifest, f, indent=2)
+        f.write("\n")
+    print(f"Wrote {out_path}: {len(ma)} M&A + {len(ra)} raises; "
+          f"citation trace: {cit_path} ({manifest['citation_count']} citations)")
 
 
 if __name__ == "__main__":
