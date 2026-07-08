@@ -12,6 +12,7 @@ Inflexion/Infront (equity-only, annualized single quarter), Motive/Backbase
 or target financials. Full detail for every deal: outputs/results/*.json.
 """
 
+import json
 from pathlib import Path
 
 from openpyxl import Workbook
@@ -20,79 +21,100 @@ from openpyxl.utils import get_column_letter
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE / "outputs" / "Deal_Multiples.xlsx"
+RESULTS_DIR = HERE / "outputs" / "results"
 
-# (target, acquirer, rev multiple, ev multiple, implied (calculated), source title, source url)
+# (deal_id, target, acquirer, rev multiple, ev multiple, implied (calculated), source title, source url)
+# The Reasoning column is composed at build time from outputs/results/<deal_id>.json
+# (calculation, inputs with their source URLs, caveats) so it always matches the research record.
 ROWS = [
     # -- multiples published --
-    ("Adenza", "Nasdaq",
+    ("nasdaq-adenza", "Adenza", "Nasdaq",
      "~18x 2023E revenue", "~31x 2023E EBITDA", "",
      "CNBC (deal coverage, multiples stated)",
      "https://www.cnbc.com/2023/06/12/nasdaq-to-buy-financial-software-firm-adenza-for-10point5-billion.html"),
-    ("OnTheMarket", "CoStar Group",
+    ("costar-onthemarket", "OnTheMarket", "CoStar Group",
      "2.5x TTM revenue", "11x TTM adj. EBITDA", "",
      "CoStar Group offer press release",
      "https://www.costargroup.com/press-room/2023/costar-group-offers-acquire-leading-uk-residential-property-portal-onthemarket"),
-    ("SitusAMC - CRE Valuation Services unit", "Altus Group",
+    ("altus-situsamc", "SitusAMC - CRE Valuation Services unit", "Altus Group",
      "", "13.4x FY2023E EBITDA (net price)", "~4.9x FY2023E revenue (gross price)",
      "Altus Group press release (GlobeNewswire)",
      "https://www.globenewswire.com/news-release/2023/11/09/2777873/0/en/Altus-Group-Enters-into-Agreement-to-Purchase-SitusAMC-s-Commercial-Real-Estate-Valuation-Services-Business.html"),
-    ("SimpleNexus", "nCino",
+    ("ncino-simplenexus", "SimpleNexus", "nCino",
      "28.8x TTM revenue ($1.2B / $41.6M)", "", "",
      "TechBuzz News (revenue per trade press; $1.2B price per nCino PR)",
      "https://www.techbuzznews.com/ncino-acquires-simplenexus-for-1-2-billion/"),
     # -- calculated from firm published inputs --
-    ("Mr. Cooper", "Rocket Companies",
+    ("rocket-mrcooper", "Mr. Cooper", "Rocket Companies",
      "", "", "~4.2x P/FY2024 revenue; ~14.1x P/E ($9.4B all-stock)",
      "Rocket Companies press release (financials per COOP filings)",
      "https://ir.rocketcompanies.com/news-and-events/press-releases/press-release-details/2025/Mr--Cooper-Americas-Largest-Servicer-Joins-Rocket-the-Nations-Largest-Lender/default.aspx"),
-    ("Candescent (NCR Voyix digital banking)", "Veritas Capital",
+    ("veritas-candescent", "Candescent (NCR Voyix digital banking)", "Veritas Capital",
      "", "", "~4.2x EV/FY2023 segment revenue ($2.45B / ~$579M)",
      "Veritas Capital press release (segment revenue per NCR Voyix disclosures)",
      "https://www.veritascapital.com/ncr-voyix-enters-definitive-agreement-to-sell-digital-banking-to-veritas-capital-for-245-billion-purchase-price/"),
-    ("MeridianLink", "Centerbridge",
+    ("centerbridge-meridianlink", "MeridianLink", "Centerbridge",
      "", "", "~6.3x EV/FY2024 revenue; ~15.3x EV/FY2024 adj. EBITDA ($2.0B EV)",
      "MeridianLink press release (financials per MLNK FY2024 results)",
      "https://www.meridianlink.com/press-release/meridianlink-to-be-acquired-by-centerbridge-partners-for-2-0-billion/"),
-    ("Technisys", "SoFi",
+    ("sofi-technisys", "Technisys", "SoFi",
      "", "", "~15.7x price/CY2021E revenue ($1.1B stock / ~$70M press-reported revenue)",
      "SoFi 8-K press release (SEC; revenue per announcement-day press)",
      "https://www.sec.gov/Archives/edgar/data/0001818874/000181887422000014/exhibit991_8-k2222022.htm"),
-    ("Title365", "Blend",
+    ("blend-title365", "Title365", "Blend",
      "", "", "~2.2x equity/FY2020 revenue ($468.5M implied 100% / $212.1M)",
      "Blend Labs S-1 (SEC - both inputs on file)",
      "https://www.sec.gov/Archives/edgar/data/1855747/000119312521194971/d162671ds1.htm"),
-    ("Sopra Banking Software", "Axway",
+    ("axway-sopra-banking", "Sopra Banking Software", "Axway",
      "", "", "~1.0x EV/FY2023 revenue (EUR 330M / ~EUR 340M)",
      "FinTech Futures (completion coverage)",
      "https://www.fintechfutures.com/m-a/axway-completes-330m-acquisition-of-sopra-banking-software"),
-    ("SharpSpring", "Constant Contact (Clearlake/Siris)",
+    ("clearlake-sharpspring", "SharpSpring", "Constant Contact (Clearlake/Siris)",
      "", "", "~8.2x EV/FY2020 revenue (~$240M incl. debt / $29.3M)",
      "Constant Contact press release (revenue per SHSP filings)",
      "https://news.constantcontact.com/2021-06-22-Clearlake-Capital-and-Siris-Backed-Constant-Contact-Agrees-to-Acquire-SharpSpring"),
-    ("TitlePoint", "Fidelity National Financial",
+    ("fnf-titlepoint", "TitlePoint", "Fidelity National Financial",
      "", "", "~5.6x price/annualized Q3'22 revenue ($225M / ~$40M run-rate)",
      "FNF press release (PR Newswire; revenue per Black Knight disclosure)",
      "https://www.prnewswire.com/news-releases/fidelity-national-financial-to-acquire-titlepoint-from-black-knight-301683128.html"),
-    ("Blue Water Financial Technologies", "Voxtur Analytics",
+    ("voxtur-bluewater", "Blue Water Financial Technologies", "Voxtur Analytics",
      "", "", "~5.6x price/TTM revenue (~8.9x FY2021; $101M consideration)",
      "Voxtur closing press release (GlobeNewswire, financials disclosed)",
      "https://www.globenewswire.com/news-release/2022/09/22/2520882/0/en/Voxtur-Closes-Acquisition-of-Blue-Water-Financial-Technologies-and-Announces-Expansion-of-Credit-Facilities-and-Private-Placement.html"),
-    ("Floify", "Porch Group",
+    ("porch-floify", "Floify", "Porch Group",
      "", "", "~5.8x price/2022E revenue ($86.5M / $15M company estimate)",
      "Porch Group press release (GlobeNewswire)",
      "https://www.globenewswire.com/news-release/2021/10/27/2322103/29193/en/Porch-Group-Acquires-Floify-a-Leading-SaaS-Provider-for-Loan-Officers.html"),
-    ("OpenClose", "MeridianLink",
+    ("meridianlink-openclose", "OpenClose", "MeridianLink",
      "", "", "~5.4x price/run-rate revenue ($65M / ~$1M per month per CFO)",
      "National Mortgage News (price + CFO revenue commentary)",
      "https://www.nationalmortgagenews.com/news/meridianlink-buys-openclose-for-65-million-in-bid-to-reach-more-banks"),
-    ("Timios", "Ideanomics",
+    ("ideanomics-timios", "Timios", "Ideanomics",
      "", "", "~0.9x price/FY2019 revenue ($40M / $45.1M)",
      "Ideanomics press release (PR Newswire)",
      "https://www.prnewswire.com/news-releases/ideanomics-announces-definitive-agreement-to-acquire-timios-holdings-corp-301171853.html"),
 ]
 
-HEADERS = ["Target", "Acquirer", "Rev Multiple", "EV Multiple", "Implied", "Source"]
-WIDTHS = [38, 34, 32, 30, 62, 52]
+HEADERS = ["Target", "Acquirer", "Rev Multiple", "EV Multiple", "Implied", "Reasoning", "Source"]
+WIDTHS = [38, 34, 32, 30, 62, 110, 52]
+
+
+def compose_reasoning(deal_id: str) -> str:
+    """Train of reasoning, pulled verbatim from the deal's research record."""
+    r = json.loads((RESULTS_DIR / f"{deal_id}.json").read_text(encoding="utf-8"))
+    parts = []
+    for label, m in (("EV multiple", r.get("ev_multiple") or {}),
+                     ("Revenue multiple", r.get("revenue_multiple") or {})):
+        if m.get("published"):
+            parts.append(f"PUBLISHED {label.upper()}: {m.get('value')} - {m.get('basis')} [{m.get('source_url')}]")
+    calc = r.get("calculable") or {}
+    if calc.get("calculation"):
+        parts.append(f"CALCULATION: {calc['calculation']}")
+    if calc.get("inputs"):
+        parts.append("INPUTS: " + "\n".join(f"- {i}" for i in calc["inputs"]))
+    if calc.get("caveats"):
+        parts.append(f"CAVEATS: {calc['caveats']}")
+    return "\n\n".join(parts)
 
 
 def main() -> None:
@@ -110,15 +132,15 @@ def main() -> None:
 
     wrap = Alignment(wrap_text=True, vertical="top")
     link_font = Font(color="0563C1", underline="single")
-    for target, acquirer, rev, ev, implied, src_title, src_url in ROWS:
-        ws.append([target, acquirer, rev, ev, implied, src_title])
+    for deal_id, target, acquirer, rev, ev, implied, src_title, src_url in ROWS:
+        ws.append([target, acquirer, rev, ev, implied, compose_reasoning(deal_id), src_title])
         for cell in ws[ws.max_row]:
             cell.alignment = wrap
-        src_cell = ws.cell(row=ws.max_row, column=6)
+        src_cell = ws.cell(row=ws.max_row, column=7)
         src_cell.hyperlink = src_url
         src_cell.font = link_font
 
-    ws.auto_filter.ref = f"A1:F{ws.max_row}"
+    ws.auto_filter.ref = f"A1:G{ws.max_row}"
     wb.save(OUT)
     print(f"Wrote {OUT.relative_to(HERE)} ({len(ROWS)} deals)")
 
