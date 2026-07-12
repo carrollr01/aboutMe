@@ -63,6 +63,11 @@ Tab 2 **"Growth Capital Raises"**:
   publicly knowable (Seller from the release, Public Deal = listed target, HL Deal only if
   HL is named); "-" otherwise.
 - Dates DD-Mmm-YY. Link cell shows "Link" hyperlinked. Rows ordered sector-alpha, then date.
+- **Visual styling matches the finalized DB exactly** (builder reproduces it): header on row 3
+  (rows 1-2 blank, freeze A4), Segoe UI 8pt bold white on fill 0069A3 (M&A) / 0067A5 (Raises),
+  45pt header, gridlines off, thin horizontal row rules only, and number formats `$#,##0`
+  (EV/Amount/Valuation), `0.0x` (multiples), `d-mmm-yy` (Week/Date). A weekly tab drops
+  straight into the master DB without restyling.
 - Build: `python3 .claude/skills/weekly-fintech-deals/build_workbook.py weekly-deals/inputs/deals_<endingFriday>.json "weekly-deals/outputs/Weekly_Fintech_Deals_<endingFriday>.xlsx"`
   (deals JSON lives in `weekly-deals/inputs/`, finished workbooks in `weekly-deals/outputs/`)
 
