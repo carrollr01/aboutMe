@@ -93,6 +93,19 @@
   ],
   "raises": [
     {
+      "sector": "Financial Info & Analytics",
+      "country": "USA",
+      "date": "07-Jul-26",
+      "target": "Norm Ai",
+      "lead": "Khosla Ventures",
+      "amount": 120,
+      "valuation": 1200,
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "AI-native regulatory-compliance and legal-review platform deploying rules-trained agents for banks, insurers, asset managers and other regulated enterprises",
+      "link": "https://www.prnewswire.com/news-releases/norm-ai-raises-120-million-at-a-1-2-billion-valuation-led-by-khosla-ventures-to-deliver-the-full-stack-model-for-legal-ai-302819152.html"
+    },
+    {
       "sector": "Banking & Lending Tech",
       "country": "USA",
       "date": "07-Jul-26",
