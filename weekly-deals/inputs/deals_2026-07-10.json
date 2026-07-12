@@ -89,6 +89,24 @@
       "public_deal": "N",
       "hl_deal": "",
       "seller": ""
+    },
+    {
+      "sector": "Payments",
+      "country": "USA",
+      "deal_type": "Strategic M&A",
+      "date": "08-Jul-26",
+      "target": "Cypher",
+      "acquirer": "Nium",
+      "ev": "",
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "Crypto-native non-custodial wallet and card-issuing platform bridging fiat and on-chain money movement",
+      "link": "https://www.prnewswire.com/news-releases/nium-acquires-cypher-expanding-its-fiat-to-on-chain-money-movement-infrastructure-302821241.html",
+      "mults_source": "",
+      "mults_basis": "",
+      "public_deal": "N",
+      "hl_deal": "",
+      "seller": ""
     }
   ],
   "raises": [
