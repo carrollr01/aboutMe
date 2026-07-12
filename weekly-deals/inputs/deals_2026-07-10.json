@@ -107,6 +107,24 @@
       "public_deal": "N",
       "hl_deal": "",
       "seller": ""
+    },
+    {
+      "sector": "Corporate Financial Function",
+      "country": "USA",
+      "deal_type": "PE Buyout",
+      "date": "08-Jul-26",
+      "target": "ThrivePass",
+      "acquirer": "Shore Capital Partners",
+      "ev": "",
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "Employee-benefits administration platform for lifestyle spending accounts, pre-tax benefits, COBRA and tuition reimbursement — HR-benefits tech with an embedded spending-account/money-movement layer",
+      "link": "https://www.businesswire.com/news/home/20260708993606/en/Shore-Capital-Acquires-ThrivePass-to-Accelerate-Growth-in-Employee-Benefits-Technology",
+      "mults_source": "",
+      "mults_basis": "",
+      "public_deal": "N",
+      "hl_deal": "",
+      "seller": ""
     }
   ],
   "raises": [
