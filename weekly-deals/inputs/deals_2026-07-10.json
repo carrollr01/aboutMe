@@ -166,6 +166,19 @@
       "ev_ebitda": "",
       "description": "Institutional-only digital-asset trading venue paired with a separate central clearinghouse to reduce counterparty risk",
       "link": "https://www.prnewswire.com/news-releases/edx-markets-closes-76-million-series-c-funding-round-led-by-sbi-holdings-to-enhance-institutional-digital-asset-infrastructure-302819428.html"
+    },
+    {
+      "sector": "Real Estate & Mortgage Tech",
+      "country": "United Kingdom",
+      "date": "08-Jul-26",
+      "target": "Kord",
+      "lead": "Guinness Ventures",
+      "amount": 8.6,
+      "valuation": "",
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "FCA-regulated platform unifying identity/AML checks and client-money payment processing for estate agents, conveyancers and law firms",
+      "link": "https://www.finextra.com/newsarticle/48053/uk-fintech-kord-raises-64-million"
     }
   ]
 }
