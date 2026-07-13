@@ -125,6 +125,24 @@
       "public_deal": "N",
       "hl_deal": "",
       "seller": ""
+    },
+    {
+      "sector": "Corporate Financial Function",
+      "country": "Belgium",
+      "deal_type": "PE Buyout",
+      "date": "09-Jul-26",
+      "target": "BrightAnalytics",
+      "acquirer": "PSG Equity",
+      "ev": "",
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "AI-powered corporate performance management (CPM) software for CFOs — financial consolidation, reporting and FP&A",
+      "link": "https://psgequity.com/news/brightanalytics-announces-strategic-investment-from-psg-equity-to-help-accelerate-its-growth-as-a-leading-ai-powered-european-cfo-software-provider",
+      "mults_source": "",
+      "mults_basis": "",
+      "public_deal": "N",
+      "hl_deal": "",
+      "seller": ""
     }
   ],
   "raises": [
@@ -179,6 +197,45 @@
       "ev_ebitda": "",
       "description": "FCA-regulated platform unifying identity/AML checks and client-money payment processing for estate agents, conveyancers and law firms",
       "link": "https://www.finextra.com/newsarticle/48053/uk-fintech-kord-raises-64-million"
+    },
+    {
+      "sector": "Banking & Lending Tech",
+      "country": "USA",
+      "date": "09-Jul-26",
+      "target": "MountainSeed",
+      "lead": "Long Ridge Equity Partners",
+      "amount": 38,
+      "valuation": "",
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "AI-powered appraisal-management and valuation platform with capital-markets solutions for community banks and credit unions",
+      "link": "https://www.globenewswire.com/news-release/2026/07/09/3324610/0/en/mountainseed-secures-38-million-growth-investment-from-long-ridge-equity-partners-to-accelerate-ai-powered-innovation.html"
+    },
+    {
+      "sector": "Capital Markets Tech",
+      "country": "India",
+      "date": "07-Jul-26",
+      "target": "GoCharting",
+      "lead": "Long Ridge Equity Partners",
+      "amount": "",
+      "valuation": "",
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "Web-native multi-asset order-flow charting and technical-analysis platform for retail and professional traders",
+      "link": "https://www.globenewswire.com/news-release/2026/07/07/3322964/0/en/GoCharting-Announces-Growth-Investment-from-Long-Ridge-Equity-Partners-and-Strengthens-Leadership-Team-for-Global-Expansion.html"
+    },
+    {
+      "sector": "Corporate Financial Function",
+      "country": "France",
+      "date": "07-Jul-26",
+      "target": "Skello",
+      "lead": "Bridgepoint",
+      "amount": 230,
+      "valuation": "",
+      "ev_rev": "",
+      "ev_ebitda": "",
+      "description": "Workforce-scheduling and HR-management platform for frontline, shift-based teams — rostering, time-tracking and payroll preparation",
+      "link": "https://www.bridgepointgroup.com/about-us/news-and-insights/press-releases/2026/skello-secures-a-new-eur200-million-investment-led-by-Bridgepoint-to-support-its-European-growth"
     }
   ]
 }
