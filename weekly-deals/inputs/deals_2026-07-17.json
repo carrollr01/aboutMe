@@ -1,0 +1,105 @@
+{
+  "ma": [
+    {
+      "sector": "Capital Markets Tech", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "15-Jul-26",
+      "target": "bloXroute Labs", "acquirer": "FalconX",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Blockchain distribution network delivering low-latency transaction propagation, real-time chain data, and trading connectivity for institutional on-chain trading",
+      "link": "https://www.prnewswire.com/news-releases/falconx-acquires-bloxroute-to-accelerate-the-future-of-onchain-capital-markets-302826625.html",
+      "public_deal": "N"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "Spain",
+      "deal_type": "Strategic M&A", "date": "16-Jul-26",
+      "target": "Veridas", "acquirer": "Fourthline",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Biometric identity-verification and anti-fraud platform; all-stock merger with Fourthline's KYC/AML orchestration business creating a transatlantic identity-compliance platform (BBVA and other holders roll over)",
+      "link": "https://www.streetinsider.com/Business+Wire/Fourthline+and+Veridas+Join+Forces+to+Fight+Identity+Fraud+with+a+Global+Identity+Platform/26775704.html",
+      "public_deal": "N"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "14-Jul-26",
+      "target": "c. myers corporation", "acquirer": "Strata Decision Technology (Roper)",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "ALM, budgeting, and strategic-planning advisory and decision support for 600+ banks and credit unions; being combined with Strata's Axiom FP&A software",
+      "link": "https://www.globenewswire.com/news-release/2026/07/14/3326787/0/en/strata-decision-technology-acquires-c-myers-to-unite-strategic-planning-alm-and-fp-a-for-financial-institutions.html",
+      "public_deal": "N"
+    },
+    {
+      "sector": "Payments", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "14-Jul-26",
+      "target": "Qolo", "acquirer": "CSI (Computer Services, Inc.)",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "API-based treasury and payments infrastructure unifying card issuing, multi-rail money movement, and real-time ledgering for commercial banks and embedded finance",
+      "link": "https://www.businesswire.com/news/home/20260714932169/en/CSI-Acquires-Qolo-to-Strengthen-and-Expand-its-Commercial-Banking-and-Embedded-Finance-Capabilities",
+      "public_deal": "N"
+    }
+  ],
+  "raises": [
+    {
+      "sector": "Banking & Lending Tech", "country": "United States", "date": "15-Jul-26",
+      "target": "Lumin Digital", "lead": "Light Street Capital; 15 existing FI clients via SPV",
+      "amount": 115, "valuation": 1600, "ev_rev": "", "ev_ebitda": "",
+      "description": "Cloud-native digital banking platform (online/mobile banking, account opening, engagement) for US banks and credit unions; $70M+ of the round from 15 existing FI clients",
+      "link": "https://www.businesswire.com/news/home/20260715678007/en/Lumin-Digital-Raises-$115-Million-in-New-Capital-to-Further-Invest-in-Product-Innovation-Reaches-a-$1.6-Billion-Valuation"
+    },
+    {
+      "sector": "Banking & Lending Tech", "country": "United States", "date": "14-Jul-26",
+      "target": "Flex", "lead": "Halo Fund",
+      "amount": 70, "valuation": 1200, "ev_rev": "", "ev_ebitda": "",
+      "description": "AI-native business- and private-banking platform for business owners (banking, cards, bill pay, treasury); launching stablecoin-powered cross-border payments",
+      "link": "https://www.globenewswire.com/news-release/2026/07/14/3327097/0/en/halo-fund-leads-70m-investment-into-ai-native-private-banking-platform-flex-to-accelerate-the-launch-of-flex-global.html"
+    },
+    {
+      "sector": "Capital Markets Tech", "country": "Singapore", "date": "16-Jul-26",
+      "target": "Crypto.com", "lead": "Citadel Securities",
+      "amount": 400, "valuation": 20000, "ev_rev": "", "ev_ebitda": "",
+      "description": "Global crypto exchange and consumer trading app spanning custody, payments cards, and derivatives; first institutional round in company history",
+      "link": "https://www.prnewswire.com/news-releases/cryptocom-announces-400-million-strategic-investment-from-citadel-securities-302827736.html"
+    },
+    {
+      "sector": "Capital Markets Tech", "country": "United States", "date": "16-Jul-26",
+      "target": "Alpaca", "lead": "Peak XV Partners",
+      "amount": 135, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "API-first self-clearing brokerage infrastructure for embedded equities, options, and tokenized-stock trading; equity tranche of a $435M package incl. ~$300M debt",
+      "link": "https://www.businesswire.com/news/home/20260716033634/en/Alpaca-Raises-$135-Million-to-Scale-Agent-First-Brokerage-Infrastructure-for-Tokenized-Markets-and-AI-Native-Financial-Services"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "United States", "date": "14-Jul-26",
+      "target": "Hadrius", "lead": "CRV",
+      "amount": 27, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Agentic AI compliance platform (marketing review, comms surveillance, trade monitoring) for 500+ RIAs, broker-dealers, and financial institutions; combined seed + Series A",
+      "link": "https://www.prnewswire.com/news-releases/hadrius-raises-27-million-to-build-agentic-compliance-infrastructure-302824196.html"
+    },
+    {
+      "sector": "InsurTech", "country": "United States", "date": "14-Jul-26",
+      "target": "Cover Genius", "lead": "Vista Credit Partners",
+      "amount": 100, "valuation": 1900, "ev_rev": "", "ev_ebitda": "",
+      "description": "B2B2C embedded-insurance platform (XCover) letting digital platforms sell protection at checkout across 200+ distribution partners; structured growth capital from Vista's credit arm",
+      "link": "https://www.businesswire.com/news/home/20260714199328/en/Cover-Genius-Raises-USD-$100M-Backed-by-Vista-Credit-Partners-Reaching-USD-$1.9-Billion-Valuation-as-it-Advances-AI-First-Platform-and-Global-Expansion"
+    },
+    {
+      "sector": "InsurTech", "country": "United States", "date": "14-Jul-26",
+      "target": "Feathery", "lead": "Portage Ventures",
+      "amount": 30, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI operating and decisioning system automating intake, underwriting, and servicing workflows for 300+ insurance and wealth-management firms",
+      "link": "https://www.businesswire.com/news/home/20260714636533/en/Feathery-Raises-$30M-to-Scale-the-AI-Operating-Decisioning-System-for-Financial-Services"
+    },
+    {
+      "sector": "InsurTech", "country": "United States", "date": "15-Jul-26",
+      "target": "American Growth Insurance", "lead": "Rockbridge Growth Equity, Atomic",
+      "amount": 70, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI-enabled specialty insurance brokerage roll-up acquiring independent US agencies and rebuilding them on a proprietary AI-native stack; ~$70M committed equity at launch",
+      "link": "https://www.prnewswire.com/news-releases/american-growth-insurance-launches-specialty-insurance-brokerage-growth-platform-302827676.html"
+    },
+    {
+      "sector": "Payments", "country": "United Kingdom", "date": "14-Jul-26",
+      "target": "Velocity", "lead": "Dragonfly, FirstMark",
+      "amount": 38, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Enterprise stablecoin treasury and settlement infrastructure eliminating prefunding and speeding cross-border liquidity for merchants, PSPs, and financial institutions",
+      "link": "https://www.businesswire.com/news/home/20260714135187/en/Velocity-Raises-$38-Million-Series-A-to-Bring-Enterprise-Grade-Stablecoin-Infrastructure-to-Global-Treasury-and-Payments"
+    }
+  ]
+}
