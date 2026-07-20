@@ -21,6 +21,9 @@ Conventions (locked):
   - Meta columns (Mults Source/Mults Basis/Public Deal/HL Deal/Seller): populate what is
     publicly knowable; "-" otherwise.
   - Link column renders the word "Link" hyperlinked to the source.
+  - Country abbreviations: "United States" -> "USA", "United Kingdom" -> "UK" (mapped at
+    build time; other countries keep full names).
+  - Row order: sector A-Z, then most recent date FIRST within each sector.
 
 Usage: python3 build_workbook.py deals.json "Weekly_Fintech_Deals_<endingFriday>.xlsx"
 
@@ -40,6 +43,8 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 ALLOWED_DEAL_TYPES = {"Strategic M&A", "PE Buyout"}
+
+COUNTRY_MAP = {"United States": "USA", "United Kingdom": "UK"}
 
 MA_HEADERS = ["x","Week","Sector","Target Country","Deal Type","Date","Target","Acquirer",
               "EV ($M)","EV / Revenue","EV / EBITDA","Target Description","Link / Press Release",
@@ -77,6 +82,8 @@ def week_ending_friday(date_str):
 
 def norm(row, key):
     v = row.get(key, None)
+    if key == "country":
+        return COUNTRY_MAP.get(v, v if v not in (None, "") else "")
     if key == "week" and (v in (None, "")):
         return week_ending_friday(row.get("date", ""))
     if key == "x":
@@ -120,8 +127,15 @@ def main():
     out_path = sys.argv[2] if len(sys.argv) > 2 else "Weekly_Fintech_Deals.xlsx"
     with open(data_path) as f:
         data = json.load(f)
-    ma = sorted(data.get("ma", []), key=lambda r: (r.get("sector",""), r.get("date","")))
-    ra = sorted(data.get("raises", []), key=lambda r: (r.get("sector",""), r.get("date","")))
+    def sort_key(r):
+        # sector A-Z, then most recent date first within the sector
+        try:
+            d = datetime.datetime.strptime(str(r.get("date","")).strip(), "%d-%b-%y").date()
+        except ValueError:
+            d = datetime.date.min
+        return (r.get("sector",""), -d.toordinal())
+    ma = sorted(data.get("ma", []), key=sort_key)
+    ra = sorted(data.get("raises", []), key=sort_key)
     wb = Workbook()
     ws = wb.active; ws.title = "All M&A (PE & Strategic)"
     fill_sheet(ws, MA_HEADERS, MA_KEYS, ma,
