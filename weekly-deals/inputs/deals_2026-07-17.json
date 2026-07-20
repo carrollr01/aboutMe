@@ -1,6 +1,15 @@
 {
   "ma": [
     {
+      "sector": "Asset & Wealth Tech", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "16-Jul-26",
+      "target": "Benchmark", "acquirer": "Harvey",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI-powered investment-decisioning platform (due-diligence, data-room, and deal-document analysis) for asset managers; tuck-in building out legal-AI firm Harvey's asset-management business",
+      "link": "https://www.harvey.ai/blog/y-combinator-backed-benchmark-joins-harvey",
+      "public_deal": "N"
+    },
+    {
       "sector": "Capital Markets Tech", "country": "United States",
       "deal_type": "Strategic M&A", "date": "15-Jul-26",
       "target": "bloXroute Labs", "acquirer": "FalconX",
