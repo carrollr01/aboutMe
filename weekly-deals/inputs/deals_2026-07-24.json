@@ -63,6 +63,13 @@
       "link": "https://www.prnewswire.com/news-releases/abstract-raises-25-million-as-enterprises-shift-to-composable-security-operations-302832945.html"
     },
     {
+      "sector": "InsurTech", "country": "United States", "date": "23-Jul-26",
+      "target": "Corgi", "lead": "-",
+      "amount": "", "valuation": 4000, "ev_rev": "", "ev_ebitda": "",
+      "description": "Full-stack AI insurance platform spanning underwriting, claims and embedded commercial cover; further Series B extension, size and investors undisclosed",
+      "link": "https://techcrunch.com/2026/07/23/insurance-startup-corgi-reportedly-raised-more-money-at-4b-its-third-round-in-eight-weeks/"
+    },
+    {
       "sector": "Payments", "country": "Singapore", "date": "20-Jul-26",
       "target": "Ant International", "lead": "Ant Group, Alibaba Group",
       "amount": 1200, "valuation": "", "ev_rev": "", "ev_ebitda": "",
