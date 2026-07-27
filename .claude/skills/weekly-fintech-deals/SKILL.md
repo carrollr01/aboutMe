@@ -35,6 +35,21 @@ primary source; exclude prior-week deals even when this week's roundups carry th
    GP-led continuation vehicles / fund secondaries, and non-binding proposals/rumors.
 5. **USD only.** Convert non-USD amounts at the announcement-date FX rate; note original
    currency in the description or Mults Basis if material.
+6. **CyberTech is NOT automatically in scope.** FinTech Global and similar roundups run
+   CyberTech as a vertical; do not inherit their scope. A security deal qualifies only if
+   EITHER:
+   (a) **financial-crime / fraud nexus** — it defends money movement, payment data, accounts
+       or identity (AegisAI: spear-phishing and BEC; Memcyco: account takeover; Evervault:
+       payment-data security; Outtake: impersonation fraud); OR
+   (b) **it is genuinely a data / analytics platform** — the "Analytics" half of the sector
+       label is literal (Abstract: streaming security-data pipeline with schema routing and
+       storage tiering; Censys: internet intelligence; Gravwell: data analytics).
+   EXCLUDE pure security-operations tooling with neither: endpoint protection, vulnerability
+   management and exposure prediction, agent/software control planes, defense and
+   sovereign-security platforms. Cut in the 24-Jul-26 week on this rule: Glow (endpoint,
+   $180m), Neo (AI-agent control layer, $100m), Empirical Security (exposure prediction,
+   $25m). Earlier rows predating this rule (NinjaOne, XBOW, VulnCheck, Armadin, Straiker,
+   Linx) would not qualify today.
 
 ## Sectors (exact labels)
 Asset & Wealth Tech · Banking & Lending Tech · Capital Markets Tech · Corporate Financial
