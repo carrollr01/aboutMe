@@ -8,15 +8,37 @@ Rules below are derived from the user's actual edits to generated drafts.
    of…", "AI-powered … platform that…", "Agentic … for …". No trailing period.
 2. **Short wins.** The user trims aggressively. If the product is well-known, one clause is
    enough. Target ~8–25 words; never pad to seem thorough.
-3. **Cut client-count / geography trivia.** "partnered with ~55 financial institutions across
-   16 countries" gets deleted. Keep a number ONLY when it's the point (e.g. "60+ asset and
-   wealth managers" as the customer definition).
-4. **Say what it converts / automates / connects** — the mechanism, not the mission.
-5. **Borderline names carry both angles** — fintech lead, traditional base visible.
-6. **Deal-structure nuance lives here** when the Deal Type column can't express it
-   (e.g. "…; was a JV between Crédit Agricole and Worldline").
+3. **Cut client-count / geography / volume trivia.** "partnered with ~55 financial institutions
+   across 16 countries" gets deleted. So does any scale metric bolted onto the end — TPV, GMV,
+   sales facilitated, merchant/user/customer counts, AUM, accounts. Keep a number ONLY when it
+   IS the customer definition (e.g. "60+ asset and wealth managers").
+4. **Never describe the round or the deal's status.** "launched out of stealth", "further
+   Series B extension", "size and investors undisclosed", "terms undisclosed", "first
+   acquisition", "subject to regulatory approval" — all deleted. The Amount / Valuation / EV
+   columns already say what is and isn't disclosed; a dash IS the disclosure.
+5. **Say what it converts / automates / connects** — the mechanism, not the mission.
+6. **Borderline names carry both angles** — fintech lead, traditional base visible.
+7. **Deal-structure nuance lives here ONLY when it changes how a column reads** — e.g.
+   "…; was a JV between Crédit Agricole and Worldline", "…; $80m equity of the $100m headline"
+   (explains why Amount ≠ the press figure), "…; minority investment, founders retain control"
+   (explains why it sits in Raises, not M&A). If the row reads correctly without it, cut it.
+   This is the narrow exception to rule 4, not a licence to narrate the deal.
 
 ## Before → after (the user's real edits)
+- ✗ "Booking, payments and business-management platform for in-person beauty and wellness
+  businesses, facilitating ~$7bn of annual sales across 125,000 merchants"
+  ✓ **"Booking, payments and business-management platform for in-person beauty and wellness
+  businesses"**
+- ✗ "Full-stack AI insurance platform spanning underwriting, claims and embedded commercial
+  cover; further Series B extension, size and investors undisclosed"
+  ✓ **"Full-stack AI insurance platform spanning underwriting, claims and embedded commercial
+  cover"**
+- ✗ "AI-native, prevention-first endpoint security platform; launched out of stealth"
+  ✓ **"AI-native, prevention-first endpoint security platform"**
+- ✗ "Cross-border payments and digital financial services group operating Alipay+, Antom,
+  WorldFirst and Bettr, connecting 150m+ merchants to 2bn digital accounts"
+  ✓ **"Cross-border payments and digital financial services group operating Alipay+, Antom,
+  WorldFirst and Bettr"**
 - ✗ "Pioneer of agentic/conversational AI for banking, partnered with ~55 financial
   institutions across 16 countries"
   ✓ **"Agentic/conversational AI for banking"**
