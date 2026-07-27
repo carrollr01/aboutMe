@@ -2,7 +2,7 @@
   "ma": [
     {
       "sector": "InsurTech", "country": "Germany",
-      "deal_type": "Strategic M&A", "date": "21-Jul-26",
+      "deal_type": "Strategic M&A", "date": "19-Jul-26",
       "target": "Wave Claims (Claim OS)", "acquirer": "Genki",
       "ev": "", "ev_rev": "", "ev_ebitda": "",
       "description": "AI claims-automation platform (Claim OS) that reads medical invoices, structures claims data, assigns ICD diagnosis codes and flags potential fraud for health insurers",
@@ -14,7 +14,7 @@
       "deal_type": "Strategic M&A", "date": "20-Jul-26",
       "target": "Tallied Technologies (platform)", "acquirer": "FinWise Bancorp",
       "ev": "", "ev_rev": "", "ev_ebitda": "",
-      "description": "Credit card issuing and processing platform spanning application, issuing, processing and servicing; FinWise bought the platform and related assets to own its card stack end-to-end",
+      "description": "Credit card issuing and processing platform spanning application, issuing, processing and servicing; structured as an acquisition-and-assumption of the platform and related assets rather than a share purchase",
       "link": "https://www.globenewswire.com/news-release/2026/07/20/3330108/0/en/FinWise-Bancorp-Acquires-Tallied-Technology-Platform-Bringing-End-to-End-Credit-Card-Issuing-and-Processing-In-House.html",
       "public_deal": "N", "seller": "Tallied Technologies, Inc."
     }
@@ -42,6 +42,13 @@
       "link": "https://www.securityweek.com/empirical-security-raises-25-million-in-series-a-funding/"
     },
     {
+      "sector": "Financial Info & Analytics", "country": "United States", "date": "20-Jul-26",
+      "target": "Neo", "lead": "Andreessen Horowitz, Bessemer Venture Partners",
+      "amount": 100, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Real-time control layer that inventories and governs AI agents, agentic applications and MCP servers across an enterprise software estate; launched out of stealth",
+      "link": "https://www.globenewswire.com/news-release/2026/07/20/3329638/0/en/neo-launches-with-100m-to-secure-ai-software-across-the-enterprise.html"
+    },
+    {
       "sector": "Financial Info & Analytics", "country": "United States", "date": "22-Jul-26",
       "target": "Glow", "lead": "Sequoia Capital, Cyberstarts",
       "amount": 180, "valuation": 1200, "ev_rev": "", "ev_ebitda": "",
@@ -65,12 +72,12 @@
     {
       "sector": "Payments", "country": "United States", "date": "21-Jul-26",
       "target": "Genius AI (GlossGenius)", "lead": "Lux Capital",
-      "amount": 44, "valuation": 1150, "ev_rev": "", "ev_ebitda": "",
+      "amount": 44, "valuation": 1150, "ev_rev": 5.8, "ev_ebitda": "",
       "description": "Booking, payments and business-management platform for in-person beauty and wellness businesses, facilitating ~$7bn of annual sales across 125,000 merchants",
       "link": "https://www.eznewswire.com/newsroom/genius-ai-glossgenius-series-d-valuation"
     },
     {
-      "sector": "Payments", "country": "United States", "date": "21-Jul-26",
+      "sector": "Payments", "country": "United States", "date": "20-Jul-26",
       "target": "Natural", "lead": "Forerunner Ventures",
       "amount": 30, "valuation": "", "ev_rev": "", "ev_ebitda": "",
       "description": "Payments infrastructure letting AI agents hold wallets, accept payments, pay invoices and settle transactions autonomously",
