@@ -1,0 +1,80 @@
+{
+  "ma": [
+    {
+      "sector": "InsurTech", "country": "Germany",
+      "deal_type": "Strategic M&A", "date": "21-Jul-26",
+      "target": "Wave Claims (Claim OS)", "acquirer": "Genki",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI claims-automation platform (Claim OS) that reads medical invoices, structures claims data, assigns ICD diagnosis codes and flags potential fraud for health insurers",
+      "link": "https://www.prweb.com/releases/genki-acquires-ai-insurtech-startup-wave-claims-and-claim-os-302828858.html",
+      "public_deal": "N", "seller": "-"
+    },
+    {
+      "sector": "Payments", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "20-Jul-26",
+      "target": "Tallied Technologies (platform)", "acquirer": "FinWise Bancorp",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Credit card issuing and processing platform spanning application, issuing, processing and servicing; FinWise bought the platform and related assets to own its card stack end-to-end",
+      "link": "https://www.globenewswire.com/news-release/2026/07/20/3330108/0/en/FinWise-Bancorp-Acquires-Tallied-Technology-Platform-Bringing-End-to-End-Credit-Card-Issuing-and-Processing-In-House.html",
+      "public_deal": "N", "seller": "Tallied Technologies, Inc."
+    }
+  ],
+  "raises": [
+    {
+      "sector": "Banking & Lending Tech", "country": "United States", "date": "21-Jul-26",
+      "target": "Augustus", "lead": "Tiger Global",
+      "amount": 180, "valuation": 1000, "ev_rev": "", "ev_ebitda": "",
+      "description": "Federally chartered clearing bank giving international FinTechs and banks direct dollar accounts and rails across Swift, ACH, SEPA and stablecoins",
+      "link": "https://www.prnewswire.com/news-releases/augustus-announces-180m-series-b-at-1b-valuation-to-give-international-fintechs-and-banks-access-to-the-us-dollar-302830300.html"
+    },
+    {
+      "sector": "Banking & Lending Tech", "country": "Venezuela", "date": "21-Jul-26",
+      "target": "Cashea", "lead": "Spice Expeditions, FinSight Ventures",
+      "amount": 80, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Interest-free BNPL and consumer credit platform with 10m+ accounts and 40,000 merchants in Venezuela; $80m equity across combined Series A and B ($100m headline includes $20m debt)",
+      "link": "https://www.prnewswire.com/news-releases/venezuelas-cashea-raises-100-million-from-global-investors-302830934.html"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "United States", "date": "21-Jul-26",
+      "target": "Empirical Security", "lead": "Brightmind Partners",
+      "amount": 25, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI exposure-management platform that predicts which vulnerabilities will actually be exploited and prioritises remediation",
+      "link": "https://www.securityweek.com/empirical-security-raises-25-million-in-series-a-funding/"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "United States", "date": "22-Jul-26",
+      "target": "Glow", "lead": "Sequoia Capital, Cyberstarts",
+      "amount": 180, "valuation": 1200, "ev_rev": "", "ev_ebitda": "",
+      "description": "AI-native, prevention-first endpoint security platform; launched out of stealth",
+      "link": "https://www.globenewswire.com/news-release/2026/07/22/3331154/0/en/glow-emerges-from-stealth-with-180-million-to-reinvent-endpoint-security-in-the-ai-era.html"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "United States", "date": "23-Jul-26",
+      "target": "Abstract", "lead": "Cheyenne Ventures, AVP",
+      "amount": 25, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Composable, streaming-first security operations platform built to displace monolithic SIEM",
+      "link": "https://www.prnewswire.com/news-releases/abstract-raises-25-million-as-enterprises-shift-to-composable-security-operations-302832945.html"
+    },
+    {
+      "sector": "Payments", "country": "Singapore", "date": "20-Jul-26",
+      "target": "Ant International", "lead": "Ant Group, Alibaba Group",
+      "amount": 1200, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Cross-border payments and digital financial services group operating Alipay+, Antom, WorldFirst and Bettr, connecting 150m+ merchants to 2bn digital accounts",
+      "link": "https://www.businesswire.com/news/home/20260720424592/en/Ant-International-Raises-approx.-US$1.2-billion-in-Series-A-Equity-Financing-to-Boost-Cross-border-Payments-Agentic-Commerce-Solutions-for-Global-Businesses"
+    },
+    {
+      "sector": "Payments", "country": "United States", "date": "21-Jul-26",
+      "target": "Genius AI (GlossGenius)", "lead": "Lux Capital",
+      "amount": 44, "valuation": 1150, "ev_rev": "", "ev_ebitda": "",
+      "description": "Booking, payments and business-management platform for in-person beauty and wellness businesses, facilitating ~$7bn of annual sales across 125,000 merchants",
+      "link": "https://www.eznewswire.com/newsroom/genius-ai-glossgenius-series-d-valuation"
+    },
+    {
+      "sector": "Payments", "country": "United States", "date": "21-Jul-26",
+      "target": "Natural", "lead": "Forerunner Ventures",
+      "amount": 30, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Payments infrastructure letting AI agents hold wallets, accept payments, pay invoices and settle transactions autonomously",
+      "link": "https://www.prnewswire.com/news-releases/natural-raises-30m-series-a-to-build-payments-infrastructure-for-ai-agents-302829855.html"
+    }
+  ]
+}
