@@ -6,14 +6,19 @@ The HL template is NOT committed to this repo (it carries the firm's
 "Strictly Confidential. Not for Distribution." cover). Point the first argument
 at a local copy of the HL Refresh 2023 deck; the script inherits its master,
 theme, fonts and footer logo, and writes only the two content pages.
+
+Charts are native PowerPoint charts with embedded Excel workbooks; diagrams are
+native shapes. Nothing on either page is a picture.
 """
 
 import sys
 from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
+from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
+from pptx.chart.data import CategoryChartData
+from pptx.enum.chart import XL_CHART_TYPE, XL_LABEL_POSITION, XL_TICK_MARK
 from pptx.oxml.ns import qn
 
 SRC = sys.argv[1] if len(sys.argv) > 1 else "source.pptx"
@@ -22,25 +27,27 @@ OUT = sys.argv[2] if len(sys.argv) > 2 else "GoldenSource_Coverage_Twopager.pptx
 # ---------------------------------------------------------------- HL palette
 NAVY = RGBColor(0x00, 0x28, 0x55)   # theme dk2 - primary for main slides
 MID = RGBColor(0x50, 0x8B, 0xC9)    # theme accent1
-PALE = RGBColor(0x9F, 0xC3, 0xDA)   # theme accent6
 GRAY = RGBColor(0x52, 0x57, 0x66)   # theme dk1 - body copy
 SLATE = RGBColor(0x7E, 0x85, 0x97)  # theme accent3
 LGRAY = RGBColor(0xBC, 0xBF, 0xC6)  # theme accent2 - rules
-TEAL = RGBColor(0x24, 0xB1, 0xB1)   # theme accent4 - sparing accent
+TEAL = RGBColor(0x24, 0xB1, 0xB1)   # theme accent4 - reserved for punchlines
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
-TINT = RGBColor(0xF3, 0xF6, 0xFA)   # body fill for content boxes
-TINT2 = RGBColor(0xE8, 0xEE, 0xF5)  # alternating row fill
+ROW = RGBColor(0xEE, 0xF2, 0xF7)    # table row striping only
+
+# chevron progression, navy -> theme accent1
+FLOW = [RGBColor(0x00, 0x28, 0x55), RGBColor(0x1C, 0x44, 0x70),
+        RGBColor(0x38, 0x61, 0x8B), RGBColor(0x50, 0x8B, 0xC9)]
 
 HEAD = "Segoe UI Semibold"
 BODY = "Segoe UI"
 
 # ------------------------------------------------------------------- geometry
-LX, RX, COL_W = 0.25, 5.20, 4.55
+LX = 0.25
+FULL_W = 9.50
 BAND_Y, BAND_H = 0.90, 0.58
-TOP = 1.60
 BOT = 6.95
-HDR_H = 0.30
-PAD = 0.11
+SEC_H = 0.24          # slim section header band
+PAD = 0.10
 
 
 # --------------------------------------------------------------------- helpers
@@ -54,32 +61,39 @@ def delete_all_slides(prs):
 def no_line(shape):
     shape.line.fill.background()
     shape.shadow.inherit = False
+    return shape
 
 
-def rect(slide, x, y, w, h, fill=None):
-    sh = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(x), Inches(y), Inches(w), Inches(h))
+def rect(slide, x, y, w, h, fill=None, shape=MSO_SHAPE.RECTANGLE):
+    sh = slide.shapes.add_shape(shape, Inches(x), Inches(y), Inches(w), Inches(h))
     if fill is None:
         sh.fill.background()
     else:
         sh.fill.solid()
         sh.fill.fore_color.rgb = fill
-    no_line(sh)
-    return sh
+    return no_line(sh)
 
 
-def set_bullet(para, char="▪", color=MID, font="Arial", size_pct=90):
-    """Attach a square bullet to a paragraph via pPr (never a literal char in the text)."""
+def hairline(slide, x, y, w, color=LGRAY, weight=0.008):
+    return rect(slide, x, y, w, weight, color)
+
+
+def vrule(slide, x, y, h, color=LGRAY, weight=0.008):
+    return rect(slide, x, y, weight, h, color)
+
+
+def set_bullet(para, color=MID, char="▪", font="Arial", size_pct=90):
+    """Attach a square bullet via pPr - never a literal character in the text."""
     pPr = para._p.get_or_add_pPr()
     for tag in ("a:buNone", "a:buChar", "a:buAutoNum", "a:buClr", "a:buFont", "a:buSzPct"):
         for el in pPr.findall(qn(tag)):
             pPr.remove(el)
     buClr = pPr.makeelement(qn("a:buClr"), {})
-    srgb = pPr.makeelement(qn("a:srgbClr"), {"val": str(color)})
-    buClr.append(srgb)
-    buSz = pPr.makeelement(qn("a:buSzPct"), {"val": str(size_pct * 1000)})
-    buFont = pPr.makeelement(qn("a:buFont"), {"typeface": font})
-    buChar = pPr.makeelement(qn("a:buChar"), {"char": char})
-    for el in (buClr, buSz, buFont, buChar):
+    buClr.append(pPr.makeelement(qn("a:srgbClr"), {"val": str(color)}))
+    for el in (buClr,
+               pPr.makeelement(qn("a:buSzPct"), {"val": str(size_pct * 1000)}),
+               pPr.makeelement(qn("a:buFont"), {"typeface": font}),
+               pPr.makeelement(qn("a:buChar"), {"char": char})):
         pPr.append(el)
 
 
@@ -92,34 +106,30 @@ def no_bullet(para):
         pPr.append(pPr.makeelement(qn("a:buNone"), {}))
 
 
-def textbox(slide, x, y, w, h, anchor=MSO_ANCHOR.TOP, wrap=True):
+def textbox(slide, x, y, w, h, anchor=MSO_ANCHOR.TOP):
     tb = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     tf = tb.text_frame
-    tf.word_wrap = wrap
+    tf.word_wrap = True
     tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
     tf.vertical_anchor = anchor
     return tf
 
 
-def write(tf, paras, size=8.5, color=GRAY, font=BODY, align=PP_ALIGN.LEFT,
+def write(tf, paras, size=8.0, color=GRAY, font=BODY, align=PP_ALIGN.LEFT,
           space_after=4, line_spacing=1.02):
-    """paras: list of dicts -> {runs:[(text, opts)], bullet:bool, indent:float,
-                                space_before:pt, space_after:pt, align:}"""
     for i, spec in enumerate(paras):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.alignment = spec.get("align", align)
         p.line_spacing = spec.get("line_spacing", line_spacing)
         p.space_after = Pt(spec.get("space_after", space_after))
         p.space_before = Pt(spec.get("space_before", 0))
-        indent = spec.get("indent", 0.0)
+        pPr = p._p.get_or_add_pPr()
         if spec.get("bullet"):
-            pPr = p._p.get_or_add_pPr()
-            pPr.set("marL", str(int(Inches(indent + 0.115))))
+            pPr.set("marL", str(int(Inches(0.115))))
             pPr.set("indent", str(int(-Inches(0.115))))
             set_bullet(p, color=spec.get("bullet_color", MID))
         else:
-            pPr = p._p.get_or_add_pPr()
-            pPr.set("marL", str(int(Inches(indent))))
+            pPr.set("marL", "0")
             pPr.set("indent", "0")
             no_bullet(p)
         for text, opts in spec["runs"]:
@@ -138,37 +148,17 @@ def plain(text, **opts):
     return {"runs": [(text, opts)]}
 
 
-def content_box(slide, x, y, w, h, title, body_fill=TINT):
-    """Navy header band + tinted body. Returns (bx, by, bw, bh) of the inner body area."""
-    rect(slide, x, y, w, HDR_H, NAVY)
-    tf = textbox(slide, x + PAD, y, w - 2 * PAD, HDR_H, anchor=MSO_ANCHOR.MIDDLE)
-    write(tf, [plain(title, bold=True, size=9, color=WHITE, font=HEAD)],
-          align=PP_ALIGN.CENTER, space_after=0)
-    rect(slide, x, y + HDR_H, w, h - HDR_H, body_fill)
-    return (x + PAD, y + HDR_H + 0.09, w - 2 * PAD, h - HDR_H - 0.18)
+def lead(label, rest, **opts):
+    """A bold navy lead-in followed by body copy, in one paragraph."""
+    return {"runs": [(label, {"bold": True, "color": NAVY, "font": HEAD}), (rest, {})], **opts}
 
 
-def page_frame(prs, layouts, title, eyebrow, takeaway):
-    slide = prs.slides.add_slide(layouts["Title Only"])
-    t = slide.shapes.title
-    t.text_frame.word_wrap = False
-    p = t.text_frame.paragraphs[0]
-    r = p.add_run()
-    r.text = title
-    r.font.name = HEAD
-    r.font.size = Pt(18)
-    r.font.bold = True
-    r.font.color.rgb = NAVY
-
-    tf = textbox(slide, 4.60, 0.40, 5.15, 0.30, anchor=MSO_ANCHOR.BOTTOM)
-    write(tf, [plain(eyebrow, size=8.5, color=SLATE, italic=True)],
-          align=PP_ALIGN.RIGHT, space_after=0)
-
-    rect(slide, LX, BAND_Y, 9.5, BAND_H, NAVY)
-    tf = textbox(slide, LX + 0.14, BAND_Y, 9.5 - 0.28, BAND_H, anchor=MSO_ANCHOR.MIDDLE)
-    write(tf, [plain(takeaway, size=9.5, color=WHITE, font=HEAD, bold=True)],
-          space_after=0, line_spacing=1.06)
-    return slide
+def section(slide, x, y, w, label):
+    """Slim navy header band. Returns the y at which content should start."""
+    rect(slide, x, y, w, SEC_H, NAVY)
+    tf = textbox(slide, x + PAD, y, w - 2 * PAD, SEC_H, anchor=MSO_ANCHOR.MIDDLE)
+    write(tf, [plain(label, bold=True, size=8.5, color=WHITE, font=HEAD)], space_after=0)
+    return y + SEC_H + 0.10
 
 
 def footnote(slide, text):
@@ -177,13 +167,48 @@ def footnote(slide, text):
           space_after=0, line_spacing=1.0)
 
 
-def kv_table(slide, x, y, w, rows, label_w=1.02, row_h=0.215, tall_h=0.335, size=7.5):
-    """Alternating-fill key/value rows. rows: (label, value, n_lines)."""
+def page_frame(prs, layouts, title, eyebrow, takeaway):
+    slide = prs.slides.add_slide(layouts["Title Only"])
+    t = slide.shapes.title
+    t.text_frame.word_wrap = False
+    r = t.text_frame.paragraphs[0].add_run()
+    r.text = title
+    r.font.name, r.font.size, r.font.bold = HEAD, Pt(18), True
+    r.font.color.rgb = NAVY
+
+    tf = textbox(slide, 4.60, 0.40, 5.15, 0.30, anchor=MSO_ANCHOR.BOTTOM)
+    write(tf, [plain(eyebrow, size=8.5, color=SLATE, italic=True)],
+          align=PP_ALIGN.RIGHT, space_after=0)
+
+    rect(slide, LX, BAND_Y, FULL_W, BAND_H, NAVY)
+    tf = textbox(slide, LX + 0.14, BAND_Y, FULL_W - 0.28, BAND_H, anchor=MSO_ANCHOR.MIDDLE)
+    write(tf, [plain(takeaway, size=9.5, color=WHITE, font=HEAD, bold=True)],
+          space_after=0, line_spacing=1.06)
+    return slide
+
+
+# ------------------------------------------------------------------- zone art
+def kpi_strip(slide, x, y, w, h, items):
+    """Open stat row: navy rule on top, hairline dividers, no fills."""
+    hairline(slide, x, y, w, NAVY, 0.014)
+    cw = w / len(items)
+    for i, (num, label) in enumerate(items):
+        cx = x + i * cw
+        if i:
+            vrule(slide, cx, y + 0.08, h - 0.10)
+        tf = textbox(slide, cx + 0.14, y + 0.07, cw - 0.28, 0.24, anchor=MSO_ANCHOR.TOP)
+        write(tf, [plain(num, size=11.5, color=NAVY, bold=True, font=HEAD)], space_after=0)
+        tf = textbox(slide, cx + 0.14, y + 0.31, cw - 0.28, h - 0.33)
+        write(tf, [plain(label, size=7.5, color=GRAY)], space_after=0, line_spacing=1.0)
+
+
+def kv_rows(slide, x, y, w, rows, label_w=0.95, size=7.5):
+    """Striped key/value rows. rows: (label, value, n_lines)."""
     cy = y
     for i, (label, value, nlines) in enumerate(rows):
-        h = row_h if nlines == 1 else tall_h
+        h = 0.205 if nlines == 1 else 0.32
         if i % 2 == 0:
-            rect(slide, x - PAD + 0.02, cy, w + 2 * PAD - 0.04, h, TINT2)
+            rect(slide, x - 0.06, cy, w + 0.12, h, ROW)
         tf = textbox(slide, x, cy, label_w, h, anchor=MSO_ANCHOR.MIDDLE)
         write(tf, [plain(label, size=size, color=NAVY, bold=True, font=HEAD)], space_after=0)
         tf = textbox(slide, x + label_w, cy, w - label_w, h, anchor=MSO_ANCHOR.MIDDLE)
@@ -192,51 +217,94 @@ def kv_table(slide, x, y, w, rows, label_w=1.02, row_h=0.215, tall_h=0.335, size
     return cy
 
 
-def stat_tiles(slide, x, y, w, h, tiles, gap=0.12):
-    tw = (w - gap * (len(tiles) - 1)) / len(tiles)
-    for i, (num, label) in enumerate(tiles):
-        tx = x + i * (tw + gap)
-        rect(slide, tx, y, tw, h, WHITE)
-        tf = textbox(slide, tx + 0.06, y + 0.04, tw - 0.12, 0.24,
-                     anchor=MSO_ANCHOR.MIDDLE, wrap=False)
-        write(tf, [plain(num, size=11.5, color=NAVY, bold=True, font=HEAD)],
+def flow_diagram(slide, x, y, w, h, stages, chev_h=0.34):
+    """Chevron process flow with a module list under each stage."""
+    n = len(stages)
+    overlap = 0.10
+    cw = (w + overlap * (n - 1)) / n
+    for i, (title, modules) in enumerate(stages):
+        cx = x + i * (cw - overlap)
+        ch = rect(slide, cx, y, cw, chev_h, FLOW[i % len(FLOW)], MSO_SHAPE.CHEVRON)
+        tf = ch.text_frame
+        tf.word_wrap = True
+        tf.margin_left = Inches(0.16)
+        tf.margin_right = Inches(0.06)
+        tf.margin_top = tf.margin_bottom = 0
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        write(tf, [plain(title, size=7.5, color=WHITE, bold=True, font=HEAD)],
               align=PP_ALIGN.CENTER, space_after=0)
-        tf = textbox(slide, tx + 0.06, y + 0.28, tw - 0.12, h - 0.33, anchor=MSO_ANCHOR.TOP)
-        write(tf, [plain(label, size=7, color=GRAY)],
-              align=PP_ALIGN.CENTER, space_after=0, line_spacing=1.0)
+        tf = textbox(slide, cx + 0.18, y + chev_h + 0.07, cw - 0.30, h - chev_h - 0.07)
+        write(tf, [{"runs": [(m, {})], "space_after": 1.5, "bullet": True,
+                    "bullet_color": FLOW[i % len(FLOW)]} for m in modules],
+              size=7, line_spacing=1.0)
 
 
-def txn_table(slide, x, y, w, rows, size=7.5, head_h=0.22, row_h=0.30):
-    """Precedent-transaction table: Date | Target | Acquirer | Value."""
-    cols = [0.48, 1.56, 1.42, 0.87]           # sums to 4.33
-    scale = (w - 0.0) / sum(cols)
-    cols = [c * scale for c in cols]
-    heads = ["Date", "Target", "Acquirer / Sponsor", "Value"]
-    cx = x
-    for c, htxt in zip(cols, heads):
-        tf = textbox(slide, cx, y, c - 0.06, head_h, anchor=MSO_ANCHOR.BOTTOM)
-        write(tf, [plain(htxt, size=7.5, color=NAVY, bold=True, font=HEAD)], space_after=0)
-        cx += c
-    ln = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(x), Inches(y + head_h + 0.015),
-                                Inches(w), Inches(0.011))
-    ln.fill.solid()
-    ln.fill.fore_color.rgb = NAVY
-    no_line(ln)
+def timeline(slide, x, y, w, h, nodes, label_size=7, dot=0.10):
+    """Horizontal spine with year nodes; each node captions below the line."""
+    n = len(nodes)
+    cw = w / n
+    axis_y = y + 0.20
+    hairline(slide, x + cw * 0.5, axis_y, w - cw, NAVY, 0.011)
+    for i, node in enumerate(nodes):
+        year, lines, accent = node
+        cx = x + i * cw
+        mid = cx + cw / 2
+        color = TEAL if accent else NAVY
+        d = rect(slide, mid - dot / 2, axis_y - dot / 2 + 0.005, dot, dot, color, MSO_SHAPE.OVAL)
+        d.line.fill.solid()
+        d.line.fill.fore_color.rgb = WHITE
+        d.line.width = Pt(1)
+        tf = textbox(slide, cx + 0.04, y - 0.02, cw - 0.08, 0.18, anchor=MSO_ANCHOR.BOTTOM)
+        write(tf, [plain(year, size=8, color=color, bold=True, font=HEAD)],
+              align=PP_ALIGN.CENTER, space_after=0)
+        tf = textbox(slide, cx + 0.04, axis_y + 0.13, cw - 0.08, h - (axis_y - y) - 0.13)
+        write(tf, [{"runs": [(t, {"bold": b, "color": color if b else GRAY,
+                                  "font": HEAD if b else BODY})], "space_after": 0.5}
+                   for t, b in lines],
+              size=label_size, align=PP_ALIGN.CENTER, line_spacing=1.0)
 
-    cy = y + head_h + 0.06
-    for i, row in enumerate(rows):
-        if i % 2 == 0:
-            rect(slide, x - 0.05, cy, w + 0.10, row_h, TINT2)
-        cx = x
-        for j, (c, cell) in enumerate(zip(cols, row)):
-            bold = (j == 1)
-            tf = textbox(slide, cx, cy, c - 0.06, row_h, anchor=MSO_ANCHOR.MIDDLE)
-            write(tf, [plain(cell, size=size, color=NAVY if bold else GRAY, bold=bold,
-                             font=HEAD if bold else BODY)],
-                  space_after=0, line_spacing=1.0)
-            cx += c
-        cy += row_h
-    return cy
+
+def style_axes(chart, cat_size=7.5):
+    chart.has_title = False
+    chart.has_legend = False
+    va = chart.value_axis
+    va.visible = False
+    va.has_major_gridlines = False
+    ca = chart.category_axis
+    ca.has_major_gridlines = False
+    ca.major_tick_mark = XL_TICK_MARK.NONE
+    ca.format.line.color.rgb = LGRAY
+    ca.tick_labels.font.size = Pt(cat_size)
+    ca.tick_labels.font.color.rgb = GRAY
+    ca.tick_labels.font.name = BODY
+
+
+def native_chart(slide, kind, x, y, w, h, categories, values, colors,
+                 number_format="General", label_pos=XL_LABEL_POSITION.OUTSIDE_END,
+                 gap_width=70, cat_size=7.5):
+    cd = CategoryChartData()
+    cd.categories = categories
+    cd.add_series("Series 1", values)
+    gf = slide.shapes.add_chart(kind, Inches(x), Inches(y), Inches(w), Inches(h), cd)
+    chart = gf.chart
+    style_axes(chart, cat_size)
+    plot = chart.plots[0]
+    plot.gap_width = gap_width
+    plot.has_data_labels = True
+    dl = plot.data_labels
+    dl.font.size = Pt(8)
+    dl.font.bold = True
+    dl.font.name = HEAD
+    dl.font.color.rgb = NAVY
+    dl.number_format = number_format
+    dl.number_format_is_linked = False
+    dl.position = label_pos
+    ser = plot.series[0]
+    for i, c in enumerate(colors):
+        pt = ser.points[i]
+        pt.format.fill.solid()
+        pt.format.fill.fore_color.rgb = c
+    return chart
 
 
 # ================================================================ build deck
@@ -244,7 +312,7 @@ prs = Presentation(SRC)
 delete_all_slides(prs)
 layouts = {l.name: l for l in prs.slide_master.slide_layouts}
 
-# ------------------------------------------------------------------- PAGE 1
+# ==================================================================== PAGE 1
 s1 = page_frame(
     prs, layouts,
     "GoldenSource",
@@ -254,9 +322,17 @@ s1 = page_frame(
     "the control plane for AI in financial services",
 )
 
-# Left: company overview
-bx, by, bw, bh = content_box(s1, LX, TOP, COL_W, 2.50, "COMPANY OVERVIEW")
-tf = textbox(s1, bx, by, bw, bh)
+# --- zone A: open KPI strip, full width
+kpi_strip(s1, LX, 1.56, FULL_W, 0.56, [
+    ("1984", "Founded — over 40 years in capital markets data"),
+    ("100+", "Pre-built vendor data feeds and adaptors"),
+    ("6", "Offices across North America, EMEA and APAC"),
+    ("4 yrs", "Gemspring Capital hold period to date"),
+])
+
+# --- zone B: overview (wide left) + snapshot (narrow right)
+cy = section(s1, LX, 2.24, 5.45, "COMPANY OVERVIEW")
+tf = textbox(s1, LX + 0.02, cy, 5.41, 4.40 - cy)
 write(tf, [
     {"bullet": True, "runs": [
         ("Founded in 1984 and headquartered in New York, GoldenSource is one of the original "
@@ -264,8 +340,7 @@ write(tf, [
          "with defining the category.", {})]},
     {"bullet": True, "runs": [
         ("Masters, governs and distributes securities, entity, counterparty, client, pricing, "
-         "position, corporate-action and ESG data for banks, asset managers and insurers, with "
-         "100+ pre-built vendor feeds.", {})]},
+         "position, corporate-action and ESG data for banks, asset managers and insurers.", {})]},
     {"bullet": True, "runs": [
         ("One platform, two go-to-market lenses: the ", {}),
         ("Investment Data Platform", {"bold": True, "color": NAVY, "font": HEAD}),
@@ -273,85 +348,53 @@ write(tf, [
         ("Trading, Risk and Regulatory Data Platform", {"bold": True, "color": NAVY, "font": HEAD}),
         (" for the sell side.", {})]},
     {"bullet": True, "runs": [
-        ("Recurring subscription licence plus cloud hosting and managed services, SaaS or "
-         "on-premise; founding sponsor of the EDM Council.", {})]},
+        ("Recurring subscription licence plus cloud hosting and managed services, deployed SaaS "
+         "or on-premise; founding sponsor of the EDM Council.", {})]},
     {"bullet": True, "runs": [
         ("Leadership refreshed under sponsor ownership: James Corrigan became CEO in September "
          "2024, succeeding John Eley after a decade, with a Chief Customer Officer seat created "
          "in 2026.", {})]},
-], size=8.0)
+])
 
-# Left: platform
-bx, by, bw, bh = content_box(s1, LX, TOP + 2.62, COL_W, BOT - (TOP + 2.62), "PLATFORM AND PRODUCT SUITE")
-tf = textbox(s1, bx, by, bw, bh)
-write(tf, [
-    {"bullet": True, "runs": [
-        ("Mastering. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Securities Master across all asset classes and ESG-enabled; Customer and entity "
-         "master; Price Master and valuations; corporate actions.", {})]},
-    {"bullet": True, "runs": [
-        ("Distribution. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Connections and Adaptors for vendor onboarding, the GoldenSource Data Warehouse, and "
-         "OMNI — a Snowflake Native App that runs the GoldenSource data model inside a "
-         "client’s own Snowflake account.", {})]},
-    {"bullet": True, "runs": [
-        ("Real time. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("GoldenSource IBOR, a real-time investment book of record launched in 2023.", {})]},
-    {"bullet": True, "runs": [
-        ("AI. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Scout, launched June 2026 — a “Trusted Contextual Data Layer” with a "
-         "chat interface and an MCP-based agent builder, deployed on Amazon Bedrock for "
-         "auditability and access control.", {})]},
-    {"bullet": True, "runs": [
-        ("Platform. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("V10 (October 2024) is cloud-agnostic across AWS, Azure and GCP and is listed in AWS "
-         "Marketplace, alongside a maintained on-premise estate.", {})]},
-], size=8.0)
-
-# Right: snapshot
-bx, by, bw, bh = content_box(s1, RX, TOP, COL_W, 2.50, "COMPANY SNAPSHOT")
-kv_table(s1, bx, by - 0.02, bw, [
-    ("Founded", "1984  |  Headquartered in New York, NY", 1),
+cy = section(s1, 5.80, 2.24, 3.95, "COMPANY SNAPSHOT")
+kv_rows(s1, 5.86, cy - 0.03, 3.83, [
+    ("Founded", "1984  |  New York, NY", 1),
     ("Ownership", "Gemspring Capital (May 2022); previously The Invus Group", 2),
-    ("CEO", "James Corrigan (since September 2024)", 1),
-    ("Employees", "~620 estimated, versus 380 at the 2022 close", 1),
-    ("Revenue", "~$63M estimated (third-party sources; not company-reported)", 2),
+    ("CEO", "James Corrigan (since Sept. 2024)", 1),
+    ("Employees", "~620 est., versus 380 at the 2022 close", 1),
+    ("Revenue", "~$63M est. (third-party; not company-reported)", 2),
     ("Offices", "New York, London, Milan, Mumbai, Melbourne, Hong Kong", 2),
     ("Delivery", "SaaS on AWS, Azure and GCP; AWS Marketplace; on-premise", 2),
 ])
 
-# Right: milestones
-bx, by, bw, bh = content_box(s1, RX, TOP + 2.62, COL_W, 1.72, "SELECTED MILESTONES")
-tf = textbox(s1, bx, by, bw, bh)
-write(tf, [
-    {"runs": [("1984 — ", {"bold": True, "color": NAVY, "font": HEAD}),
-              ("Founded in New York; helps establish the EDM category.", {})]},
-    {"runs": [("2022 — ", {"bold": True, "color": NAVY, "font": HEAD}),
-              ("Gemspring Capital acquires the business from The Invus Group.", {})]},
-    {"runs": [("2023–24 — ", {"bold": True, "color": NAVY, "font": HEAD}),
-              ("Real-time IBOR launches; OMNI goes live as a Snowflake Native App; V10 ships; "
-               "new CEO appointed.", {})]},
-    {"runs": [("2025 — ", {"bold": True, "color": NAVY, "font": HEAD}),
-              ("Record year, with Q4 wins including a $500B+ global asset manager, a U.S. "
-               "super-regional bank and a European multinational bank.", {})]},
-    {"runs": [("2026 — ", {"bold": True, "color": NAVY, "font": HEAD}),
-              ("Scout AI platform launches on Amazon Bedrock; Chief Customer Officer seat "
-               "created.", {})]},
-], size=7.5, space_after=3.5)
-
-# Right: momentum tiles
-bx, by, bw, bh = content_box(s1, RX, TOP + 4.46, COL_W, BOT - (TOP + 4.46), "MOMENTUM MARKERS")
-stat_tiles(s1, bx, by - 0.02, bw, bh - 0.01, [
-    ("~620", "Employees, from 380 at the 2022 close"),
-    ("3", "Flagship Q4 2025 platform wins"),
-    ("4 yrs", "Gemspring hold as of July 2026"),
+# --- zone C: full-width platform flow diagram
+cy = section(s1, LX, 4.58, FULL_W, "PLATFORM AND PRODUCT SUITE — HOW THE DATA MOVES")
+flow_diagram(s1, LX, cy, FULL_W, 5.76 - cy, [
+    ("SOURCE AND CONNECT", ["Connections and Adaptors", "100+ vendor feeds"]),
+    ("MASTER AND GOVERN", ["Securities and Entity Master", "Price Master, corporate actions, ESG"]),
+    ("DISTRIBUTE", ["Data Warehouse", "OMNI — Snowflake Native App", "Real-time IBOR"]),
+    ("CONSUME AND REASON", ["Scout on Amazon Bedrock", "Chat plus MCP agent builder"]),
 ])
+
+# --- zone D: milestone timeline (wide) + native headcount chart (narrow)
+cy = section(s1, LX, 5.86, 6.05, "SELECTED MILESTONES")
+timeline(s1, LX, cy, 6.05, BOT - cy, [
+    ("1984", [("Founded in", False), ("New York", False)], False),
+    ("2022", [("Gemspring buys", False), ("from Invus", False)], True),
+    ("2023–24", [("IBOR, OMNI and", False), ("V10; new CEO", False)], False),
+    ("2025", [("Record year;", False), ("flagship wins", False)], False),
+    ("2026", [("Scout AI", False), ("launches", False)], False),
+])
+
+cy = section(s1, 6.55, 5.86, 3.20, "HEADCOUNT UNDER GEMSPRING")
+native_chart(s1, XL_CHART_TYPE.COLUMN_CLUSTERED, 6.52, cy - 0.09, 3.26, BOT - cy + 0.05,
+             ["2022", "2026E"], (380, 620), [SLATE, NAVY], gap_width=60)
 
 footnote(s1, "Sources: GoldenSource and Gemspring Capital press releases; Businesswire; Finextra; "
              "WatersTechnology; company website. Employee and revenue figures are third-party "
              "estimates and are not company-reported — confirm in diligence.")
 
-# ------------------------------------------------------------------- PAGE 2
+# ==================================================================== PAGE 2
 s2 = page_frame(
     prs, layouts,
     "GoldenSource",
@@ -361,15 +404,14 @@ s2 = page_frame(
     "leaving GoldenSource one of the few remaining at scale",
 )
 
-# Left: market context
-bx, by, bw, bh = content_box(s2, LX, TOP, COL_W, 2.50, "MARKET CONTEXT AND DEMAND DRIVERS")
-tf = textbox(s2, bx, by, bw, bh)
+# --- zone A: demand drivers (wide) + native survey chart (narrow)
+cy = section(s2, LX, 1.56, 5.45, "MARKET CONTEXT AND DEMAND DRIVERS")
+tf = textbox(s2, LX + 0.02, cy, 5.41, 3.42 - cy)
 write(tf, [
     {"bullet": True, "runs": [
         ("AI moved the buying centre. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("InvestOps 2026 found 98% of firms concerned that poor data yields incorrect AI "
-         "insights, and 55% put at least half a basis point of annualised performance at risk. "
-         "Data governance is now a board line item, not an operations budget.", {})]},
+        ("Data governance is now a board line item rather than an operations budget, because "
+         "model output is only as defensible as the data underneath it.", {})]},
     {"bullet": True, "runs": [
         ("Regulatory and cost pressure is structural. ", {"bold": True, "color": NAVY, "font": HEAD}),
         ("Rising vendor data costs, T+1, and widening entity, counterparty and ESG reporting "
@@ -382,74 +424,62 @@ write(tf, [
         ("Vendor consolidation cuts both ways. ", {"bold": True, "color": NAVY, "font": HEAD}),
         ("Front-to-back platforms squeeze point solutions, but raise the premium on neutral, "
          "multi-vendor mastering that spans them.", {})]},
-], size=8.0)
-
-# Left: competitive landscape
-bx, by, bw, bh = content_box(s2, LX, TOP + 2.62, COL_W, BOT - (TOP + 2.62), "COMPETITIVE LANDSCAPE")
-tf = textbox(s2, bx, by, bw, bh)
-write(tf, [
-    {"runs": [("Scaled strategics and platform owners", {"bold": True, "color": NAVY, "font": HEAD})],
-     "space_after": 1.5},
-    {"bullet": True, "runs": [
-        ("Bloomberg (Data License, PolarLake), FactSet, LSEG, SimCorp under Deutsche Börse, "
-         "and Clearwater Analytics following Enfusion.", {})]},
-    {"runs": [("Sponsor-backed independents", {"bold": True, "color": NAVY, "font": HEAD})],
-     "space_after": 1.5, "space_before": 3},
-    {"bullet": True, "runs": [
-        ("Gresham under STG — now the sector consolidator, having absorbed Alveo and, in "
-         "January 2026, S&P Global’s EDM and thinkFolio businesses; NeoXam under Eurazeo; "
-         "plus Rimes, Xceptor, Duco and Solidatus.", {})]},
-    {"runs": [("Platform substitution", {"bold": True, "color": NAVY, "font": HEAD})],
-     "space_after": 1.5, "space_before": 3},
-    {"bullet": True, "runs": [
-        ("In-house builds on Snowflake and Databricks lakehouses, often packaged by systems "
-         "integrators — the principal budget alternative rather than a like-for-like rival.", {})]},
-    {"runs": [("Where GoldenSource sits", {"bold": True, "color": NAVY, "font": HEAD})],
-     "space_after": 1.5, "space_before": 3},
-    {"bullet": True, "runs": [
-        ("One of a shrinking set of independent, cross-asset, multi-vendor masters carrying both "
-         "a buy-side and a sell-side installed base — the profile a strategic buys rather "
-         "than builds.", {})], "bullet_color": TEAL},
-], size=8.0, space_after=3)
-
-# Right: precedent transactions
-bx, by, bw, bh = content_box(s2, RX, TOP, COL_W, 2.50, "SELECTED PRECEDENT TRANSACTIONS")
-txn_table(s2, bx, by - 0.02, bw, [
-    ("Jan-26", "S&P Global EDM / thinkFolio", "STG / Gresham", "n.d."),
-    ("Jan-25", "Enfusion", "Clearwater Analytics", "$1.5B"),
-    ("Oct-24", "EZOPS", "NeoXam (Eurazeo)", "n.d."),
-    ("Jul-24", "Gresham Technologies", "STG (with Alveo)", "£141.9M"),
-    ("Apr-23", "SimCorp", "Deutsche Börse", "€3.9B"),
-    ("May-22", "GoldenSource", "Gemspring Capital", "n.d."),
 ])
 
-# Right: coverage angle
-bx, by, bw, bh = content_box(s2, RX, TOP + 2.62, COL_W, BOT - (TOP + 2.62), "COVERAGE ANGLE — WHY NOW")
-tf = textbox(s2, bx, by, bw, bh)
+cy = section(s2, 5.80, 1.56, 3.95, "THE AI TRUST GAP — INVESTOPS 2026")
+native_chart(s2, XL_CHART_TYPE.BAR_CLUSTERED, 5.72, cy - 0.06, 4.05, 3.42 - cy + 0.06,
+             ["≥0.5bp of annual\nperformance at risk", "Poor data could drive\nwrong AI insights"],
+             (55, 98), [MID, NAVY], number_format='0"%"', gap_width=80, cat_size=7)
+
+# --- zone B: full-width consolidation timeline
+cy = section(s2, LX, 3.52, FULL_W, "THE INDEPENDENTS HAVE CONSOLIDATED — SELECTED PRECEDENT TRANSACTIONS")
+timeline(s2, LX, cy, FULL_W, 4.92 - cy, [
+    ("May-22", [("GoldenSource", True), ("Gemspring Capital", False), ("n.d.", False)], True),
+    ("Apr-23", [("SimCorp", True), ("Deutsche Börse", False), ("€3.9B", False)], False),
+    ("Jul-24", [("Gresham Technologies", True), ("STG, with Alveo", False), ("£141.9M", False)], False),
+    ("Oct-24", [("EZOPS", True), ("NeoXam (Eurazeo)", False), ("n.d.", False)], False),
+    ("Jan-25", [("Enfusion", True), ("Clearwater Analytics", False), ("$1.5B", False)], False),
+    ("Jan-26", [("S&P EDM / thinkFolio", True), ("STG / Gresham", False), ("n.d.", False)], False),
+], label_size=7)
+
+# --- zone C: landscape (narrow) + coverage angle (wide)
+cy = section(s2, LX, 5.02, 3.95, "COMPETITIVE LANDSCAPE")
+tf = textbox(s2, LX + 0.02, cy, 3.91, BOT - cy)
 write(tf, [
-    {"bullet": True, "runs": [
-        ("Hold period. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Gemspring entered in May 2022. At four-plus years and off a record 2025, GoldenSource "
-         "sits squarely in the window for a sponsor-to-sponsor or strategic process.", {})]},
-    {"bullet": True, "runs": [
-        ("The story is fresh, not stale. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Scout, OMNI, V10 and the IBOR support a credible “modernised under this "
-         "sponsor” narrative, with headcount up roughly 60% since close.", {})]},
-    {"bullet": True, "runs": [
-        ("Scarcity. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("With S&P’s EDM franchise now inside STG/Gresham, the independent field is close "
-         "to consolidated — which raises the option value of the assets left.", {})]},
-    {"bullet": True, "runs": [
-        ("Diligence themes to test. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Licence versus services mix and gross margin; cloud ARR share against on-premise "
-         "maintenance; net revenue retention; and how much of Scout is shipped rather than "
-         "announced.", {})]},
-    {"bullet": True, "runs": [
-        ("Houlihan Lokey is already in this market. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Sole and Rule 3 adviser to Gresham Technologies on its 2024 take-private by STG, and "
-         "co-adviser to STG and Gresham on the 2026 carve-out of S&P Global’s EDM and "
-         "thinkFolio businesses.", {})], "bullet_color": TEAL},
-], size=8.0)
+    lead("Scaled strategics. ",
+         "Bloomberg (Data License, PolarLake), FactSet, LSEG, SimCorp under Deutsche Börse, "
+         "Clearwater after Enfusion.", bullet=True),
+    lead("Sponsor-backed independents. ",
+         "Gresham under STG — now the consolidator; NeoXam under Eurazeo; Rimes, Xceptor, "
+         "Duco, Solidatus.", bullet=True),
+    lead("Platform substitution. ",
+         "In-house builds on Snowflake and Databricks lakehouses, packaged by integrators.",
+         bullet=True),
+    lead("GoldenSource. ",
+         "One of the few independent, cross-asset, multi-vendor masters left carrying both a "
+         "buy-side and a sell-side installed base.", bullet=True, bullet_color=TEAL),
+], size=7.5, space_after=3)
+
+cy = section(s2, 4.55, 5.02, 5.20, "COVERAGE ANGLE — WHY NOW")
+tf = textbox(s2, 4.57, cy, 5.16, BOT - cy)
+write(tf, [
+    lead("Hold period. ",
+         "Gemspring entered in May 2022. At four-plus years and off a record 2025, GoldenSource "
+         "is squarely in the window for a sponsor-to-sponsor or strategic process.", bullet=True),
+    lead("The story is fresh, not stale. ",
+         "Scout, OMNI, V10 and the IBOR support a credible “modernised under this sponsor” "
+         "narrative, with headcount up roughly 60% since close.", bullet=True),
+    lead("Scarcity. ",
+         "With S&P’s EDM franchise now inside STG/Gresham, the independent field is close "
+         "to consolidated.", bullet=True),
+    lead("Test in diligence. ",
+         "Licence versus services mix; cloud ARR share against on-premise maintenance; net "
+         "revenue retention; and how much of Scout has shipped.", bullet=True),
+    lead("Houlihan Lokey is already in this market. ",
+         "Rule 3 adviser to Gresham on its 2024 take-private by STG, and co-adviser to "
+         "STG/Gresham on the 2026 S&P EDM and thinkFolio carve-out.",
+         bullet=True, bullet_color=TEAL),
+], size=7.5, space_after=3)
 
 footnote(s2, "Sources: Houlihan Lokey transaction disclosures; S&P Global, Clearwater Analytics, "
              "Deutsche Börse and STG press releases; Businesswire; Finextra; A-Team Insight; "

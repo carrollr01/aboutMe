@@ -25,14 +25,31 @@ branding automatically.
 Pulled from the template's own theme rather than approximated:
 
 - **Page:** 10" x 7.5" (letter, 4:3) — HL's native size, not 16:9
-- **Grid:** 0.25" outer margins, two 4.55" columns split at 5.20", content 1.60"–6.95"
+- **Margins:** 0.25" outer, content 1.52"–6.95", source note in the master's footer slot
 - **Fonts:** Segoe UI Semibold (headers), Segoe UI (body) — the theme's major/minor pair
 - **Colour:** navy `002855` (theme `dk2`) as the primary, deliberately *instead of*
   the royal blue `0067A5` the cover layouts use. Body copy `525766`, rules `BCBFC6`,
-  slate `7E8597`, mid-blue `508BC9` for bullets, teal `24B1B1` reserved for the two
-  "punchline" bullets
+  slate `7E8597`, mid-blue `508BC9`, teal `24B1B1` reserved for the "punchline" bullets.
+  Bodies are white — the only tint is row striping in the snapshot table
 - **Type sizes:** everything on the page sits between 7pt and 11.5pt. The only
   exception is the slide title at 18pt, which is the template master's own spec
+
+## Layout
+
+The two pages use deliberately different zone structures so they don't read as
+one template applied twice:
+
+| | Page 1 | Page 2 |
+|---|---|---|
+| Zone A | Open KPI strip, full width | Demand-driver bullets + survey bar chart |
+| Zone B | Overview (wide) + snapshot table (narrow) | Full-width consolidation timeline |
+| Zone C | Full-width chevron flow diagram | Landscape (narrow) + coverage angle (wide) |
+| Zone D | Milestone timeline + headcount column chart | — |
+
+Everything visual is native: the chevron flow and both timelines are PowerPoint
+shapes, and the two charts are real PowerPoint charts with embedded Excel
+workbooks (`ppt/embeddings/Microsoft_Excel_Sheet*.xlsx`) — double-click to edit
+the data in place. No pictures anywhere.
 
 ## Sourcing rules
 
