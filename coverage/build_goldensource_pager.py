@@ -264,6 +264,24 @@ def timeline(slide, x, y, w, h, nodes, label_size=7, dot=0.10):
               size=label_size, align=PP_ALIGN.CENTER, line_spacing=1.0)
 
 
+def lanes(slide, x, y, w, h, rows, chip_w=1.24, gap=0.08):
+    """Colour-chipped lanes: a category chip on the left, names on the right."""
+    lh = (h - gap * (len(rows) - 1)) / len(rows)
+    for i, (label, names) in enumerate(rows):
+        ly = y + i * (lh + gap)
+        chip = rect(slide, x, ly, chip_w, lh, FLOW[i % len(FLOW)])
+        tf = chip.text_frame
+        tf.word_wrap = True
+        tf.margin_left = tf.margin_right = Inches(0.05)
+        tf.margin_top = tf.margin_bottom = 0
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        write(tf, [plain(label, size=7, color=WHITE, bold=True, font=HEAD)],
+              align=PP_ALIGN.CENTER, space_after=0, line_spacing=1.0)
+        tf = textbox(slide, x + chip_w + 0.10, ly, w - chip_w - 0.10, lh,
+                     anchor=MSO_ANCHOR.MIDDLE)
+        write(tf, [plain(names, size=7.5, color=GRAY)], space_after=0, line_spacing=1.05)
+
+
 def style_axes(chart, cat_size=7.5):
     chart.has_title = False
     chart.has_legend = False
@@ -410,7 +428,8 @@ tf = textbox(s2, LX + 0.02, cy, 5.41, 3.42 - cy)
 write(tf, [
     {"bullet": True, "runs": [
         ("AI moved the buying centre. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Data governance is now a board line item rather than an operations budget, because "
+        ("Data governance is now a board line item rather than an operations budget: InvestOps "
+         "2026 found 98% of firms concerned that poor data drives incorrect AI insights, because "
          "model output is only as defensible as the data underneath it.", {})]},
     {"bullet": True, "runs": [
         ("Regulatory and cost pressure is structural. ", {"bold": True, "color": NAVY, "font": HEAD}),
@@ -426,10 +445,15 @@ write(tf, [
          "multi-vendor mastering that spans them.", {})]},
 ])
 
-cy = section(s2, 5.80, 1.56, 3.95, "THE AI TRUST GAP — INVESTOPS 2026")
-native_chart(s2, XL_CHART_TYPE.BAR_CLUSTERED, 5.72, cy - 0.06, 4.05, 3.42 - cy + 0.06,
-             ["≥0.5bp of annual\nperformance at risk", "Poor data could drive\nwrong AI insights"],
-             (55, 98), [MID, NAVY], number_format='0"%"', gap_width=80, cat_size=7)
+cy = section(s2, 5.80, 1.56, 3.95, "INDICATIVE BUYER UNIVERSE")
+lanes(s2, 5.80, cy, 3.95, 3.42 - cy, [
+    ("DATA STRATEGICS",
+     "S&P Global, LSEG, FactSet, Bloomberg, Deutsche Börse (SimCorp)"),
+    ("PLATFORM CONSOLIDATORS",
+     "Clearwater Analytics, SS&C, Broadridge, FIS"),
+    ("CATEGORY SPONSORS",
+     "STG (Alveo, Gresham, S&P EDM), Eurazeo (NeoXam), large-cap software funds"),
+])
 
 # --- zone B: full-width consolidation timeline
 cy = section(s2, LX, 3.52, FULL_W, "THE INDEPENDENTS HAVE CONSOLIDATED — SELECTED PRECEDENT TRANSACTIONS")
@@ -483,8 +507,8 @@ write(tf, [
 
 footnote(s2, "Sources: Houlihan Lokey transaction disclosures; S&P Global, Clearwater Analytics, "
              "Deutsche Börse and STG press releases; Businesswire; Finextra; A-Team Insight; "
-             "InvestOps 2026 research cited by GoldenSource. Values as disclosed; n.d. = not "
-             "disclosed. Ownership shown where publicly confirmed.")
+             "InvestOps 2026. Values as disclosed; n.d. = not disclosed. Buyer universe is HL "
+             "analysis, not a disclosed or solicited process.")
 
 prs.save(OUT)
 print("wrote", OUT)
