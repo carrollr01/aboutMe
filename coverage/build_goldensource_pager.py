@@ -264,6 +264,51 @@ def timeline(slide, x, y, w, h, nodes, label_size=7, dot=0.10):
               size=label_size, align=PP_ALIGN.CENTER, line_spacing=1.0)
 
 
+def outline(slide, x, y, w, h, color=LGRAY, weight=0.75):
+    sh = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(x), Inches(y), Inches(w), Inches(h))
+    sh.fill.background()
+    sh.line.color.rgb = color
+    sh.line.width = Pt(weight)
+    sh.shadow.inherit = False
+    return sh
+
+
+def matrix_2x2(slide, x, y, w, h, quadrants, x_axis, y_axis,
+               highlight=(1, 0), pad=0.09, axis_w=0.22, axis_h=0.20):
+    """Qualitative 2x2. quadrants keyed (col, row) with row 0 = top.
+    Each value is (quadrant_title, [(text, opts), ...])."""
+    gx, gy = x + axis_w, y
+    gw, gh = w - axis_w, h - axis_h
+    cw, ch = gw / 2, gh / 2
+
+    for (col, row), (title, runs) in quadrants.items():
+        qx, qy = gx + col * cw, gy + row * ch
+        if (col, row) == highlight:
+            rect(slide, qx, qy, cw, ch, ROW)
+        tf = textbox(slide, qx + pad, qy + pad, cw - 2 * pad, 0.20)
+        write(tf, [plain(title, size=7, color=NAVY, bold=True, font=HEAD)],
+              space_after=0, line_spacing=1.0)
+        tf = textbox(slide, qx + pad, qy + pad + 0.22, cw - 2 * pad, ch - pad * 2 - 0.22)
+        write(tf, [{"runs": runs}], size=7, space_after=0, line_spacing=1.12)
+
+    hairline(slide, gx, gy + ch, gw, LGRAY)
+    vrule(slide, gx + cw, gy, gh, LGRAY)
+    outline(slide, gx, gy, gw, gh)
+
+    tf = textbox(slide, gx, gy + gh + 0.04, gw, axis_h - 0.04)
+    write(tf, [plain(x_axis, size=7, color=SLATE, bold=True, font=HEAD)],
+          align=PP_ALIGN.CENTER, space_after=0)
+    tb = slide.shapes.add_textbox(Inches(x + axis_w / 2 - gh / 2), Inches(gy + gh / 2 - 0.10),
+                                  Inches(gh), Inches(0.20))
+    tb.rotation = 270
+    tf = tb.text_frame
+    tf.word_wrap = True
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    write(tf, [plain(y_axis, size=7, color=SLATE, bold=True, font=HEAD)],
+          align=PP_ALIGN.CENTER, space_after=0)
+
+
 def lanes(slide, x, y, w, h, rows, chip_w=1.24, gap=0.08):
     """Colour-chipped lanes: a category chip on the left, names on the right."""
     lh = (h - gap * (len(rows) - 1)) / len(rows)
@@ -335,14 +380,14 @@ s1 = page_frame(
     prs, layouts,
     "GoldenSource",
     "Coverage Profile  |  Data & Analytics  |  July 2026",
-    "Forty-year enterprise data management franchise for capital markets — sponsor-owned "
-    "since 2022, coming off a record 2025, and now repositioning its governed data layer as "
-    "the control plane for AI in financial services",
+    "GoldenSource has mastered securities, pricing and entity data for capital markets since "
+    "1984. Gemspring Capital has owned it since May 2022; headcount is up roughly 60% over that "
+    "period and 2025 was a record year.",
 )
 
 # --- zone A: open KPI strip, full width
 kpi_strip(s1, LX, 1.56, FULL_W, 0.56, [
-    ("1984", "Founded — over 40 years in capital markets data"),
+    ("1984", "Founded; over 40 years in capital markets data"),
     ("100+", "Pre-built vendor data feeds and adaptors"),
     ("6", "Offices across North America, EMEA and APAC"),
     ("4 yrs", "Gemspring Capital hold period to date"),
@@ -354,8 +399,8 @@ tf = textbox(s1, LX + 0.02, cy, 5.41, 4.40 - cy)
 write(tf, [
     {"bullet": True, "runs": [
         ("Founded in 1984 and headquartered in New York, GoldenSource is one of the original "
-         "enterprise data management (EDM) vendors in capital markets and is widely credited "
-         "with defining the category.", {})]},
+         "enterprise data management (EDM) vendors in capital markets and is credited with "
+         "popularising the term.", {})]},
     {"bullet": True, "runs": [
         ("Masters, governs and distributes securities, entity, counterparty, client, pricing, "
          "position, corporate-action and ESG data for banks, asset managers and insurers.", {})]},
@@ -386,11 +431,11 @@ kv_rows(s1, 5.86, cy - 0.03, 3.83, [
 ])
 
 # --- zone C: full-width platform flow diagram
-cy = section(s1, LX, 4.58, FULL_W, "PLATFORM AND PRODUCT SUITE — HOW THE DATA MOVES")
+cy = section(s1, LX, 4.58, FULL_W, "PLATFORM AND PRODUCT SUITE")
 flow_diagram(s1, LX, cy, FULL_W, 5.76 - cy, [
     ("SOURCE AND CONNECT", ["Connections and Adaptors", "100+ vendor feeds"]),
     ("MASTER AND GOVERN", ["Securities and Entity Master", "Price Master, corporate actions, ESG"]),
-    ("DISTRIBUTE", ["Data Warehouse", "OMNI — Snowflake Native App", "Real-time IBOR"]),
+    ("DISTRIBUTE", ["Data Warehouse", "OMNI (Snowflake Native App)", "Real-time IBOR"]),
     ("CONSUME AND REASON", ["Scout on Amazon Bedrock", "Chat plus MCP agent builder"]),
 ])
 
@@ -410,54 +455,58 @@ native_chart(s1, XL_CHART_TYPE.COLUMN_CLUSTERED, 6.52, cy - 0.09, 3.26, BOT - cy
 
 footnote(s1, "Sources: GoldenSource and Gemspring Capital press releases; Businesswire; Finextra; "
              "WatersTechnology; company website. Employee and revenue figures are third-party "
-             "estimates and are not company-reported — confirm in diligence.")
+             "estimates and are not company-reported; confirm in diligence.")
 
 # ==================================================================== PAGE 2
 s2 = page_frame(
     prs, layouts,
     "GoldenSource",
     "Market Position and Coverage Angle  |  July 2026",
-    "The data layer is being re-underwritten for AI — and the category’s scaled "
-    "independents have consolidated into strategic and sponsor hands over the last 36 months, "
-    "leaving GoldenSource one of the few remaining at scale",
+    "Six of the category’s scaled independents have changed hands since 2022, most recently "
+    "S&P Global’s EDM business to STG in January 2026. GoldenSource is one of three that is "
+    "neither strategic-owned nor tied to a front-to-back platform.",
 )
 
-# --- zone A: demand drivers (wide) + native survey chart (narrow)
-cy = section(s2, LX, 1.56, 5.45, "MARKET CONTEXT AND DEMAND DRIVERS")
-tf = textbox(s2, LX + 0.02, cy, 5.41, 3.42 - cy)
-write(tf, [
-    {"bullet": True, "runs": [
-        ("AI moved the buying centre. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Data governance is now a board line item rather than an operations budget: InvestOps "
-         "2026 found 98% of firms concerned that poor data drives incorrect AI insights, because "
-         "model output is only as defensible as the data underneath it.", {})]},
-    {"bullet": True, "runs": [
-        ("Regulatory and cost pressure is structural. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Rising vendor data costs, T+1, and widening entity, counterparty and ESG reporting "
-         "obligations all reward a single mastered source.", {})]},
-    {"bullet": True, "runs": [
-        ("Cloud re-platforming reopened a mature category. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Snowflake and Databricks made “where the data lives” a live decision again, "
-         "and vendors that ship natively into those environments earn a second look.", {})]},
-    {"bullet": True, "runs": [
-        ("Vendor consolidation cuts both ways. ", {"bold": True, "color": NAVY, "font": HEAD}),
-        ("Front-to-back platforms squeeze point solutions, but raise the premium on neutral, "
-         "multi-vendor mastering that spans them.", {})]},
-])
+# --- zone A: competitive 2x2 (wide) + demand drivers (narrow)
+cy = section(s2, LX, 1.56, 5.45, "COMPETITIVE LANDSCAPE")
+matrix_2x2(s2, LX, cy, 5.45, 3.96 - cy, {
+    (1, 0): ("INDEPENDENT ENTERPRISE MASTERS", [
+        ("GoldenSource", {"bold": True, "color": TEAL, "font": HEAD}),
+        (", Gresham (STG), NeoXam (Eurazeo). Cross-asset mastering sold on its own merits, "
+         "not as a hook into proprietary data or an execution platform.", {})]),
+    (1, 1): ("PLATFORM-TIED AND CAPTIVE SUITES", [
+        ("Bloomberg, S&P Global, FactSet, LSEG, SimCorp (Deutsche Börse), Clearwater. Broad "
+         "coverage, but the data model serves the owner’s feed or front-to-back stack.", {})]),
+    (0, 0): ("POINT TOOLS AND INFRASTRUCTURE", [
+        ("Snowflake, Databricks, Duco, Solidatus, Xceptor, Rimes. Neutral and increasingly "
+         "capable, but each solves one slice; mastering is left to the client.", {})]),
+    (0, 1): ("SINGLE-SOURCE FEEDS", [
+        ("Vendor-native reference data delivery and in-house builds on one provider. Cheapest "
+         "to start, hardest to reconcile once a second source arrives.", {})]),
+}, "Breadth of mastered data (narrow to cross-asset)",
+   "Vendor neutrality (low to high)")
 
-cy = section(s2, 5.80, 1.56, 3.95, "INDICATIVE BUYER UNIVERSE")
-lanes(s2, 5.80, cy, 3.95, 3.42 - cy, [
-    ("DATA STRATEGICS",
-     "S&P Global, LSEG, FactSet, Bloomberg, Deutsche Börse (SimCorp)"),
-    ("PLATFORM CONSOLIDATORS",
-     "Clearwater Analytics, SS&C, Broadridge, FIS"),
-    ("CATEGORY SPONSORS",
-     "STG (Alveo, Gresham, S&P EDM), Eurazeo (NeoXam), large-cap software funds"),
-])
+cy = section(s2, 5.80, 1.56, 3.95, "DEMAND DRIVERS")
+tf = textbox(s2, 5.82, cy, 3.91, 3.96 - cy)
+write(tf, [
+    lead("Data quality now gates AI. ",
+         "InvestOps 2026 found 98% of firms concerned that poor data drives incorrect AI "
+         "insights, moving governance from an operations budget to a board line item.",
+         bullet=True),
+    lead("Regulatory and cost pressure. ",
+         "Rising vendor data costs, T+1, and widening entity, counterparty and ESG reporting "
+         "obligations all reward a single mastered source.", bullet=True),
+    lead("Cloud re-platforming. ",
+         "Snowflake and Databricks made where the data lives a live decision again, and vendors "
+         "that ship natively into those environments earn a second look.", bullet=True),
+    lead("Vendor consolidation. ",
+         "Front-to-back platforms squeeze point solutions but raise the premium on neutral "
+         "mastering that spans them.", bullet=True),
+], size=7.5, space_after=3.5)
 
 # --- zone B: full-width consolidation timeline
-cy = section(s2, LX, 3.52, FULL_W, "THE INDEPENDENTS HAVE CONSOLIDATED — SELECTED PRECEDENT TRANSACTIONS")
-timeline(s2, LX, cy, FULL_W, 4.92 - cy, [
+cy = section(s2, LX, 4.06, FULL_W, "SELECTED PRECEDENT TRANSACTIONS")
+timeline(s2, LX, cy, FULL_W, 5.16 - cy, [
     ("May-22", [("GoldenSource", True), ("Gemspring Capital", False), ("n.d.", False)], True),
     ("Apr-23", [("SimCorp", True), ("Deutsche Börse", False), ("€3.9B", False)], False),
     ("Jul-24", [("Gresham Technologies", True), ("STG, with Alveo", False), ("£141.9M", False)], False),
@@ -466,49 +515,39 @@ timeline(s2, LX, cy, FULL_W, 4.92 - cy, [
     ("Jan-26", [("S&P EDM / thinkFolio", True), ("STG / Gresham", False), ("n.d.", False)], False),
 ], label_size=7)
 
-# --- zone C: landscape (narrow) + coverage angle (wide)
-cy = section(s2, LX, 5.02, 3.95, "COMPETITIVE LANDSCAPE")
-tf = textbox(s2, LX + 0.02, cy, 3.91, BOT - cy)
-write(tf, [
-    lead("Scaled strategics. ",
-         "Bloomberg (Data License, PolarLake), FactSet, LSEG, SimCorp under Deutsche Börse, "
-         "Clearwater after Enfusion.", bullet=True),
-    lead("Sponsor-backed independents. ",
-         "Gresham under STG — now the consolidator; NeoXam under Eurazeo; Rimes, Xceptor, "
-         "Duco, Solidatus.", bullet=True),
-    lead("Platform substitution. ",
-         "In-house builds on Snowflake and Databricks lakehouses, packaged by integrators.",
-         bullet=True),
-    lead("GoldenSource. ",
-         "One of the few independent, cross-asset, multi-vendor masters left carrying both a "
-         "buy-side and a sell-side installed base.", bullet=True, bullet_color=TEAL),
-], size=7.5, space_after=3)
+# --- zone C: buyer universe (narrow) + coverage angle (wide)
+cy = section(s2, LX, 5.26, 4.20, "INDICATIVE BUYER UNIVERSE")
+lanes(s2, LX, cy, 4.20, BOT - cy, [
+    ("DATA STRATEGICS", "S&P Global, LSEG, FactSet, Bloomberg, Deutsche Börse (SimCorp)"),
+    ("PLATFORM CONSOLIDATORS", "Clearwater Analytics, SS&C, Broadridge, FIS"),
+    ("CATEGORY SPONSORS", "STG (Alveo, Gresham, S&P EDM), Eurazeo (NeoXam), large-cap software funds"),
+], gap=0.06)
 
-cy = section(s2, 4.55, 5.02, 5.20, "COVERAGE ANGLE — WHY NOW")
-tf = textbox(s2, 4.57, cy, 5.16, BOT - cy)
+cy = section(s2, 4.65, 5.26, 5.10, "COVERAGE ANGLE")
+tf = textbox(s2, 4.67, cy, 5.06, BOT - cy)
 write(tf, [
     lead("Hold period. ",
-         "Gemspring entered in May 2022. At four-plus years and off a record 2025, GoldenSource "
-         "is squarely in the window for a sponsor-to-sponsor or strategic process.", bullet=True),
-    lead("The story is fresh, not stale. ",
-         "Scout, OMNI, V10 and the IBOR support a credible “modernised under this sponsor” "
-         "narrative, with headcount up roughly 60% since close.", bullet=True),
-    lead("Scarcity. ",
-         "With S&P’s EDM franchise now inside STG/Gresham, the independent field is close "
-         "to consolidated.", bullet=True),
+         "Gemspring entered in May 2022; at four-plus years and off a record 2025, the asset "
+         "is in the window for a sponsor-to-sponsor or strategic process.", bullet=True),
+    lead("Recent investment. ",
+         "Scout, OMNI, V10 and the IBOR account for what the sponsor funded; headcount is up "
+         "roughly 60% since close.", bullet=True),
+    lead("Limited remaining supply. ",
+         "The top-right quadrant above is down to three names, two of them already "
+         "consolidated.", bullet=True),
     lead("Test in diligence. ",
          "Licence versus services mix; cloud ARR share against on-premise maintenance; net "
          "revenue retention; and how much of Scout has shipped.", bullet=True),
-    lead("Houlihan Lokey is already in this market. ",
+    lead("Relevant HL experience. ",
          "Rule 3 adviser to Gresham on its 2024 take-private by STG, and co-adviser to "
          "STG/Gresham on the 2026 S&P EDM and thinkFolio carve-out.",
          bullet=True, bullet_color=TEAL),
-], size=7.5, space_after=3)
+], size=7.5, space_after=2.5)
 
 footnote(s2, "Sources: Houlihan Lokey transaction disclosures; S&P Global, Clearwater Analytics, "
              "Deutsche Börse and STG press releases; Businesswire; Finextra; A-Team Insight; "
-             "InvestOps 2026. Values as disclosed; n.d. = not disclosed. Buyer universe is HL "
-             "analysis, not a disclosed or solicited process.")
+             "InvestOps 2026. Values as disclosed; n.d. = not disclosed. Competitive positioning "
+             "and buyer universe are HL analysis.")
 
 prs.save(OUT)
 print("wrote", OUT)
