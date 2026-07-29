@@ -435,7 +435,8 @@ def marquee(slide, x, y, w, h, rows):
 
 
 def platform_panel(slide, x, y, w, h):
-    """9.30in x 2.20in: marquee products left, bundled wire flow right."""
+    """9.30in x 2.20in: marquee products left, bundled wire terminating in the
+    outcome GoldenSource ships."""
     l_w, gut = 2.50, 0.20
     r_x, r_w = x + l_w + gut, w - l_w - gut
 
@@ -447,45 +448,42 @@ def platform_panel(slide, x, y, w, h):
         (TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
     ])
 
-    src_w, con_w, lead = 0.88, 1.05, 0.40
+    src_w, lead = 1.00, 0.45
     bundle = r_x + src_w + lead
-    unbundle = r_x + r_w - con_w - lead
+    terminal = r_x + r_w - 0.90
     trunk_y = y + 1.02
     stack_h = 1.70
     stack_y = trunk_y - stack_h / 2
 
     endpoints(slide, r_x, stack_y, src_w, stack_h,
-              ["Data vendors", "Exchanges", "Index providers", "Custodians",
-               "Fund admins", "Internal systems", "Counterparties"],
+              ["Market data vendors", "Exchanges", "Index providers", "Custodians",
+               "Fund administrators", "Internal systems", "Counterparties"],
               bundle, trunk_y, inbound=True)
-    endpoints(slide, r_x + r_w - con_w, stack_y, con_w, stack_h,
-              ["Trading and OMS", "Risk and capital", "Regulatory reporting",
-               "Client reporting", "Fund accounting", "AI and analytics"],
-              unbundle, trunk_y, inbound=False)
 
-    # the trunk: bundled, verified, one record
-    rect(slide, bundle, trunk_y - 0.011, unbundle - bundle, 0.022, NAVY)
+    # one trunk: bundled, verified, terminating in what ships
+    rect(slide, bundle, trunk_y - 0.011, terminal - bundle, 0.022, NAVY)
 
-    span = unbundle - bundle
+    span = terminal - bundle
     stages = [
-        (0.16, 0.15, "CONNECT", "Adaptors and 100+ pre-built vendor feeds"),
-        (0.50, 0.19, "MASTER",
-         "One verified record: securities, entity, price, corporate actions, ESG"),
-        (0.84, 0.15, "DISTRIBUTE", "Data Warehouse, OMNI into Snowflake, IBOR and APIs"),
+        (bundle + span * 0.20, 0.15, 1.45, 7, "CONNECT",
+         "Adaptors and 100+ pre-built vendor feeds"),
+        (bundle + span * 0.55, 0.19, 1.45, 7, "MASTER",
+         "Securities, entity, price, corporate actions and ESG resolved into one record"),
+        (terminal, 0.27, 1.72, 8, "GOLDEN COPY",
+         "One verified, governed record, shipped through the Data Warehouse, OMNI into "
+         "Snowflake, real-time IBOR and APIs"),
     ]
-    cap_w = 1.24
-    for frac, d, ttl, cap in stages:
-        cx = bundle + span * frac
+    for cx, d, cap_w, tsz, ttl, cap in stages:
         node(slide, cx, trunk_y, d, NAVY)
-        tf = textbox(slide, cx - cap_w / 2, trunk_y + 0.14, cap_w, 0.16)
-        write(tf, [plain(ttl, size=7, color=NAVY, bold=True, font=HEAD)],
+        tf = textbox(slide, cx - cap_w / 2, trunk_y + 0.16, cap_w, 0.17)
+        write(tf, [plain(ttl, size=tsz, color=NAVY, bold=True, font=HEAD)],
               align=PP_ALIGN.CENTER, space_after=0)
-        tf = textbox(slide, cx - cap_w / 2, trunk_y + 0.31, cap_w, 0.56)
+        tf = textbox(slide, cx - cap_w / 2, trunk_y + 0.34, cap_w, 0.54)
         write(tf, [plain(cap, size=7, color=GRAY)],
               align=PP_ALIGN.CENTER, space_after=0, line_spacing=1.04)
 
-    # Scout taps the trunk from above
-    scout_cx = bundle + span * 0.50
+    # Scout taps the trunk from above, over the mastered record
+    scout_cx = bundle + span * 0.55
     pill_w, pill_h = 2.30, 0.24
     py_ = y + 0.10
     sp_ = rect(slide, scout_cx - pill_w / 2, py_, pill_w, pill_h, WHITE,
@@ -498,7 +496,7 @@ def platform_panel(slide, x, y, w, h):
     write(tf, [plain("SCOUT   \u00b7   AI reasoning layer on Amazon Bedrock",
                      size=7, color=TEAL, bold=True, font=HEAD)],
           align=PP_ALIGN.CENTER, space_after=0)
-    wire(slide, scout_cx, py_ + pill_h, scout_cx, trunk_y - 0.10, TEAL, 1)
+    wire(slide, scout_cx, py_ + pill_h, scout_cx, trunk_y - 0.11, TEAL, 1)
 
     br = y + h - 0.20
     hairline(slide, bundle, br, span, NAVY, 0.011)
