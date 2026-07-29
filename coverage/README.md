@@ -77,6 +77,9 @@ For per-icon colours, edit the `icons` array in `gen_icons.js` — each row is
 from `react-icons/tb` (Tabler); swap `Tb.TbDatabase` for any other export to
 change the glyph.
 
-In PowerPoint without rerunning anything: select an icon, Picture Format >
-Color > Recolor. That works on these PNGs but is a tint applied over the
-existing colour, so it is coarser than regenerating.
+In PowerPoint without rerunning anything: click an icon, then Graphics Format >
+Graphics Fill. The icons are inserted as SVG graphics the same way PowerPoint's
+own Insert > Icons does - an `<a:blip>` carrying an `asvg:svgBlip` extension,
+with the PNG as the fallback for renderers that do not support SVG. Shapes are
+named "Icon <product>" in the selection pane. Right-click > Convert to Shape
+turns one into editable freeform paths if you need to recolour part of a glyph.

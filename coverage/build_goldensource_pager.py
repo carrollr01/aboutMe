@@ -22,6 +22,10 @@ from pptx.enum.shapes import MSO_SHAPE, MSO_CONNECTOR
 from pptx.chart.data import CategoryChartData
 from pptx.enum.chart import XL_CHART_TYPE, XL_LABEL_POSITION, XL_TICK_MARK
 from pptx.oxml.ns import qn
+from pptx.oxml import parse_xml
+from pptx.opc.package import Part
+from pptx.opc.packuri import PackURI
+from pptx.opc.constants import RELATIONSHIP_TYPE as RT
 
 SRC = sys.argv[1] if len(sys.argv) > 1 else "source.pptx"
 OUT = sys.argv[2] if len(sys.argv) > 2 else "GoldenSource_Coverage_Twopager.pptx"
@@ -445,6 +449,41 @@ ICON_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icons")
 ICON_SZ = 0.14
 CORNER = 0.22          # slight radius, not a pill
 
+# Insert icons the way PowerPoint's own Insert > Icons does: a PNG blip carrying
+# an svgBlip extension. PowerPoint then treats the shape as a Graphic and exposes
+# Graphics Format > Graphics Fill, so colour is editable in the deck.
+SVG_EXT_URI = "{96DAC541-7B7A-43D3-8B79-37D633B846F1}"
+_svg_seq = [0]
+
+
+def add_icon(slide, slug, x, y, size, name=None):
+    """Add icons/<slug>.svg as a native PowerPoint SVG graphic, with the PNG as
+    the fallback blip. Falls back to a plain PNG picture if no SVG is present."""
+    png = os.path.join(ICON_DIR, slug + ".png")
+    svg = os.path.join(ICON_DIR, slug + ".svg")
+    if not os.path.exists(png):
+        return None
+    pic = slide.shapes.add_picture(png, Inches(x), Inches(y), Inches(size), Inches(size))
+    pic.name = "Icon %s" % (name or slug)
+    if not os.path.exists(svg):
+        return pic
+
+    _svg_seq[0] += 1
+    with open(svg, "rb") as fh:
+        blob = fh.read()
+    partname = PackURI("/ppt/media/icon%d.svg" % _svg_seq[0])
+    part = Part(partname, "image/svg+xml", slide.part.package, blob)
+    rId = slide.part.relate_to(part, RT.IMAGE)
+
+    blip = pic._element.blipFill.find(qn("a:blip"))
+    blip.append(parse_xml(
+        '<a:extLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'
+        '<a:ext uri="%s">'
+        '<asvg:svgBlip xmlns:asvg="http://schemas.microsoft.com/office/drawing/2016/SVG/main"'
+        ' xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"'
+        ' r:embed="%s"/></a:ext></a:extLst>' % (SVG_EXT_URI, rId)))
+    return pic
+
 
 def set_corner(shape, adj=CORNER):
     try:
@@ -464,11 +503,7 @@ def marquee(slide, x, y, w, h, rows, label_w=1.15, gap=0.08, vgap=0.06):
 
         set_corner(rect(slide, x, ry, label_w, box_h, NAVY, MSO_SHAPE.ROUNDED_RECTANGLE))
         ix = x + 0.11
-        path = os.path.join(ICON_DIR, icon + ".png")
-        if os.path.exists(path):
-            slide.shapes.add_picture(path, Inches(ix), Inches(ry + (box_h - ICON_SZ) / 2),
-                                     Inches(ICON_SZ), Inches(ICON_SZ))
-        else:
+        if add_icon(slide, icon, ix, ry + (box_h - ICON_SZ) / 2, ICON_SZ, name) is None:
             rect(slide, ix + 0.03, ry + box_h / 2 - 0.04, 0.08, 0.08, PALE, MSO_SHAPE.OVAL)
         nx = ix + ICON_SZ + 0.07
         tf = textbox(slide, nx, ry, x + label_w - 0.08 - nx, box_h, anchor=MSO_ANCHOR.MIDDLE)
