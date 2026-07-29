@@ -443,37 +443,46 @@ def endpoints(slide, x, y, w, h, items, tie_x, tie_y, inbound=True, size=7.5):
 
 ICON_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icons")
 ICON_SZ = 0.14
+CORNER = 0.22          # slight radius, not a pill
 
 
-def marquee(slide, x, y, w, h, rows, name_w=0.68, pad=0.14, gap=0.06):
-    """Navy pill per product: icon and label left, description carried to the right
-    inside the same pill."""
+def set_corner(shape, adj=CORNER):
+    try:
+        shape.adjustments[0] = adj
+    except (IndexError, ValueError):
+        pass
+    return shape
+
+
+def marquee(slide, x, y, w, h, rows, label_w=1.15, gap=0.08, vgap=0.06):
+    """Two boxes per product: a navy icon-and-label chip, and a separate
+    description box alongside it."""
     rh = h / len(rows)
-    pill_h = rh - gap
+    box_h = rh - vgap
     for i, (icon, name, desc) in enumerate(rows):
         ry = y + i * rh
-        pill = rect(slide, x, ry, w, pill_h, NAVY, MSO_SHAPE.ROUNDED_RECTANGLE)
-        try:
-            pill.adjustments[0] = 0.5      # fully rounded ends
-        except (IndexError, ValueError):
-            pass
 
-        ix = x + pad
+        set_corner(rect(slide, x, ry, label_w, box_h, NAVY, MSO_SHAPE.ROUNDED_RECTANGLE))
+        ix = x + 0.11
         path = os.path.join(ICON_DIR, icon + ".png")
         if os.path.exists(path):
-            slide.shapes.add_picture(path, Inches(ix), Inches(ry + (pill_h - ICON_SZ) / 2),
+            slide.shapes.add_picture(path, Inches(ix), Inches(ry + (box_h - ICON_SZ) / 2),
                                      Inches(ICON_SZ), Inches(ICON_SZ))
         else:
-            rect(slide, ix + 0.03, ry + pill_h / 2 - 0.04, 0.08, 0.08, PALE, MSO_SHAPE.OVAL)
-
+            rect(slide, ix + 0.03, ry + box_h / 2 - 0.04, 0.08, 0.08, PALE, MSO_SHAPE.OVAL)
         nx = ix + ICON_SZ + 0.07
-        tf = textbox(slide, nx, ry, name_w, pill_h, anchor=MSO_ANCHOR.MIDDLE)
+        tf = textbox(slide, nx, ry, x + label_w - 0.08 - nx, box_h, anchor=MSO_ANCHOR.MIDDLE)
         write(tf, [plain(name, size=7.5, color=PALE, bold=True, font=HEAD)],
               space_after=0, line_spacing=1.0)
 
-        dx = nx + name_w + 0.08
-        tf = textbox(slide, dx, ry, x + w - pad - dx, pill_h, anchor=MSO_ANCHOR.MIDDLE)
-        write(tf, [plain(desc, size=7, color=WHITE)], space_after=0, line_spacing=1.04)
+        dx = x + label_w + gap
+        dw = x + w - dx
+        db = set_corner(rect(slide, dx, ry, dw, box_h, WHITE, MSO_SHAPE.ROUNDED_RECTANGLE))
+        db.line.fill.solid()
+        db.line.fill.fore_color.rgb = LGRAY
+        db.line.width = Pt(0.75)
+        tf = textbox(slide, dx + 0.10, ry, dw - 0.20, box_h, anchor=MSO_ANCHOR.MIDDLE)
+        write(tf, [plain(desc, size=7, color=GRAY)], space_after=0, line_spacing=1.04)
 
 
 def platform_panel(slide, x, y, w, h):
