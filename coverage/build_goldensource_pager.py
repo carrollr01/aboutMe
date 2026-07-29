@@ -16,7 +16,7 @@ from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
-from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.shapes import MSO_SHAPE, MSO_CONNECTOR
 from pptx.chart.data import CategoryChartData
 from pptx.enum.chart import XL_CHART_TYPE, XL_LABEL_POSITION, XL_TICK_MARK
 from pptx.oxml.ns import qn
@@ -390,46 +390,37 @@ def pipe_block(slide, x, y, w, h, title, items, head_fill, body_fill,
           size=7, color=body_color, line_spacing=1.04)
 
 
-def arrowhead(slide, x, cy, size=0.085, color=SLATE):
-    """Small right-pointing triangle centred vertically on cy."""
-    sh = slide.shapes.add_shape(MSO_SHAPE.ISOSCELES_TRIANGLE, Inches(x),
-                                Inches(cy - size / 2), Inches(size), Inches(size))
-    sh.rotation = 90
-    sh.fill.solid()
-    sh.fill.fore_color.rgb = color
-    return no_line(sh)
+def wire(slide, x0, y0, x1, y1, color=LGRAY, pt=0.75):
+    c = slide.shapes.add_connector(MSO_CONNECTOR.STRAIGHT, Inches(x0), Inches(y0),
+                                   Inches(x1), Inches(y1))
+    c.line.color.rgb = color
+    c.line.width = Pt(pt)
+    c.shadow.inherit = False
+    return c
 
 
-def link(slide, x0, x1, cy, head=True, color=LGRAY):
-    hairline(slide, x0, cy, x1 - x0, color, 0.007)
-    if head:
-        arrowhead(slide, x1 - 0.075, cy + 0.0035)
+def node(slide, cx, cy, d, fill, ring=WHITE):
+    sh = rect(slide, cx - d / 2, cy - d / 2, d, d, fill, MSO_SHAPE.OVAL)
+    sh.line.fill.solid()
+    sh.line.fill.fore_color.rgb = ring
+    sh.line.width = Pt(1.25)
+    return sh
 
 
-def fan(slide, x, y, w, h, items, bus_x, node_x, inbound=True, size=7):
-    """Stacked labels joined by lines to a vertical bus, then into/out of the flow."""
+def endpoints(slide, x, y, w, h, items, tie_x, tie_y, inbound=True, size=7):
+    """Stacked labels, each wired to a single bundling point."""
     n = len(items)
     rh = h / n
-    first = last = None
     for i, t in enumerate(items):
         cy = y + i * rh + rh / 2
-        first = cy if i == 0 else first
-        last = cy
-        tf = textbox(slide, x, cy - 0.105, w, 0.21, anchor=MSO_ANCHOR.MIDDLE)
+        tf = textbox(slide, x, cy - 0.10, w, 0.20, anchor=MSO_ANCHOR.MIDDLE)
         write(tf, [plain(t, size=size, color=GRAY)],
               align=PP_ALIGN.RIGHT if inbound else PP_ALIGN.LEFT,
               space_after=0, line_spacing=1.0)
         if inbound:
-            hairline(slide, x + w + 0.05, cy, bus_x - (x + w + 0.05), LGRAY, 0.007)
+            wire(slide, x + w + 0.07, cy, tie_x, tie_y)
         else:
-            hairline(slide, bus_x, cy, (x - 0.05) - bus_x, LGRAY, 0.007)
-    rect(slide, bus_x, first, 0.007, last - first, LGRAY)
-    mid = y + h / 2
-    if inbound:
-        link(slide, bus_x, node_x, mid)
-    else:
-        link(slide, node_x, bus_x, mid, head=False)
-        arrowhead(slide, bus_x - 0.04, mid + 0.0035)
+            wire(slide, tie_x, tie_y, x - 0.07, cy)
 
 
 def marquee(slide, x, y, w, h, rows):
@@ -444,7 +435,7 @@ def marquee(slide, x, y, w, h, rows):
 
 
 def platform_panel(slide, x, y, w, h):
-    """9.30in x 2.20in: marquee products left, linked source-to-consumer flow right."""
+    """9.30in x 2.20in: marquee products left, bundled wire flow right."""
     l_w, gut = 2.50, 0.20
     r_x, r_w = x + l_w + gut, w - l_w - gut
 
@@ -456,54 +447,62 @@ def platform_panel(slide, x, y, w, h):
         (TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
     ])
 
-    src_w, bus, c_w, gap, m_w, d_w, con_w = 0.96, 0.28, 1.02, 0.18, 1.44, 1.06, 1.20
-    src_x = r_x
-    in_bus = src_x + src_w + 0.19
-    c_x = src_x + src_w + bus
-    m_x = c_x + c_w + gap
-    d_x = m_x + m_w + gap
-    out_bus = d_x + d_w + 0.09
-    con_x = d_x + d_w + bus
-    plat_x, plat_w = c_x, (d_x + d_w) - c_x
+    src_w, con_w, lead = 0.88, 1.05, 0.40
+    bundle = r_x + src_w + lead
+    unbundle = r_x + r_w - con_w - lead
+    trunk_y = y + 1.02
+    stack_h = 1.70
+    stack_y = trunk_y - stack_h / 2
 
-    scout_h = 0.26
-    rect(slide, plat_x, y, plat_w, scout_h, TEAL)
-    tf = textbox(slide, plat_x + 0.08, y, plat_w - 0.16, scout_h, anchor=MSO_ANCHOR.MIDDLE)
+    endpoints(slide, r_x, stack_y, src_w, stack_h,
+              ["Data vendors", "Exchanges", "Index providers", "Custodians",
+               "Fund admins", "Internal systems", "Counterparties"],
+              bundle, trunk_y, inbound=True)
+    endpoints(slide, r_x + r_w - con_w, stack_y, con_w, stack_h,
+              ["Trading and OMS", "Risk and capital", "Regulatory reporting",
+               "Client reporting", "Fund accounting", "AI and analytics"],
+              unbundle, trunk_y, inbound=False)
+
+    # the trunk: bundled, verified, one record
+    rect(slide, bundle, trunk_y - 0.011, unbundle - bundle, 0.022, NAVY)
+
+    span = unbundle - bundle
+    stages = [
+        (0.16, 0.15, "CONNECT", "Adaptors and 100+ pre-built vendor feeds"),
+        (0.50, 0.19, "MASTER",
+         "One verified record: securities, entity, price, corporate actions, ESG"),
+        (0.84, 0.15, "DISTRIBUTE", "Data Warehouse, OMNI into Snowflake, IBOR and APIs"),
+    ]
+    cap_w = 1.24
+    for frac, d, ttl, cap in stages:
+        cx = bundle + span * frac
+        node(slide, cx, trunk_y, d, NAVY)
+        tf = textbox(slide, cx - cap_w / 2, trunk_y + 0.14, cap_w, 0.16)
+        write(tf, [plain(ttl, size=7, color=NAVY, bold=True, font=HEAD)],
+              align=PP_ALIGN.CENTER, space_after=0)
+        tf = textbox(slide, cx - cap_w / 2, trunk_y + 0.31, cap_w, 0.56)
+        write(tf, [plain(cap, size=7, color=GRAY)],
+              align=PP_ALIGN.CENTER, space_after=0, line_spacing=1.04)
+
+    # Scout taps the trunk from above
+    scout_cx = bundle + span * 0.50
+    pill_w, pill_h = 2.30, 0.24
+    py_ = y + 0.10
+    sp_ = rect(slide, scout_cx - pill_w / 2, py_, pill_w, pill_h, WHITE,
+               MSO_SHAPE.ROUNDED_RECTANGLE)
+    sp_.line.fill.solid()
+    sp_.line.fill.fore_color.rgb = TEAL
+    sp_.line.width = Pt(1)
+    tf = textbox(slide, scout_cx - pill_w / 2 + 0.08, py_, pill_w - 0.16, pill_h,
+                 anchor=MSO_ANCHOR.MIDDLE)
     write(tf, [plain("SCOUT   \u00b7   AI reasoning layer on Amazon Bedrock",
-                     size=7.5, color=WHITE, bold=True, font=HEAD)],
+                     size=7, color=TEAL, bold=True, font=HEAD)],
           align=PP_ALIGN.CENTER, space_after=0)
+    wire(slide, scout_cx, py_ + pill_h, scout_cx, trunk_y - 0.10, TEAL, 1)
 
-    fy = y + scout_h + 0.08
-    fh = 1.62
-    mid = fy + fh / 2
-
-    fan(slide, src_x, fy, src_w, fh,
-        ["Data vendors", "Exchanges", "Custodians", "Internal systems", "Counterparties"],
-        in_bus, c_x, inbound=True)
-
-    for bx, wd, ttl, items, fill in (
-        (c_x, c_w, "CONNECT", ["Connections and Adaptors", "100+ vendor feeds",
-                               "Validation rules"], STAGE[0]),
-        (m_x, m_w, "MASTER AND GOVERN", ["Securities Master", "Entity and Customer Master",
-                                         "Price Master and valuations",
-                                         "Corporate actions and ESG",
-                                         "Lineage and entitlements"], STAGE[1]),
-        (d_x, d_w, "DISTRIBUTE", ["Data Warehouse", "OMNI into Snowflake", "Real-time IBOR",
-                                  "APIs and feeds"], STAGE[2]),
-    ):
-        pipe_block(slide, bx, fy, wd, fh, ttl, items, fill, fill, WHITE, WHITE)
-
-    link(slide, c_x + c_w, m_x, mid, color=SLATE)
-    link(slide, m_x + m_w, d_x, mid, color=SLATE)
-
-    fan(slide, con_x, fy, con_w, fh,
-        ["Trading and OMS", "Risk and capital", "Regulatory reporting", "Client reporting",
-         "Analytics and AI"],
-        out_bus, d_x + d_w, inbound=False)
-
-    br = fy + fh + 0.04
-    hairline(slide, plat_x, br, plat_w, NAVY, 0.011)
-    tf = textbox(slide, plat_x, br + 0.025, plat_w, 0.15)
+    br = y + h - 0.20
+    hairline(slide, bundle, br, span, NAVY, 0.011)
+    tf = textbox(slide, bundle, br + 0.025, span, 0.15)
     write(tf, [plain("GOLDENSOURCE PLATFORM", size=7, color=NAVY, bold=True, font=HEAD)],
           align=PP_ALIGN.CENTER, space_after=0)
 
