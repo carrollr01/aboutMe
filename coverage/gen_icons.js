@@ -1,11 +1,15 @@
+const path = require('path');
 const React = require('react');
 const { renderToStaticMarkup } = require('react-dom/server');
 const Tb = require('react-icons/tb');
 const sharp = require('sharp');
 
 // stage colours from the HL palette, matched to the pipeline node each product sits under
-// all icons share the label colour: theme accent6, pale blue on navy
-const PALE = '#9FC3DA';
+// Icon colour. Override from the command line:
+//   node gen_icons.js "#FFFFFF"
+// HL theme options: 9FC3DA pale (accent6) | 508BC9 mid (accent1) |
+//                   24B1B1 teal (accent4) | BCBFC6 light grey (accent2) | FFFFFF
+const PALE = process.argv[2] || '#9FC3DA';
 
 const icons = [
   ['securities_master', Tb.TbDatabase,  PALE],
@@ -24,7 +28,7 @@ const icons = [
     await sharp(Buffer.from(svg), { density: 600 })
       .resize(256, 256, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 0 } })
       .png()
-      .toFile(`icons/${name}.png`);
-    console.log('wrote icons/' + name + '.png');
+      .toFile(path.join(__dirname, 'icons', `${name}.png`));
+    console.log('wrote icons/' + name + '.png  ' + color);
   }
 })();

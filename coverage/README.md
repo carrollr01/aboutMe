@@ -57,3 +57,26 @@ Everything on the pages is public-record and footnoted on the slide. Two things
 are explicitly flagged as third-party estimates rather than company figures:
 headcount (~620) and revenue (~$63M). Confirm both in diligence before either
 number goes in front of a client.
+
+## Changing the icon colour
+
+The five product icons are generated, not hand-drawn. Pass a hex to the
+generator and rerun the build:
+
+```bash
+cd coverage
+node gen_icons.js "#FFFFFF"                       # recolour all five
+python build_goldensource_pager.py /path/to/HL_template.pptx
+```
+
+HL theme options: `9FC3DA` pale blue (accent6, current) · `508BC9` mid blue
+(accent1) · `24B1B1` teal (accent4) · `BCBFC6` light grey (accent2) · `FFFFFF`.
+
+For per-icon colours, edit the `icons` array in `gen_icons.js` — each row is
+`[slug, IconComponent, colour]`, so they do not have to match. Icon shapes come
+from `react-icons/tb` (Tabler); swap `Tb.TbDatabase` for any other export to
+change the glyph.
+
+In PowerPoint without rerunning anything: select an icon, Picture Format >
+Color > Recolor. That works on these PNGs but is a tint applied over the
+existing colour, so it is coarser than regenerating.
