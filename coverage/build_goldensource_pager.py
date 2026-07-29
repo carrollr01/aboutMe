@@ -381,13 +381,55 @@ def pipe_block(slide, x, y, w, h, title, items, head_fill, body_fill,
     if outlined:
         outline(slide, x, y, w, h, LGRAY)
     rect(slide, x, y, w, head_h, head_fill)
-    tf = textbox(slide, x + 0.06, y, w - 0.12, head_h, anchor=MSO_ANCHOR.MIDDLE)
+    tf = textbox(slide, x + 0.05, y, w - 0.10, head_h, anchor=MSO_ANCHOR.MIDDLE)
     write(tf, [plain(title, size=7, color=WHITE, bold=True, font=HEAD)],
           align=PP_ALIGN.CENTER, space_after=0, line_spacing=1.0)
-    tf = textbox(slide, x + 0.11, y + head_h + 0.09, w - 0.22, h - head_h - 0.14)
+    tf = textbox(slide, x + 0.09, y + head_h + 0.09, w - 0.18, h - head_h - 0.14)
     write(tf, [{"runs": [(i, {})], "bullet": True, "bullet_color": bullet_color,
                 "space_after": 2.0} for i in items],
           size=7, color=body_color, line_spacing=1.04)
+
+
+def arrowhead(slide, x, cy, size=0.085, color=SLATE):
+    """Small right-pointing triangle centred vertically on cy."""
+    sh = slide.shapes.add_shape(MSO_SHAPE.ISOSCELES_TRIANGLE, Inches(x),
+                                Inches(cy - size / 2), Inches(size), Inches(size))
+    sh.rotation = 90
+    sh.fill.solid()
+    sh.fill.fore_color.rgb = color
+    return no_line(sh)
+
+
+def link(slide, x0, x1, cy, head=True, color=LGRAY):
+    hairline(slide, x0, cy, x1 - x0, color, 0.007)
+    if head:
+        arrowhead(slide, x1 - 0.075, cy + 0.0035)
+
+
+def fan(slide, x, y, w, h, items, bus_x, node_x, inbound=True, size=7):
+    """Stacked labels joined by lines to a vertical bus, then into/out of the flow."""
+    n = len(items)
+    rh = h / n
+    first = last = None
+    for i, t in enumerate(items):
+        cy = y + i * rh + rh / 2
+        first = cy if i == 0 else first
+        last = cy
+        tf = textbox(slide, x, cy - 0.105, w, 0.21, anchor=MSO_ANCHOR.MIDDLE)
+        write(tf, [plain(t, size=size, color=GRAY)],
+              align=PP_ALIGN.RIGHT if inbound else PP_ALIGN.LEFT,
+              space_after=0, line_spacing=1.0)
+        if inbound:
+            hairline(slide, x + w + 0.05, cy, bus_x - (x + w + 0.05), LGRAY, 0.007)
+        else:
+            hairline(slide, bus_x, cy, (x - 0.05) - bus_x, LGRAY, 0.007)
+    rect(slide, bus_x, first, 0.007, last - first, LGRAY)
+    mid = y + h / 2
+    if inbound:
+        link(slide, bus_x, node_x, mid)
+    else:
+        link(slide, node_x, bus_x, mid, head=False)
+        arrowhead(slide, bus_x - 0.04, mid + 0.0035)
 
 
 def marquee(slide, x, y, w, h, rows):
@@ -402,7 +444,7 @@ def marquee(slide, x, y, w, h, rows):
 
 
 def platform_panel(slide, x, y, w, h):
-    """9.30in x 2.20in: marquee products left, source-to-consumer pipeline right."""
+    """9.30in x 2.20in: marquee products left, linked source-to-consumer flow right."""
     l_w, gut = 2.50, 0.20
     r_x, r_w = x + l_w + gut, w - l_w - gut
 
@@ -414,47 +456,52 @@ def platform_panel(slide, x, y, w, h):
         (TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
     ])
 
-    src_w, arr, c_w, m_w, d_w, con_w = 1.16, 0.14, 1.10, 1.60, 1.16, 1.30
-    plat_x = r_x + src_w + arr
-    plat_w = c_w + m_w + d_w
+    src_w, bus, c_w, gap, m_w, d_w, con_w = 0.96, 0.28, 1.02, 0.18, 1.44, 1.06, 1.20
+    src_x = r_x
+    in_bus = src_x + src_w + 0.19
+    c_x = src_x + src_w + bus
+    m_x = c_x + c_w + gap
+    d_x = m_x + m_w + gap
+    out_bus = d_x + d_w + 0.09
+    con_x = d_x + d_w + bus
+    plat_x, plat_w = c_x, (d_x + d_w) - c_x
 
-    scout_h, blk_h = 0.28, 1.66
+    scout_h = 0.26
     rect(slide, plat_x, y, plat_w, scout_h, TEAL)
     tf = textbox(slide, plat_x + 0.08, y, plat_w - 0.16, scout_h, anchor=MSO_ANCHOR.MIDDLE)
     write(tf, [plain("SCOUT   \u00b7   AI reasoning layer on Amazon Bedrock",
                      size=7.5, color=WHITE, bold=True, font=HEAD)],
           align=PP_ALIGN.CENTER, space_after=0)
 
-    by = y + scout_h + 0.08
-    pipe_block(slide, r_x, by, src_w, blk_h, "SOURCES",
-               ["Market data vendors", "Exchanges and indices", "Custodians",
-                "Internal systems", "Counterparty records"],
-               SLATE, ENDS_BODY, GRAY, SLATE, outlined=True)
-    rect(slide, r_x + src_w + 0.02, by + blk_h / 2 - 0.055, 0.11, 0.11, LGRAY,
-         MSO_SHAPE.RIGHT_ARROW)
+    fy = y + scout_h + 0.08
+    fh = 1.62
+    mid = fy + fh / 2
 
-    cx = plat_x
-    for wdt, ttl, items, fill in (
-        (c_w, "CONNECT", ["Connections and Adaptors", "100+ pre-built vendor feeds",
-                          "Validation and exception rules"], STAGE[0]),
-        (m_w, "MASTER AND GOVERN", ["Securities Master", "Entity and Customer Master",
-                                    "Price Master and valuations",
-                                    "Corporate actions and ESG",
-                                    "Lineage and entitlements"], STAGE[1]),
-        (d_w, "DISTRIBUTE", ["Data Warehouse", "OMNI into Snowflake", "Real-time IBOR",
-                             "APIs and downstream feeds"], STAGE[2]),
+    fan(slide, src_x, fy, src_w, fh,
+        ["Data vendors", "Exchanges", "Custodians", "Internal systems", "Counterparties"],
+        in_bus, c_x, inbound=True)
+
+    for bx, wd, ttl, items, fill in (
+        (c_x, c_w, "CONNECT", ["Connections and Adaptors", "100+ vendor feeds",
+                               "Validation rules"], STAGE[0]),
+        (m_x, m_w, "MASTER AND GOVERN", ["Securities Master", "Entity and Customer Master",
+                                         "Price Master and valuations",
+                                         "Corporate actions and ESG",
+                                         "Lineage and entitlements"], STAGE[1]),
+        (d_x, d_w, "DISTRIBUTE", ["Data Warehouse", "OMNI into Snowflake", "Real-time IBOR",
+                                  "APIs and feeds"], STAGE[2]),
     ):
-        pipe_block(slide, cx, by, wdt, blk_h, ttl, items, fill, fill, WHITE, WHITE)
-        cx += wdt
+        pipe_block(slide, bx, fy, wd, fh, ttl, items, fill, fill, WHITE, WHITE)
 
-    rect(slide, plat_x + plat_w + 0.02, by + blk_h / 2 - 0.055, 0.11, 0.11, LGRAY,
-         MSO_SHAPE.RIGHT_ARROW)
-    pipe_block(slide, r_x + r_w - con_w, by, con_w, blk_h, "CONSUMERS",
-               ["Trading and OMS", "Risk and capital", "Regulatory reporting",
-                "Client reporting", "Analytics and AI"],
-               SLATE, ENDS_BODY, GRAY, SLATE, outlined=True)
+    link(slide, c_x + c_w, m_x, mid, color=SLATE)
+    link(slide, m_x + m_w, d_x, mid, color=SLATE)
 
-    br = by + blk_h + 0.03
+    fan(slide, con_x, fy, con_w, fh,
+        ["Trading and OMS", "Risk and capital", "Regulatory reporting", "Client reporting",
+         "Analytics and AI"],
+        out_bus, d_x + d_w, inbound=False)
+
+    br = fy + fh + 0.04
     hairline(slide, plat_x, br, plat_w, NAVY, 0.011)
     tf = textbox(slide, plat_x, br + 0.025, plat_w, 0.15)
     write(tf, [plain("GOLDENSOURCE PLATFORM", size=7, color=NAVY, bold=True, font=HEAD)],
