@@ -13,6 +13,7 @@ native shapes. Nothing on either page is a picture.
 
 import os
 import sys
+from PIL import Image
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -408,16 +409,31 @@ def node(slide, cx, cy, d, fill, ring=WHITE):
     return sh
 
 
-def endpoints(slide, x, y, w, h, items, tie_x, tie_y, inbound=True, size=7):
-    """Stacked labels, each wired to a single bundling point."""
+LOGO_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logos")
+LOGO_H = 0.15
+
+
+def endpoints(slide, x, y, w, h, items, tie_x, tie_y, inbound=True, size=7.5):
+    """Stacked source slots wired to a single bundling point. Each item is
+    (slug, label); if logos/<slug>.png exists it is used, otherwise the label
+    is set as text so the layout holds either way."""
     n = len(items)
     rh = h / n
-    for i, t in enumerate(items):
+    for i, (slug, label) in enumerate(items):
         cy = y + i * rh + rh / 2
-        tf = textbox(slide, x, cy - 0.10, w, 0.20, anchor=MSO_ANCHOR.MIDDLE)
-        write(tf, [plain(t, size=size, color=GRAY)],
-              align=PP_ALIGN.RIGHT if inbound else PP_ALIGN.LEFT,
-              space_after=0, line_spacing=1.0)
+        path = os.path.join(LOGO_DIR, slug + ".png") if slug else ""
+        if path and os.path.exists(path):
+            with Image.open(path) as im:
+                lw = LOGO_H * (im.width / im.height)
+            lw = min(lw, w)
+            slide.shapes.add_picture(path, Inches(x + w - lw), Inches(cy - LOGO_H / 2),
+                                     Inches(lw), Inches(LOGO_H))
+        else:
+            tf = textbox(slide, x, cy - 0.10, w, 0.20, anchor=MSO_ANCHOR.MIDDLE)
+            write(tf, [plain(label, size=size, color=GRAY,
+                             italic=(slug == ""))],
+                  align=PP_ALIGN.RIGHT if inbound else PP_ALIGN.LEFT,
+                  space_after=0, line_spacing=1.0)
         if inbound:
             wire(slide, x + w + 0.07, cy, tie_x, tie_y)
         else:
@@ -463,17 +479,18 @@ def platform_panel(slide, x, y, w, h):
         ("scout", TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
     ])
 
-    src_w, lead = 1.00, 0.45
+    src_w, lead = 1.42, 0.42
     bundle = r_x + src_w + lead
     terminal = r_x + r_w - 0.90
     trunk_y = y + 1.02
     stack_h = 1.70
     stack_y = trunk_y - stack_h / 2
 
-    endpoints(slide, r_x, stack_y, src_w, stack_h,
-              ["Market data vendors", "Exchanges", "Index providers", "Custodians",
-               "Fund administrators", "Internal systems", "Counterparties"],
-              bundle, trunk_y, inbound=True)
+    endpoints(slide, r_x, stack_y, src_w, stack_h, [
+        ("bloomberg", "Bloomberg"), ("lseg", "LSEG"), ("ice", "ICE"),
+        ("spglobal", "S&P Global"), ("msci", "MSCI"), ("moodys", "Moody\u2019s"),
+        ("six", "SIX"), ("", "and 100+ more sources"),
+    ], bundle, trunk_y, inbound=True)
 
     # one trunk: bundled, verified, terminating in what ships
     rect(slide, bundle, trunk_y - 0.011, terminal - bundle, 0.022, NAVY)
