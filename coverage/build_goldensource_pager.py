@@ -11,6 +11,7 @@ Charts are native PowerPoint charts with embedded Excel workbooks; diagrams are
 native shapes. Nothing on either page is a picture.
 """
 
+import os
 import sys
 from pptx import Presentation
 from pptx.util import Inches, Pt
@@ -423,14 +424,25 @@ def endpoints(slide, x, y, w, h, items, tie_x, tie_y, inbound=True, size=7):
             wire(slide, tie_x, tie_y, x - 0.07, cy)
 
 
+ICON_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icons")
+ICON_SZ, ICON_GAP = 0.16, 0.24
+
+
 def marquee(slide, x, y, w, h, rows):
+    """Product icon, name, one-line descriptor. Falls back to a colour dot if the
+    icon PNG is missing, so the build never breaks on a missing asset."""
     rh = h / len(rows)
-    for i, (dot, name, desc) in enumerate(rows):
+    for i, (icon, tint, name, desc) in enumerate(rows):
         ry = y + i * rh
-        rect(slide, x, ry + 0.045, 0.08, 0.08, dot, MSO_SHAPE.OVAL)
-        tf = textbox(slide, x + 0.145, ry, w - 0.145, 0.17)
+        path = os.path.join(ICON_DIR, icon + ".png")
+        if os.path.exists(path):
+            slide.shapes.add_picture(path, Inches(x), Inches(ry + 0.005),
+                                     Inches(ICON_SZ), Inches(ICON_SZ))
+        else:
+            rect(slide, x + 0.04, ry + 0.045, 0.08, 0.08, tint, MSO_SHAPE.OVAL)
+        tf = textbox(slide, x + ICON_GAP, ry, w - ICON_GAP, 0.17)
         write(tf, [plain(name, size=8, color=NAVY, bold=True, font=HEAD)], space_after=0)
-        tf = textbox(slide, x + 0.145, ry + 0.165, w - 0.145, rh - 0.185)
+        tf = textbox(slide, x + ICON_GAP, ry + 0.165, w - ICON_GAP, rh - 0.185)
         write(tf, [plain(desc, size=7, color=GRAY)], space_after=0, line_spacing=1.0)
 
 
@@ -441,11 +453,14 @@ def platform_panel(slide, x, y, w, h):
     r_x, r_w = x + l_w + gut, w - l_w - gut
 
     marquee(slide, x, y, l_w, h, [
-        (STAGE[1], "Securities Master", "Cross-asset instrument mastering, ESG-enabled"),
-        (STAGE[1], "Price Master", "Rule-based multi-vendor pricing and valuation"),
-        (STAGE[2], "OMNI", "Snowflake Native App; runs in the client\u2019s own account"),
-        (STAGE[2], "IBOR", "Real-time investment book of record"),
-        (TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
+        ("securities_master", STAGE[1], "Securities Master",
+         "Cross-asset instrument mastering, ESG-enabled"),
+        ("price_master", STAGE[1], "Price Master",
+         "Rule-based multi-vendor pricing and valuation"),
+        ("omni", STAGE[2], "OMNI",
+         "Snowflake Native App; runs in the client\u2019s own account"),
+        ("ibor", STAGE[2], "IBOR", "Real-time investment book of record"),
+        ("scout", TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
     ])
 
     src_w, lead = 1.00, 0.45
