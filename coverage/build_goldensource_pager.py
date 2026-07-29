@@ -33,6 +33,7 @@ GRAY = RGBColor(0x52, 0x57, 0x66)   # theme dk1 - body copy
 SLATE = RGBColor(0x7E, 0x85, 0x97)  # theme accent3
 LGRAY = RGBColor(0xBC, 0xBF, 0xC6)  # theme accent2 - rules
 TEAL = RGBColor(0x24, 0xB1, 0xB1)   # theme accent4 - reserved for punchlines
+PALE = RGBColor(0x9F, 0xC3, 0xDA)   # theme accent6 - labels and icons on navy
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 ROW = RGBColor(0xEE, 0xF2, 0xF7)    # table row striping only
 
@@ -441,25 +442,38 @@ def endpoints(slide, x, y, w, h, items, tie_x, tie_y, inbound=True, size=7.5):
 
 
 ICON_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icons")
-ICON_SZ, ICON_GAP = 0.16, 0.24
+ICON_SZ = 0.14
 
 
-def marquee(slide, x, y, w, h, rows):
-    """Product icon, name, one-line descriptor. Falls back to a colour dot if the
-    icon PNG is missing, so the build never breaks on a missing asset."""
+def marquee(slide, x, y, w, h, rows, name_w=0.68, pad=0.14, gap=0.06):
+    """Navy pill per product: icon and label left, description carried to the right
+    inside the same pill."""
     rh = h / len(rows)
-    for i, (icon, tint, name, desc) in enumerate(rows):
+    pill_h = rh - gap
+    for i, (icon, name, desc) in enumerate(rows):
         ry = y + i * rh
+        pill = rect(slide, x, ry, w, pill_h, NAVY, MSO_SHAPE.ROUNDED_RECTANGLE)
+        try:
+            pill.adjustments[0] = 0.5      # fully rounded ends
+        except (IndexError, ValueError):
+            pass
+
+        ix = x + pad
         path = os.path.join(ICON_DIR, icon + ".png")
         if os.path.exists(path):
-            slide.shapes.add_picture(path, Inches(x), Inches(ry + 0.005),
+            slide.shapes.add_picture(path, Inches(ix), Inches(ry + (pill_h - ICON_SZ) / 2),
                                      Inches(ICON_SZ), Inches(ICON_SZ))
         else:
-            rect(slide, x + 0.04, ry + 0.045, 0.08, 0.08, tint, MSO_SHAPE.OVAL)
-        tf = textbox(slide, x + ICON_GAP, ry, w - ICON_GAP, 0.17)
-        write(tf, [plain(name, size=8, color=NAVY, bold=True, font=HEAD)], space_after=0)
-        tf = textbox(slide, x + ICON_GAP, ry + 0.165, w - ICON_GAP, rh - 0.185)
-        write(tf, [plain(desc, size=7, color=GRAY)], space_after=0, line_spacing=1.0)
+            rect(slide, ix + 0.03, ry + pill_h / 2 - 0.04, 0.08, 0.08, PALE, MSO_SHAPE.OVAL)
+
+        nx = ix + ICON_SZ + 0.07
+        tf = textbox(slide, nx, ry, name_w, pill_h, anchor=MSO_ANCHOR.MIDDLE)
+        write(tf, [plain(name, size=7.5, color=PALE, bold=True, font=HEAD)],
+              space_after=0, line_spacing=1.0)
+
+        dx = nx + name_w + 0.08
+        tf = textbox(slide, dx, ry, x + w - pad - dx, pill_h, anchor=MSO_ANCHOR.MIDDLE)
+        write(tf, [plain(desc, size=7, color=WHITE)], space_after=0, line_spacing=1.04)
 
 
 def platform_panel(slide, x, y, w, h):
@@ -469,14 +483,11 @@ def platform_panel(slide, x, y, w, h):
     r_x, r_w = x + l_w + gut, w - l_w - gut
 
     marquee(slide, x, y, l_w, h, [
-        ("securities_master", STAGE[1], "Securities Master",
-         "Cross-asset instrument mastering, ESG-enabled"),
-        ("price_master", STAGE[1], "Price Master",
-         "Rule-based multi-vendor pricing and valuation"),
-        ("omni", STAGE[2], "OMNI",
-         "Snowflake Native App; runs in the client\u2019s own account"),
-        ("ibor", STAGE[2], "IBOR", "Real-time investment book of record"),
-        ("scout", TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
+        ("securities_master", "Securities Master", "Cross-asset instrument mastering"),
+        ("price_master", "Price Master", "Multi-vendor pricing and valuation"),
+        ("omni", "OMNI", "Snowflake Native App, runs in-account"),
+        ("ibor", "IBOR", "Real-time investment book of record"),
+        ("scout", "Scout", "AI layer on Amazon Bedrock, 2026"),
     ])
 
     src_w, lead = 1.42, 0.42

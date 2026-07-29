@@ -4,16 +4,15 @@ const Tb = require('react-icons/tb');
 const sharp = require('sharp');
 
 // stage colours from the HL palette, matched to the pipeline node each product sits under
-const NAVY_MID = '#1C4470';   // Connect / Master stage
-const NAVY_LT  = '#38618B';   // Distribute stage
-const TEAL     = '#24B1B1';   // Scout
+// all icons share the label colour: theme accent6, pale blue on navy
+const PALE = '#9FC3DA';
 
 const icons = [
-  ['securities_master', Tb.TbDatabase,      NAVY_MID],
-  ['price_master',      Tb.TbTag,           NAVY_MID],
-  ['omni',              Tb.TbSnowflake,     NAVY_LT],
-  ['ibor',              Tb.TbClockBolt,     NAVY_LT],
-  ['scout',             Tb.TbSparkles,      TEAL],
+  ['securities_master', Tb.TbDatabase,  PALE],
+  ['price_master',      Tb.TbTag,       PALE],
+  ['omni',              Tb.TbSnowflake, PALE],
+  ['ibor',              Tb.TbClockBolt, PALE],
+  ['scout',             Tb.TbSparkles,  PALE],
 ];
 
 (async () => {
