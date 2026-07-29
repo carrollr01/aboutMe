@@ -370,6 +370,97 @@ def native_chart(slide, kind, x, y, w, h, categories, values, colors,
     return chart
 
 
+# ------------------------------------------------- platform pipeline visual
+ENDS_BODY = RGBColor(0xF1, 0xF4, 0xF8)   # sources / consumers: outside the platform
+STAGE = [RGBColor(0x00, 0x28, 0x55), RGBColor(0x1C, 0x44, 0x70), RGBColor(0x38, 0x61, 0x8B)]
+
+
+def pipe_block(slide, x, y, w, h, title, items, head_fill, body_fill,
+               body_color, bullet_color, head_h=0.24, outlined=False):
+    rect(slide, x, y, w, h, body_fill)
+    if outlined:
+        outline(slide, x, y, w, h, LGRAY)
+    rect(slide, x, y, w, head_h, head_fill)
+    tf = textbox(slide, x + 0.06, y, w - 0.12, head_h, anchor=MSO_ANCHOR.MIDDLE)
+    write(tf, [plain(title, size=7, color=WHITE, bold=True, font=HEAD)],
+          align=PP_ALIGN.CENTER, space_after=0, line_spacing=1.0)
+    tf = textbox(slide, x + 0.11, y + head_h + 0.09, w - 0.22, h - head_h - 0.14)
+    write(tf, [{"runs": [(i, {})], "bullet": True, "bullet_color": bullet_color,
+                "space_after": 2.0} for i in items],
+          size=7, color=body_color, line_spacing=1.04)
+
+
+def marquee(slide, x, y, w, h, rows):
+    rh = h / len(rows)
+    for i, (dot, name, desc) in enumerate(rows):
+        ry = y + i * rh
+        rect(slide, x, ry + 0.045, 0.08, 0.08, dot, MSO_SHAPE.OVAL)
+        tf = textbox(slide, x + 0.145, ry, w - 0.145, 0.17)
+        write(tf, [plain(name, size=8, color=NAVY, bold=True, font=HEAD)], space_after=0)
+        tf = textbox(slide, x + 0.145, ry + 0.165, w - 0.145, rh - 0.185)
+        write(tf, [plain(desc, size=7, color=GRAY)], space_after=0, line_spacing=1.0)
+
+
+def platform_panel(slide, x, y, w, h):
+    """9.30in x 2.20in: marquee products left, source-to-consumer pipeline right."""
+    l_w, gut = 2.50, 0.20
+    r_x, r_w = x + l_w + gut, w - l_w - gut
+
+    marquee(slide, x, y, l_w, h, [
+        (STAGE[1], "Securities Master", "Cross-asset instrument mastering, ESG-enabled"),
+        (STAGE[1], "Price Master", "Rule-based multi-vendor pricing and valuation"),
+        (STAGE[2], "OMNI", "Snowflake Native App; runs in the client\u2019s own account"),
+        (STAGE[2], "IBOR", "Real-time investment book of record"),
+        (TEAL, "Scout", "AI layer on Amazon Bedrock, June 2026"),
+    ])
+
+    src_w, arr, c_w, m_w, d_w, con_w = 1.16, 0.14, 1.10, 1.60, 1.16, 1.30
+    plat_x = r_x + src_w + arr
+    plat_w = c_w + m_w + d_w
+
+    scout_h, blk_h = 0.28, 1.66
+    rect(slide, plat_x, y, plat_w, scout_h, TEAL)
+    tf = textbox(slide, plat_x + 0.08, y, plat_w - 0.16, scout_h, anchor=MSO_ANCHOR.MIDDLE)
+    write(tf, [plain("SCOUT   \u00b7   AI reasoning layer on Amazon Bedrock",
+                     size=7.5, color=WHITE, bold=True, font=HEAD)],
+          align=PP_ALIGN.CENTER, space_after=0)
+
+    by = y + scout_h + 0.08
+    pipe_block(slide, r_x, by, src_w, blk_h, "SOURCES",
+               ["Market data vendors", "Exchanges and indices", "Custodians",
+                "Internal systems", "Counterparty records"],
+               SLATE, ENDS_BODY, GRAY, SLATE, outlined=True)
+    rect(slide, r_x + src_w + 0.02, by + blk_h / 2 - 0.055, 0.11, 0.11, LGRAY,
+         MSO_SHAPE.RIGHT_ARROW)
+
+    cx = plat_x
+    for wdt, ttl, items, fill in (
+        (c_w, "CONNECT", ["Connections and Adaptors", "100+ pre-built vendor feeds",
+                          "Validation and exception rules"], STAGE[0]),
+        (m_w, "MASTER AND GOVERN", ["Securities Master", "Entity and Customer Master",
+                                    "Price Master and valuations",
+                                    "Corporate actions and ESG",
+                                    "Lineage and entitlements"], STAGE[1]),
+        (d_w, "DISTRIBUTE", ["Data Warehouse", "OMNI into Snowflake", "Real-time IBOR",
+                             "APIs and downstream feeds"], STAGE[2]),
+    ):
+        pipe_block(slide, cx, by, wdt, blk_h, ttl, items, fill, fill, WHITE, WHITE)
+        cx += wdt
+
+    rect(slide, plat_x + plat_w + 0.02, by + blk_h / 2 - 0.055, 0.11, 0.11, LGRAY,
+         MSO_SHAPE.RIGHT_ARROW)
+    pipe_block(slide, r_x + r_w - con_w, by, con_w, blk_h, "CONSUMERS",
+               ["Trading and OMS", "Risk and capital", "Regulatory reporting",
+                "Client reporting", "Analytics and AI"],
+               SLATE, ENDS_BODY, GRAY, SLATE, outlined=True)
+
+    br = by + blk_h + 0.03
+    hairline(slide, plat_x, br, plat_w, NAVY, 0.011)
+    tf = textbox(slide, plat_x, br + 0.025, plat_w, 0.15)
+    write(tf, [plain("GOLDENSOURCE PLATFORM", size=7, color=NAVY, bold=True, font=HEAD)],
+          align=PP_ALIGN.CENTER, space_after=0)
+
+
 # ================================================================ build deck
 prs = Presentation(SRC)
 delete_all_slides(prs)
@@ -430,7 +521,7 @@ kv_rows(s1, 5.86, cy - 0.03, 3.83, [
     ("Delivery", "SaaS on AWS, Azure and GCP; AWS Marketplace; on-premise", 2),
 ])
 
-# --- zone C: full-width platform flow diagram
+# --- zone C: compact platform flow (the full 9.30 x 2.20 panel ships separately)
 cy = section(s1, LX, 4.58, FULL_W, "PLATFORM AND PRODUCT SUITE")
 flow_diagram(s1, LX, cy, FULL_W, 5.76 - cy, [
     ("SOURCE AND CONNECT", ["Connections and Adaptors", "100+ vendor feeds"]),
@@ -444,7 +535,7 @@ cy = section(s1, LX, 5.86, 6.05, "SELECTED MILESTONES")
 timeline(s1, LX, cy, 6.05, BOT - cy, [
     ("1984", [("Founded in", False), ("New York", False)], False),
     ("2022", [("Gemspring buys", False), ("from Invus", False)], True),
-    ("2023–24", [("IBOR, OMNI and", False), ("V10; new CEO", False)], False),
+    ("2023\u201324", [("IBOR, OMNI and", False), ("V10; new CEO", False)], False),
     ("2025", [("Record year;", False), ("flagship wins", False)], False),
     ("2026", [("Scout AI", False), ("launches", False)], False),
 ])
@@ -456,6 +547,154 @@ native_chart(s1, XL_CHART_TYPE.COLUMN_CLUSTERED, 6.52, cy - 0.09, 3.26, BOT - cy
 footnote(s1, "Sources: GoldenSource and Gemspring Capital press releases; Businesswire; Finextra; "
              "WatersTechnology; company website. Employee and revenue figures are third-party "
              "estimates and are not company-reported; confirm in diligence.")
+
+# ============================================================ PAGE: PLATFORM
+# 9.3in of usable width: marquee products on the left, data pipeline on the right.
+PW = 9.30
+PX = 0.35
+L_W = 2.45          # left panel: marquee products
+GUT = 0.25
+R_X = PX + L_W + GUT
+R_W = PW - L_W - GUT
+
+STAGE = [RGBColor(0x00, 0x28, 0x55), RGBColor(0x1C, 0x44, 0x70), RGBColor(0x38, 0x61, 0x8B)]
+ENDS = RGBColor(0xF1, 0xF4, 0xF8)   # sources / consumers, outside the platform
+
+
+def mini_label(slide, x, y, w, text):
+    tf = textbox(slide, x, y, w, 0.18, anchor=MSO_ANCHOR.BOTTOM)
+    write(tf, [plain(text, size=7.5, color=SLATE, bold=True, font=HEAD)], space_after=0)
+    return y + 0.24
+
+
+def product_card(slide, x, y, w, h, dot, name, desc, rule=True):
+    d = rect(slide, x, y + 0.055, 0.085, 0.085, dot, MSO_SHAPE.OVAL)
+    tf = textbox(slide, x + 0.16, y, w - 0.16, 0.20)
+    write(tf, [plain(name, size=9, color=NAVY, bold=True, font=HEAD)], space_after=0)
+    tf = textbox(slide, x + 0.16, y + 0.21, w - 0.16, h - 0.26)
+    write(tf, [plain(desc, size=7.5, color=GRAY)], space_after=0, line_spacing=1.1)
+    if rule:
+        hairline(slide, x, y + h + 0.015, w, LGRAY)
+
+
+def stage_block(slide, x, y, w, h, title, items, fill, text_on_fill=True,
+                head_h=0.34, border=False):
+    if border:
+        outline(slide, x, y, w, h, LGRAY)
+        rect(slide, x, y, w, head_h, fill)
+    else:
+        rect(slide, x, y, w, h, fill)
+    tf = textbox(slide, x + 0.08, y, w - 0.16, head_h, anchor=MSO_ANCHOR.MIDDLE)
+    write(tf, [plain(title, size=7.5, color=WHITE if text_on_fill else NAVY,
+                     bold=True, font=HEAD)],
+          align=PP_ALIGN.CENTER, space_after=0, line_spacing=1.0)
+    body = WHITE if text_on_fill else GRAY
+    tf = textbox(slide, x + 0.13, y + head_h + 0.12, w - 0.26, h - head_h - 0.20)
+    write(tf, [{"runs": [(i, {})], "bullet": True,
+                "bullet_color": WHITE if text_on_fill else MID, "space_after": 3.5}
+               for i in items],
+          size=7, color=body, line_spacing=1.08)
+
+
+def flow_arrow(slide, x, y, size, color=LGRAY):
+    return rect(slide, x, y, size, size, color, MSO_SHAPE.RIGHT_ARROW)
+
+
+sp = page_frame(
+    prs, layouts,
+    "GoldenSource",
+    "Platform and Product Suite  |  July 2026",
+    "One platform sits between the client’s data vendors and every system that "
+    "consumes the data. GoldenSource connects the sources, masters and governs the record, "
+    "and distributes it to trading, risk, reporting and, since June 2026, to AI agents.",
+)
+
+cy = section(sp, PX, 1.58, PW, "PLATFORM AND PRODUCT SUITE")
+
+# ---- left panel: marquee products
+ly = mini_label(sp, PX, cy, L_W, "MARQUEE PRODUCTS")
+cards = [
+    (STAGE[1], "Securities Master",
+     "Cross-asset instrument mastering across equities, fixed income, funds, "
+     "structured products and derivatives. ESG-enabled."),
+    (STAGE[1], "Price Master",
+     "Rule-based multi-vendor pricing and valuation, centralised for NAV and "
+     "portfolio valuation."),
+    (STAGE[2], "OMNI",
+     "Snowflake Native App. Runs the GoldenSource data model inside the client’s "
+     "own Snowflake account; data never leaves."),
+    (STAGE[2], "IBOR",
+     "Real-time investment book of record. Positions and valuations update "
+     "intraday as prices and trades arrive."),
+    (TEAL, "Scout",
+     "AI layer launched June 2026. Chat interface and MCP agent builder over the "
+     "mastered record, on Amazon Bedrock."),
+]
+card_h, card_gap = 0.775, 0.07
+for i, (dot, name, desc) in enumerate(cards):
+    product_card(sp, PX, ly + i * (card_h + card_gap), L_W, card_h, dot, name, desc,
+                 rule=(i < len(cards) - 1))
+
+# ---- right panel: the pipeline
+ry = mini_label(sp, R_X, cy, R_W, "DATA PIPELINE")
+
+ARR = 0.24
+src_w, con_w = 1.10, 1.02
+plat_w = R_W - src_w - con_w - 2 * ARR
+c_w, m_w, d_w = plat_w * 0.30, plat_w * 0.40, plat_w * 0.30
+
+scout_x = R_X + src_w + ARR
+scout_h = 0.34
+rect(sp, scout_x, ry, plat_w, scout_h, TEAL)
+tf = textbox(sp, scout_x + 0.10, ry, plat_w - 0.20, scout_h, anchor=MSO_ANCHOR.MIDDLE)
+write(tf, [plain("SCOUT  ·  AI reasoning layer over the mastered record, on Amazon Bedrock",
+                 size=7.5, color=WHITE, bold=True, font=HEAD)],
+      align=PP_ALIGN.CENTER, space_after=0)
+
+py_ = ry + scout_h + 0.13
+ph = 6.30 - py_
+
+stage_block(sp, R_X, py_, src_w, ph, "SOURCES", [
+    "Market data vendors", "Exchanges and index providers", "Custodians and administrators",
+    "Internal trading and accounting systems", "Client and counterparty records",
+], ENDS, text_on_fill=False, border=True)
+flow_arrow(sp, R_X + src_w + 0.02, py_ + ph / 2 - ARR / 2, ARR - 0.04)
+
+cx = scout_x
+stage_block(sp, cx, py_, c_w, ph, "CONNECT", [
+    "Connections and Adaptors", "100+ pre-built vendor feeds",
+    "Validation and exception rules",
+], STAGE[0])
+cx += c_w
+stage_block(sp, cx, py_, m_w, ph, "MASTER AND GOVERN", [
+    "Securities Master", "Entity and Customer Master", "Price Master and valuations",
+    "Corporate actions", "ESG Impact Plus", "Lineage, audit and entitlements",
+], STAGE[1])
+cx += m_w
+stage_block(sp, cx, py_, d_w, ph, "DISTRIBUTE", [
+    "Data Warehouse", "OMNI into Snowflake", "Real-time IBOR", "APIs and downstream feeds",
+], STAGE[2])
+
+flow_arrow(sp, scout_x + plat_w + 0.02, py_ + ph / 2 - ARR / 2, ARR - 0.04)
+stage_block(sp, R_X + R_W - con_w, py_, con_w, ph, "CONSUMERS", [
+    "Trading and order management", "Risk and capital", "Regulatory reporting",
+    "Client and fund reporting", "Analytics and AI models",
+], ENDS, text_on_fill=False, border=True)
+
+# platform bracket
+hairline(sp, scout_x, 6.42, plat_w, NAVY, 0.011)
+tf = textbox(sp, scout_x, 6.46, plat_w, 0.18)
+write(tf, [plain("GOLDENSOURCE PLATFORM", size=7.5, color=NAVY, bold=True, font=HEAD)],
+      align=PP_ALIGN.CENTER, space_after=0)
+
+tf = textbox(sp, PX, 6.68, PW, 0.24)
+write(tf, [plain("Deployed as SaaS on AWS, Azure or GCP, inside the client’s own Snowflake "
+                 "account via OMNI, or on-premise. Modules are separately licensable; three "
+                 "are listed standalone on AWS Marketplace.",
+                 size=7.5, color=GRAY)], space_after=0, line_spacing=1.05)
+
+footnote(sp, "Sources: GoldenSource product documentation and press releases; Snowflake and "
+             "AWS Marketplace listings; A-Team Insight; WatersTechnology.")
 
 # ==================================================================== PAGE 2
 s2 = page_frame(
@@ -551,3 +790,13 @@ footnote(s2, "Sources: Houlihan Lokey transaction disclosures; S&P Global, Clear
 
 prs.save(OUT)
 print("wrote", OUT)
+
+# ------------------------------- standalone: one slide holding only the panel
+blk = Presentation(SRC)
+delete_all_slides(blk)
+bl = {l.name: l for l in blk.slide_master.slide_layouts}
+bs = blk.slides.add_slide(bl["Blank"])
+platform_panel(bs, 0.35, 2.65, 9.30, 2.20)
+BLK_OUT = "GoldenSource_Platform_Block.pptx"
+blk.save(BLK_OUT)
+print("wrote", BLK_OUT)
