@@ -1,0 +1,99 @@
+{
+  "ma": [
+    {
+      "sector": "Capital Markets Tech", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "30-Jul-26",
+      "target": "MarketAxess", "acquirer": "Intercontinental Exchange",
+      "ev": 5700, "ev_rev": 6.5, "ev_ebitda": 13.0,
+      "description": "Electronic fixed-income trading marketplace (all-to-all Open Trading liquidity, RFQ protocols) with bond pricing data and execution-automation tools; all-cash take-private at $167.00/share, a 33% premium",
+      "link": "https://ir.theice.com/press/news-details/2026/Intercontinental-Exchange-to-Acquire-MarketAxess-Creating-a-Premier-Fixed-Income-Marketplace/default.aspx",
+      "mults_source": "ICE press release; MKTX 4Q25/2Q26 earnings; deal press (EBITDA)",
+      "mults_basis": "EV ~$5.7B (equity ~$6.0B); LTM Jun-26 rev ~$872M (FY25 $846M + H1'26 $452M - H1'25 ~$426M); LTM adj. EBITDA ~$438M implied from reported ~10.6x synergized multiple less $100M run-rate synergies",
+      "public_deal": "Y", "hl_deal": "-", "seller": "-"
+    },
+    {
+      "sector": "Asset & Wealth Tech", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "29-Jul-26",
+      "target": "Canoe Intelligence", "acquirer": "Bloomberg",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "AI document-ingestion platform converting unstructured alternatives documents (capital calls, distributions, K-1s, statements) into structured data for allocators' accounting and portfolio systems",
+      "link": "https://www.prnewswire.com/news-releases/bloomberg-to-acquire-canoe-intelligence-taking-a-defining-step-in-its-mission-to-transform-private-markets-investing-302837466.html",
+      "public_deal": "N"
+    },
+    {
+      "sector": "Payments", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "27-Jul-26",
+      "target": "Magic Labs (wallet infrastructure)", "acquirer": "Payward (Kraken)",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Embedded wallet-as-a-service SDK provisioning non-custodial blockchain wallets via email/social login for stablecoin payments and onchain apps (60M+ wallets); carve-out, with the remaining company rebranding as Newton Labs",
+      "link": "https://www.businesswire.com/news/home/20260727181779/en/Payward-to-Acquire-Magic-Labs-Wallet-Infrastructure-Business-to-Expand-B2B-Offering-with-Embedded-Wallets",
+      "public_deal": "N", "seller": "Magic Labs"
+    },
+    {
+      "sector": "Capital Markets Tech", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "27-Jul-26",
+      "target": "Water Street Labs & CX Clearinghouse", "acquirer": "Fanatics",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "CFTC-registered designated contract market and derivatives clearinghouse letting Fanatics Markets self-list and self-clear sports and event prediction contracts",
+      "link": "https://www.fanaticsinc.com/press-releases/fanatics-to-acquire-exchange-and-clearinghouse-from-bgc-parties-to-partner-on-prediction-markets",
+      "public_deal": "N", "seller": "BGC Group"
+    },
+    {
+      "sector": "InsurTech", "country": "United Kingdom",
+      "deal_type": "Strategic M&A", "date": "29-Jul-26",
+      "target": "McKenzie Intelligence Services", "acquirer": "Verisk",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Geospatial event-intelligence platform fusing satellite and aerial imagery with analyst review to deliver property-level catastrophe damage assessments for insurers and loss adjusters",
+      "link": "https://www.globenewswire.com/news-release/2026/07/29/3335063/0/en/Verisk-Acquires-McKenzie-Intelligence-Services-to-Enhance-Catastrophic-Event-Preparation-and-Response.html",
+      "public_deal": "N"
+    },
+    {
+      "sector": "Financial Info & Analytics", "country": "United Kingdom",
+      "deal_type": "Strategic M&A", "date": "28-Jul-26",
+      "target": "MirrorWeb", "acquirer": "Red Oak Compliance Solutions",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Multi-channel communications capture, archiving, and AI surveillance platform for financial firms; announced as a merger with Red Oak's marketing-compliance review software, with MirrorWeb's CEO leading the combined company",
+      "link": "https://www.mirrorweb.com/blog/mirrorweb-and-red-oak-combine-to-define-a-new-standard-in-end-to-end-compliance-connectivity",
+      "public_deal": "N"
+    },
+    {
+      "sector": "Real Estate & Mortgage Tech", "country": "United States",
+      "deal_type": "Strategic M&A", "date": "27-Jul-26",
+      "target": "Blue Water (MSR valuation & hedging)", "acquirer": "Milliman",
+      "ev": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Daily mortgage-servicing-rights portfolio valuation and hedge-analytics platform for mortgage servicers; carve-out of the Blue Water business from Apex Analytics (fka Voxtur)",
+      "link": "https://www.businesswire.com/news/home/20260727963917/en/Milliman-Acquires-Blue-Water-Mortgage-Servicing-Rights-Valuation-and-Hedging-Services-from-Apex-Analytics",
+      "public_deal": "N", "seller": "Apex Analytics"
+    }
+  ],
+  "raises": [
+    {
+      "sector": "Asset & Wealth Tech", "country": "United States", "date": "29-Jul-26",
+      "target": "CAIS", "lead": "Vista Equity Partners",
+      "amount": 170, "valuation": ">2,000", "ev_rev": "", "ev_ebitda": "",
+      "description": "Alternative-investments marketplace connecting independent wealth advisers with alts funds across research, execution, and post-trade reporting",
+      "link": "https://www.caisgroup.com/our-company/press/cais-welcomes-new-strategic-investors-valuing-the-company-at-over-2-billion"
+    },
+    {
+      "sector": "Capital Markets Tech", "country": "United States", "date": "28-Jul-26",
+      "target": "ProphetX", "lead": "Parlay Capital, Data Point Capital",
+      "amount": 35, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "CFTC-regulated sports-native prediction market exchange with an RFQ parlay mechanism, expanding into B2B exchange infrastructure",
+      "link": "https://www.prnewswire.com/news-releases/prophetx-raises-35m-to-scale-americas-first-federally-regulated-sports-native-prediction-market-and-b2b-platform-302836421.html"
+    },
+    {
+      "sector": "Corporate Financial Function", "country": "United States", "date": "28-Jul-26",
+      "target": "PEX", "lead": "Bluff Point Associates",
+      "amount": 160, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Corporate card issuing and spend-management platform for SMBs automating expense controls, reconciliation, and AP; $160M combined equity and debt, with the card facility provided by Clear Haven",
+      "link": "https://www.globenewswire.com/news-release/2026/07/28/3334317/0/en/PEX-Secures-160-Million-to-Scale-Payments-Credit-and-Financial-Automation-Platform.html"
+    },
+    {
+      "sector": "Corporate Financial Function", "country": "United States", "date": "29-Jul-26",
+      "target": "Freehand", "lead": "Battery Ventures, NewRoad Capital Partners",
+      "amount": 75, "valuation": "", "ev_rev": "", "ev_ebitda": "",
+      "description": "Autonomous AI agents automating enterprise procure-to-pay — procurement, supplier management, invoice and freight audit, and payments — for Fortune 500 companies",
+      "link": "https://www.pymnts.com/news/investment-tracker/2026/freehand-raises-75-million-to-automate-enterprise-procurement-and-payments/"
+    }
+  ]
+}
