@@ -115,13 +115,22 @@ def fill_sheet(ws, headers, keys, rows, widths):
     ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{1 + len(rows)}"
 
 
+def sort_key(row):
+    """Sector alphabetical, then most recent date first within the sector."""
+    try:
+        d = datetime.datetime.strptime(str(row.get("date", "")).strip(), "%d-%b-%y").date()
+    except ValueError:
+        d = datetime.date.min
+    return (row.get("sector", ""), -d.toordinal())
+
+
 def main():
     data_path = sys.argv[1] if len(sys.argv) > 1 else "deals.json"
     out_path = sys.argv[2] if len(sys.argv) > 2 else "Weekly_Fintech_Deals.xlsx"
     with open(data_path) as f:
         data = json.load(f)
-    ma = sorted(data.get("ma", []), key=lambda r: (r.get("sector",""), r.get("date","")))
-    ra = sorted(data.get("raises", []), key=lambda r: (r.get("sector",""), r.get("date","")))
+    ma = sorted(data.get("ma", []), key=sort_key)
+    ra = sorted(data.get("raises", []), key=sort_key)
     wb = Workbook()
     ws = wb.active; ws.title = "All M&A (PE & Strategic)"
     fill_sheet(ws, MA_HEADERS, MA_KEYS, ma,
