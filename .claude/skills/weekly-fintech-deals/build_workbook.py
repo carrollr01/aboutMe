@@ -120,8 +120,17 @@ def main():
     out_path = sys.argv[2] if len(sys.argv) > 2 else "Weekly_Fintech_Deals.xlsx"
     with open(data_path) as f:
         data = json.load(f)
-    ma = sorted(data.get("ma", []), key=lambda r: (r.get("sector",""), r.get("date","")))
-    ra = sorted(data.get("raises", []), key=lambda r: (r.get("sector",""), r.get("date","")))
+
+    def date_ord(r):
+        try:
+            return datetime.datetime.strptime(str(r.get("date","")).strip(), "%d-%b-%y").toordinal()
+        except ValueError:
+            return 0
+
+    # sector alphabetical; within sector, most recent deal first
+    key = lambda r: (r.get("sector",""), -date_ord(r))
+    ma = sorted(data.get("ma", []), key=key)
+    ra = sorted(data.get("raises", []), key=key)
     wb = Workbook()
     ws = wb.active; ws.title = "All M&A (PE & Strategic)"
     fill_sheet(ws, MA_HEADERS, MA_KEYS, ma,

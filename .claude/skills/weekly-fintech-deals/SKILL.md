@@ -62,7 +62,7 @@ Tab 2 **"Growth Capital Raises"**:
 - Meta columns (Mults Source/Basis, Public Deal Y/N, HL Deal, Seller): populate what is
   publicly knowable (Seller from the release, Public Deal = listed target, HL Deal only if
   HL is named); "-" otherwise.
-- Dates DD-Mmm-YY. Link cell shows "Link" hyperlinked. Rows ordered sector-alpha, then date.
+- Dates DD-Mmm-YY. Link cell shows "Link" hyperlinked. Rows ordered sector-alpha, then date DESCENDING (most recent deal first within each sector).
 - Build: `python3 .claude/skills/weekly-fintech-deals/build_workbook.py weekly-deals/inputs/deals_<endingFriday>.json "weekly-deals/outputs/Weekly_Fintech_Deals_<endingFriday>.xlsx"`
   (deals JSON lives in `weekly-deals/inputs/`, finished workbooks in `weekly-deals/outputs/`)
 
